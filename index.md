@@ -11,9 +11,7 @@ Anatta is an assistant AI that will give the advice to people who have dukkha, i
 Human input ->intent->process->output->feedback
 </p>
 <p>
- if you need more information please contact Phra Sombat Tapakuno 
- via email dropoutunit @ gmail . com
- or phone call (Thailand) 661969450638
+ if you need more information please contact TBC
  </p>
 
 <h2>โครงการ อนัตตา</h2>
@@ -38,8 +36,7 @@ Human input ->intent->process->output->feedback
 2 งบประมาณ สนับสนุน <br/>
 <br/>
 สนใจสอบถามข้อมูลเพิ่มเติมเพื่อประกอบการพิจาณาในการตัดสินใจเพื่อให้การสนับสนุนได้ที่ <br/>
-พระ สมบัติ ตปคุโณ 0969450638 หรือ <br/>
-ติดต่อผ่านเพจโครงการ สำนักปฏิบัติธรรม พุทธเกษตรทฤษฏีใหม่ https://m.facebook.com/ThaiZENcenter/
+TBC
 <br/><br/>
 ปล ถ้าเราสร้างเอไอที่ทำหน้าที่เป็นกัลยาณมิตรได้ดี น่าจะช่วยสร้างประโยชน์แก่พุทธศาสนาได้มาก การนำ dataset ไปใช้ เช่น การเอาไปพัฒนาใช้ร่วมกับโครงการ https://mycroft.ai/
 </p>
