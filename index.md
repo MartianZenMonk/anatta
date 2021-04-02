@@ -10,6 +10,11 @@ Anatta is an assistant AI that will give the advice to people who have dukkha, i
 <p>
 Human input ->intent->process->output->feedback
 </p>
+<p>
+ if you need more information please contact Phra Sombat Tapakuno 
+ via email dropoutunit @ gmail . com
+ or phone call (Thailand) 661969450638
+ </p>
 
 <h2>โครงการ อนัตตา</h2>
 <h4>จุดประสงค์ จัดทำเผยแพร่ dataset เกี่ยวกับพุทธศาสนา เพื่อให้ผู้ที่สนใจนำไปพัฒนาระบบเอไอผู้ช่วย ที่เป็น พหูสูตร หรือ กัลยาณมิตร</h4>
