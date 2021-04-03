@@ -31,9 +31,11 @@ Human input ->intent->process->output->feedback
 4* จัดทำและเผยแพร่ dataset พระไตรปิฏก และหนังสือธรรมะที่สำคัญอื่นๆเพื่อให้สามารถนำไปเทรน เอไอได้ง่าย
 แนวทางสำหรับ พระไตรปิฏก หรือหนังสือ เช่น พุทธธรรม หรือ ชุดธรรมโฆษณ์ ก็อาจพิจารณาทำ database เพื่อให้ นักพัฒนาเขียนสร้าง dataset ตามที่ต้องการได้ เช่น<br/>
 https://rajpurkar.github.io/SQuAD-explorer/ <br/>
-https://towardsdatascience.com/the-quick-guide-to-squad-cae08047ebee
+https://towardsdatascience.com/the-quick-guide-to-squad-cae08047ebee<br/>
+https://github.com/cdqa-suite/cdQA-annotator <br/>
+https://towardsdatascience.com/how-to-create-your-own-question-answering-system-easily-with-python-2ef8abc8eb5
 <br/>
-* ต้องปรึกษากับ นักวิทยาการข้อมูล และ วิศกร เอไอ ก่อน
+* ต้องปรึกษากับ นักวิทยาการข้อมูล และ วิศกร เอไอ ก่อน<br/>
 ปล มีสอบถามไว้ที่เฟซบุค ได้คำตอบน่าศึกษาต่อ <br/>
 https://m.facebook.com/groups/thaidsml/permalink/732015200839051/
 <br/><br/>
