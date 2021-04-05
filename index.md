@@ -29,12 +29,15 @@ Human input ->intent->process->output->feedback
 2* เผยแพร่คลิปให้อาสาสมัครที่สนใจฟังแล้ว สรุปว่า เหมาะกับคนที่มีทุกข์เรื่องอะไร มีปัญหาอะไร นิสัยแบบไหน โดยอาจมีแนะนำ ว่า ฟังที่นาทีเท่าไหร่ แล้วกระโดดไปนาทีไหน ทั้งนี้เพราะบางคลิปอาจจะมีน้ำมาก ถ้าทำระบบเล่นได้ตามเวลา ก็ไม่ต้องตัดต่อคลิป แต่แน่นอนว่าเก็บคลิปค้นฉบับไว้ด้วย <br/>
 3 ให้ทีมงาน รวบรวมเป็น dataset เผยแพร่ <br/>
 4* จัดทำและเผยแพร่ dataset พระไตรปิฏก และหนังสือธรรมะที่สำคัญอื่นๆเพื่อให้สามารถนำไปเทรน เอไอได้ง่าย
-แนวทางสำหรับ พระไตรปิฏก หรือหนังสือ เช่น พุทธธรรม หรือ ชุดธรรมโฆษณ์ ก็อาจพิจารณาทำ database เพื่อให้ นักพัฒนาเขียนสร้าง dataset ตามที่ต้องการได้ เช่น<br/>
-https://rajpurkar.github.io/SQuAD-explorer/ <br/>
-https://www.tensorflow.org/datasets/catalog/squad <br/>
-https://towardsdatascience.com/the-quick-guide-to-squad-cae08047ebee<br/>
-https://github.com/cdqa-suite/cdQA-annotator <br/>
-https://towardsdatascience.com/how-to-create-your-own-question-answering-system-easily-with-python-2ef8abc8eb5
+แนวทางสำหรับ พระไตรปิฏก หรือหนังสือ เช่น พุทธธรรม หรือ ชุดธรรมโฆษณ์ ก็อาจพิจารณาทำ database เพื่อให้ นักพัฒนาเขียนสร้าง dataset ตามที่ต้องการได้ 
+<br/>
+Free question about Buddhism --> intent model ( got keywords ) --> collect passages from Anatta Project Buddhism Corpus ( passages of each keyword from buddhism books database + inverted index ?  elasticsearch ?) --> multi passages for answer extraction model --> Answers
+<br/>
+ในเบื้องต้น น่าจะเป็นการทำระบบฐานข้อมูลของหนังสือธรรมะต่างเพื่อให้ สามารถ จ่าย passages ที่มี keywords จากคำถามได้ แล้ว เอา คำถาม และ passages ไป หาคำตอบ จาก เอไอ แบบ multi passages for answer extraction model
+---
+โปรคเจคอนัตตา จึงอาจให้บริการแค่ จัด passages ที่อาจจะมีคำตอบ จาก keywords ที่ได้จากคำถาม ให้เอาไป หาคำตอบจาก โมเดล เอไอ ที่เทรนมาแล้วเอง
+---
+ถ้าเป็นแบบนี้ ระบบการแจก passages นี่จะออกแบบยังไงให้ดีที่สุดหนอ
 <br/>
 * ต้องปรึกษากับ นักวิทยาการข้อมูล และ วิศกร เอไอ ก่อน<br/>
 ปล มีสอบถามไว้ที่เฟซบุค ได้คำตอบน่าศึกษาต่อ <br/>
