@@ -52,3 +52,15 @@ TBC
 <br/><br/>
 <h4>ถ้าเราสร้างเอไอที่ทำหน้าที่เป็นกัลยาณมิตรได้ดี น่าจะช่วยสร้างประโยชน์แก่พุทธศาสนาได้มาก การนำ dataset ไปใช้ เช่น การเอาไปพัฒนาใช้ร่วมกับโครงการ https://mycroft.ai/ </h4>
 </p>
+<pre>
+มิตรแนะประโยชน์ ( อัตถักขายี — Atthakkhàyã: the man who gives good counsel)
+มีลักษณะ 4 คือ
+1) จะทําชั่วเสียหาย คอยห้ามปรามไว
+2) คอยแนะนําให้ตั้งอยู่ในความด
+3) ให้ได้ฟังได้รู้สิ่งที่ไม่เคยได้รู้ได้ฟัง
+4) บอกทางสุขทางสวรรค์ให
+a) He keeps you back from evil.
+b) He encourages you to do good.
+c) He informs you of what you have not heard.
+d) He shows you the way to heaven. 
+</pre>
