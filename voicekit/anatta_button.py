@@ -128,17 +128,23 @@ def main():
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","dhamma.txt"])
                                 elif button_press == 4:
                                         proc.kill()
+                                        leds.update(Leds.rgb_on(Color.GREEN))
+                                        text = "The lecture of Buddhadasa Bhikkhu"
+                                        speak(text)
+                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","buddhadasa.txt"])
+                                elif button_press == 5:
+                                        proc.kill()
                                         text = "Meditation time will make 15 minutes bell sound, you may relax your self by walking then sitting. "
                                         text += "For walking, set a distance to meditate walking back and forth, your senses inwardly immersed, your mind not straying outwards. "
-                                        text += "Lifting, Moving, Treading, slow moving and always mind your foot movement then you can increse your awakening sense. "
-                                        text += "or free walking, just focus on Treading"
+                                        text += "Lifting, Moving, Treading, slow moving and always mind your foot movement then you can increse your awakening sense, "
+                                        text += "or free walking, just focus on Treading, "
                                         text += "For sitting, breathing in calm, breathing out down, always mind your breathing, your citta will not go around"
                                         speak(text)
                                         leds.update(Leds.rgb_on(Color.BLUE))
                                         # board.led.state = Led.ON
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-l","0","../dataen/bell15min.mp3"])
                                 else:
-                                        if button_press >= 5 :
+                                        if button_press >= 6 :
                                                 proc.kill()
                                                 board.led.state = Led.OFF
                                                 button_press = 0
