@@ -17,7 +17,7 @@ with Board() as board:
 	# os.system('espeak -v "english-us" "Nothing is worth insisting on, Sawaddee krub"')
 	engine = pyttsx3.init() # object creation
 	engine.setProperty('voice','english-us') 
-	engine.setProperty('rate', 140)
+	engine.setProperty('rate', 130)
 	engine.setProperty('volume',0.1)
 	engine.say('Nothing is worth insisting on, sawaddee krub')
 	engine.runAndWait()

@@ -21,6 +21,8 @@ def main():
                                 button_press = 0
                                 ts1 = time.time()
                         if button_press > 10 :
+                                board.led.state = Led.OFF
+                                os.system("sudo killall mpg123")
                                 engine = pyttsx3.init() # object creation
                                 engine.setProperty('voice','english-us') 
                                 engine.setProperty('rate', 150)

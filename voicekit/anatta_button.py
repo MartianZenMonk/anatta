@@ -134,6 +134,12 @@ def main():
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","buddhadasa.txt"])
                                 elif button_press == 5:
                                         proc.kill()
+                                        leds.update(Leds.rgb_on(Color.GREEN))
+                                        text = "The sermons of Bhikkhu P. A. Payutto"
+                                        speak(text)
+                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","payutto.txt"])
+                                elif button_press == 6:
+                                        proc.kill()
                                         text = "Meditation time will make 15 minutes bell sound, you may relax your self by walking then sitting. "
                                         text += "For walking, set a distance to meditate walking back and forth, your senses inwardly immersed, your mind not straying outwards. "
                                         text += "Lifting, Moving, Treading, slow moving and always mind your foot movement then you can increse your awakening sense, "
@@ -144,7 +150,7 @@ def main():
                                         # board.led.state = Led.ON
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-l","0","../dataen/bell15min.mp3"])
                                 else:
-                                        if button_press >= 6 :
+                                        if button_press >= 7 :
                                                 proc.kill()
                                                 board.led.state = Led.OFF
                                                 button_press = 0
