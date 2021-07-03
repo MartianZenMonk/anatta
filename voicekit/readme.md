@@ -4,6 +4,12 @@ THANK YOU VERY MUCH TO MR. Peter Malkin FOR GIVING ME THE VOICEKIT AND CORAL DEV
 https://aiyprojects.withgoogle.com/voice/
 
 
+use
+
+git clone https://github.com/MartianZenMonk/anatta.git
+
+- then you can use git pull to update the content after reboot if you like :)
+
 
 You may have to install the following packages
 
