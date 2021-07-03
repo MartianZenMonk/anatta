@@ -14,7 +14,7 @@ from datetime import datetime
 import pyttsx3
 engine = pyttsx3.init() # object creation
 engine.setProperty('voice','english-us') 
-engine.setProperty('rate', 150)
+engine.setProperty('rate', 130)
 engine.setProperty('volume',0.1)
 
 import csv
@@ -102,33 +102,31 @@ def main():
                                 board.led.state = Led.OFF
                                 ts2 = time.time()
                                 if button_press == 1: 
+                                        leds.update(Leds.rgb_on(Color.WHITE))
                                         import datetime
                                         today = datetime.datetime.now() 
                                         text = "Today is "+today.strftime('%B %A %d')+" Time "+today.strftime('%H %M')
                                         speak(text)
-                                elif button_press == 2:
                                         y = list(str(holyday))
                                         yy = y[2]+y[3]+y[4]+y[5]
                                         mm = y[6]+y[7]
                                         dd = y[8]+y[9]
-                                        # print(yy,mm,dd)
-                                        import datetime
                                         x = datetime.datetime(int(yy),int(mm),int(dd))
                                         z = x.strftime("%B %A %d")
                                         text = "Next Buddha Holy Day is "+z
                                         speak(text)       
-                                elif button_press == 3:
+                                elif button_press == 2:
                                         leds.update(Leds.rgb_on(Color.YELLOW))
                                         text = "English chanting"
                                         speak(text)
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","chanting.txt"]) 
-                                elif button_press == 4:
+                                elif button_press == 3:
                                         proc.kill()
-                                        leds.update(Leds.rgb_on(Color.WHITE))
+                                        leds.update(Leds.rgb_on(Color.PURPLE))
                                         text = "Play Dhamma"
                                         speak(text)
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","dhamma.txt"])
-                                elif button_press == 5:
+                                elif button_press == 4:
                                         proc.kill()
                                         text = "Meditation time will make 15 minutes bell sound, you may relax your self by walking then sitting. "
                                         text += "For walking, set a distance to meditate walking back and forth, your senses inwardly immersed, your mind not straying outwards. "
@@ -140,7 +138,7 @@ def main():
                                         # board.led.state = Led.ON
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-l","0","../dataen/bell15min.mp3"])
                                 else:
-                                        if button_press >= 6 :
+                                        if button_press >= 5 :
                                                 proc.kill()
                                                 board.led.state = Led.OFF
                                                 button_press = 0
