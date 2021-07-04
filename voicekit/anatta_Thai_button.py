@@ -118,7 +118,7 @@ def main():
                                         x = datetime.datetime(int(yy),int(mm),int(dd))
                                         # z = x.strftime("%B %A %d")
                                         text = ""
-                                        text += " ../thaivoices/words/buddhaday.mp3 ../thaivoices/words/next.mp3 ../thaivoices/words/is.mp3 ../thaivoices/words/day.mp3"
+                                        text += " ../thaivoices/words/buddhaday.mp3 ../thaivoices/words/face.mp3 ../thaivoices/words/is.mp3 ../thaivoices/words/day.mp3"
                                         text += " ../thaivoices/weekday/"+x.strftime('%w')+".mp3 ../thaivoices/words/at.mp3 ../thaivoices/59/"+x.strftime('%d')+".mp3"
                                         text += " ../thaivoices/month/0.mp3 ../thaivoices/month/"+x.strftime('%m')+".mp3"  
                                         os.system("mpg123 -q -f 2000 "+text)     
