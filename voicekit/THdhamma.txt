@@ -1,0 +1,14 @@
+../datath/dhamma/d001.mp3
+../datath/dhamma/d002.mp3
+../datath/dhamma/s001.mp3
+../datath/dhamma/s002.mp3
+../datath/dhamma/s003.mp3
+../datath/dhamma/s004.mp3
+../datath/dhamma/s005.mp3
+../datath/dhamma/s006.mp3
+../datath/dhamma/s007.mp3
+../datath/dhamma/s008.mp3
+../datath/dhamma/s009.mp3
+../datath/dhamma/s010.mp3
+../datath/dhamma/s011.mp3
+../datath/dhamma/s012.mp3

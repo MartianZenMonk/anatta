@@ -18,10 +18,18 @@ You may have to install the following packages
 
 
 You may use crontab -e for
+- @reboot cd anatta && git pull
 - @reboot cd anatta/voicekit && sleep 60 && python3 shutdown_button.py
 - @reboot cd anatta/voicekit && sleep 60 && python3 sayhi.py
+
 - # play with button
 - @reboot cd anatta/voicekit && sleep 90 && python3 anatta_button.py 
+
+
+or
+
+
+https://www.raspberrypi-spy.co.uk/2015/10/how-to-autorun-a-python-script-on-boot-using-systemd/
 
 
 

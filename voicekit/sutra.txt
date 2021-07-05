@@ -1,0 +1,7 @@
+../datath/sutta/athitaya.mp3
+../datath/sutta/anattalukkhanasutra.mp3
+../datath/sutta/moggallana.mp3
+../datath/sutta/inseebhavana.mp3
+../datath/sutta/dhammajak.mp3
+../datath/sutta/chachakkasutra.mp3
+../datath/sutta/sacittasutra.mp3

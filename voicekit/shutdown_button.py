@@ -21,8 +21,9 @@ def main():
                                 button_press = 0
                                 ts1 = time.time()
                         if button_press > 10 :
-                                board.led.state = Led.OFF
+                                os.system("sudo pkill -f anatta_Thai_button.py")
                                 os.system("sudo killall mpg123")
+                                board.led.state = Led.OFF
                                 engine = pyttsx3.init() # object creation
                                 engine.setProperty('voice','english-us') 
                                 engine.setProperty('rate', 150)
