@@ -5,6 +5,21 @@ import math
 import pyttsx3
 import subprocess
 
+try:
+    import httplib
+except:
+    import http.client as httplib
+
+def have_internet():
+    conn = httplib.HTTPConnection("www.google.com", timeout=5)
+    try:
+        conn.request("HEAD", "/")
+        conn.close()
+        return True
+    except:
+        conn.close()
+        return False
+
 
 from aiy.board import Board, Led
 from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
@@ -96,16 +111,20 @@ def main():
                 with Board() as board:
                         while True:
                                 board.button.wait_for_press()
-                                board.led.state = Led.ON
+                                # board.led.state = Led.ON
                                 button_press += 1
                                 board.button.wait_for_release()
-                                board.led.state = Led.OFF
+                                # board.led.state = Led.OFF
                                 ts2 = time.time()
                                 if button_press == 1: 
+                                        if have_internet():
+                                                text = ""
+                                        else:
+                                                text = "../thaivoices/nointernet.mp3 "
                                         leds.update(Leds.rgb_on(Color.WHITE))
                                         import datetime
                                         today = datetime.datetime.now() 
-                                        text = "../thaivoices/words/today.mp3 ../thaivoices/words/day.mp3 ../thaivoices/weekday/"+today.strftime('%w')+".mp3"
+                                        text += "../thaivoices/words/today.mp3 ../thaivoices/words/day.mp3 ../thaivoices/weekday/"+today.strftime('%w')+".mp3"
                                         text += " ../thaivoices/words/at.mp3 ../thaivoices/59/"+today.strftime('%d')+".mp3"+" ../thaivoices/month/0.mp3 ../thaivoices/month/"+today.strftime('%m')+".mp3"
                                         text += " ../thaivoices/words/time.mp3 ../thaivoices/59/"+today.strftime('%H')+".mp3"+" ../thaivoices/words/hour.mp3"
                                         text += " ../thaivoices/59/"+today.strftime('%M')+".mp3"+" ../thaivoices/words/minute.mp3"
@@ -123,35 +142,51 @@ def main():
                                         text += " ../thaivoices/month/0.mp3 ../thaivoices/month/"+x.strftime('%m')+".mp3"  
                                         os.system("mpg123 -q -f 2000 "+text)     
                                 elif button_press == 2:
+                                        if have_internet():
+                                                text="Listen to internet radio"
+                                                speak(text)
+                                                leds.update(Leds.rgb_on(Color.WHITE))
+                                                # os.system("mpg123 -f 2000 -q http://199.180.72.2:9097/lamrim")
+                                                proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])
+                                        else:
+                                                leds.update(Leds.rgb_on(Color.YELLOW))
+                                                text = " ../thaivoices/words/dhamma.mp3"
+                                                os.system("mpg123 -q -f 2000 "+text) 
+                                                proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","buddhadham.txt"]) 
+                                elif button_press == 3:
+                                        if have_internet():
+                                                proc.kill()
+                                        else:
+                                                os.system("sudo pkill -f mpg123")
                                         leds.update(Leds.rgb_on(Color.YELLOW))
                                         text = " ../thaivoices/words/chanting.mp3"
                                         os.system("mpg123 -q -f 2000 "+text) 
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","THchanting.txt"]) 
-                                elif button_press == 3:
+                                elif button_press == 4:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.YELLOW))
                                         text = " ../thaivoices/words/sutra.mp3"
                                         os.system("mpg123 -q -f 2000 "+text) 
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","sutra.txt"]) 
-                                elif button_press == 4:
+                                elif button_press == 5:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.PURPLE))
                                         text = " ../thaivoices/words/dhamma.mp3"
                                         os.system("mpg123 -q -f 2000 "+text) 
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","THdhamma.txt"])
-                                elif button_press == 5:
+                                elif button_press == 6:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.GREEN))
                                         text = "../thaivoices/words/dhamma.mp3 ../thaivoices/words/buddhadasa.mp3"
                                         os.system("mpg123 -q -f 2000 "+text) 
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","THbuddhadasa.txt"])
-                                elif button_press == 6:
+                                elif button_press == 7:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.GREEN))
                                         text = "../thaivoices/words/dhamma.mp3 ../thaivoices/words/payutto.mp3"
                                         os.system("mpg123 -q -f 2000 "+text) 
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","THpayutto.txt"])
-                                elif button_press == 7:
+                                elif button_press == 8:
                                         proc.kill()
                                         text = "../thaivoices/meditation.mp3"
                                         os.system("mpg123 -q -f 2000 "+text)
@@ -159,8 +194,9 @@ def main():
                                         # board.led.state = Led.ON
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-l","0","../dataen/bell15min.mp3"])
                                 else:
-                                        if button_press >= 8 :
+                                        if button_press >= 9 :
                                                 proc.kill()
+                                                os.system("sudo pkill -f mpg123")
                                                 board.led.state = Led.OFF
                                                 button_press = 0
                                                 ts1 = time.time()

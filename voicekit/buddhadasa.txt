@@ -4,4 +4,3 @@
 ../dataen/buddhadasa/instinct.mp3
 ../dataen/buddhadasa/heart_of_buddhism.mp3
 ../dataen/buddhadasa/five_khandhas.mp3
-../dataen/buddhadasa/howto-mindfulness.mp3

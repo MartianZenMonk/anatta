@@ -5,6 +5,21 @@ import math
 import pyttsx3
 import subprocess
 
+try:
+    import httplib
+except:
+    import http.client as httplib
+
+def have_internet():
+    conn = httplib.HTTPConnection("www.google.com", timeout=5)
+    try:
+        conn.request("HEAD", "/")
+        conn.close()
+        return True
+    except:
+        conn.close()
+        return False
+
 
 from aiy.board import Board, Led
 from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
@@ -96,12 +111,12 @@ def main():
                 with Board() as board:
                         while True:
                                 board.button.wait_for_press()
-                                board.led.state = Led.ON
+                                # board.led.state = Led.ON
                                 button_press += 1
                                 board.button.wait_for_release()
-                                board.led.state = Led.OFF
+                                # board.led.state = Led.OFF
                                 ts2 = time.time()
-                                if button_press == 1: 
+                                if have_internet() and button_press == 1: 
                                         leds.update(Leds.rgb_on(Color.WHITE))
                                         import datetime
                                         today = datetime.datetime.now() 
@@ -114,8 +129,12 @@ def main():
                                         x = datetime.datetime(int(yy),int(mm),int(dd))
                                         z = x.strftime("%B %A %d")
                                         text = "Next Buddha Holy Day is "+z
-                                        speak(text)       
+                                        speak(text)   
+                                        text="Listen to the buddhist internet radio"
+                                        speak(text)
+                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])    
                                 elif button_press == 2:
+                                        proc.kill()
                                         leds.update(Leds.rgb_on(Color.YELLOW))
                                         text = "English chanting"
                                         speak(text)
@@ -140,6 +159,12 @@ def main():
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","payutto.txt"])
                                 elif button_press == 6:
                                         proc.kill()
+                                        leds.update(Leds.rgb_on(Color.YELLOW))
+                                        text = "How to Meditation"
+                                        speak(text)
+                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","--list","howtobhavana.txt"])
+                                elif button_press == 7:
+                                        proc.kill()
                                         text = "Meditation time will make 15 minutes bell sound, you may relax your self by walking then sitting. "
                                         text += "For walking, set a distance to meditate walking back and forth, your senses inwardly immersed, your mind not straying outwards. "
                                         text += "Lifting, Moving, Treading, slow moving and always mind your foot movement then you can increse your awakening sense, "
@@ -150,8 +175,9 @@ def main():
                                         # board.led.state = Led.ON
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-l","0","../dataen/bell15min.mp3"])
                                 else:
-                                        if button_press >= 7 :
+                                        if button_press >= 8 :
                                                 proc.kill()
+                                                os.system("sudo killall mpg123")
                                                 board.led.state = Led.OFF
                                                 button_press = 0
                                                 ts1 = time.time()
