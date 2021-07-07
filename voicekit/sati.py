@@ -17,7 +17,7 @@ def speak(text):
         return None
 
 def sati():
-        speak("Do not forget to mind your breathing, mind your movement and mind your mind.")
+        speak("Do not forget to mind your breathing, mind your body movement and mind your mind.")
         text = " ../thaivoices/sati.mp3"
         os.system("mpg123 -q -f 2000 "+text)
         return None

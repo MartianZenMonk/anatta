@@ -28,7 +28,7 @@ def main():
                                 engine.setProperty('voice','english-us') 
                                 engine.setProperty('rate', 150)
                                 engine.setProperty('volume',0.2)
-                                engine.say("The system is Shutting down, have a nice day")
+                                engine.say("The system is shutting down, please wait until the green light in the box turn off, have a nice day")
                                 engine.runAndWait()
                                 engine.stop()
                                 os.system("sudo shutdown now")

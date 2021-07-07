@@ -18,8 +18,7 @@ def have_internet():
 
 def main():
     if have_internet():
-        os.system("cd anatta")
-        os.system("git pull")
+        os.system("cd anatta && git pull")
     else:
         print("sorry no internet connection")
 
