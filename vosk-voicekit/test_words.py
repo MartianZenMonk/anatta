@@ -7,10 +7,27 @@ import wave
 import json
 import random
 import subprocess
+import pty
 
 from datetime import datetime
 from aiy.board import Board, Led
 from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
+
+import psutil
+
+
+def find_name(name):
+    for proc in psutil.process_iter():
+        try:
+            pinfo = proc.as_dict(attrs=['pid', 'name'])
+            if pinfo['name'] == name:
+                return True
+            else:
+                continue
+        except psutil.NoSuchProcess:
+            pass
+    return False
+
 
 import pyttsx3
 engine = pyttsx3.init() # object creation
@@ -81,74 +98,90 @@ d = {
         ]
     }
 
-# if not os.path.exists("model"):
-#     print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
-#     exit (1)
-with Board() as board:
-    board.led.state = Led.ON
-    os.system("arecord --format=S16_LE --duration=5 --rate=16000 --file-type=wav out.wav")
-    board.led.state = Led.OFF
-    os.system("aplay out.wav")
+def main():
+    
+    master, slave = os.openpty()
+    # if not os.path.exists("model"):
+    #     print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
+    #     exit (1)
+    with Board() as board:
+        while True:
+            if find_name('mpg123'):
+                os.write(slave, b's')
+                
+            board.led.state = Led.ON
+            os.system("arecord --format=S16_LE --duration=5 --rate=16000 --file-type=wav out.wav")
+            board.led.state = Led.OFF
+            os.system("aplay out.wav")
 
-# wf = wave.open(sys.argv[1], "rb")
-wf = wave.open("out.wav", "rb")
-if wf.getnchannels() != 1 or wf.getsampwidth() != 2 or wf.getcomptype() != "NONE":
-    print ("Audio file must be WAV format mono PCM.")
-    exit (1)
+            if find_name('mpg123'):
+                os.write(slave, b's')
 
-model = Model("model")
-words = []
+            # wf = wave.open(sys.argv[1], "rb")
+            wf = wave.open("out.wav", "rb")
+            if wf.getnchannels() != 1 or wf.getsampwidth() != 2 or wf.getcomptype() != "NONE":
+                print ("Audio file must be WAV format mono PCM.")
+                exit (1)
 
-with Leds() as leds:
-    leds.update(Leds.rgb_on(Color.YELLOW))
-    # You can also specify the possible word or phrase list as JSON list, the order doesn't have to be strict
-    rec = KaldiRecognizer(model, wf.getframerate(), '["acumen zen story what time now what day today start chanting stop chanting", "[unk]"]')
+            model = Model("model")
+            words = []
 
-    while True:
-        data = wf.readframes(4000)
-        if len(data) == 0:
-            break
-        if rec.AcceptWaveform(data):
-            w = rec.Result()
-            z = json.loads(w)
-            print(z["text"])  #print rec text
-            words = z["text"].split()   
-        else:
-            pass
-            # print(rec.PartialResult())
+            with Leds() as leds:
+                leds.update(Leds.rgb_on(Color.YELLOW))
+                # You can also specify the possible word or phrase list as JSON list, the order doesn't have to be strict
+                rec = KaldiRecognizer(model, wf.getframerate(), '["acumen zen story what time now day today start chanting stop", "[unk]"]')
+
+            while True:
+                data = wf.readframes(4000)
+                if len(data) == 0:
+                    break
+                if rec.AcceptWaveform(data):
+                    w = rec.Result()
+                    z = json.loads(w)
+                    print(z["text"])  #print rec text
+                    words = z["text"].split()   
+                else:
+                    pass
+                    # print(rec.PartialResult())
 
 
-    leds.update(Leds.rgb_on(Color.GREEN))
-    # print(rec.FinalResult())
-    print(words)
-    if "what" in words and "time" in words:
-        today = datetime.today().strftime('%H %M')
-        print(today)
-        engine.say(today)
-        engine.runAndWait()
-        engine.stop()
-    elif "what" in words and "day" in words:
-        today = datetime.today().strftime('%B %A %d')
-        print(today)
-        engine.say(today)
-        engine.runAndWait()
-        engine.stop()
-    elif "zen" in words:
-        n = random.randint(0,4)
-        print(d["zen101"][n]["title"])
-        lines = d["zen101"][n]["story"]
-        # print(lines)
-        for i in range(len(lines)):
-            x = int(lines[i]["voice"])
-            # print(voices[x])
-            engine.setProperty('voice',voices[x]) 
-            engine.say(lines[i]["text"])
-            engine.runAndWait()
-            engine.stop()
-    elif "chanting" in words:
-        proc = subprocess.Popen(["mpg123","-f","2000","--list","THchanting.txt"]) 
-    elif "stop" in words:
-        if proc:
-            proc.kill()
-        else:
-            pass
+            leds.update(Leds.rgb_on(Color.GREEN))
+            # print(rec.FinalResult())
+            print(words)
+            if "what" in words and "time" in words:
+                today = datetime.today().strftime('%H %M')
+                print(today)
+                engine.say(today)
+                engine.runAndWait()
+                engine.stop()
+            elif "what" in words and "day" in words:
+                today = datetime.today().strftime('%B %A %d')
+                print(today)
+                engine.say(today)
+                engine.runAndWait()
+                engine.stop()
+            elif "zen" in words:
+                n = random.randint(0,4)
+                print(d["zen101"][n]["title"])
+                lines = d["zen101"][n]["story"]
+                # print(lines)
+                for i in range(len(lines)):
+                    x = int(lines[i]["voice"])
+                    # print(voices[x])
+                    engine.setProperty('voice',voices[x]) 
+                    engine.say(lines[i]["text"])
+                    engine.runAndWait()
+                    engine.stop()
+            elif "chanting" in words:
+                proc = subprocess.Popen(["mpg123","-f","2000","-C","--list","THchanting.txt"], stdin=master)
+                # time.sleep(3)
+                # os.write(slave, b's')
+            elif "stop" in words:
+                if find_name('mpg123'):
+                    proc.kill()
+            
+            leds.update(Leds.rgb_on(Color.WHITE))  
+            board.button.wait_for_press()
+
+if __name__ == '__main__':
+        main()
