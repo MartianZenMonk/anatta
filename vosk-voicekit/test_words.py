@@ -6,6 +6,7 @@ import os
 import wave
 import json
 import random
+import subprocess
 
 from datetime import datetime
 from aiy.board import Board, Led
@@ -101,7 +102,7 @@ words = []
 with Leds() as leds:
     leds.update(Leds.rgb_on(Color.YELLOW))
     # You can also specify the possible word or phrase list as JSON list, the order doesn't have to be strict
-    rec = KaldiRecognizer(model, wf.getframerate(), '["acumen zen story what time now what day today start stop", "[unk]"]')
+    rec = KaldiRecognizer(model, wf.getframerate(), '["acumen zen story what time now what day today start chanting stop chanting", "[unk]"]')
 
     while True:
         data = wf.readframes(4000)
@@ -117,7 +118,7 @@ with Leds() as leds:
             # print(rec.PartialResult())
 
 
-    leds.update(Leds.rgb_pattern(Color.GREEN))
+    leds.update(Leds.rgb_on(Color.GREEN))
     # print(rec.FinalResult())
     print(words)
     if "what" in words and "time" in words:
@@ -144,3 +145,10 @@ with Leds() as leds:
             engine.say(lines[i]["text"])
             engine.runAndWait()
             engine.stop()
+    elif "chanting" in words:
+        proc = subprocess.Popen(["mpg123","-f","2000","--list","THchanting.txt"]) 
+    elif "stop" in words:
+        if proc:
+            proc.kill()
+        else:
+            pass
