@@ -4,6 +4,14 @@ import time
 import math
 import pyttsx3
 import subprocess
+import pyttsx3
+import csv
+
+from aiy.board import Board, Led
+from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
+
+from datetime import datetime
+
 
 try:
     import httplib
@@ -19,6 +27,7 @@ def have_internet():
     except:
         conn.close()
         return False
+
 # podcast
 # import feedparser
 # import webbrowser
@@ -30,18 +39,13 @@ def have_internet():
 # article_title = feed_entries[0].title
 # article_link = feed_entries[0].link
 
-from aiy.board import Board, Led
-from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
 
-from datetime import datetime
-
-import pyttsx3
-engine = pyttsx3.init() # object creation
-engine.setProperty('voice','english-us') 
+engine = pyttsx3.init()  # object creation
+engine.setProperty('voice', 'english-us')
 engine.setProperty('rate', 130)
-engine.setProperty('volume',0.1)
+engine.setProperty('volume', 0.1)
 
-import csv
+
 with open('myhora-buddha-2564.csv', newline='') as f:
     reader = csv.reader(f)
     data = list(reader)
@@ -50,14 +54,14 @@ day = datetime.today().strftime('%Y%m%d')
 holyday = []
 
 for i in range(len(data)):
-    if i>0:
-        if(int(data[i][1])>int(day)):
+    if i > 0:
+        if(int(data[i][1]) > int(day)):
             holyday.append(data[i][1])
-            
-# print(holyday)
+        # print(holyday)
+
 
 def speak(text):
-        print (text)
+        print(text)
         engine.say(text)
         engine.runAndWait()
         engine.stop()
@@ -73,6 +77,7 @@ def speak(text):
 #         x = 'espeak-ng -v "'+ voice + '" ' + '"' + text + '"'
 #         os.system(x)
 #         return None
+
 
 def main():
         print('Welcome to Anatta Project, press button to play with Dhamma')
@@ -120,13 +125,13 @@ def main():
                 with Board() as board:
                         while True:
                                 if button_press == 0:
-                                        proc = subprocess.Popen(["python3","sati.py"])
+                                        proc = subprocess.Popen(["python3", "sati.py"])
                                 board.button.wait_for_press()
                                 # board.led.state = Led.ON
                                 button_press += 1
                                 board.button.wait_for_release()
                                 # board.led.state = Led.OFF
-                                ts2 = time.time()                                        
+                                ts2 = time.time()                                       
                                 if button_press == 1: 
                                         proc.kill()
                                         if have_internet():
@@ -146,32 +151,29 @@ def main():
                                         yy = y[2]+y[3]+y[4]+y[5]
                                         mm = y[6]+y[7]
                                         dd = y[8]+y[9]
-                                        x = datetime.datetime(int(yy),int(mm),int(dd))
+                                        x = datetime.datetime(int(yy), int(mm), int(dd))
                                         # z = x.strftime("%B %A %d")
                                         text = ""
                                         text += " ../thaivoices/words/buddhaday.mp3 ../thaivoices/words/face.mp3 ../thaivoices/words/is.mp3 ../thaivoices/words/day.mp3"
                                         text += " ../thaivoices/weekday/"+x.strftime('%w')+".mp3 ../thaivoices/words/at.mp3 ../thaivoices/59/"+x.strftime('%d')+".mp3"
                                         text += " ../thaivoices/month/0.mp3 ../thaivoices/month/"+x.strftime('%m')+".mp3"  
                                         os.system("mpg123 -q -f 2000 "+text) 
-                                        proc = subprocess.Popen(["python3","sati.py"])    
+                                        proc = subprocess.Popen(["python3", "sati.py"])    
                                 elif button_press == 2:
                                         proc.kill()
                                         if have_internet():
-                                                text="Listen to Tibetan Buddhist internet radio"
+                                                text = "Listen to Tibetan Buddhist internet radio"
                                                 speak(text)
                                                 leds.update(Leds.rgb_on(Color.WHITE))
                                                 proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])
                                                 # proc = subprocess.Popen(["mpg123","-f","2000","-q",article_link])
                                         else:
                                                 leds.update(Leds.rgb_on(Color.YELLOW))
-                                                text = " ../thaivoices/words/dhamma.mp3"
+                                                text = " ../thaivoices/words/buddhadham.mp3"
                                                 os.system("mpg123 -q -f 2000 "+text) 
-                                                proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","buddhadham.txt"]) 
+                                                proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","THbuddhadham.txt"]) 
                                 elif button_press == 3:
-                                        if have_internet():
-                                                proc.kill()
-                                        else:
-                                                pass #os.system("sudo pkill -f mpg123")
+                                        proc.kill()
                                         leds.update(Leds.rgb_on(Color.YELLOW))
                                         text = " ../thaivoices/words/chanting.mp3"
                                         os.system("mpg123 -q -f 2000 "+text) 
@@ -211,7 +213,7 @@ def main():
                                         if button_press >= 9 :
                                                 proc.kill()
                                                 text = " ../thaivoices/sati.mp3"
-                                                os.system("mpg123 -q -f 2000 "+text) 
+                                                os.system("mpg123 -q -f 2000 " + text) 
                                                 os.system("sudo pkill -f mpg123")
                                                 board.led.state = Led.OFF
                                                 button_press = 0

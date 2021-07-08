@@ -22,7 +22,7 @@ def sati():
         os.system("mpg123 -q -f 2000 "+text)
         return None
 
-schedule.every(15).minutes.do(sati)
+schedule.every(30).minutes.do(sati)
 #schedule.every().hour.do(job)
 #schedule.every().day.at("10:30").do(job)
 #schedule.every(5).to(10).minutes.do(job)

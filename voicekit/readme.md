@@ -33,3 +33,7 @@ https://www.raspberrypi-spy.co.uk/2015/10/how-to-autorun-a-python-script-on-boot
 
 
 
+if you want to share your idea please join FB Group : https://m.facebook.com/groups/890791731653111/
+
+
+
