@@ -67,6 +67,12 @@ def speak(text):
         engine.stop()
         return None
 
+# flite Voices available: kal awb_time kal16 awb rms slt  
+def speakf(v,t,*args):
+        os.system('flite -voice ' + v + ' "' + str(t) + '"')
+        return None
+
+
 # if install espeak-ng
 # sudo apt-get install synaptic (or install via this)
 # sudo apt-get install mbrola mbrola-us (1-3)
@@ -80,9 +86,9 @@ def speak(text):
 
 
 def main():
-        print('Welcome to Anatta Project, press button to play with Dhamma')
+        text = "Welcome to Anatta Project, press button to play with Dhamma"
+        speakf("slt",text)
         button_press = 0
-        ts1 = time.time()
         with Leds() as leds:
 
                 print('RGB: Solid GREEN for 1 second')
@@ -130,8 +136,7 @@ def main():
                                 # board.led.state = Led.ON
                                 button_press += 1
                                 board.button.wait_for_release()
-                                # board.led.state = Led.OFF
-                                ts2 = time.time()                                       
+                                # board.led.state = Led.OFF                                    
                                 if button_press == 1: 
                                         proc.kill()
                                         if have_internet():
@@ -145,7 +150,7 @@ def main():
                                         text += " ../thaivoices/words/at.mp3 ../thaivoices/59/"+today.strftime('%d')+".mp3"+" ../thaivoices/month/0.mp3 ../thaivoices/month/"+today.strftime('%m')+".mp3"
                                         text += " ../thaivoices/words/time.mp3 ../thaivoices/59/"+today.strftime('%H')+".mp3"+" ../thaivoices/words/hour.mp3"
                                         text += " ../thaivoices/59/"+today.strftime('%M')+".mp3"+" ../thaivoices/words/minute.mp3"
-                                        os.system("mpg123 -q -f 2000 "+text)
+                                        os.system("mpg123 -q -f 2100 "+text)
 
                                         y = list(str(holyday))
                                         yy = y[2]+y[3]+y[4]+y[5]
@@ -157,68 +162,86 @@ def main():
                                         text += " ../thaivoices/words/buddhaday.mp3 ../thaivoices/words/face.mp3 ../thaivoices/words/is.mp3 ../thaivoices/words/day.mp3"
                                         text += " ../thaivoices/weekday/"+x.strftime('%w')+".mp3 ../thaivoices/words/at.mp3 ../thaivoices/59/"+x.strftime('%d')+".mp3"
                                         text += " ../thaivoices/month/0.mp3 ../thaivoices/month/"+x.strftime('%m')+".mp3"  
-                                        os.system("mpg123 -q -f 2000 "+text) 
+                                        os.system("mpg123 -q -f 2100 "+text) 
                                         proc = subprocess.Popen(["python3", "sati.py"])    
                                 elif button_press == 2:
                                         proc.kill()
                                         if have_internet():
                                                 text = "Listen to Tibetan Buddhist internet radio"
-                                                speak(text)
+                                                speakf("rms",text)
                                                 leds.update(Leds.rgb_on(Color.WHITE))
-                                                proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])
-                                                # proc = subprocess.Popen(["mpg123","-f","2000","-q",article_link])
+                                                proc = subprocess.Popen(["mpg123","-f","2100","-q","http://199.180.72.2:9097/lamrim"])
+                                                # proc = subprocess.Popen(["mpg123","-f","2100","-q",article_link])
                                         else:
                                                 leds.update(Leds.rgb_on(Color.YELLOW))
                                                 text = " ../thaivoices/words/buddhadham.mp3"
-                                                os.system("mpg123 -q -f 2000 "+text) 
-                                                proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","THbuddhadham.txt"]) 
+                                                os.system("mpg123 -q -f 2100 "+text) 
+                                                proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","-l","0","--list","THbuddhadham.txt"]) 
                                 elif button_press == 3:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.YELLOW))
                                         text = " ../thaivoices/words/chanting.mp3"
-                                        os.system("mpg123 -q -f 2000 "+text) 
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","THchanting.txt"]) 
+                                        os.system("mpg123 -q -f 2100 "+text) 
+                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","-l","0","--list","THchanting.txt"]) 
                                 elif button_press == 4:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.YELLOW))
                                         text = " ../thaivoices/words/sutra.mp3"
-                                        os.system("mpg123 -q -f 2000 "+text) 
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","sutra.txt"]) 
+                                        os.system("mpg123 -q -f 2100 "+text) 
+                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","-l","0","--list","sutra.txt"]) 
                                 elif button_press == 5:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.PURPLE))
                                         text = " ../thaivoices/words/dhamma.mp3"
-                                        os.system("mpg123 -q -f 2000 "+text) 
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","THdhamma.txt"])
+                                        os.system("mpg123 -q -f 2100 "+text) 
+                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","-l","0","--list","THdhamma.txt"])
                                 elif button_press == 6:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.GREEN))
                                         text = "../thaivoices/words/dhamma.mp3 ../thaivoices/words/buddhadasa.mp3"
-                                        os.system("mpg123 -q -f 2000 "+text) 
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","THbuddhadasa.txt"])
+                                        os.system("mpg123 -q -f 2100 "+text) 
+                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","-l","0","--list","THbuddhadasa.txt"])
                                 elif button_press == 7:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.GREEN))
                                         text = "../thaivoices/words/dhamma.mp3 ../thaivoices/words/payutto.mp3"
-                                        os.system("mpg123 -q -f 2000 "+text) 
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","THpayutto.txt"])
+                                        os.system("mpg123 -q -f 2100 "+text) 
+                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","-l","0","--list","THpayutto.txt"])
                                 elif button_press == 8:
                                         proc.kill()
                                         text = "../thaivoices/meditation.mp3"
-                                        os.system("mpg123 -q -f 2000 "+text)
+                                        os.system("mpg123 -q -f 2100 "+text)
                                         leds.update(Leds.rgb_on(Color.BLUE))
                                         # board.led.state = Led.ON
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-l","0","../dataen/bell15min.mp3"])
+                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-l","0","../dataen/bell15min.mp3"])
+                                elif button_press == 9:
+                                        proc.kill()
+                                        text = "Hello Press button within 3 sec if you want to play with voice control mode"
+                                        speakf("rms",text)
+                                        os.system("flite -voice rms " + text)
+                                        t1 = time.time()
+                                        board.led.state = Led.ON
+                                        leds.update(Leds.rgb_on(Color.WHITE))
+                                        board.button.wait_for_press()
+                                        t2 = time.time()
+                                        if t2-t1 < 4:
+                                                text = "Voice control mode, speak when see red light or press white light button"
+                                                speakf("rms",text)
+                                                os.system("flite -voice rms " + text)
+                                                os.system("python3 test_words.py")
+                                        else:
+                                                board.led.state = Led.ON
+                                                leds.update(Leds.rgb_on(Color.CYAN))
+                                        #just for fun
                                 else:
-                                        if button_press >= 9 :
-                                                proc.kill()
+                                        if button_press >= 10:   
                                                 text = " ../thaivoices/sati.mp3"
-                                                os.system("mpg123 -q -f 2000 " + text) 
+                                                os.system("mpg123 -q -f 2100 " + text) 
                                                 os.system("sudo pkill -f mpg123")
                                                 board.led.state = Led.OFF
                                                 button_press = 0
-                                                ts1 = time.time()
+                                                
 if __name__ == '__main__':
         main()
 
-# mpg123 -f 2000 the maximum value of the amplitude is 100% which coressponds to 32768, i use this when i want to run with crontab
+# mpg123 -f 2100 the maximum value of the amplitude is 100% which coressponds to 32768, i use this when i want to run with crontab

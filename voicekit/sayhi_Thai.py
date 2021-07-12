@@ -10,9 +10,6 @@ with Board() as board:
 	os.system("amixer -D pulse sset Master 50%")
 	time.sleep(5)
 	board.led.state = Led.OFF
-	# board.button.wait_for_release()
-	os.system("amixer -c 0 sset Headphone 50%")
-	time.sleep(5)
 	os.system('mpg123 -q -f 2000 ../thaivoices/hello.mp3')
 	
 # How to

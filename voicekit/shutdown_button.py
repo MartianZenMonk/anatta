@@ -17,10 +17,10 @@ def main():
                         board.button.wait_for_release()
                         board.led.state = Led.OFF
                         ts2 = time.time()
-                        if ts2-ts1 > 50 :
+                        if ts2-ts1 > 10 :
                                 button_press = 0
                                 ts1 = time.time()
-                        if button_press > 10 :
+                        if button_press > 5 :
                                 os.system("sudo pkill -f anatta_")
                                 os.system("sudo killall mpg123")
                                 board.led.state = Led.OFF

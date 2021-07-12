@@ -7,3 +7,5 @@
 ../datath/buddhadasa/b007.mp3
 ../datath/buddhadasa/b008.mp3
 ../datath/buddhadasa/b009.mp3
+../datath/buddhadasa/b010.mp3
+../datath/buddhadasa/b011.mp3

@@ -129,7 +129,7 @@ def main():
             with Leds() as leds:
                 leds.update(Leds.rgb_on(Color.YELLOW))
                 # You can also specify the possible word or phrase list as JSON list, the order doesn't have to be strict
-                rec = KaldiRecognizer(model, wf.getframerate(), '["acumen zen story what time now day today start chanting stop", "[unk]"]')
+                rec = KaldiRecognizer(model, wf.getframerate(), '["acumen zen story what time now day today start chanting stop turn on off exit", "[unk]"]')
 
             while True:
                 data = wf.readframes(4000)
@@ -179,6 +179,8 @@ def main():
             elif "stop" in words:
                 if find_name('mpg123'):
                     proc.kill()
+            elif "exit" in words:
+                break
             
             leds.update(Leds.rgb_on(Color.WHITE))  
             board.button.wait_for_press()

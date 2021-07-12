@@ -33,6 +33,19 @@ https://www.raspberrypi-spy.co.uk/2015/10/how-to-autorun-a-python-script-on-boot
 
 
 
+You may use others text to speech engine such as flite : sudo apt-get install flite or read more information at
+
+
+
+https://mycroft-ai.gitbook.io/docs/using-mycroft-ai/customizations/tts-engine
+
+
+
+https://pypi.org/project/talkey/
+
+
+
+
 if you want to share your idea please join FB Group : https://m.facebook.com/groups/890791731653111/
 
 
