@@ -1,5 +1,26 @@
 # anatta
 Project Anatta, Buddhism Corpus for AI assistant developer.
+
+
+ไฟล์ ธรรมะ จะเก็บไว้ที่ dataen datath ทำไว้คร่าวๆเพื่อใช้ทดสอบ voice kit
+
+
+แหล่งไฟลืธรรมะดีๆมีหลายที่ ที่ต้องการคือ ต้องเอามาปรับแต่ง ปรับความเร็วบ้าง ตัดส่วนที่ไม่จำเป็นบ้าง จึงต้องใช้เวลามาก
+
+
+ท่านใดสนใจ ช่วยทำได้นะ ตัดแต่งปรับไฟลื ธรรมะดีๆที่ชอบ แบ่งความยาว เป็น สาม กลุ่ม
+-๑) น้อยกว่า ห้า นาที 
+-๒) ประมาณ สามสิบนาที 
+-๓) ประมาณ ๑ ชม
+
+
+
+http://www.thammapedia.com/dhamonline/by_ariya-mast.php
+
+
+
+แชร์ไอเดียทางเฟซบุคได้ที่ https://m.facebook.com/groups/890791731653111
+
 -----
 Free question about Buddhism --> intent model ( got keywords ) --> collect passages from Anatta Project Buddhism Corpus ( passages of each keyword from buddhism books database + inverted index ? or + elasticsearch ?) --> multi passages for answer extraction model --> Answers
 
