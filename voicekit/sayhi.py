@@ -11,9 +11,6 @@ with Board() as board:
 	os.system("amixer -D pulse sset Master 50%")
 	time.sleep(5)
 	board.led.state = Led.OFF
-	# board.button.wait_for_release()
-	os.system("amixer -c 0 sset Headphone 50%")
-	# time.sleep(5)
 	# os.system('espeak -v "english-us" "Nothing is worth insisting on, Sawaddee krub"')
 	engine = pyttsx3.init() # object creation
 	engine.setProperty('voice','english-us') 

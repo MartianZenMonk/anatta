@@ -69,7 +69,7 @@ def speak(text):
 
 # flite Voices available: kal awb_time kal16 awb rms slt  
 def speakf(v,t,*args):
-        os.system('flite -voice ' + v + ' "' + str(t) + '"')
+        os.system('flite -voice ' + v + ' -t "' + str(t) + '"')
         return None
 
 
@@ -86,8 +86,9 @@ def speakf(v,t,*args):
 
 
 def main():
+        # os.system("amixer -D pulse sset Master 60%")
         text = "Welcome to Anatta Project, press button to play with Dhamma"
-        speakf("slt",text)
+        speak(text)
         button_press = 0
         with Leds() as leds:
 
@@ -168,7 +169,7 @@ def main():
                                         proc.kill()
                                         if have_internet():
                                                 text = "Listen to Tibetan Buddhist internet radio"
-                                                speakf("rms",text)
+                                                speak(text)
                                                 leds.update(Leds.rgb_on(Color.WHITE))
                                                 proc = subprocess.Popen(["mpg123","-f","2100","-q","http://199.180.72.2:9097/lamrim"])
                                                 # proc = subprocess.Popen(["mpg123","-f","2100","-q",article_link])
@@ -217,7 +218,7 @@ def main():
                                 elif button_press == 9:
                                         proc.kill()
                                         text = "Hello Press button within 3 sec if you want to play with voice control mode"
-                                        speakf("rms",text)
+                                        speak(text)
                                         os.system("flite -voice rms " + text)
                                         t1 = time.time()
                                         board.led.state = Led.ON
@@ -226,7 +227,7 @@ def main():
                                         t2 = time.time()
                                         if t2-t1 < 4:
                                                 text = "Voice control mode, speak when see red light or press white light button"
-                                                speakf("rms",text)
+                                                speak(text)
                                                 os.system("flite -voice rms " + text)
                                                 os.system("python3 test_words.py")
                                         else:

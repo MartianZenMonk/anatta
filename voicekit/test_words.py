@@ -37,21 +37,21 @@ engine.setProperty('rate', 125)
 engine.setProperty('volume',0.2)
 
 
-# def speak(text):
-#         print(text)
-#         engine.say(text)
-#         engine.runAndWait()
-#         engine.stop()
-#         return None
+def speak(text):
+        print(text)
+        engine.say(text)
+        engine.runAndWait()
+        engine.stop()
+        return None
 
 
-# voices = ["englisg+f1","english+f2","english+m1","english+m3","english+m2","english_rp+m2"]
+es_voices = ["englisg+f1","english+f2","english+m1","english+m3","english+m2","english_rp+m2"]
 
 
 
 # flite Voices available: kal awb_time kal16 awb rms slt  
 def speakf(v,t,*args):
-        os.system('flite -voice ' + v + ' "' + str(t) + '"')
+        os.system('flite -voice ' + v + ' -t "' + str(t) + '"')
         return None
 
 voices = ["kal", "slt", "rms", "awb", "awb_time", "kal16"]
@@ -119,7 +119,7 @@ d = {
     }
 
 def main():
-    # os.system("amixer -D pulse set Master 50%")
+    os.system("amixer -D pulse set Master 50%")
     master, slave = os.openpty()
     # if not os.path.exists("model"):
     #     print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
