@@ -177,7 +177,8 @@ def main():
                 if find_name('mpg123'):
                     os.write(slave, b's')
 
-                speakf("rms","sorry can not caught any words")
+                speak("sorry can not caught any words")
+                # speakf("rms","sorry can not caught any words")
                 
                 if find_name('mpg123'):
                     os.write(slave, b's')
@@ -207,12 +208,12 @@ def main():
                 # print(lines)
                 for i in range(len(lines)):
                     x = int(lines[i]["voice"])
-                    speakf(voices[x], lines[i]["text"])
+                    # speakf(voices[x], lines[i]["text"])
                     # print(voices[x])
-                    # engine.setProperty('voice',voices[x]) 
-                    # engine.say(lines[i]["text"])
-                    # engine.runAndWait()
-                    # engine.stop()
+                    engine.setProperty('voice',es_voices[x]) 
+                    engine.say(lines[i]["text"])
+                    engine.runAndWait()
+                    engine.stop()
             elif "chanting" in words:
                 if find_name('mpg123'):
                     os.system("killall mpg123")
@@ -227,12 +228,14 @@ def main():
             elif "exit" in words:
                 if find_name('mpg123'):
                     proc.kill()
-                speakf("rms","Exit voices control mode")
+                speak("Exit voices control mode")
+                # speakf("rms","Exit voices control mode")
                 break
             elif "shutdown" in words:
                 if find_name('mpg123'):
                     proc.kill()
-                speakf("rms","The system is shutting down, wait until the green light in the box turn off")
+                speak("The system is shutting down, wait until the green light in the box turn off")
+                # speakf("rms","The system is shutting down, wait until the green light in the box turn off")
                 board.led.state = Led.OFF
                 os.system("sudo shutdown now")
                 break
