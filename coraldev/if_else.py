@@ -72,6 +72,40 @@ zen = {
             {"voice":"1","text":"Hakuin was willing. In yielding the child, all he said was"},
             {"voice":"2","text":"Is that so?"}
             ]
+        },
+        {"title":"The Moon cannot be Stolen",
+        "story":[
+            {"voice":"1","text":"Ryokan, a Zen master, lived the simplest kind of life in a little hut at the foot of a mountain. One evening a thief visited the hut only to discover there was nothing in it to stea1."},
+            {"voice":"1","text":"Ryokan returned and caught him."},
+            {"voice":"2","text":"You may have come a long way to visit me and you should not return empty-handed. Please take my clothes as a gift."},
+            {"voice":"1","text":"The thief was bewildered. He took the clothes and slunk away.Ryokan sat naked, watching the moon."},
+            {"voice":"2","text":"Poor fellow, I wish I could give him this beautiful moon."},
+            {"voice":"1","text":"No one can steal your beautiful heart"}
+            ]
+        },
+        {"title":"Muddy Road",
+        "story":[
+            {"voice":"1","text":"Tanzan and Ekido were once traveling together down a muddy road. A heavy rain was still falling."},
+            {"voice":"1","text":"Coming around a bend, they met a lovely girl in a silk kimono and sash, unable to cross the intersection."},
+            {"voice":"2","text":"Come on, girl"},
+            {"voice":"1","text":"said Tanzan at once. Lifting her in his arms, he carried her over the mud."},
+            {"voice":"1","text":"Ekido did not speak again until that night when they reached a lodging temple. Then he no longer could restrain himself."},
+            {"voice":"3","text":"We monks don't go near females, especially not young and lovely ones. It is dangerous. Why did you do that?"},
+            {"voice":"2","text":"I left the girl there, Are you still carrying her?"}
+            ]
+        },
+        {"title":"Learning to be Silent",
+        "story":[
+            {"voice":"1","text":"The pupils of the Tendai School used to study meditation before Zen entered Japan. Four of them who were intimate friends promised one another to observe seven days of silence."},
+            {"voice":"1","text":"On the first day all were silent Their meditation had begun auspiciously, but when night came and the oil-lamps were growing dim one of the pupils could not help exclaiming to a servant"},
+            {"voice":"2","text":"Fix those lamps"},
+            {"voice":"1","text":"The second pupil was surprised to hear the first one talk."},
+            {"voice":"3","text":"We are not supposed to say a word"},
+            {"voice":"4","text":"You two are stupid. Why did you talk?"},
+            {"voice":"1","text":"asked the third"},
+            {"voice":"5","text":"I am the only one who has not talked"},
+            {"voice":"1","text":"muttered the fourth pupil."}
+            ]
         }
         ]
     }
@@ -217,7 +251,7 @@ try:
             
             proc = 0
 
-            rec = vosk.KaldiRecognizer(model, args.samplerate, '["acumen begin buddha buddhist chanting coronel day dhamma do down eighty face holy how meditation mindfulness news no now on play please quiet sermons seventy shutdown silent sitting sixty show sleep start stop story sutra tell time to turn up volume wake walking what when yes zen","[unk]"]')
+            rec = vosk.KaldiRecognizer(model, args.samplerate, '["acumen begin buddha buddhist chanting coronel day dhamma do down eighty face holy how meditation mindfulness news no now on play please quiet sermons seventy shutdown silent sitting sixty show sleep start stop story sutra tell time to turn up volume wake walking what yes zen","[unk]"]')
             # rec = vosk.KaldiRecognizer(model, args.samplerate, '["shutdown acumen coronel now sutra mindfulness dhamma buddha holy day zen buddhist story chanting sermons meditation time sleep wake up down turn on begin start stop play how to do what tell yes no walking sitting please quiet silent news when volume sixty seventy eighty show face","[unk]"]')
             # rec1 = vosk.KaldiRecognizer(model, args.samplerate)
             while True:
@@ -316,7 +350,7 @@ try:
                             x = datetime.datetime(int(yy),int(mm),int(dd))
                             z = x.strftime("%B %A %d")
                             print(holyday[0])
-                            speak(z)
+                            speak("Next Buddha Holy day is " + z)
                             bot = False
                         elif "what" in words and "time" in words:
                             today = datetime.today().strftime('%H %M')
@@ -329,7 +363,7 @@ try:
                             speak("Today is " + today)
                             bot = False
                         elif "zen" in words and "story" in words:
-                            i = random.randint(0,1)
+                            i = random.randint(0,4)
                             lines = zen["zenstories"][i]["story"]
                             # print(lines)
                             for i in range(len(lines)):
@@ -348,7 +382,7 @@ try:
                             # print("Shutdown the system")
                             os.system("sudo killall mpg123")
                             speak("The system is Shutting down")
-                            os.system("shutdown now")
+                            os.system("sudo shutdown now")
                     else:
                         x = rec.PartialResult()
                         # print(x)
