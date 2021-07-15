@@ -103,7 +103,7 @@ def speakf(v,t,*args):
 
 # if install espeak-ng
 # sudo apt-get install synaptic (or install via this)
-# sudo apt-get install mbrola mbrola-us (1-3)
+# sudo apt-get install mbrola mbrola-us1 (1-3)
 
 # voices = ["english-en","english-us","mb-us1","us-mbrola-1","us-mbrola-2","us-mbrola-3"]
 
@@ -120,7 +120,7 @@ def main():
         for i in range(len(text)):
                 ftext += " ../thaivoices/thwords/" + text[i] + ".mp3"
 
-        os.system('mpg123 -f 2000 ' + ftext)
+        os.system('mpg123 -f 2000 -q ' + ftext)
         # text = "Welcome to Anatta Project, press button to play with Dhamma"
         # speak(text)
         button_press = 0
@@ -268,7 +268,7 @@ def main():
                                         proc.kill()
                                         text = "Hello Press button within 3 sec if you want to play with voice control mode"
                                         speak(text)
-                                        os.system("flite -voice rms " + text)
+                                        os.system("flite -voice rms -t " + text)
                                         t1 = time.time()
                                         board.led.state = Led.ON
                                         leds.update(Leds.rgb_on(Color.WHITE))
@@ -277,17 +277,28 @@ def main():
                                         if t2-t1 < 4:
                                                 text = "Voice control mode, speak when see red light or press white light button"
                                                 speak(text)
-                                                os.system("flite -voice rms " + text)
+                                                os.system("flite -voice rms -t " + text)
                                                 os.system("python3 test_words.py")
                                         else:
                                                 board.led.state = Led.ON
                                                 leds.update(Leds.rgb_on(Color.CYAN))
                                         #just for fun
+                                        text = "Hello Press button within 3 sec For Exit"
+                                        speak(text)
+                                        t1 = time.time()
+                                        board.led.state = Led.ON
+                                        board.button.wait_for_press()
+                                        t2 = time.time()
+                                        if t2-t1 < 4:
+                                                os.system("sudo killall mpg123")
+                                                speak("goodbye, have a nice day.")
+                                                break
+
                                 else:
                                         if button_press >= 10:   
                                                 text = " ../thaivoices/sati.mp3"
                                                 os.system("mpg123 -q -f 2100 " + text) 
-                                                os.system("sudo pkill -f mpg123")
+                                                os.system("sudo killall mpg123")
                                                 board.led.state = Led.OFF
                                                 button_press = 0
                                                 
