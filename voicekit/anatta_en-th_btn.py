@@ -8,7 +8,7 @@ from aiy.board import Board, Led
 engine = pyttsx3.init()  # object creation
 engine.setProperty('voice', 'english-us')
 engine.setProperty('rate', 130)
-engine.setProperty('volume', 0.2)
+engine.setProperty('volume', 0.1)
 
 def speak(text):
         print(text)

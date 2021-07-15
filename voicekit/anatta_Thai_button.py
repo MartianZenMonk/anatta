@@ -6,6 +6,7 @@ import pyttsx3
 import subprocess
 import pyttsx3
 import csv
+import gc
 
 from aiy.board import Board, Led
 from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
@@ -80,12 +81,19 @@ with open('myhora-buddha-2564.csv', newline='') as f:
 
 day = datetime.today().strftime('%Y%m%d')
 holyday = []
+thholyday = []
 
 for i in range(len(data)):
     if i > 0:
         if(int(data[i][1]) > int(day)):
             holyday.append(data[i][1])
-        # print(holyday)
+            thholyday.append(data[i][0])
+t = thholyday[0].replace("(", " ")
+x = t.split()
+
+bdaytext = ""
+for i in range(len(x)-1):
+  bdaytext += " ../thaivoices/thwords/" + x[i] + ".mp3"
 
 
 def speak(text):
@@ -121,6 +129,9 @@ def main():
                 ftext += " ../thaivoices/thwords/" + text[i] + ".mp3"
 
         os.system('mpg123 -f 2000 ' + ftext)
+        del text
+        del ftext
+        gc.collect()
         # text = "Welcome to Anatta Project, press button to play with Dhamma"
         # speak(text)
         button_press = 0
@@ -198,6 +209,7 @@ def main():
                                         text += " ../thaivoices/weekday/"+x.strftime('%w')+".mp3 ../thaivoices/words/at.mp3 ../thaivoices/59/"+x.strftime('%d')+".mp3"
                                         text += " ../thaivoices/month/0.mp3 ../thaivoices/month/"+x.strftime('%m')+".mp3"  
                                         os.system("mpg123 -q -f 2100 "+text) 
+                                        os.system("mpg123 -q -f 2100 "+bdaytext) 
                                         if have_internet():
                                                 w = ipInfo()
                                                 text = 'Country '+w['sys']['country']+'. City '+w['name']+'. Temperature is '+str(w['main']['temp'])+'. Humidity is '+str(w['main']['humidity'])+'. The weather '+w['weather'][0]['description']

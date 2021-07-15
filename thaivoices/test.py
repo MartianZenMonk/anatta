@@ -31,51 +31,75 @@ others = ["วันนี้","วัน","ที่","เวลา","นาฬ
 
 # text = "มี ความ เพียร เครื่อง เผา กิเลส มี ความ รู้ สึก ตัว มี สติ ถอน ความ พอ ใจ และ ความ ไม่ พอ ใจ ใน ใจ ออก เสีย ได้"
 
-text = ["ยิน","ดี","ต้อน","รับ","สู่","โครง","การ","อนัตตา","ขอ","ให้","ท่าน","มี","ความ","สุข","กับ","การ","ปฏิบัติ","ธรรม","ค่ะ"]
+# text = ["ยิน","ดี","ต้อน","รับ","สู่","โครง","การ","อนัตตา","ขอ","ให้","ท่าน","มี","ความ","สุข","กับ","การ","ปฏิบัติ","ธรรม","ค่ะ"]
 
 # for i in range(len(text)):
 # 	speech = gTTS(text = text[i],lang='th',slow = False)
 # 	speech.save(str(text[i]) + ".mp3")
-ftext = ""
-for i in range(len(text)):
-	ftext += " thwords/" + text[i] + ".mp3"
+# ftext = ""
+# for i in range(len(text)):
+# 	ftext += " thwords/" + text[i] + ".mp3"
 
 # os.system('mpg123 -h 1 -d 2  ' + ftext)
 
-loc = ""
 
-import requests
-from pprint import pprint
-from urllib.request import urlopen
-from json import load
+# import requests
+# from pprint import pprint
+# from urllib.request import urlopen
+# from json import load
 
 
-def ipInfo(addr=''):
+# def ipInfo(addr=''):
     
-    if addr == '':
-        url = 'https://ipinfo.io/json'
-    else:
-        url = 'https://ipinfo.io/' + addr + '/json'
-    res = urlopen(url)
-    #response from url(if res==None then check connection)
-    data = load(res)
+#     if addr == '':
+#         url = 'https://ipinfo.io/json'
+#     else:
+#         url = 'https://ipinfo.io/' + addr + '/json'
+#     res = urlopen(url)
+#     #response from url(if res==None then check connection)
+#     data = load(res)
 
-    #will load the json response into data
-    # for attr in data.keys():
-    #     #will print the data line by line
-    #     print(attr,' '*13+'\t->\t',data[attr])
+#     #will load the json response into data
+#     # for attr in data.keys():
+#     #     #will print the data line by line
+#     #     print(attr,' '*13+'\t->\t',data[attr])
 
-    loc = data['loc'].split(',')
-    query='lat='+loc[0]+'&lon='+loc[1]
-    res=requests.get('https://fcc-weather-api.glitch.me/api/current?'+query)
+#     loc = data['loc'].split(',')
+#     query='lat='+loc[0]+'&lon='+loc[1]
+#     res=requests.get('https://fcc-weather-api.glitch.me/api/current?'+query)
 
-    return res.json();
-
-
-w = ipInfo()
-
-text = 'Country '+w['sys']['country']+' city '+w['name']+' Temperature is '+str(w['main']['temp'])+' Humidity is '+str(w['main']['humidity'])+' weather '+w['weather'][0]['description']
-text += ' Sunrise '+str(w['sys']['sunrise'])+' Sunset '+str(w['sys']['sunset'])
-print(text)
+#     return res.json();
 
 
+# w = ipInfo()
+
+# text = 'Country '+w['sys']['country']+' city '+w['name']+' Temperature is '+str(w['main']['temp'])+' Humidity is '+str(w['main']['humidity'])+' weather '+w['weather'][0]['description']
+# text += ' Sunrise '+str(w['sys']['sunrise'])+' Sunset '+str(w['sys']['sunset'])
+# print(text)
+import csv
+from datetime import datetime
+
+with open('myhora-buddha-2564.csv', newline='') as f:
+    reader = csv.reader(f)
+    data = list(reader)
+
+day = datetime.today().strftime('%Y%m%d')
+holyday = []
+thholyday = []
+
+for i in range(len(data)):
+    if i > 0:
+        if(int(data[i][1]) > int(day)):
+            holyday.append(data[i][1])
+            thholyday.append(data[i][0])
+t = thholyday[0].replace("(", " ")
+x = t.split()
+
+# text = ["วันพระ","ขึ้น","แรม","8","15","1","14","ค่ำ","เดือนอ้าย","เดือนยี่","เดือนสาม","เดือนสี่","เดือนห้า","เดือนหก","เดือนเจ็ด","เดือนแปด","เดือนแปดหลัง","เดือนเก้า","เดือนสิบ","เดือนสิบเอ็ด","เดือนสิบสอง"]
+
+ftext = ""
+for i in range(len(x)-1):
+  ftext += " thwords/" + x[i] + ".mp3"
+
+print(ftext)
+# os.system('mpg123 ' + ftext)
