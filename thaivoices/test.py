@@ -10,11 +10,11 @@ from gtts import gTTS
 # 	speech = gTTS(text = str(i),lang='th',slow = False)
 # 	speech.save(str(i)+".mp3")
 
-weekday = ["อาทิตย์","จันทร์","อังคาร","พุทธ","พฤหัสบดี","ศุกร์","เสาร์"]
+# weekday = ["อาทิตย์","จันทร์","อังคาร","พุทธ","พฤหัสบดี","ศุกร์","เสาร์"]
 
-month = ["เดือน","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤกษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"]
+# month = ["เดือน","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤกษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"]
 
-others = ["วันนี้","วัน","ที่","เวลา","นาฬิกา","นาที","วันพระ","ถัดไป","คือ","สวดมนต์","ฟังธรรม","ท่านพุทธทาส","ท่าน ป. อ. ปยุตโต","พุทธธรรม","พระสูตร"]
+# others = ["วันนี้","วัน","ที่","เวลา","นาฬิกา","นาที","วันพระ","ถัดไป","คือ","สวดมนต์","ฟังธรรม","ท่านพุทธทาส","ท่าน ป. อ. ปยุตโต","พุทธธรรม","พระสูตร"]
 
 # for i in range(0,15):
 # 	speech = gTTS(text = str(others[i]),lang='th',slow = False)
@@ -76,30 +76,51 @@ others = ["วันนี้","วัน","ที่","เวลา","นาฬ
 # text = 'Country '+w['sys']['country']+' city '+w['name']+' Temperature is '+str(w['main']['temp'])+' Humidity is '+str(w['main']['humidity'])+' weather '+w['weather'][0]['description']
 # text += ' Sunrise '+str(w['sys']['sunrise'])+' Sunset '+str(w['sys']['sunset'])
 # print(text)
-import csv
-from datetime import datetime
+# import csv
+# from datetime import datetime
 
-with open('myhora-buddha-2564.csv', newline='') as f:
-    reader = csv.reader(f)
-    data = list(reader)
+# with open('myhora-buddha-2564.csv', newline='') as f:
+#     reader = csv.reader(f)
+#     data = list(reader)
 
-day = datetime.today().strftime('%Y%m%d')
-holyday = []
-thholyday = []
+# day = datetime.today().strftime('%Y%m%d')
+# holyday = []
+# thholyday = []
 
-for i in range(len(data)):
-    if i > 0:
-        if(int(data[i][1]) > int(day)):
-            holyday.append(data[i][1])
-            thholyday.append(data[i][0])
-t = thholyday[0].replace("(", " ")
-x = t.split()
+# for i in range(len(data)):
+#     if i > 0:
+#         if(int(data[i][1]) > int(day)):
+#             holyday.append(data[i][1])
+#             thholyday.append(data[i][0])
+# t = thholyday[0].replace("(", " ")
+# x = t.split()
 
 # text = ["วันพระ","ขึ้น","แรม","8","15","1","14","ค่ำ","เดือนอ้าย","เดือนยี่","เดือนสาม","เดือนสี่","เดือนห้า","เดือนหก","เดือนเจ็ด","เดือนแปด","เดือนแปดหลัง","เดือนเก้า","เดือนสิบ","เดือนสิบเอ็ด","เดือนสิบสอง"]
 
-ftext = ""
-for i in range(len(x)-1):
-  ftext += " thwords/" + x[i] + ".mp3"
 
-print(ftext)
+# ftext = ""
+# for i in range(len(x)-1):
+#   ftext += " thwords/" + x[i] + ".mp3"
+
+# text = ["วันวิสาขบูชา","วันอัฏฐมีบูชา","วันอาสาฬหบูชา","วันมาฆบูชา","วันเข้าพรรษา","วันออกพรรษา"]
+# text = ["วันนี้","วัน","ที่","เดือน","เวลา","นาฬิกา","นาที"]
+# text = ["หน้า","คือ"]
+# for i in range(len(text)):
+#   speech = gTTS(text = text[i],lang='th',slow = False)
+#   speech.save(str("thwords/"+text[i]) + ".mp3")
+
+# import datetime
+# today = datetime.datetime.now() 
+# # text = ["วันนี้","วัน","weekday/%w","ที่","59/%d","เดือน","month/%m","เวลา","59/%H","นาฬิกา","59/%M","นาที"]
+# t = "วันนี้,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m,เวลา,59/%H,นาฬิกา,59/%M,นาที"
+# t = t.replace("%w",today.strftime('%w'))
+# t = t.replace("%d",today.strftime('%d'))
+# t = t.replace("%m",today.strftime('%m'))
+# t = t.replace("%H",today.strftime('%H'))
+# t = t.replace("%M",today.strftime('%M'))
+# text = t.split(',')
+# print(text)
+# ftext = ""
+# for i in range(len(text)):
+#     ftext += " thwords/" + text[i] + ".mp3"
 # os.system('mpg123 ' + ftext)

@@ -130,7 +130,7 @@ def main():
                                         z = x.strftime("%B %A %d")
                                         text = "Next Buddha Holy Day is "+z
                                         speak(text)   
-                                        text="Listen to the buddhist internet radio"
+                                        text="Listen to Tibetan Buddhist internet radio"
                                         speak(text)
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])    
                                 elif button_press == 2:

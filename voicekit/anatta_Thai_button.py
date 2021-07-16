@@ -128,7 +128,7 @@ def main():
         for i in range(len(text)):
                 ftext += " ../thaivoices/thwords/" + text[i] + ".mp3"
 
-        os.system('mpg123 -f 2000 ' + ftext)
+        os.system('mpg123 -q -f 2000 ' + ftext)
         del text
         del ftext
         gc.collect()
@@ -192,11 +192,18 @@ def main():
                                         leds.update(Leds.rgb_on(Color.WHITE))
                                         import datetime
                                         today = datetime.datetime.now() 
-                                        text += "../thaivoices/words/today.mp3 ../thaivoices/words/day.mp3 ../thaivoices/weekday/"+today.strftime('%w')+".mp3"
-                                        text += " ../thaivoices/words/at.mp3 ../thaivoices/59/"+today.strftime('%d')+".mp3"+" ../thaivoices/month/0.mp3 ../thaivoices/month/"+today.strftime('%m')+".mp3"
-                                        text += " ../thaivoices/words/time.mp3 ../thaivoices/59/"+today.strftime('%H')+".mp3"+" ../thaivoices/words/hour.mp3"
-                                        text += " ../thaivoices/59/"+today.strftime('%M')+".mp3"+" ../thaivoices/words/minute.mp3"
-                                        os.system("mpg123 -q -f 2100 "+text)
+                                        # text = ["วันนี้","วัน","weekday/%w","ที่","59/%d","เดือน","month/%m","เวลา","59/%H","นาฬิกา","59/%M","นาที"]
+                                        t = "วันนี้,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m,เวลา,59/%H,นาฬิกา,59/%M,นาที"
+                                        t = t.replace("%w",today.strftime('%w'))
+                                        t = t.replace("%d",today.strftime('%d'))
+                                        t = t.replace("%m",today.strftime('%m'))
+                                        t = t.replace("%H",today.strftime('%H'))
+                                        t = t.replace("%M",today.strftime('%M'))
+                                        text = t.split(',')
+                                        stext = ""
+                                        for i in range(len(text)):
+                                                stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
+                                        os.system("mpg123 -q -f 2100 "+stext)
 
                                         y = list(str(holyday))
                                         yy = y[2]+y[3]+y[4]+y[5]
@@ -204,11 +211,15 @@ def main():
                                         dd = y[8]+y[9]
                                         x = datetime.datetime(int(yy), int(mm), int(dd))
                                         # z = x.strftime("%B %A %d")
-                                        text = ""
-                                        text += " ../thaivoices/words/buddhaday.mp3 ../thaivoices/words/face.mp3 ../thaivoices/words/is.mp3 ../thaivoices/words/day.mp3"
-                                        text += " ../thaivoices/weekday/"+x.strftime('%w')+".mp3 ../thaivoices/words/at.mp3 ../thaivoices/59/"+x.strftime('%d')+".mp3"
-                                        text += " ../thaivoices/month/0.mp3 ../thaivoices/month/"+x.strftime('%m')+".mp3"  
-                                        os.system("mpg123 -q -f 2100 "+text) 
+                                        t = "วันพระ,หน้า,คือ,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m"
+                                        t = t.replace("%w",x.strftime('%w'))
+                                        t = t.replace("%d",x.strftime('%d'))
+                                        t = t.replace("%m",x.strftime('%m'))
+                                        text = t.split(',')
+                                        stext = ""
+                                        for i in range(len(text)):
+                                                stext += " ../thaivoices/thwords/" + text[i] + ".mp3" 
+                                        os.system("mpg123 -q -f 2100 "+stext) 
                                         os.system("mpg123 -q -f 2100 "+bdaytext) 
                                         if have_internet():
                                                 w = ipInfo()
@@ -238,7 +249,7 @@ def main():
                                         proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","-l","0","--list","THchanting.txt"]) 
                                 elif button_press == 4:
                                         proc.kill()
-                                        leds.update(Leds.rgb_on(Color.YELLOW))
+                                        leds.update(Leds.rgb_on(Color.RED))
                                         text = " ../thaivoices/words/sutra.mp3" #+ " ../datath/sutta/moggallana.mp3"
                                         os.system("mpg123 -q -f 2100 "+text) 
                                         # t1 = time.time()
@@ -289,7 +300,6 @@ def main():
                                         if t2-t1 < 4:
                                                 text = "Voice control mode, speak when see red light or press white light button"
                                                 speak(text)
-                                                os.system("flite -voice rms " + text)
                                                 os.system("python3 test_words.py")
                                         else:
                                                 board.led.state = Led.ON
@@ -302,6 +312,15 @@ def main():
                                                 os.system("sudo pkill -f mpg123")
                                                 board.led.state = Led.OFF
                                                 button_press = 0
+                                                text = "Hello Press button within 3 sec For Exit"
+                                                speak(text)
+                                                t1 = time.time()
+                                                board.button.wait_for_press()
+                                                t2 = time.time()
+                                                if t2-t1 < 4:
+                                                        os.system("sudo killall mpg123")
+                                                        speak("goodbye, have a nice day.")
+                                                        break
                                                 
 if __name__ == '__main__':
         main()
