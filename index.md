@@ -1,6 +1,6 @@
 <h1>Project Anatta</h1>
 <h2>Goal</h2>
-<h4>Open Buddhism dataset for AI assistant (AI scholar & true friend) developer</h4>
+<h4>Open Buddhism Corpus for AI assistant (AI scholar & true friend) developer</h4>
 <p>
  Because in the past we believe that the Lord Buddha can know the people mind before he speak his dhamma and it can fix the people problem (dukkha) a lot.
 </p>
