@@ -291,7 +291,6 @@ def main():
                                         proc.kill()
                                         text = "Hello Press button within 3 seconds if you want to play with voice control mode"
                                         speak(text)
-                                        os.system("flite -voice rms " + text)
                                         t1 = time.time()
                                         board.led.state = Led.ON
                                         leds.update(Leds.rgb_on(Color.WHITE))
@@ -305,22 +304,21 @@ def main():
                                                 board.led.state = Led.ON
                                                 leds.update(Leds.rgb_on(Color.CYAN))
                                         #just for fun
-                                else:
-                                        if button_press >= 10:   
-                                                text = " ../thaivoices/sati.mp3"
-                                                os.system("mpg123 -q -f 2100 " + text) 
-                                                os.system("sudo pkill -f mpg123")
-                                                board.led.state = Led.OFF
-                                                button_press = 0
-                                                text = "Hello Press button within 3 sec For Exit"
-                                                speak(text)
-                                                t1 = time.time()
-                                                board.button.wait_for_press()
-                                                t2 = time.time()
-                                                if t2-t1 < 4:
-                                                        os.system("sudo killall mpg123")
-                                                        speak("goodbye, have a nice day.")
-                                                        break
+                                else:  
+                                        text = " ../thaivoices/sati.mp3"
+                                        os.system("mpg123 -q -f 2100 " + text) 
+                                        os.system("sudo pkill -f mpg123")
+                                        board.led.state = Led.OFF
+                                        button_press = 0
+                                        text = "Hello Press button within 3 sec For Exit"
+                                        speak(text)
+                                        t1 = time.time()
+                                        board.button.wait_for_press()
+                                        t2 = time.time()
+                                        if t2-t1 < 4:
+                                                os.system("sudo killall mpg123")
+                                                speak("goodbye, have a nice day.")
+                                                break
                                                 
 if __name__ == '__main__':
         main()

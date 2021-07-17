@@ -184,23 +184,22 @@ def main():
                                         # board.led.state = Led.ON
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-l","0","../dataen/bell15min.mp3"])
                                 else:
-                                        if button_press >= 9 :
-                                                text = "Hello Press button within 3 seconds For Exit"
-                                                speak(text)
-                                                t1 = time.time()
-                                                board.led.state = Led.ON
-                                                board.button.wait_for_press()
-                                                t2 = time.time()
-                                                if t2-t1 < 4:
-                                                        os.system("sudo killall mpg123")
-                                                        speak("goodbye, have a nice day.")
-                                                        break
-                                                else:
-                                                        proc.kill()
-                                                        os.system("sudo killall mpg123")
-                                                        board.led.state = Led.OFF
-                                                        button_press = 0
-                                                        ts1 = time.time()
+                                        proc.kill()
+                                        os.system("sudo killall mpg123")
+                                        text = "Hello Press button within 3 seconds For Exit"
+                                        speak(text)
+                                        t1 = time.time()
+                                        board.led.state = Led.ON
+                                        board.button.wait_for_press()
+                                        t2 = time.time()
+                                        if t2-t1 < 4:
+                                                os.system("sudo killall mpg123")
+                                                speak("goodbye, have a nice day.")
+                                                break
+                                        else:
+                                                board.led.state = Led.OFF
+                                                button_press = 0
+                                                ts1 = time.time()
 if __name__ == '__main__':
         main()
 
