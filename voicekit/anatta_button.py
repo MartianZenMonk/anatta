@@ -117,7 +117,6 @@ def main():
 
                 with Board() as board:
                         while True:
-                                leds.update(Leds.rgb_on(Color.GREEN))
                                 board.button.wait_for_press()
                                 # board.led.state = Led.ON
                                 button_press += 1
