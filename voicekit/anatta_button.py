@@ -117,12 +117,12 @@ def main():
 
                 with Board() as board:
                         while True:
+                                leds.update(Leds.rgb_on(Color.GREEN))
                                 board.button.wait_for_press()
                                 # board.led.state = Led.ON
                                 button_press += 1
-                                board.button.wait_for_release()
+                                # board.button.wait_for_release()
                                 # board.led.state = Led.OFF
-                                ts2 = time.time()
                                 if button_press == 1:
                                         if have_internet():
                                                 leds.update(Leds.rgb_on(Color.WHITE))
@@ -143,7 +143,9 @@ def main():
                                                 speak(text)
                                                 proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])
                                         else:
-                                                speak("No internet connection, do not forget to mind your breathing, mind your body movement and mind your mind.")   
+                                                leds.update(Leds.rgb_on(Color.GREEN))
+                                                speak("No internet connection, do not forget to mind your breathing, mind your body movement and mind your mind.")
+                                                proc = subprocess.Popen(["mpg123","-f","2000","-q","../dataen/suchness.mp3"])  
                                 elif button_press == 2:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.YELLOW))
@@ -208,6 +210,7 @@ def main():
                                                 board.led.state = Led.OFF
                                                 button_press = 0
                                                 ts1 = time.time()
+
 if __name__ == '__main__':
         main()
 

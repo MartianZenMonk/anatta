@@ -189,6 +189,7 @@ def main():
                                                 text = ""
                                         else:
                                                 text = "../thaivoices/nointernet.mp3 "
+                                                os.system("mpg123 -q -f 2100 "+text)
                                         leds.update(Leds.rgb_on(Color.WHITE))
                                         import datetime
                                         today = datetime.datetime.now() 
@@ -289,6 +290,7 @@ def main():
                                         proc = subprocess.Popen(["mpg123","-f","2100","-q","-l","0","../dataen/bell15min.mp3"])
                                 elif button_press == 9:
                                         proc.kill()
+                                        board.led.state = Led.OFF
                                         text = "Hello Press button within 3 seconds if you want to play with voice control mode"
                                         speak(text)
                                         t1 = time.time()
