@@ -39,13 +39,20 @@ with open('myhora-buddha-2564.csv', newline='') as f:
 
 day = datetime.today().strftime('%Y%m%d')
 holyday = []
+thholyday = []
 
 for i in range(len(data)):
-    if i>0:
-        if(int(data[i][1])>int(day)):
+    if i > 0:
+        if(int(data[i][1]) > int(day)):
             holyday.append(data[i][1])
-            
-# print(holyday)
+            thholyday.append(data[i][0])
+t = thholyday[0].replace("(", " ")
+x = t.split()
+
+bdaytext = ""
+for i in range(len(x)-1):
+  bdaytext += " ../thaivoices/thwords/" + x[i] + ".mp3"
+
 
 def speak(text):
         print (text)
@@ -130,7 +137,8 @@ def main():
                                                 x = datetime.datetime(int(yy),int(mm),int(dd))
                                                 z = x.strftime("%B %A %d")
                                                 text = "Next Buddha Holy Day is "+z
-                                                speak(text)   
+                                                speak(text)
+                                                os.system("mpg123 -q -f 2100 "+bdaytext)  
                                                 text="Listen to Tibetan Buddhist internet radio"
                                                 speak(text)
                                                 proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])

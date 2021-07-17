@@ -223,7 +223,7 @@ def main():
                                         os.system("mpg123 -q -f 2100 "+bdaytext) 
                                         if have_internet():
                                                 w = ipInfo()
-                                                text = 'Country '+w['sys']['country']+'. City '+w['name']+'. Temperature is '+str(w['main']['temp'])+'. Humidity is '+str(w['main']['humidity'])+'. The weather '+w['weather'][0]['description']
+                                                text = 'Country '+w['sys']['country']+'. City '+w['name']+'. Temperature is '+str(w['main']['temp'])+'. Humidity is '+str(w['main']['humidity'])+'. The weather is '+w['weather'][0]['description']
                                                 # text += ' Sunrise '+str(w['sys']['sunrise'])+' Sunset '+str(w['sys']['sunset'])
                                                 # print(text)
                                                 speak(text)
@@ -301,24 +301,24 @@ def main():
                                                 speak(text)
                                                 os.system("python3 test_words.py")
                                         else:
-                                                board.led.state = Led.ON
                                                 leds.update(Leds.rgb_on(Color.CYAN))
                                         #just for fun
                                 else:  
-                                        text = " ../thaivoices/sati.mp3"
-                                        os.system("mpg123 -q -f 2100 " + text) 
-                                        os.system("sudo pkill -f mpg123")
-                                        board.led.state = Led.OFF
+                                        os.system("sudo killall mpg123")
                                         button_press = 0
                                         text = "Hello Press button within 3 sec For Exit"
                                         speak(text)
                                         t1 = time.time()
                                         board.button.wait_for_press()
                                         t2 = time.time()
+                                        board.led.state = Led.OFF
                                         if t2-t1 < 4:
                                                 os.system("sudo killall mpg123")
                                                 speak("goodbye, have a nice day.")
                                                 break
+                                        else:
+                                                text = " ../thaivoices/sati.mp3"
+                                                os.system("mpg123 -q -f 2100 " + text) 
                                                 
 if __name__ == '__main__':
         main()

@@ -15,7 +15,7 @@ def main():
                         board.led.state = Led.ON
                         button_press += 1
                         board.button.wait_for_release()
-                        board.led.state = Led.OFF
+                        # board.led.state = Led.OFF
                         ts2 = time.time()
                         if ts2-ts1 > 10 :
                                 button_press = 0
