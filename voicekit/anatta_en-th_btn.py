@@ -21,7 +21,7 @@ def speak(text):
 def main():
 	with Board() as board:
 		while True:
-			text = "Hello Press button within 3 sec For English"
+			text = "Hello Press button within 3 seconds For English Language"
 			speak(text)
 			t1 = time.time()
 			board.led.state = Led.ON
@@ -31,7 +31,7 @@ def main():
 				os.system("python3 anatta_button.py")
 			else:
 				pass
-			text = "Hello Press button within 3 sec For Thai"
+			text = "Hello Press button within 3 seconds For Thai Language"
 			speak(text)
 			t1 = time.time()
 			board.led.state = Led.ON

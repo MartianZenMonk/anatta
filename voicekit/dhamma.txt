@@ -9,3 +9,4 @@
 ../dataen/dhamma/s009.mp3
 ../dataen/dhamma/s010.mp3
 ../dataen/dhamma/s011.mp3
+../dataen/dhamma/s012.mp3

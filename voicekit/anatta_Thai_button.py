@@ -289,7 +289,7 @@ def main():
                                         proc = subprocess.Popen(["mpg123","-f","2100","-q","-l","0","../dataen/bell15min.mp3"])
                                 elif button_press == 9:
                                         proc.kill()
-                                        text = "Hello Press button within 3 sec if you want to play with voice control mode"
+                                        text = "Hello Press button within 3 seconds if you want to play with voice control mode"
                                         speak(text)
                                         os.system("flite -voice rms " + text)
                                         t1 = time.time()

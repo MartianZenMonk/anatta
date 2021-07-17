@@ -116,23 +116,26 @@ def main():
                                 board.button.wait_for_release()
                                 # board.led.state = Led.OFF
                                 ts2 = time.time()
-                                if have_internet() and button_press == 1: 
-                                        leds.update(Leds.rgb_on(Color.WHITE))
-                                        import datetime
-                                        today = datetime.datetime.now() 
-                                        text = "Today is "+today.strftime('%B %A %d')+" Time "+today.strftime('%H %M')
-                                        speak(text)
-                                        y = list(str(holyday))
-                                        yy = y[2]+y[3]+y[4]+y[5]
-                                        mm = y[6]+y[7]
-                                        dd = y[8]+y[9]
-                                        x = datetime.datetime(int(yy),int(mm),int(dd))
-                                        z = x.strftime("%B %A %d")
-                                        text = "Next Buddha Holy Day is "+z
-                                        speak(text)   
-                                        text="Listen to Tibetan Buddhist internet radio"
-                                        speak(text)
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])    
+                                if button_press == 1:
+                                        if have_internet():
+                                                leds.update(Leds.rgb_on(Color.WHITE))
+                                                import datetime
+                                                today = datetime.datetime.now() 
+                                                text = "Today is "+today.strftime('%B %A %d')+" Time "+today.strftime('%H %M')
+                                                speak(text)
+                                                y = list(str(holyday))
+                                                yy = y[2]+y[3]+y[4]+y[5]
+                                                mm = y[6]+y[7]
+                                                dd = y[8]+y[9]
+                                                x = datetime.datetime(int(yy),int(mm),int(dd))
+                                                z = x.strftime("%B %A %d")
+                                                text = "Next Buddha Holy Day is "+z
+                                                speak(text)   
+                                                text="Listen to Tibetan Buddhist internet radio"
+                                                speak(text)
+                                                proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])
+                                        else:
+                                                speak("No internet connection, do not forget to mind your breathing, mind your body movement and mind your mind.")   
                                 elif button_press == 2:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.YELLOW))
@@ -159,11 +162,17 @@ def main():
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","-l","0","--list","payutto.txt"])
                                 elif button_press == 6:
                                         proc.kill()
+                                        leds.update(Leds.rgb_on(Color.RED))
+                                        text = "Our Real Home lecture by Ajahn Chah"
+                                        speak(text)
+                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","../dataen/dhamma/Our_Real_Home.mp3"])
+                                elif button_press == 7:
+                                        proc.kill()
                                         leds.update(Leds.rgb_on(Color.YELLOW))
                                         text = "How to Meditation"
                                         speak(text)
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","--list","howtobhavana.txt"])
-                                elif button_press == 7:
+                                elif button_press == 8:
                                         proc.kill()
                                         text = "Meditation time will make 15 minutes bell sound, you may relax your self by walking then sitting. "
                                         text += "For walking, set a distance to meditate walking back and forth, your senses inwardly immersed, your mind not straying outwards. "
@@ -175,8 +184,8 @@ def main():
                                         # board.led.state = Led.ON
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","-l","0","../dataen/bell15min.mp3"])
                                 else:
-                                        if button_press >= 8 :
-                                                text = "Hello Press button within 3 sec For Exit"
+                                        if button_press >= 9 :
+                                                text = "Hello Press button within 3 seconds For Exit"
                                                 speak(text)
                                                 t1 = time.time()
                                                 board.led.state = Led.ON
