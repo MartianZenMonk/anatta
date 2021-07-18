@@ -137,42 +137,42 @@ def main():
         button_press = 0
         with Leds() as leds:
 
-                print('RGB: Solid GREEN for 1 second')
-                leds.update(Leds.rgb_on(Color.GREEN))
-                time.sleep(1)
+                # print('RGB: Solid GREEN for 1 second')
+                # leds.update(Leds.rgb_on(Color.GREEN))
+                # time.sleep(1)
 
-                print('RGB: Solid YELLOW for 1 second')
+                # print('RGB: Solid YELLOW for 1 second')
+                # leds.update(Leds.rgb_on(Color.YELLOW))
+                # time.sleep(1)
+
+                # print('RGB: Solid BLUE for 1 second')
+                # leds.update(Leds.rgb_on(Color.BLUE))
+                # time.sleep(1)
+
+                # print('RGB: Solid PURPLE for 1 second')
+                # leds.update(Leds.rgb_on(Color.PURPLE))
+                # time.sleep(1)
+
+                # print('RGB: Solid CYAN for 1 second')
+                # leds.update(Leds.rgb_on(Color.CYAN))
+                # time.sleep(1)
+
+                # print('RGB: Solid WHITE for 1 second')
+                # leds.update(Leds.rgb_on(Color.WHITE))
+                # time.sleep(1)
+
+                # print('RGB: Solid BLUE for 1 second')
+                # leds.update(Leds.rgb_on(Color.BLUE))
+                # time.sleep(1)
+
+                # print('Set blink pattern: period=500ms (2Hz)')
+                # leds.pattern = Pattern.blink(500)
+
+                # print('RGB: Blink GREEN for 5 seconds')
+                # leds.update(Leds.rgb_pattern(Color.GREEN))
+                # time.sleep(5)
+
                 leds.update(Leds.rgb_on(Color.YELLOW))
-                time.sleep(1)
-
-                print('RGB: Solid BLUE for 1 second')
-                leds.update(Leds.rgb_on(Color.BLUE))
-                time.sleep(1)
-
-                print('RGB: Solid PURPLE for 1 second')
-                leds.update(Leds.rgb_on(Color.PURPLE))
-                time.sleep(1)
-
-                print('RGB: Solid CYAN for 1 second')
-                leds.update(Leds.rgb_on(Color.CYAN))
-                time.sleep(1)
-
-                print('RGB: Solid WHITE for 1 second')
-                leds.update(Leds.rgb_on(Color.WHITE))
-                time.sleep(1)
-
-                print('RGB: Solid BLUE for 1 second')
-                leds.update(Leds.rgb_on(Color.BLUE))
-                time.sleep(1)
-
-                print('Set blink pattern: period=500ms (2Hz)')
-                leds.pattern = Pattern.blink(500)
-
-                print('RGB: Blink GREEN for 5 seconds')
-                leds.update(Leds.rgb_pattern(Color.GREEN))
-                time.sleep(5)
-
-                leds.update(Leds.rgb_on(Color.GREEN))
 
                 with Board() as board:
                         while True:
@@ -294,13 +294,14 @@ def main():
                                         text = "Hello Press button within 3 seconds if you want to play with voice control mode"
                                         speak(text)
                                         t1 = time.time()
-                                        board.led.state = Led.ON
+                                        # board.led.state = Led.ON
                                         leds.update(Leds.rgb_on(Color.WHITE))
                                         board.button.wait_for_press()
                                         t2 = time.time()
                                         if t2-t1 < 4:
                                                 text = "Voice control mode, speak when see red light or press white light button"
                                                 speak(text)
+                                                board.led.state = Led.OFF
                                                 os.system("python3 test_words.py")
                                         else:
                                                 leds.update(Leds.rgb_on(Color.CYAN))

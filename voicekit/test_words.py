@@ -134,9 +134,6 @@ def main():
             board.led.state = Led.OFF
             # os.system("aplay out.wav")
 
-            if find_name('mpg123'):
-                os.write(slave, b's')
-
             # wf = wave.open(sys.argv[1], "rb")
             wf = wave.open("out.wav", "rb")
             if wf.getnchannels() != 1 or wf.getsampwidth() != 2 or wf.getcomptype() != "NONE":
@@ -145,6 +142,10 @@ def main():
 
             with Leds() as leds:
                 leds.update(Leds.rgb_on(Color.YELLOW))
+                speak("please wait for a while")
+                if find_name('mpg123'):
+                    os.write(slave, b's')
+                    
                 model = Model("model")
                 words = []
                 # You can also specify the possible word or phrase list as JSON list, the order doesn't have to be strict

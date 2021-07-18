@@ -73,45 +73,44 @@ def speak(text):
 #         return None
 
 def main():
-        print('Welcome to Anatta Project, press button to play with Dhamma')
+        speak('Welcome to Anatta Project, Your Buddhist true Friend ever!')
         button_press = 0
-        ts1 = time.time()
         with Leds() as leds:
 
-                print('RGB: Solid GREEN for 1 second')
-                leds.update(Leds.rgb_on(Color.GREEN))
-                time.sleep(1)
+                # print('RGB: Solid GREEN for 1 second')
+                # leds.update(Leds.rgb_on(Color.GREEN))
+                # time.sleep(1)
 
-                print('RGB: Solid YELLOW for 1 second')
-                leds.update(Leds.rgb_on(Color.YELLOW))
-                time.sleep(1)
+                # print('RGB: Solid YELLOW for 1 second')
+                # leds.update(Leds.rgb_on(Color.YELLOW))
+                # time.sleep(1)
 
-                print('RGB: Solid BLUE for 1 second')
-                leds.update(Leds.rgb_on(Color.BLUE))
-                time.sleep(1)
+                # print('RGB: Solid BLUE for 1 second')
+                # leds.update(Leds.rgb_on(Color.BLUE))
+                # time.sleep(1)
 
-                print('RGB: Solid PURPLE for 1 second')
-                leds.update(Leds.rgb_on(Color.PURPLE))
-                time.sleep(1)
+                # print('RGB: Solid PURPLE for 1 second')
+                # leds.update(Leds.rgb_on(Color.PURPLE))
+                # time.sleep(1)
 
-                print('RGB: Solid CYAN for 1 second')
-                leds.update(Leds.rgb_on(Color.CYAN))
-                time.sleep(1)
+                # print('RGB: Solid CYAN for 1 second')
+                # leds.update(Leds.rgb_on(Color.CYAN))
+                # time.sleep(1)
 
-                print('RGB: Solid WHITE for 1 second')
-                leds.update(Leds.rgb_on(Color.WHITE))
-                time.sleep(1)
+                # print('RGB: Solid WHITE for 1 second')
+                # leds.update(Leds.rgb_on(Color.WHITE))
+                # time.sleep(1)
 
-                print('RGB: Solid BLUE for 1 second')
-                leds.update(Leds.rgb_on(Color.BLUE))
-                time.sleep(1)
+                # print('RGB: Solid BLUE for 1 second')
+                # leds.update(Leds.rgb_on(Color.BLUE))
+                # time.sleep(1)
 
-                print('Set blink pattern: period=500ms (2Hz)')
-                leds.pattern = Pattern.blink(500)
+                # print('Set blink pattern: period=500ms (2Hz)')
+                # leds.pattern = Pattern.blink(500)
 
-                print('RGB: Blink GREEN for 5 seconds')
-                leds.update(Leds.rgb_pattern(Color.GREEN))
-                time.sleep(5)
+                # print('RGB: Blink GREEN for 5 seconds')
+                # leds.update(Leds.rgb_pattern(Color.GREEN))
+                # time.sleep(5)
 
                 leds.update(Leds.rgb_on(Color.GREEN))
 
@@ -195,10 +194,11 @@ def main():
                                 else:
                                         proc.kill()
                                         os.system("sudo killall mpg123")
+                                        leds.update(Leds.rgb_on(Color.WHITE))
                                         text = "Hello Press button within 3 seconds For Exit"
                                         speak(text)
                                         t1 = time.time()
-                                        board.led.state = Led.ON
+                                        leds.update(Leds.rgb_on(Color.CYAN))
                                         board.button.wait_for_press()
                                         t2 = time.time()
                                         if t2-t1 < 4:
@@ -208,7 +208,7 @@ def main():
                                         else:
                                                 board.led.state = Led.OFF
                                                 button_press = 0
-                                                ts1 = time.time()
+                                                
 
 if __name__ == '__main__':
         main()
