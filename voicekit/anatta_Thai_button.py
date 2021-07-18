@@ -57,6 +57,10 @@ def ipInfo(addr=''):
 
     return res.json();
 
+# import geocoder
+# g = geocoder.ip('me')
+# print(g.latlng)
+
 # podcast
 # import feedparser
 # import webbrowser
@@ -103,6 +107,8 @@ def speak(text):
         engine.stop()
         return None
 
+
+
 # flite Voices available: kal awb_time kal16 awb rms slt  
 def speakf(v,t,*args):
         os.system('flite -voice ' + v + ' -t "' + str(t) + '"')
@@ -113,12 +119,13 @@ def speakf(v,t,*args):
 # sudo apt-get install synaptic (or install via this)
 # sudo apt-get install mbrola mbrola-us (1-3)
 
-# voices = ["english-en","english-us","mb-us1","us-mbrola-1","us-mbrola-2","us-mbrola-3"]
+# voices = ["en-gb","en-us","en-gb-scotland","en-gb-x-gbclan","en-gb-x-gbcwmd","en-029"]
 
-# def speakng(text,voice,*args):
-#         x = 'espeak-ng -v "'+ voice + '" ' + '"' + text + '"'
-#         os.system(x)
-#         return None
+def speakng(t,v='',*args):
+        if v == '':
+                v = "en-us"
+        os.system('speak-ng -a 15 -v ' + v + ' "' + str(t) + '"')
+        return None
 
 
 def main():

@@ -34,7 +34,7 @@ import pyttsx3
 engine = pyttsx3.init() # object creation
 engine.setProperty('voice','english-us') 
 engine.setProperty('rate', 125)
-engine.setProperty('volume',0.2)
+engine.setProperty('volume',0.1)
 
 
 def speak(text):
@@ -149,7 +149,7 @@ def main():
                 model = Model("model")
                 words = []
                 # You can also specify the possible word or phrase list as JSON list, the order doesn't have to be strict
-                rec = KaldiRecognizer(model, wf.getframerate(), '["acumen zen story what time now day dhamma today start chanting stop turn on off exit shutdown", "[unk]"]')
+                rec = KaldiRecognizer(model, wf.getframerate(), '["zen story what time now day play dhamma today start chanting stop turn on off exit shutdown"]')
 
             while True:
                 data = wf.readframes(2500)
@@ -200,7 +200,7 @@ def main():
                 engine.say(today)
                 engine.runAndWait()
                 engine.stop()
-            elif "zen" in words:
+            elif "zen" in words and "story" in words:
                 if find_name('mpg123'):
                     proc.kill()
                 n = random.randint(0,4)
@@ -219,7 +219,7 @@ def main():
                 if find_name('mpg123'):
                     os.system("killall mpg123")
                 proc = subprocess.Popen(["mpg123","-f","2500","-C","--list","THchanting.txt"], stdin=master)
-            elif "dhamma" in words:
+            elif "dhamma" in words and "play" in words:
                 if find_name('mpg123'):
                     os.system("killall mpg123")
                 proc = subprocess.Popen(["mpg123","-f","2500","-C","--list","THdhamma.txt"], stdin=master)

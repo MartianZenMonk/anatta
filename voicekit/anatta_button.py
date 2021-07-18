@@ -63,14 +63,20 @@ def speak(text):
 
 # if install espeak-ng
 # sudo apt-get install synaptic (or install via this)
-# sudo apt-get install mbrola mbrola-us (1-3)
+# sudo apt-get install mbrola mbrola-us1 (1-3)
 
 # voices = ["english-en","english-us","mb-us1","us-mbrola-1","us-mbrola-2","us-mbrola-3"]
 
-# def speakng(text,voice,*args):
-#         x = 'espeak-ng -v "'+ voice + '" ' + '"' + text + '"'
-#         os.system(x)
+# voices = ["en-gb","en-us","en-gb-scotland","en-gb-x-gbclan","en-gb-x-gbcwmd","en-029"]
+
+# def speakng(t,v='',*args):
+#         if v == '':
+#                 v = "en-us"
+#         text = 'speak-ng -a 10 -s 130 -v ' + v + ' "' + t + '"'
+#         print(text)
+#         os.system(text)
 #         return None
+
 
 def main():
         speak('Welcome to Anatta Project, Your Buddhist true Friend ever!')
@@ -201,12 +207,12 @@ def main():
                                         leds.update(Leds.rgb_on(Color.CYAN))
                                         board.button.wait_for_press()
                                         t2 = time.time()
+                                        board.led.state = Led.OFF
                                         if t2-t1 < 4:
                                                 os.system("sudo killall mpg123")
                                                 speak("goodbye, have a nice day.")
                                                 break
                                         else:
-                                                board.led.state = Led.OFF
                                                 button_press = 0
                                                 
 

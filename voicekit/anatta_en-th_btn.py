@@ -18,6 +18,17 @@ def speak(text):
         return None
 
 
+# voices = ["en-gb","en-us","en-gb-scotland","en-gb-x-gbclan","en-gb-x-gbcwmd","en-029"]
+
+# def speakng(t,v='',*args):
+#         if v == '':
+#                 v = "en-us"
+#         text = 'speak-ng -a 10 -s 130 -v ' + v + ' "' + t + '"'
+#         print(text)
+#         os.system(text)
+#         return None
+
+
 def main():
 	with Board() as board:
 		while True:
