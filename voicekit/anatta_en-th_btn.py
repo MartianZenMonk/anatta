@@ -39,8 +39,11 @@ def main():
 			board.led.state = Led.ON
 			board.button.wait_for_press()
 			t2 = time.time()
-			if t2-t1 < 4:
-				os.system("python3 anatta_button.py")
+			try:
+				if t2-t1 < 4:
+					os.system("python3 anatta_button.py")
+			except:
+				print("wait too long")
 			board.led.state = Led.OFF
 			text = "Hello Press button within 3 seconds For Thai Language"
 			speak(text)
@@ -48,8 +51,11 @@ def main():
 			board.led.state = Led.ON
 			board.button.wait_for_press()
 			t2 = time.time()
-			if t2-t1 < 4:
-				os.system("python3 anatta_Thai_button.py")
+			try:
+				if t2-t1 < 4:
+					os.system("python3 anatta_Thai_button.py")
+			except:
+				print("wait too long again")
 
 
 if __name__ == '__main__':
