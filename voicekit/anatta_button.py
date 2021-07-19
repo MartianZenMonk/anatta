@@ -155,25 +155,25 @@ def main():
                                         leds.update(Leds.rgb_on(Color.YELLOW))
                                         text = "English chanting"
                                         speak(text)
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-z","-loop","-1","--list","chanting.txt"]) 
+                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","--list","chanting.txt"]) 
                                 elif button_press == 3:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.PURPLE))
                                         text = "Play Dhamma"
                                         speak(text)
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-z","-loop","-1","--list","dhamma.txt"])
+                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","--list","dhamma.txt"])
                                 elif button_press == 4:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.GREEN))
                                         text = "The lecture of Buddhadasa Bhikkhu"
                                         speak(text)
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-z","-loop","-1","--list","buddhadasa.txt"])
+                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","--list","buddhadasa.txt"])
                                 elif button_press == 5:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.GREEN))
                                         text = "The sermons of Bhikkhu P. A. Payutto"
                                         speak(text)
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-z","-loop","-1","--list","payutto.txt"])
+                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","-Z","--list","payutto.txt"])
                                 elif button_press == 6:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.RED))

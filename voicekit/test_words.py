@@ -218,11 +218,11 @@ def main():
             elif "chanting" in words:
                 if find_name('mpg123'):
                     os.system("killall mpg123")
-                proc = subprocess.Popen(["mpg123","-f","2500","-C","--list","THchanting.txt"], stdin=master)
+                proc = subprocess.Popen(["mpg123","-f","2500","-C","-Z","--list","THchanting.txt"], stdin=master)
             elif "dhamma" in words and "play" in words:
                 if find_name('mpg123'):
                     os.system("killall mpg123")
-                proc = subprocess.Popen(["mpg123","-f","2500","-C","--list","THdhamma.txt"], stdin=master)
+                proc = subprocess.Popen(["mpg123","-f","2500","-C","-Z","--list","THdhamma.txt"], stdin=master)
             elif "stop" in words:
                 if find_name('mpg123'):
                     proc.kill()
@@ -242,7 +242,13 @@ def main():
                 break
             
             leds.update(Leds.rgb_on(Color.WHITE))  
-            board.button.wait_for_press()
+            # board.button.wait_for_press()
+            import slowclap as sc
+feed = sc.MicrophoneFeed()
+detector = sc.AmplitudeDetector(feed, threshold=17000000)
+for clap in detector:
+    # do something
+    print(clap.time)
             leds.update(Leds.rgb_on(Color.RED))
 
 if __name__ == '__main__':

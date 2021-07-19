@@ -41,8 +41,6 @@ def main():
 			t2 = time.time()
 			if t2-t1 < 4:
 				os.system("python3 anatta_button.py")
-			else:
-				pass
 			board.led.state = Led.OFF
 			text = "Hello Press button within 3 seconds For Thai Language"
 			speak(text)

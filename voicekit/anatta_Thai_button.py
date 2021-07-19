@@ -248,13 +248,13 @@ def main():
                                                 leds.update(Leds.rgb_on(Color.YELLOW))
                                                 text = " ../thaivoices/words/buddhadham.mp3"
                                                 os.system("mpg123 -q -f 2100 "+text) 
-                                                proc = subprocess.Popen(["mpg123","-f","2100","-q","-z","--loop","-1","--list","THbuddhadham.txt"]) 
+                                                proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","--list","THbuddhadham.txt"]) 
                                 elif button_press == 3:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.YELLOW))
                                         text = " ../thaivoices/words/chanting.mp3"
                                         os.system("mpg123 -q -f 2100 "+text) 
-                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-z","--loop","-1","--list","THchanting.txt"]) 
+                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","--list","THchanting.txt"]) 
                                 elif button_press == 4:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.RED))
@@ -269,25 +269,25 @@ def main():
                                         #         text = " ../datath/sutta/moggallana.mp3"
                                         #         os.system("mpg123 -q -f 2100 "+text)
                                         # leds.update(Leds.rgb_on(Color.YELLOW))
-                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-z","--loop","-1","--list","sutra.txt"]) 
+                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","--list","sutra.txt"]) 
                                 elif button_press == 5:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.PURPLE))
                                         text = " ../thaivoices/words/dhamma.mp3"
                                         os.system("mpg123 -q -f 2100 "+text) 
-                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-z","--loop","-1","--list","THdhamma.txt"])
+                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","--list","THdhamma.txt"])
                                 elif button_press == 6:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.GREEN))
                                         text = "../thaivoices/words/dhamma.mp3 ../thaivoices/words/buddhadasa.mp3"
                                         os.system("mpg123 -q -f 2100 "+text) 
-                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-z","--loop","-1","--list","THbuddhadasa.txt"])
+                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","--list","THbuddhadasa.txt"])
                                 elif button_press == 7:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.GREEN))
                                         text = "../thaivoices/words/dhamma.mp3 ../thaivoices/words/payutto.mp3"
                                         os.system("mpg123 -q -f 2100 "+text) 
-                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-z","--loop","-1","--list","THpayutto.txt"])
+                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","--list","THpayutto.txt"])
                                 elif button_press == 8:
                                         proc.kill()
                                         leds.update(Leds.rgb_on(Color.PURPLE))
