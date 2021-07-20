@@ -151,7 +151,7 @@ def main():
                 rec = KaldiRecognizer(model, wf.getframerate(), '["zen story what time now day play dhamma today start chanting stop turn on off exit shutdown"]')
 
             while True:
-                data = wf.readframes(2000)
+                data = wf.readframes(2500)
                 if len(data) == 0:
                     break
                 if rec.AcceptWaveform(data):
@@ -218,11 +218,11 @@ def main():
             elif "chanting" in words:
                 if find_name('mpg123'):
                     os.system("killall mpg123")
-                proc = subprocess.Popen(["mpg123","-f","2000","-C","-Z","--list","THchanting.txt"], stdin=master)
+                proc = subprocess.Popen(["mpg123","-f","2500","-C","-Z","--list","THchanting.txt"], stdin=master)
             elif "dhamma" in words and "play" in words:
                 if find_name('mpg123'):
                     os.system("killall mpg123")
-                proc = subprocess.Popen(["mpg123","-f","2000","-C","-Z","--list","THdhamma.txt"], stdin=master)
+                proc = subprocess.Popen(["mpg123","-f","2500","-C","-Z","--list","THdhamma.txt"], stdin=master)
             elif "stop" in words:
                 if find_name('mpg123'):
                     proc.kill()
@@ -241,13 +241,11 @@ def main():
                 os.system("sudo shutdown now")
                 break
             
-            leds.update(Leds.rgb_on(Color.GREEN))  
+            leds.update(Leds.rgb_on(Color.WHITE))  
             # board.button.wait_for_press()
             # os.system("python3 clap.py")
-            try:
-                c = subprocess.run("python3 clap.py",shell=True, check=True)
-            except:
-                leds.update(Leds.rgb_on(Color.WHITE)) 
+            c = subprocess.run("python3 clap.py",shell=True, check=True)
+            if c.stderr:
                 board.button.wait_for_press()
 
 

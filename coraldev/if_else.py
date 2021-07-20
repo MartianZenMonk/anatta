@@ -246,7 +246,7 @@ def get_temperature():
 
 def play_chanting():
     speak("English chanting")
-    proc = subprocess.Popen(["mpg123","-Z","-l","0","-q","--list","chanting.txt"], stdin=master)      
+    proc = subprocess.Popen(["mpg123","-Z","-q","--list","chanting.txt"], stdin=master)      
     return proc
 
 
@@ -264,7 +264,7 @@ def buddha_story():
 
 def play_sermons():
     speak("play daily sermons") 
-    proc = subprocess.Popen(["mpg123","-Z","-l","0","-q","--list","sermons.txt"], stdin=master)  
+    proc = subprocess.Popen(["mpg123","-Z","-q","--list","sermons.txt"], stdin=master)  
     return proc
 
 
@@ -276,7 +276,7 @@ def play_radio():
 
 def medition_time():
     speak("The meditation bell will ring every 15 minutes.") 
-    proc = subprocess.Popen(["mpg123","-q","-l","0","bell15min.mp3"])
+    proc = subprocess.Popen(["mpg123","-q","-loop","-1","bell15min.mp3"])
     return proc
 
 

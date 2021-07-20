@@ -20,11 +20,10 @@ You may have to install the following packages
 
 You may use crontab -e for
 - @reboot cd anatta/voicekit && sleep 60 && python3 update.py
-- @reboot cd anatta/voicekit && sleep 60 && python3 shutdown_button.py
 - @reboot cd anatta/voicekit && sleep 60 && python3 sayhi.py
 
 - # play with button
-- @reboot cd anatta/voicekit && sleep 90 && python3 anatta_button.py 
+- @reboot cd anatta/voicekit && sleep 90 && python3 anatta_en-th_btn.py 
 
 
 or
