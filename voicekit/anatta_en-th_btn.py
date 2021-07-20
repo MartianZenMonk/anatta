@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import subprocess
 import pyttsx3
 
 from aiy.board import Board, Led
@@ -39,12 +40,10 @@ def main():
 			board.led.state = Led.ON
 			board.button.wait_for_press()
 			t2 = time.time()
-			try:
-				if t2-t1 < 4:
-					board.led.state = Led.OFF
-					os.system("python3 anatta_button.py")
-			except:
-				print("wait too long")
+			if t2-t1 < 4:
+				board.led.state = Led.OFF
+				subprocess.run("python3 anatta_button.py",shell=True, check=True)
+
 			board.led.state = Led.OFF
 			text = "Hello Press button within 3 seconds For Thai Language"
 			speak(text)
@@ -52,12 +51,10 @@ def main():
 			board.led.state = Led.ON
 			board.button.wait_for_press()
 			t2 = time.time()
-			try:
-				if t2-t1 < 4:
-					board.led.state = Led.OFF
-					os.system("python3 anatta_Thai_button.py")
-			except:
-				print("wait too long again")
+			if t2-t1 < 4:
+				board.led.state = Led.OFF
+				subprocess.run("python3 anatta_Thai_button.py",shell=True, check=True)
+
 			board.led.state = Led.OFF
 			text = "Hello Press button within 3 seconds For Shutdown"
 			speak(text)
@@ -65,12 +62,12 @@ def main():
 			board.led.state = Led.ON
 			board.button.wait_for_press()
 			t2 = time.time()
-			try:
-				if t2-t1 < 4:
-					board.led.state = Led.OFF
-					os.system("sudo shutdown now")
-			except:
-				print("wait too long again")
+			if t2-t1 < 4:
+				board.led.state = Led.OFF
+				text = "The system is shutting down, please wait until the green light in the box turn off, have a nice day"
+				speak(text)
+				subprocess.run("sudo shutdown now",shell=True, check=True)
+				time.sleep(30)
 
 
 if __name__ == '__main__':
