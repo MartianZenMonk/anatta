@@ -151,7 +151,7 @@ def main():
                 rec = KaldiRecognizer(model, wf.getframerate(), '["zen story what time now day play dhamma today start chanting stop turn on off exit shutdown"]')
 
             while True:
-                data = wf.readframes(2000)
+                data = wf.readframes(1000)
                 if len(data) == 0:
                     break
                 if rec.AcceptWaveform(data):
@@ -218,11 +218,11 @@ def main():
             elif "chanting" in words:
                 if find_name('mpg123'):
                     os.system("killall mpg123")
-                proc = subprocess.Popen(["mpg123","-f","2000","-C","-Z","--list","THchanting.txt"], stdin=master)
+                proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","THchanting.txt"], stdin=master)
             elif "dhamma" in words and "play" in words:
                 if find_name('mpg123'):
                     os.system("killall mpg123")
-                proc = subprocess.Popen(["mpg123","-f","2000","-C","-Z","--list","THdhamma.txt"], stdin=master)
+                proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","THdhamma.txt"], stdin=master)
             elif "stop" in words:
                 if find_name('mpg123'):
                     proc.kill()

@@ -8,6 +8,7 @@ import vosk
 import sys
 import json
 import random
+import time
 
 import subprocess
 from subprocess import call
@@ -391,15 +392,19 @@ try:
             print('Hello my name is ',bot_name,' please call my name before speak to me ;)')
             print('Press Ctrl+C to stop the recording')
             print('#' * 80)
-            datetime.today().strftime('%Y%m%d')
+            # datetime.today().strftime('%Y%m%d')
 
             speak('Hello my name is '+bot_name+' please call my name before speak to me')
 
+            words = []
+            with q.mutex:
+                q.queue.clear()
+
             master, slave = os.openpty()
 
-            rec = vosk.KaldiRecognizer(model, args.samplerate, '["acumen begin buddha buddhist chanting coronel day dhamma do down eighty face holy how meditation mindfulness news no now on play please quiet raio sermons seventy shutdown silent sitting sixty show sleep start stop story sutra tell temperature time to turn up volume wake walking what yes zen"]')
-            # rec = vosk.KaldiRecognizer(model, args.samplerate, '["shutdown acumen coronel now sutra mindfulness dhamma buddha holy day zen buddhist story chanting sermons meditation time sleep wake up down turn on begin start stop play how to do what tell yes no walking sitting please quiet silent news when volume sixty seventy eighty show face","[unk]"]')
-            # rec1 = vosk.KaldiRecognizer(model, args.samplerate)
+            rec = vosk.KaldiRecognizer(model, args.samplerate, '["acumen begin buddha buddhist chanting coronel day dhamma do down eighty face holy how meditation mindfulness news no now on play please quiet radio reboot speak sermons seventy shutdown silent sitting sixty show sleep start stop story sutra tell temperature time to turn up volume wake walking what yes zen"]')
+            # rec = vosk.KaldiRecognizer(model, args.samplerate, '["shutdown acumen coronel now sutra mindfulness dhamma buddha holy day zen buddhist story chanting sermons meditation time sleep wake up down turn on begin start stop play how to do what tell yes no walking sitting please quiet silent news when volume sixty seventy eighty show speak face","[unk]"]')
+            # rec = vosk.KaldiRecognizer(model, args.samplerate)
             while True:
                 data = q.get()
                 if rec.AcceptWaveform(data):
@@ -519,10 +524,19 @@ try:
                         elif "play" in words and "sutra" in words:
                             play_sutra()
                             bot = False
+                        elif "reboot" in words and "now" in words:
+                            # print("Shutdown the system")
+                            speak("reboot the system, please wait")
+                            os.system("sudo reboot now")
                         elif "shutdown" in words and "now" in words:
                             # print("Shutdown the system")
                             speak("The system is Shutting down, have a nice day")
                             os.system("sudo shutdown now")
+                        elif "speak" in words:
+                                listToStr = ' '.join(map(str, words))
+                                listToStr = listToStr.replace("speak",'')
+                                speak(listToStr)
+                                bot = False
                     else:
                         x = rec.PartialResult()
                         # print(x)

@@ -142,6 +142,7 @@ def main():
         # text = "Welcome to Anatta Project, press button to play with Dhamma"
         # speak(text)
         button_press = 0
+        once = True
         with Leds() as leds:
 
                 # print('RGB: Solid GREEN for 1 second')
@@ -194,25 +195,26 @@ def main():
                                         proc.kill()
                                         if have_internet():
                                                 text = ""
+                                                import datetime
+                                                today = datetime.datetime.now() 
+                                                # text = ["วันนี้","วัน","weekday/%w","ที่","59/%d","เดือน","month/%m","เวลา","59/%H","นาฬิกา","59/%M","นาที"]
+                                                t = "วันนี้,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m,เวลา,59/%H,นาฬิกา,59/%M,นาที"
+                                                t = t.replace("%w",today.strftime('%w'))
+                                                t = t.replace("%d",today.strftime('%d'))
+                                                t = t.replace("%m",today.strftime('%m'))
+                                                t = t.replace("%H",today.strftime('%H'))
+                                                t = t.replace("%M",today.strftime('%M'))
+                                                text = t.split(',')
+                                                stext = ""
+                                                for i in range(len(text)):
+                                                        stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
+                                                os.system("mpg123 -q -f 2100 "+stext)
                                         else:
                                                 text = "../thaivoices/nointernet.mp3 "
                                                 os.system("mpg123 -q -f 2100 "+text)
-                                        leds.update(Leds.rgb_on(Color.WHITE))
-                                        import datetime
-                                        today = datetime.datetime.now() 
-                                        # text = ["วันนี้","วัน","weekday/%w","ที่","59/%d","เดือน","month/%m","เวลา","59/%H","นาฬิกา","59/%M","นาที"]
-                                        t = "วันนี้,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m,เวลา,59/%H,นาฬิกา,59/%M,นาที"
-                                        t = t.replace("%w",today.strftime('%w'))
-                                        t = t.replace("%d",today.strftime('%d'))
-                                        t = t.replace("%m",today.strftime('%m'))
-                                        t = t.replace("%H",today.strftime('%H'))
-                                        t = t.replace("%M",today.strftime('%M'))
-                                        text = t.split(',')
-                                        stext = ""
-                                        for i in range(len(text)):
-                                                stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
-                                        os.system("mpg123 -q -f 2100 "+stext)
 
+                                        leds.update(Leds.rgb_on(Color.WHITE))
+                                        
                                         y = list(str(holyday))
                                         yy = y[2]+y[3]+y[4]+y[5]
                                         mm = y[6]+y[7]
@@ -229,15 +231,16 @@ def main():
                                                 stext += " ../thaivoices/thwords/" + text[i] + ".mp3" 
                                         os.system("mpg123 -q -f 2100 "+stext) 
                                         os.system("mpg123 -q -f 2100 "+bdaytext) 
-                                        if have_internet():
+
+                                        if have_internet() and once:
                                                 w = ipInfo()
                                                 text = 'Country '+w['sys']['country']+'. City '+w['name']+'. Temperature is '+str(w['main']['temp'])+'. Humidity is '+str(w['main']['humidity'])+'. The weather is '+w['weather'][0]['description']
                                                 # text += ' Sunrise '+str(w['sys']['sunrise'])+' Sunset '+str(w['sys']['sunset'])
                                                 # print(text)
                                                 speak(text)
-                                        proc = subprocess.Popen(["python3", "sati.py"])    
+                                                once = False
+  
                                 elif button_press == 2:
-                                        proc.kill()
                                         if have_internet():
                                                 text = "Listen to Tibetan Buddhist internet radio"
                                                 speak(text)
@@ -290,7 +293,7 @@ def main():
                                         proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","--list","THpayutto.txt"])
                                 elif button_press == 8:
                                         proc.kill()
-                                        leds.update(Leds.rgb_on(Color.PURPLE))
+                                        leds.update(Leds.rgb_on(Color.RED))
                                         proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
                                 elif button_press == 9:
                                         proc.kill()
@@ -299,24 +302,7 @@ def main():
                                         leds.update(Leds.rgb_on(Color.BLUE))
                                         # board.led.state = Led.ON
                                         proc = subprocess.Popen(["mpg123","-f","2100","-q","--loop","-1","../dataen/bell15min.mp3"])
-                                elif button_press == 10:
-                                        proc.kill()
-                                        board.led.state = Led.OFF
-                                        text = "Hello Press button within 3 seconds if you want to play with voice control mode"
-                                        speak(text)
-                                        t1 = time.time()
-                                        # board.led.state = Led.ON
-                                        leds.update(Leds.rgb_on(Color.WHITE))
-                                        board.button.wait_for_press()
-                                        t2 = time.time()
-                                        if t2-t1 < 4:
-                                                text = "Voice control mode, speak when see red light or press white light button"
-                                                speak(text)
-                                                board.led.state = Led.OFF
-                                                os.system("python3 test_words.py")
-                                        else:
-                                                leds.update(Leds.rgb_on(Color.CYAN))
-                                        #just for fun
+                                
                                 else:  
                                         os.system("sudo killall mpg123")
                                         button_press = 0
