@@ -48,6 +48,11 @@ def speak(text):
 es_voices = ["englisg+f1","english+f2","english+m1","english+m3","english+m2","english_rp+m2"]
 
 
+def espeak(t,v='',*args):
+        if v == '':
+                v = "en-us"
+        os.system('espeak -a 10 -v ' + v + ' "' + str(t) + '"')
+        return None
 
 # flite Voices available: kal awb_time kal16 awb rms slt  
 def speakf(v,t,*args):
@@ -120,6 +125,7 @@ d = {
 
 def main():
     master, slave = os.openpty()
+    noisy = False
     # if not os.path.exists("model"):
     #     print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
     #     exit (1)
@@ -165,7 +171,6 @@ def main():
                     # print(rec.PartialResult())
 
 
-            leds.update(Leds.rgb_on(Color.GREEN))
             # print(rec.FinalResult())
             # Free memory ?
             del wf
@@ -188,18 +193,12 @@ def main():
                 if find_name('mpg123'):
                     proc.kill()
                 today = datetime.today().strftime('%H %M')
-                print(today)
-                engine.say(today)
-                engine.runAndWait()
-                engine.stop()
+                espeak("The time is " + today)
             elif "what" in words and "day" in words:
                 if find_name('mpg123'):
                     proc.kill()
                 today = datetime.today().strftime('%B %A %d')
-                print(today)
-                engine.say(today)
-                engine.runAndWait()
-                engine.stop()
+                espeak("Today is " + today)
             elif "zen" in words and "story" in words:
                 if find_name('mpg123'):
                     proc.kill()
@@ -209,23 +208,21 @@ def main():
                 # print(lines)
                 for i in range(len(lines)):
                     x = int(lines[i]["voice"])
-                    # speakf(voices[x], lines[i]["text"])
-                    # print(voices[x])
-                    engine.setProperty('voice',es_voices[x]) 
-                    engine.say(lines[i]["text"])
-                    engine.runAndWait()
-                    engine.stop()
+                    espeak(lines[i]["text"],es_voices[x])
             elif "chanting" in words:
                 if find_name('mpg123'):
                     os.system("killall mpg123")
                 proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","THchanting.txt"], stdin=master)
+                noisy = True
             elif "dhamma" in words and "play" in words:
                 if find_name('mpg123'):
                     os.system("killall mpg123")
                 proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","THdhamma.txt"], stdin=master)
+                noisy = True
             elif "stop" in words:
                 if find_name('mpg123'):
                     proc.kill()
+                    noisy = False
             elif "exit" in words:
                 if find_name('mpg123'):
                     proc.kill()
@@ -241,12 +238,17 @@ def main():
                 os.system("sudo shutdown now")
                 break
             
-            leds.update(Leds.rgb_on(Color.GREEN))  
+            leds.update(Leds.rgb_on(Color.WHITE))  
             # board.button.wait_for_press()
             # os.system("python3 clap.py")
-            try:
-                c = subprocess.run("python3 clap.py",shell=True, check=True)
-            except:
+            if not noisy:
+                try:
+                    leds.update(Leds.rgb_on(Color.GREEN)) 
+                    c = subprocess.run("python3 clap.py",shell=True, check=True)
+                except:
+                    leds.update(Leds.rgb_on(Color.WHITE)) 
+                    board.button.wait_for_press()
+            else:
                 leds.update(Leds.rgb_on(Color.WHITE)) 
                 board.button.wait_for_press()
 

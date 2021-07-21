@@ -64,6 +64,8 @@ def main():
 			t2 = time.time()
 			if t2-t1 < 4:
 				board.led.state = Led.OFF
+				text = "speak when see red light or make a clap when see green light"
+				speak(text)
 				subprocess.run("python3 test_words.py",shell=True, check=True)
 
 			board.led.state = Led.OFF

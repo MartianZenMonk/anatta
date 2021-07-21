@@ -67,7 +67,7 @@ try:
             magnitude = np.abs(np.fft.rfft(indata[:, 0], n=fftsize))
             magnitude *= args.gain / fftsize
             print(sum(magnitude[low_bin:low_bin + args.columns]))
-            if sum(magnitude[low_bin:low_bin + args.columns])>35:
+            if sum(magnitude[low_bin:low_bin + args.columns])>20:
                 clap = True
                 print("clap detect")
             else:

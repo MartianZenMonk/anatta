@@ -402,7 +402,7 @@ try:
 
             master, slave = os.openpty()
 
-            rec = vosk.KaldiRecognizer(model, args.samplerate, '["acumen begin buddha buddhist chanting coronel day dhamma do down eighty face holy how meditation mindfulness news no now on play please quiet radio reboot speak sermons seventy shutdown silent sitting sixty show sleep start stop story sutra tell temperature time to turn up volume wake walking what yes zen"]')
+            rec = vosk.KaldiRecognizer(model, args.samplerate, '["acumen begin buddha buddhist chanting coronel day dhamma do down eighty face how meditation mindfulness news no now on play please quiet radio reboot speak sermons seventy shutdown silent sitting sixty show sleep start stop story sutra tell temperature time to turn up volume wake walking what yes zen"]')
             # rec = vosk.KaldiRecognizer(model, args.samplerate, '["shutdown acumen coronel now sutra mindfulness dhamma buddha holy day zen buddhist story chanting sermons meditation time sleep wake up down turn on begin start stop play how to do what tell yes no walking sitting please quiet silent news when volume sixty seventy eighty show speak face","[unk]"]')
             # rec = vosk.KaldiRecognizer(model, args.samplerate)
             while True:
@@ -502,7 +502,7 @@ try:
                             speak("set volume to 80%")
                             if pop:
                                 os.write(slave, b's')             
-                        elif "buddha" in words and "holy" in words and "day" in words:
+                        elif "buddha" in words and "day" in words:
                             buddha_day()
                             bot = False                      
                         elif "what" in words and "time" in words:
