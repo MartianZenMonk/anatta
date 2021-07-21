@@ -212,7 +212,7 @@ try:
             with q.mutex:
                 q.queue.clear()
 
-            rec = vosk.KaldiRecognizer(model, args.samplerate,'["acumen zen story what time day play dhamma start chanting stop turn on off exit shutdown"],["unk"]')
+            rec = vosk.KaldiRecognizer(model, args.samplerate,'["acumen zen story buddha what time day play dhamma start chanting stop turn on off exit shutdown sutra"],["unk"]')
             while True:
                 data = q.get()
                 # print(q.qsize())       
@@ -276,6 +276,12 @@ try:
                                 if find_name('mpg123'):
                                     os.system("killall mpg123")
                                 proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","THdhamma.txt"], stdin=master)
+                                press_for_stop()
+
+                            elif "sutra" in words and "play" in words:
+                                if find_name('mpg123'):
+                                    os.system("killall mpg123")
+                                proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","sutra.txt"], stdin=master)
                                 press_for_stop()
 
                             elif "stop" in words or "acumen" in words:

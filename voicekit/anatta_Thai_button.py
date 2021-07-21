@@ -219,6 +219,7 @@ def main():
                                         yy = y[2]+y[3]+y[4]+y[5]
                                         mm = y[6]+y[7]
                                         dd = y[8]+y[9]
+                                        import datetime
                                         x = datetime.datetime(int(yy), int(mm), int(dd))
                                         # z = x.strftime("%B %A %d")
                                         t = "วันพระ,หน้า,คือ,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m"
