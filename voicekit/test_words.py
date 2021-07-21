@@ -251,6 +251,9 @@ def main():
             else:
                 leds.update(Leds.rgb_on(Color.WHITE)) 
                 board.button.wait_for_press()
+                # if find_name('mpg123'):
+                #     proc.kill()
+                #     noisy = False
 
 
 if __name__ == '__main__':

@@ -15,6 +15,7 @@ import pty
 import gc
 import time
 
+
 from datetime import datetime
 from aiy.board import Board, Led
 from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
@@ -136,51 +137,20 @@ def int_or_str(text):
     except ValueError:
         return text
 
-# def callback(indata, frames, time, status):
-#     """This is called (from a separate thread) for each audio block."""
-#     if status:
-#         print(status, file=sys.stderr)
-#     q.put(bytes(indata))
-
-global theshold
-global noisy
-columns = 80
-noisy = False
-
 def callback(indata, frames, time, status):
-    global clap
-    # print(indata)
-    high = 2000
-    low = 100
-    samplerate = 44100
-    gain = 5
-    delta_f = (high - low) / (columns - 1)
-    fftsize = math.ceil(samplerate / delta_f)
-    low_bin = math.floor(low / delta_f)
-    if noisy:
-        theshold = 1400
-    else:
-        theshold = 1300
-
-    if any(indata):
-            magnitude = np.abs(np.fft.rfft(indata, n=fftsize))
-            magnitude *= gain / fftsize  
-            # if noisy:
-            #     print(sum(magnitude[low_bin:low_bin + columns]))
-            if sum(magnitude[low_bin:low_bin + columns])>theshold:
-                q.put(bytes(indata))
-                # print(theshold)
-                # if noisy:
-                #     clap = True
-                # else:
-                #     clap = False
-            else:
-                pass
-            
-    else:
-            print('no input')
+    """This is called (from a separate thread) for each audio block."""
+    if status:
+        print(status, file=sys.stderr)
+    q.put(bytes(indata))
 
 
+def press_for_stop():
+    leds.update(Leds.rgb_on(Color.WHITE)) 
+    board.button.wait_for_press()
+    proc.kill()
+    return None
+
+                                    
 parser = argparse.ArgumentParser(add_help=False)
 parser.add_argument(
     '-l', '--list-devices', action='store_true',
@@ -232,50 +202,44 @@ try:
     with sd.RawInputStream(samplerate=args.samplerate, blocksize = 8000, device=args.device, dtype='int16',
                             channels=1, callback=callback):
             print('#' * 80)
-            print('Press Ctrl+C to stop the recording')
+            print('Press Ctrl+C to stop playing')
             print('#' * 80)
             print(args.samplerate)
             print(args.device)
 
-            bwords = '["acumen zen story what time day play dhamma start chanting stop turn on off exit shutdown"]'
-            rec = vosk.KaldiRecognizer(model, args.samplerate,bwords)
+            speak("Welcome to Anatta Project, your Buddhist true friend ever")
+
+            with q.mutex:
+                q.queue.clear()
+
+            rec = vosk.KaldiRecognizer(model, args.samplerate,'["acumen zen story what time day play dhamma start chanting stop turn on off exit shutdown"],["unk"]')
             while True:
                 data = q.get()
-                print(q.qsize())
-                with Board() as board:       
-                    if q.qsize() < 30:
-                        board.led.state = Led.ON
-                    else:
-                        board.led.state = Led.OFF
-
-                    if q.qsize() > 50:                  
-                        with q.mutex:
-                            q.queue.clear()
-                    else:
-                        pass
+                # print(q.qsize())       
+                if q.qsize() > 30:                  
+                    with q.mutex:
+                        q.queue.clear()
+                else:
+                    pass
 
                 words = []
-                # if clap:
-                #     if find_name('mpg123'):
-                #         proc.kill()
-                #         noisy = False
-                #         os.system("killall mpg123")
-                if rec.AcceptWaveform(data):
-                    w = rec.Result()
-                    z = json.loads(w)
-                    print(z["text"])
-                    words += z["text"].split()
-                    with Board() as board:
+                with Leds() as leds:
+                    if rec.AcceptWaveform(data):
+                        w = rec.Result()
+                        z = json.loads(w)
+                        print(z["text"])
+                        words += z["text"].split()
+                        with Board() as board:
 
-                        with Leds() as leds:
-                            print(words)
+                            if len(words) > 0:
+                                leds.update(Leds.rgb_on(Color.YELLOW)) 
                             
                             if "what" in words and "time" in words:
                                 if find_name('mpg123'):
                                     proc.kill()
                                 today = datetime.today().strftime('%H %M')
                                 print(today)
-                                engine.say(today)
+                                engine.say("The time is " + today)
                                 engine.runAndWait()
                                 engine.stop()
                             elif "what" in words and "day" in words:
@@ -283,7 +247,7 @@ try:
                                     proc.kill()
                                 today = datetime.today().strftime('%B %A %d')
                                 print(today)
-                                engine.say(today)
+                                engine.say("Today is " + today)
                                 engine.runAndWait()
                                 engine.stop()
                             elif "zen" in words and "story" in words:
@@ -305,22 +269,23 @@ try:
                                 if find_name('mpg123'):
                                     os.system("killall mpg123")
                                 speak("Thai chanting")
-                                proc = subprocess.Popen(["mpg123","-f","2000","-C","-Z","--list","THchanting.txt"], stdin=master)
-                                noisy = True
+                                proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","THchanting.txt"], stdin=master)
+                                press_for_stop()
+                                
                             elif "dhamma" in words and "play" in words:
                                 if find_name('mpg123'):
                                     os.system("killall mpg123")
-                                proc = subprocess.Popen(["mpg123","-f","2000","-C","-Z","--list","THdhamma.txt"], stdin=master)
-                                noisy = True
+                                proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","THdhamma.txt"], stdin=master)
+                                press_for_stop()
+
                             elif "stop" in words or "acumen" in words:
                                 if find_name('mpg123'):
                                     proc.kill()
-                                    noisy = False
+                                    
                             elif "exit" in words:
                                 if find_name('mpg123'):
                                     proc.kill()
                                 speak("Exit voices control mode")
-                                # speakf("rms","Exit voices control mode")
                                 break
                             elif "shutdown" in words:
                                 if find_name('mpg123'):
@@ -330,16 +295,14 @@ try:
                                 board.led.state = Led.OFF
                                 os.system("sudo shutdown now")
                                 break
-                            else:
-                                if noisy:
-                                    with q.mutex:
-                                        q.queue.clear()
-                                        noisy = False
-                else:
-                    x = rec.PartialResult()
-                    print(x)
-                if dump_fn is not None:
-                    dump_fn.write(data)
+
+
+                    else:
+                        leds.update(Leds.rgb_on(Color.RED))
+                        x = rec.PartialResult()
+                        # print(x)
+                    if dump_fn is not None:
+                        dump_fn.write(data)
 
 except KeyboardInterrupt:
     print('\nDone')
