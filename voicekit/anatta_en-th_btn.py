@@ -56,7 +56,7 @@ def main():
 				subprocess.run("python3 anatta_Thai_button.py",shell=True, check=True)
 
 			board.led.state = Led.OFF
-			text = "or press button within 3 seconds to play with voices control mode"
+			text = "Well or press button within 3 seconds to play with voices control mode"
 			speak(text)
 			t1 = time.time()
 			board.led.state = Led.ON
@@ -80,7 +80,7 @@ def main():
 				text = "The system is shutting down, please wait until the green light in the box turn off, have a nice day"
 				speak(text)
 				subprocess.run("sudo shutdown now",shell=True, check=True)
-				time.sleep(30)
+				break
 
 
 if __name__ == '__main__':

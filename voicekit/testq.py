@@ -14,6 +14,7 @@ import subprocess
 import pty
 import gc
 import time
+import csv
 
 
 from datetime import datetime
@@ -22,10 +23,10 @@ from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
 
 import psutil
 
-sd._terminate()
-time.sleep(5)
-sd._initialize()
-sd.default.latency = 'low'
+# sd._terminate()
+# time.sleep(5)
+# sd._initialize()
+# sd.default.latency = 'low'
 
 def find_name(name):
     for proc in psutil.process_iter():
@@ -38,6 +39,22 @@ def find_name(name):
         except psutil.NoSuchProcess:
             pass
     return False
+
+
+try:
+    import httplib
+except:
+    import http.client as httplib
+
+def have_internet():
+    conn = httplib.HTTPConnection("www.google.com", timeout=5)
+    try:
+        conn.request("HEAD", "/")
+        conn.close()
+        return True
+    except:
+        conn.close()
+        return False
 
 
 import pyttsx3
@@ -141,7 +158,11 @@ def callback(indata, frames, time, status):
     """This is called (from a separate thread) for each audio block."""
     if status:
         print(status, file=sys.stderr)
-    q.put(bytes(indata))
+    if q.qsize() > 30:
+        with q.mutex:
+            q.queue.clear()
+    else:
+        q.put(bytes(indata))    
 
 
 def press_for_stop():
@@ -149,6 +170,27 @@ def press_for_stop():
     board.button.wait_for_press()
     proc.kill()
     return None
+
+
+with open('myhora-buddha-2564.csv', newline='') as f:
+    reader = csv.reader(f)
+    data = list(reader)
+
+day = datetime.today().strftime('%Y%m%d')
+holyday = []
+thholyday = []
+
+for i in range(len(data)):
+    if i > 0:
+        if(int(data[i][1]) > int(day)):
+            holyday.append(data[i][1])
+            thholyday.append(data[i][0])
+t = thholyday[0].replace("(", " ")
+x = t.split()
+
+bdaytext = ""
+for i in range(len(x)-1):
+  bdaytext += " ../thaivoices/thwords/" + x[i] + ".mp3"
 
                                     
 parser = argparse.ArgumentParser(add_help=False)
@@ -209,26 +251,42 @@ try:
 
             speak("Welcome to Anatta Project, your Buddhist true friend ever")
 
+            y = list(str(holyday))
+            yy = y[2]+y[3]+y[4]+y[5]
+            mm = y[6]+y[7]
+            dd = y[8]+y[9]
+            import datetime
+            x = datetime.datetime(int(yy), int(mm), int(dd))
+            # z = x.strftime("%B %A %d")
+            t = "วันพระ,หน้า,คือ,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m"
+            t = t.replace("%w",x.strftime('%w'))
+            t = t.replace("%d",x.strftime('%d'))
+            t = t.replace("%m",x.strftime('%m'))
+            text = t.split(',')
+            stext = ""
+            for i in range(len(text)):
+                    stext += " ../thaivoices/thwords/" + text[i] + ".mp3" 
+            os.system("mpg123 -q -f 2100 "+stext) 
+            os.system("mpg123 -q -f 2100 "+bdaytext) 
+
+            rec = vosk.KaldiRecognizer(model, args.samplerate,'["acumen me zen story lord buddha what time day play dhamma meditation radio start chanting speak stop turn on off exit shutdown sutra help"]')
+            
             with q.mutex:
                 q.queue.clear()
 
-            rec = vosk.KaldiRecognizer(model, args.samplerate,'["acumen zen story buddha what time day play dhamma start chanting stop turn on off exit shutdown sutra"],["unk"]')
             while True:
                 data = q.get()
                 # print(q.qsize())       
-                if q.qsize() > 30:                  
-                    with q.mutex:
-                        q.queue.clear()
-                else:
-                    pass
-
+                
                 words = []
                 with Leds() as leds:
+
                     if rec.AcceptWaveform(data):
                         w = rec.Result()
                         z = json.loads(w)
                         print(z["text"])
                         words += z["text"].split()
+                        
                         with Board() as board:
 
                             if len(words) > 0:
@@ -254,7 +312,7 @@ try:
                                 if find_name('mpg123'):
                                     proc.kill()
                                 n = random.randint(0,4)
-                                print(d["zen101"][n]["title"])
+                                speak(d["zen101"][n]["title"])
                                 lines = d["zen101"][n]["story"]
                                 # print(lines)
                                 for i in range(len(lines)):
@@ -271,16 +329,48 @@ try:
                                 speak("Thai chanting")
                                 proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","THchanting.txt"], stdin=master)
                                 press_for_stop()
+
+                            elif "radio" in words:
+                                if find_name('mpg123'):
+                                    os.system("killall mpg123")
+                                if have_internet():
+                                    speak("Tibetan Buddhist internet radio")
+                                    proc = subprocess.Popen(["mpg123","-f","2100","-q","http://199.180.72.2:9097/lamrim"])
+                                    press_for_stop()
+                                else:
+                                    speak("sorry no internet connection")
+
+                            elif "lord" in words and "buddha" in words:
+                                if find_name('mpg123'):
+                                    os.system("killall mpg123")
+                                speak("buddho mantra")
+                                proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                press_for_stop()
+
+                            elif "meditation" in words:
+                                if find_name('mpg123'):
+                                    os.system("killall mpg123")
+                                speak("15 minutes meditation Bell")
+                                proc = subprocess.Popen(["mpg123","-f","2100","-q","--loop","-1","../dataen/bell15min.mp3"])
+                                press_for_stop()
+
+                            elif "buddha" in words and "dhamma" in words:
+                                if find_name('mpg123'):
+                                    os.system("killall mpg123")
+                                speak("Buddha dhamma")
+                                proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","--list","THbuddhadham.txt"]) 
+                                press_for_stop()
                                 
                             elif "dhamma" in words and "play" in words:
                                 if find_name('mpg123'):
                                     os.system("killall mpg123")
-                                proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","THdhamma.txt"], stdin=master)
+                                proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","THdhamma4all.txt"], stdin=master)
                                 press_for_stop()
 
                             elif "sutra" in words and "play" in words:
                                 if find_name('mpg123'):
                                     os.system("killall mpg123")
+                                os.system("mpg123 -f 1000 ../datath/sutta/moggallana.mp3")
                                 proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","sutra.txt"], stdin=master)
                                 press_for_stop()
 
@@ -301,6 +391,17 @@ try:
                                 board.led.state = Led.OFF
                                 os.system("sudo shutdown now")
                                 break
+                            elif "speak" in words:
+                                listToStr = ' '.join(map(str, words))
+                                listToStr = listToStr.replace("speak",'')
+                                speak("You said, " + listToStr)
+                            elif "help" in words and "me" in words:
+                                text = "words you can say are chanting, meditaion, radio, lord buddha, buddha dhamma, play dhamma"
+                                text += ", play sutra, what time, what day, zen story, shutdown"
+                                speak(text)
+                                time.sleep(3)
+                                with q.mutex:
+                                    q.queue.clear()
 
 
                     else:
