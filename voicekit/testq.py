@@ -158,17 +158,37 @@ def callback(indata, frames, time, status):
     """This is called (from a separate thread) for each audio block."""
     if status:
         print(status, file=sys.stderr)
-    if q.qsize() > 30:
+    if q.qsize() > 25:
         with q.mutex:
             q.queue.clear()
     else:
         q.put(bytes(indata))    
 
 
-def press_for_stop():
-    leds.update(Leds.rgb_on(Color.WHITE)) 
+def press_for_stop(c=''):
+    if c == 'r':
+        leds.update(Leds.rgb_on(Color.RED))
+    elif c == 'g':
+        leds.update(Leds.rgb_on(Color.GREEN))
+    elif c == 'b':
+        leds.update(Leds.rgb_on(Color.BLUE))
+    else:
+        leds.update(Leds.rgb_on(Color.WHITE))
+
     board.button.wait_for_press()
     proc.kill()
+    with q.mutex:
+        q.queue.clear()
+    return None
+
+
+def get_help():
+    text = "words you can say are chanting, meditaion, radio, lord buddha, buddha dhamma, play dhamma"
+    text += ", play sutra, what time, what day, zen story, shutdown"
+    speak(text)
+    time.sleep(3)
+    with q.mutex:
+        q.queue.clear()
     return None
 
 
@@ -256,7 +276,8 @@ try:
             mm = y[6]+y[7]
             dd = y[8]+y[9]
             x = dt.datetime(int(yy), int(mm), int(dd))
-            # z = x.strftime("%B %A %d")
+            z = x.strftime("%B %A %d")
+            speak("next Buddha holy day is" + z)
             t = "วันพระ,หน้า,คือ,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m"
             t = t.replace("%w",x.strftime('%w'))
             t = t.replace("%d",x.strftime('%d'))
@@ -268,14 +289,16 @@ try:
             os.system("mpg123 -q -f 2100 "+stext) 
             os.system("mpg123 -q -f 2100 "+bdaytext) 
 
-            rec = vosk.KaldiRecognizer(model, args.samplerate,'["acumen me zen story lord buddha what time day play dhamma meditation radio start chanting speak stop turn on off exit shutdown sutra help"]')
+            get_help()
+
+            rec = vosk.KaldiRecognizer(model, args.samplerate,'["please zen story lord buddha what time day play help dhamma meditation radio start chanting say speak stop turn on off exit shutdown sutra"],["unk"]')
             
             with q.mutex:
                 q.queue.clear()
 
             while True:
                 data = q.get()
-                print(q.qsize())       
+                # print(q.qsize())       
                 
                 words = []
                 with Leds() as leds:
@@ -283,13 +306,15 @@ try:
                     if rec.AcceptWaveform(data):
                         w = rec.Result()
                         z = json.loads(w)
-                        print(z["text"])
+                        # print(z["text"])
+                        # print(q.qsize())  
                         words += z["text"].split()
                         
                         with Board() as board:
 
                             if len(words) > 0:
-                                leds.update(Leds.rgb_on(Color.YELLOW)) 
+                                leds.update(Leds.rgb_on(Color.YELLOW))
+                                print(words) 
                             
                             if "what" in words and "time" in words:
                                 if find_name('mpg123'):
@@ -342,9 +367,12 @@ try:
                             elif "lord" in words and "buddha" in words:
                                 if find_name('mpg123'):
                                     os.system("killall mpg123")
-                                speak("buddho mantra")
+                                speak("one hour buddho mantra")
+                                leds.update(Leds.rgb_on(Color.GREEN)) 
                                 proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                press_for_stop()
+                                time.sleep(3600)
+                                proc.kill()
+                                # press_for_stop()
 
                             elif "meditation" in words:
                                 if find_name('mpg123'):
@@ -363,7 +391,7 @@ try:
                             elif "dhamma" in words and "play" in words:
                                 if find_name('mpg123'):
                                     os.system("killall mpg123")
-                                proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","THdhamma4all.txt"], stdin=master)
+                                proc = subprocess.Popen(["mpg123","-f","1000","-C","-z","--list","THdhamma4all.txt"], stdin=master)
                                 press_for_stop()
 
                             elif "sutra" in words and "play" in words:
@@ -386,26 +414,20 @@ try:
                                 if find_name('mpg123'):
                                     proc.kill()
                                 speak("The system is shutting down, wait until the green light in the box turn off")
-                                # speakf("rms","The system is shutting down, wait until the green light in the box turn off")
                                 board.led.state = Led.OFF
                                 os.system("sudo shutdown now")
                                 break
-                            elif "speak" in words:
+                            elif "say" in words:
                                 listToStr = ' '.join(map(str, words))
-                                listToStr = listToStr.replace("speak",'')
+                                listToStr = listToStr.replace("say",'')
                                 speak("You said, " + listToStr)
-                            elif "help" in words and "me" in words:
-                                text = "words you can say are chanting, meditaion, radio, lord buddha, buddha dhamma, play dhamma"
-                                text += ", play sutra, what time, what day, zen story, shutdown"
-                                speak(text)
-                                time.sleep(3)
-                                with q.mutex:
-                                    q.queue.clear()
+                            elif "help" in words and "please" in words:
+                                get_help()
 
 
                     else:
                         leds.update(Leds.rgb_on(Color.RED))
-                        x = rec.PartialResult()
+                        # x = rec.PartialResult()
                         # print(x)
                     if dump_fn is not None:
                         dump_fn.write(data)
