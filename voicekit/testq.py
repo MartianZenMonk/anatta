@@ -15,6 +15,7 @@ import pty
 import gc
 import time
 import csv
+from subprocess import call
 
 import datetime as dt
 from datetime import datetime
@@ -271,6 +272,22 @@ try:
 
             speak("Welcome to Anat ta Project, your Buddhist true friend ever")
 
+            if have_internet():
+                today = dt.datetime.now()
+                z = today.strftime("%B %A %d %H %M")
+                speak("Today is" + z)
+                t = "วันนี้,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m,เวลา,59/%H,นาฬิกา,59/%M,นาที"
+                t = t.replace("%w",today.strftime('%w'))
+                t = t.replace("%d",today.strftime('%d'))
+                t = t.replace("%m",today.strftime('%m'))
+                t = t.replace("%H",today.strftime('%H'))
+                t = t.replace("%M",today.strftime('%M'))
+                text = t.split(',')
+                stext = ""
+                for i in range(len(text)):
+                        stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
+                os.system("mpg123 -q -f 2100 "+stext)
+
             y = list(str(holyday))
             yy = y[2]+y[3]+y[4]+y[5]
             mm = y[6]+y[7]
@@ -291,7 +308,7 @@ try:
 
             get_help()
 
-            rec = vosk.KaldiRecognizer(model, args.samplerate,'["please zen story lord buddha what time day play help dhamma meditation radio start chanting say speak stop turn on off exit shutdown sutra"],["unk"]')
+            rec = vosk.KaldiRecognizer(model, args.samplerate,'["please zen story lord buddha what time day play help dhamma meditation radio start chanting say speak stop volume turn on off exit shutdown sutra up down"],["unk"]')
             
             with q.mutex:
                 q.queue.clear()
@@ -309,12 +326,11 @@ try:
                         # print(z["text"])
                         # print(q.qsize())  
                         words += z["text"].split()
+                        if len(words) > 0:
+                            leds.update(Leds.rgb_on(Color.YELLOW))
+                            print(words) 
                         
                         with Board() as board:
-
-                            if len(words) > 0:
-                                leds.update(Leds.rgb_on(Color.YELLOW))
-                                print(words) 
                             
                             if "what" in words and "time" in words:
                                 if find_name('mpg123'):
@@ -368,7 +384,7 @@ try:
                                 if find_name('mpg123'):
                                     os.system("killall mpg123")
                                 speak("one hour buddho mantra")
-                                leds.update(Leds.rgb_on(Color.GREEN)) 
+                                leds.update(Leds.rgb_on(Color.BLUE)) 
                                 proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
                                 time.sleep(3600)
                                 proc.kill()
@@ -379,14 +395,14 @@ try:
                                     os.system("killall mpg123")
                                 speak("15 minutes meditation Bell")
                                 proc = subprocess.Popen(["mpg123","-f","2100","-q","--loop","-1","../dataen/bell15min.mp3"])
-                                press_for_stop()
+                                press_for_stop('g')
 
                             elif "buddha" in words and "dhamma" in words:
                                 if find_name('mpg123'):
                                     os.system("killall mpg123")
                                 speak("Buddha dhamma")
                                 proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","--list","THbuddhadham.txt"]) 
-                                press_for_stop()
+                                press_for_stop('b')
                                 
                             elif "dhamma" in words and "play" in words:
                                 if find_name('mpg123'):
@@ -399,17 +415,17 @@ try:
                                     os.system("killall mpg123")
                                 os.system("mpg123 -f 1000 ../datath/sutta/moggallana.mp3")
                                 proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","sutra.txt"], stdin=master)
-                                press_for_stop()
+                                press_for_stop('b')
 
-                            elif "stop" in words or "acumen" in words:
-                                if find_name('mpg123'):
-                                    proc.kill()
+                            # elif "stop" in words:
+                            #     if find_name('mpg123'):
+                            #         proc.kill()
                                     
-                            elif "exit" in words:
-                                if find_name('mpg123'):
-                                    proc.kill()
-                                speak("Exit voices control mode")
-                                break
+                            # elif "exit" in words:
+                            #     if find_name('mpg123'):
+                            #         proc.kill()
+                            #     speak("Exit voices control mode")
+                            #     break
                             elif "shutdown" in words:
                                 if find_name('mpg123'):
                                     proc.kill()
@@ -423,7 +439,21 @@ try:
                                 speak("You said, " + listToStr)
                             elif "help" in words and "please" in words:
                                 get_help()
-
+                            elif "volume" in words and "up" in words:
+                                call(["amixer","-D","pulse","sset","Master","95%"])
+                                bot = False
+                                speak("set volume to 95%")
+                            elif "volume" in words and "down" in words:
+                                call(["amixer","-D","pulse","sset","Master","50%"])
+                                bot = False
+                                speak("set volume to 50%")
+                            elif len(words) > 0:
+                                listToStr = ' '.join(map(str, words))
+                                speak("You said, " + listToStr)
+                                time.sleep(3)
+                                with q.mutex:
+                                    q.queue.clear()
+                                
 
                     else:
                         leds.update(Leds.rgb_on(Color.RED))

@@ -64,9 +64,10 @@ def main():
 			t2 = time.time()
 			if t2-t1 < 4:
 				board.led.state = Led.OFF
-				text = "speak when see red light or make a clap when see green light"
+				text = "speak when see red light or press button and speak when see white light"
 				speak(text)
-				subprocess.run("python3 test_words.py",shell=True, check=True)
+				subprocess.run("python3 testq.py",shell=True, check=True)
+				# subprocess.run("python3 test_words.py",shell=True, check=True)
 
 			board.led.state = Led.OFF
 			text = "Press button within 3 seconds For Shutdown"

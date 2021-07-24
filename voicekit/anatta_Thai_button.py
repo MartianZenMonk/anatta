@@ -10,7 +10,7 @@ import gc
 
 from aiy.board import Board, Led
 from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
-
+import datetime as dt
 from datetime import datetime
 
 
@@ -110,9 +110,9 @@ def speak(text):
 
 
 # flite Voices available: kal awb_time kal16 awb rms slt  
-def speakf(v,t,*args):
-        os.system('flite -voice ' + v + ' -t "' + str(t) + '"')
-        return None
+# def speakf(v,t,*args):
+#         os.system('flite -voice ' + v + ' -t "' + str(t) + '"')
+#         return None
 
 
 # if install espeak-ng
@@ -195,8 +195,8 @@ def main():
                                         proc.kill()
                                         if have_internet():
                                                 text = ""
-                                                import datetime
-                                                today = datetime.datetime.now() 
+                                                
+                                                today = dt.datetime.now() 
                                                 # text = ["วันนี้","วัน","weekday/%w","ที่","59/%d","เดือน","month/%m","เวลา","59/%H","นาฬิกา","59/%M","นาที"]
                                                 t = "วันนี้,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m,เวลา,59/%H,นาฬิกา,59/%M,นาที"
                                                 t = t.replace("%w",today.strftime('%w'))
@@ -219,8 +219,8 @@ def main():
                                         yy = y[2]+y[3]+y[4]+y[5]
                                         mm = y[6]+y[7]
                                         dd = y[8]+y[9]
-                                        import datetime
-                                        x = datetime.datetime(int(yy), int(mm), int(dd))
+
+                                        x = dt.datetime(int(yy), int(mm), int(dd))
                                         # z = x.strftime("%B %A %d")
                                         t = "วันพระ,หน้า,คือ,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m"
                                         t = t.replace("%w",x.strftime('%w'))

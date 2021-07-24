@@ -303,7 +303,7 @@ def buddha_day():
 def zen_story():
     i = random.randint(0,4)
     lines = zen["zenstories"][i]["story"]
-    # print(lines)
+    speak(lines)
     for i in range(len(lines)):
         x = int(lines[i]["voice"])
         speak(lines[i]["text"],voices[x])
@@ -402,7 +402,7 @@ try:
 
             master, slave = os.openpty()
 
-            rec = vosk.KaldiRecognizer(model, args.samplerate, '["acumen begin buddha buddhist chanting coronel day dhamma do down eighty face how meditation mindfulness news no now on play please quiet radio reboot speak sermons seventy shutdown silent sitting sixty show sleep start stop story sutra tell temperature time to turn up volume wake walking what yes zen"]')
+            rec = vosk.KaldiRecognizer(model, args.samplerate, '["acumen begin buddha buddhist chanting coronel day hey dhamma do down eighty face how meditation mindfulness news no now on play please quiet radio reboot speak sermons seventy shutdown silent sitting sixty show sleep start stop story sutra tell temperature time to turn up volume wake walking what yes zen"]')
             # rec = vosk.KaldiRecognizer(model, args.samplerate, '["shutdown acumen coronel now sutra mindfulness dhamma buddha holy day zen buddhist story chanting sermons meditation time sleep wake up down turn on begin start stop play how to do what tell yes no walking sitting please quiet silent news when volume sixty seventy eighty show speak face","[unk]"]')
             # rec = vosk.KaldiRecognizer(model, args.samplerate)
             while True:
@@ -414,7 +414,7 @@ try:
                     # print('Acumen is ',bot)
                     words = z["text"].split() 
                     # if bot_name == z["text"] or ("wake" in words and "up" in words and bot_name in words):
-                    if bot_name in words:
+                    if bot_name in words and "hey" in words:
                         if pop:
                             os.write(slave, b's')
                         bot = True
@@ -528,14 +528,16 @@ try:
                             # print("Shutdown the system")
                             speak("reboot the system, please wait")
                             os.system("sudo reboot now")
+                            break
                         elif "shutdown" in words and "now" in words:
                             # print("Shutdown the system")
                             speak("The system is Shutting down, have a nice day")
                             os.system("sudo shutdown now")
+                            break
                         elif "speak" in words:
                                 listToStr = ' '.join(map(str, words))
                                 listToStr = listToStr.replace("speak",'')
-                                speak(listToStr)
+                                speak("You said, " + listToStr)
                                 bot = False
                     else:
                         x = rec.PartialResult()
