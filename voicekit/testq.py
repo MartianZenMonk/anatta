@@ -16,6 +16,7 @@ import gc
 import time
 import csv
 from subprocess import call
+import socket
 
 import datetime as dt
 from datetime import datetime
@@ -193,6 +194,19 @@ def get_help():
     return None
 
 
+def get_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # doesn't even have to be reachable
+        s.connect(('10.255.255.255', 1))
+        IP = s.getsockname()[0]
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+    return IP
+
+
 with open('myhora-buddha-2564.csv', newline='') as f:
     reader = csv.reader(f)
     data = list(reader)
@@ -294,7 +308,7 @@ try:
             dd = y[8]+y[9]
             x = dt.datetime(int(yy), int(mm), int(dd))
             z = x.strftime("%B %A %d")
-            speak("next Buddha holy day is" + z)
+            speak("next Buddha holy day is " + z)
             t = "วันพระ,หน้า,คือ,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m"
             t = t.replace("%w",x.strftime('%w'))
             t = t.replace("%d",x.strftime('%d'))
@@ -308,7 +322,11 @@ try:
 
             get_help()
 
-            rec = vosk.KaldiRecognizer(model, args.samplerate,'["please zen story lord buddha what time day play help dhamma meditation radio start chanting say speak stop volume turn on off exit shutdown sutra up down"],["unk"]')
+            v =  '["please zen story lord buddha buddhist what time day play help dhamma meditation radio start '
+            v += 'chanting say speak stop volume turn on off exit shutdown ip address sutra up down '
+            v += 'one two three four five six seven eight nine ten zero"]'
+
+            rec = vosk.KaldiRecognizer(model, args.samplerate,v)
             
             with q.mutex:
                 q.queue.clear()
@@ -380,20 +398,25 @@ try:
                                 else:
                                     speak("sorry no internet connection")
 
-                            elif "lord" in words and "buddha" in words:
+                            elif "lord" in words and "buddha" in words and "three" in words:
                                 if find_name('mpg123'):
                                     os.system("killall mpg123")
-                                speak("one hour buddho mantra")
+                                speak("30 minutes buddho mantra")
                                 leds.update(Leds.rgb_on(Color.BLUE)) 
                                 proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                time.sleep(3600)
+                                time.sleep(1800)
                                 proc.kill()
                                 # press_for_stop()
 
                             elif "meditation" in words:
                                 if find_name('mpg123'):
                                     os.system("killall mpg123")
-                                speak("15 minutes meditation Bell")
+                                text = "Meditation time will make 15 minutes bell sound, you may relax your self by walking then sitting. "
+                                text += "For walking, set a distance to meditate walking back and forth, your senses inwardly immersed, your mind not straying outwards. "
+                                text += "Lifting, Moving, Treading, slow moving and always mind your foot movement then you can increse your awakening sense, "
+                                text += "or free walking, just focus on Treading, "
+                                text += "For sitting, breathing in calm, breathing out down, always mind your breathing, your citta will not go around"
+                                speak(text)
                                 proc = subprocess.Popen(["mpg123","-f","2100","-q","--loop","-1","../dataen/bell15min.mp3"])
                                 press_for_stop('g')
 
@@ -409,18 +432,22 @@ try:
                                     os.system("killall mpg123")
                                 proc = subprocess.Popen(["mpg123","-f","1000","-C","-z","--list","THdhamma4all.txt"], stdin=master)
                                 press_for_stop()
+                            #TEST
+                            elif "buddha" in words and ("story" in words or "what" in words or "play" in words):
+                                speak("play buddha story")
+                                if find_name('mpg123'):
+                                    os.system("killall mpg123")        
+                                try:
+                                    os.system("export DISPLAY=:0.0 && vlc -f --play-and-exit buddha-story.mp4")
+                                except:
+                                    speak("sorry can not play video clip")
 
                             elif "sutra" in words and "play" in words:
                                 if find_name('mpg123'):
                                     os.system("killall mpg123")
                                 os.system("mpg123 -f 1000 ../datath/sutta/moggallana.mp3")
                                 proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","sutra.txt"], stdin=master)
-                                press_for_stop('b')
-
-                            # elif "stop" in words:
-                            #     if find_name('mpg123'):
-                            #         proc.kill()
-                                    
+                                press_for_stop('r')       
                             # elif "exit" in words:
                             #     if find_name('mpg123'):
                             #         proc.kill()
@@ -447,9 +474,13 @@ try:
                                 call(["amixer","-D","pulse","sset","Master","50%"])
                                 bot = False
                                 speak("set volume to 50%")
+                            elif "address" in words:
+                                ip = get_ip()
+                                speak(ip)
+                                bot = False
                             elif len(words) > 0:
                                 listToStr = ' '.join(map(str, words))
-                                speak("You said, " + listToStr)
+                                speak("words i heard , " + listToStr)
                                 time.sleep(3)
                                 with q.mutex:
                                     q.queue.clear()
