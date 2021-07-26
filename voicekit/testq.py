@@ -185,7 +185,7 @@ def press_for_stop(c=''):
 
 
 def get_help():
-    text = "words you can say are chanting, meditaion, radio, lord buddha, buddha dhamma, play dhamma"
+    text = "words you can say are please chanting, meditaion, play radio, play mantra 0 to 4, buddha dhamma, play dhamma"
     text += ", play sutra, what time, what day, zen story, shutdown"
     speak(text)
     time.sleep(3)
@@ -281,8 +281,8 @@ try:
             print('#' * 80)
             print('Press Ctrl+C to stop playing')
             print('#' * 80)
-            print(args.samplerate)
-            print(args.device)
+            # print(args.samplerate)
+            # print(args.device)
 
             speak("Welcome to Anat ta Project, your Buddhist true friend ever")
 
@@ -355,19 +355,13 @@ try:
                                     if find_name('mpg123'):
                                         proc.kill()
                                     today = datetime.today().strftime('%H %M')
-                                    print(today)
-                                    engine.say("The time is " + today)
-                                    engine.runAndWait()
-                                    engine.stop()
+                                    speak("The time is " + today)
                                     
                                 elif "what" in words and "day" in words:
                                     if find_name('mpg123'):
                                         proc.kill()
                                     today = datetime.today().strftime('%B %A %d')
-                                    print(today)
-                                    engine.say("Today is " + today)
-                                    engine.runAndWait()
-                                    engine.stop()
+                                    speak("Today is " + today)
                                     
                                 elif "zen" in words and "story" in words:
                                     if find_name('mpg123'):
@@ -381,10 +375,8 @@ try:
                                         # speakf(voices[x], lines[i]["text"])
                                         # print(voices[x])
                                         engine.setProperty('voice',es_voices[x]) 
-                                        engine.say(lines[i]["text"])
-                                        engine.runAndWait()
-                                        engine.stop()
-                                        
+                                        speak(lines[i]["text"])
+                                                                                
                                 elif "chanting" in words and "please" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
@@ -513,14 +505,18 @@ try:
                                         speak("sorry can not play video clip")
 
                                 elif "browse" in words and "buddhism" in words:
+                                    speak("open Thai buddhism in wikipedia")
                                     command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://th.wikipedia.org/wiki/ศาสนาพุทธ"
                                     proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
                                     press_for_stop()
+                                    os.system("sudo pkill -f chromium")
 
                                 elif "browse" in words and "buddhist" in words and "story" in words:
+                                    speak("open youtube for buddhist stories")
                                     command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://www.youtube.com/watch?v=tI-hgIhFDT0&list=PLYBNr5a72-497Q3UVkpDB24W4NTCD5f2K"
                                     proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
                                     press_for_stop()
+                                    os.system("sudo pkill -f chromium")
    
                                 elif "help" in words and "please" in words:
                                     get_help()
