@@ -138,3 +138,10 @@ from gtts import gTTS
 #     write = csv.writer(f)
       
 #     write.writerow(text)
+
+text = ["ฟัง","ธรรม"]
+for i in range(len(text)):
+  speech = gTTS(text = text[i],lang='th',slow = False)
+  speech.save(str("thwords/"+text[i]) + ".mp3")
+
+

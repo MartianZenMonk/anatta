@@ -102,7 +102,9 @@ d = {
             {"voice":"1","text":"The Zen master Hakuin was praised by his neighbors as one living a pure life."},
             {"voice":"1","text":"A beautiful Japanese girl whose parents owned a food store lived near him. Suddenly, without any warning her parents discovered she was with child."},
             {"voice":"1","text":"This made her parents angry. She would not confess who the man was, but after much harassment at last named Hakuin."},
-            {"voice":"1","text":"In great anger the parents went to the master. 'Is that so?' was all he would say."},
+            {"voice":"1","text":"In great anger the parents went to the master."},
+            {"voice":"2","text":"Is that so?"},
+            {"voice":"1","text":"was all he would say."},
             {"voice":"1","text":"After the child was born it was brought to Hakuin. By this time he had lost his reputation, which did not trouble him, but good care of the child. He obtained milk from his neighbors and everything else the little one needed."},
             {"voice":"1","text":"A year later the girl-mother could stand it no longer. She told her parents the truth - that the real father of the child was a in the fish market."},
             {"voice":"1","text":"The mother and father of the girl at once went to Hakuin to ask his forgiveness, to apologize at length, and to get the child back again."},
@@ -185,12 +187,19 @@ def press_for_stop(c=''):
 
 
 def get_help():
-    text = "words you can say are please chanting, meditaion, play radio, play mantra 0 to 4, buddha dhamma, play dhamma"
+    text = "words you can say are Thai chanting, meditaion time, play radio, play mantra 0 to 4, buddha dhamma, play dhamma"
     text += ", play sutra, what time, what day, zen story, shutdown"
     speak(text)
     time.sleep(3)
     with q.mutex:
         q.queue.clear()
+    return None
+
+
+def shutdown():
+    speak("The system is shutting down, wait until the green light in the box turn off")
+    board.led.state = Led.OFF
+    os.system("sudo shutdown now")
     return None
 
 
@@ -205,6 +214,13 @@ def get_ip():
     finally:
         s.close()
     return IP
+
+#TEST
+def speakThai(text):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
+    os.system('mpg123 -f 2000 ' + stext)
 
 
 with open('myhora-buddha-2564.csv', newline='') as f:
@@ -322,8 +338,8 @@ try:
 
             get_help()
 
-            v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation radio start '
-            v += 'browse chanting mantra say speak stop volume turn on off exit shutdown ip address sutra up down '
+            v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start '
+            v += 'browse chanting mantra say speak stop volume turn on off exit shutdown thai lyric ip address sutra up down '
             v += 'one two three four five six seven eight nine ten zero"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
@@ -377,11 +393,11 @@ try:
                                         engine.setProperty('voice',es_voices[x]) 
                                         speak(lines[i]["text"])
                                                                                 
-                                elif "chanting" in words and "please" in words:
+                                elif "chanting" in words and "thai" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
                                     speak("Thai chanting")
-                                    proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","THchanting.txt"], stdin=master)
+                                    proc = subprocess.Popen(["mpg123","-f","1500","-C","-Z","--list","THchanting.txt"], stdin=master)
                                     press_for_stop()
                                     
 
@@ -390,7 +406,7 @@ try:
                                         os.system("killall mpg123")
                                     if have_internet():
                                         speak("Tibetan Buddhist internet radio")
-                                        proc = subprocess.Popen(["mpg123","-f","2100","-q","http://199.180.72.2:9097/lamrim"])
+                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])
                                         press_for_stop()
                                     else:
                                         speak("sorry no internet connection")
@@ -400,7 +416,7 @@ try:
                                         os.system("killall mpg123")
                                     speak("buddho mantra")
                                     leds.update(Leds.rgb_on(Color.BLUE)) 
-                                    proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../thaivoices/buddho1.mp3"])
+                                    proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../thaivoices/buddho0.mp3"])
                                     press_for_stop('g')
                                     
 
@@ -439,13 +455,19 @@ try:
                                     speak("one hour buddho mantra then shutdown")
                                     leds.update(Leds.rgb_on(Color.BLUE)) 
                                     proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                    time.sleep(3600)
+                                    time.sleep(1800)
                                     proc.kill()
-                                    speak("The system is shutting down, wait until the green light in the box turn off")
-                                    os.system("sudo shutdown now")
-                                    break                            
+                                    speak("Do not forget to mind your breathing, mind your body movement and mind your mind.")
+                                    text = " ../thaivoices/sati.mp3"
+                                    os.system("mpg123 -q -f 2000 "+text)
+                                    leds.update(Leds.rgb_on(Color.RED)) 
+                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                    time.sleep(1800)
+                                    proc.kill()
+                                    shutdown()
+                                    break                           
 
-                                elif "meditation" in words:
+                                elif "meditation" in words and "time" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
                                     text = "Meditation time will make 15 minutes bell sound, you may relax your self by walking then sitting. "
@@ -454,7 +476,7 @@ try:
                                     text += "or free walking, just focus on Treading, "
                                     text += "For sitting, breathing in calm, breathing out down, always mind your breathing, your citta will not go around"
                                     speak(text)
-                                    proc = subprocess.Popen(["mpg123","-f","2100","-q","--loop","-1","../dataen/bell15min.mp3"])
+                                    proc = subprocess.Popen(["mpg123","-f","1500","-q","--loop","-1","../dataen/bell15min.mp3"])
                                     press_for_stop('g')
                                     
 
@@ -462,14 +484,15 @@ try:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
                                     speak("Buddha dhamma")
-                                    proc = subprocess.Popen(["mpg123","-f","2100","-q","-Z","--list","THbuddhadham.txt"]) 
+                                    proc = subprocess.Popen(["mpg123","-f","1500","-q","-Z","--list","THbuddhadham.txt"]) 
                                     press_for_stop('b')
                                     
                                     
                                 elif "dhamma" in words and "play" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
-                                    proc = subprocess.Popen(["mpg123","-f","1000","-C","-z","--list","THdhamma4all.txt"], stdin=master)
+                                    speakThai(['ฟัง','ธรรม','ค่ะ'])
+                                    proc = subprocess.Popen(["mpg123","-f","1500","-C","-z","--list","THdhamma4all.txt"], stdin=master)
                                     press_for_stop()
 
                                 elif "sutra" in words and "play" in words:
@@ -485,38 +508,46 @@ try:
                                 #     speak("Exit voices control mode")
                                 #     break
                                 elif "shutdown" in words:
-                                    if find_name('mpg123'):
-                                        proc.kill()
-                                    speak("The system is shutting down, wait until the green light in the box turn off")
-                                    board.led.state = Led.OFF
-                                    os.system("sudo shutdown now")
+                                    shutdown()
                                     break
                                     
                                 #TEST
                                 elif "buddha" in words and ("story" in words or "what" in words or "play" in words):
-                                    speak("play buddha story")
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")        
-                                    try:
-                                        os.system("export DISPLAY=:0.0 && vlc -f --play-and-exit buddha-story.mp4")
-                                        # os.system("export DISPLAY=:0.0")
-                                        # subprocess.run(["vlc","-f","--play-and-exit","buddha-story.mp4"], shell=True, check=True) 
-                                    except:
-                                        speak("sorry can not play video clip")
+                                    have_display = bool(os.environ.get('DISPLAY', None))
+                                    if have_display:
+                                        speak("play buddha story")
+                                        if find_name('mpg123'):
+                                            os.system("killall mpg123")        
+                                        try:
+                                            os.system("export DISPLAY=:0.0 && vlc -f --play-and-exit buddha-story.mp4")
+                                            # os.system("export DISPLAY=:0.0")
+                                            # subprocess.run(["vlc","-f","--play-and-exit","buddha-story.mp4"], shell=True, check=True) 
+                                        except:
+                                            speak("sorry can not play video clip")
+                                    else:
+                                        speak("sorry, DISPLAY not available")
 
                                 elif "browse" in words and "buddhism" in words:
-                                    speak("open Thai buddhism in wikipedia")
-                                    command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://th.wikipedia.org/wiki/ศาสนาพุทธ"
-                                    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                    press_for_stop()
-                                    os.system("sudo pkill -f chromium")
+                                    have_display = bool(os.environ.get('DISPLAY', None))
+                                    if have_display:
+                                        speak("open Thai buddhism in wikipedia")
+                                        command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://th.wikipedia.org/wiki/ศาสนาพุทธ"
+                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                        press_for_stop()
+                                        os.system("sudo pkill -f chromium")
+                                    else:
+                                        speak("sorry, DISPLAY not available")
 
                                 elif "browse" in words and "buddhist" in words and "story" in words:
-                                    speak("open youtube for buddhist stories")
-                                    command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://www.youtube.com/watch?v=tI-hgIhFDT0&list=PLYBNr5a72-497Q3UVkpDB24W4NTCD5f2K"
-                                    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                    press_for_stop()
-                                    os.system("sudo pkill -f chromium")
+                                    have_display = bool(os.environ.get('DISPLAY', None))
+                                    if have_display:
+                                        speak("open youtube for buddhist stories")
+                                        command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://www.youtube.com/watch?v=tI-hgIhFDT0&list=PLYBNr5a72-497Q3UVkpDB24W4NTCD5f2K"
+                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                        press_for_stop()
+                                        os.system("sudo pkill -f chromium")
+                                    else:
+                                        speak("sorry, DISPLAY not available")
    
                                 elif "help" in words and "please" in words:
                                     get_help()
