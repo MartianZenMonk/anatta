@@ -489,7 +489,6 @@ try:
                                     proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
                                     time.sleep(1800)
                                     proc.kill()
-                                    shutdown()
                                     speak("ātāpī sampajāno satimā, vineyya loke apid chah domanassang. Ardent, fully aware, and mindful, after removing avarice and sorrow regarding the world.")
                                     text = " ../thaivoices/right_sati.mp3"
                                     os.system("mpg123 -q -f 2000 "+text)
@@ -497,6 +496,7 @@ try:
                                     proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
                                     time.sleep(1800)
                                     proc.kill()
+                                    shutdown()
                                     break                           
 
                                 elif "meditation" in words and "time" in words:

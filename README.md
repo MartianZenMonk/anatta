@@ -7,7 +7,7 @@ Project Anatta, Buddhism Corpus for AI assistant developer.
 https://github.com/MartianZenMonk/anatta.corpus
 
 
-- ไฟล์ ธรรมะ จะเก็บไว้ที่ dataen datath ทำไว้คร่าวๆเพื่อใช้ทดสอบ voice kit
+- ไฟล์ ธรรมะ ที่เก็บไว้ที่ dataen datath ทำไว้คร่าวๆเพื่อใช้ทดสอบ voice kit
 
 
 - แหล่งไฟล์ธรรมะดีๆมีหลายที่ ที่ต้องการคือ ต้องเอามาปรับแต่ง ปรับความเร็วบ้าง ตัดส่วนที่ไม่จำเป็นบ้าง จึงต้องใช้เวลามาก จริงๆ อยากได้ไฟล์เสียงพร้อมไฟล์ตัวอักษร
