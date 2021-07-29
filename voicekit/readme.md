@@ -18,12 +18,21 @@ You may have to install the following packages
 - sudo apt  install mpg123
 
 
+if you use aiyprojects-2021-04-02.img.xz then you can do this
+- sudo pip3 install vosk
+- apt-get install libgfortran3
+
+
 You may use crontab -e for
 - @reboot cd anatta/voicekit && sleep 60 && python3 update.py
 - @reboot cd anatta/voicekit && sleep 60 && python3 sayhi.py
 
-- # play with button
+- play with button
 - @reboot cd anatta/voicekit && sleep 90 && python3 anatta_en-th_btn.py 
+
+
+- play with voices
+- @reboot cd anatta/voicekit && sleep 90 && python3 testq.py 
 
 
 or
@@ -31,17 +40,21 @@ or
 
 https://www.raspberrypi-spy.co.uk/2015/10/how-to-autorun-a-python-script-on-boot-using-systemd/
 
+- for this one you can use
+- sudo systemctl status myscript.service
+- sudo systemctl start myscript.service
+- sudo systemctl restart myscript.service
+- sudo systemctl stop myscript.service
 
 
-You may use others text to speech engine such as flite : sudo apt-get install flite or read more information at
+
+
+You may use others text to speech engine 
 
 
 
 https://mycroft-ai.gitbook.io/docs/using-mycroft-ai/customizations/tts-engine
 
-
-
-https://pypi.org/project/talkey/
 
 
 
