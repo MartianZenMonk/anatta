@@ -64,3 +64,6 @@
 ../datath/buddhadasa/b009.mp3
 ../datath/buddhadasa/b010.mp3
 ../datath/buddhadasa/b011.mp3
+../datath/buddhadasa/pattija.mp3
+../datath/buddhadasa/sunyata-sati.mp3
+../datath/buddhadasa/5naturelaw.mp3
