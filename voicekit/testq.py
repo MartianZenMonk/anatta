@@ -187,8 +187,8 @@ def press_for_stop(c=''):
 
 
 def get_help():
-    text = "words you can say are Thai chanting, meditaion time, play radio, play mantra 0 to 4, buddha dhamma, play dhamma"
-    text += ", play sutra, what time, what day, zen story, shutdown"
+    text = "words you can say are Thai chanting, meditaion time, play radio, play mantra 0 1 2 3 4 6, buddha dhamma, play dhamma"
+    text += ", play sutra, what time, what day, buddha day, zen story, shutdown now"
     speak(text)
     time.sleep(3)
     with q.mutex:
@@ -223,25 +223,61 @@ def speakThai(text):
     os.system('mpg123 -f 2000 ' + stext)
 
 
-with open('myhora-buddha-2564.csv', newline='') as f:
-    reader = csv.reader(f)
-    data = list(reader)
+def buddha_day():
+    with open('myhora-buddha-2564.csv', newline='') as f:
+        reader = csv.reader(f)
+        data = list(reader)
 
-day = datetime.today().strftime('%Y%m%d')
-holyday = []
-thholyday = []
+    day = datetime.today().strftime('%Y%m%d')
+    holyday = []
+    thholyday = []
 
-for i in range(len(data)):
-    if i > 0:
-        if(int(data[i][1]) > int(day)):
-            holyday.append(data[i][1])
-            thholyday.append(data[i][0])
-t = thholyday[0].replace("(", " ")
-x = t.split()
+    for i in range(len(data)):
+        if i > 0:
+            if(int(data[i][1]) > int(day)):
+                holyday.append(data[i][1])
+                thholyday.append(data[i][0])
+    t = thholyday[0].replace("(", " ")
+    x = t.split()
 
-bdaytext = ""
-for i in range(len(x)-1):
-  bdaytext += " ../thaivoices/thwords/" + x[i] + ".mp3"
+    bdaytext = ""
+    for i in range(len(x)-1):
+      bdaytext += " ../thaivoices/thwords/" + x[i] + ".mp3"
+
+    if have_internet():
+        today = dt.datetime.now()
+        z = today.strftime("%B %A %d %H %M")
+        speak("Today is" + z)
+        t = "วันนี้,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m,เวลา,59/%H,นาฬิกา,59/%M,นาที"
+        t = t.replace("%w",today.strftime('%w'))
+        t = t.replace("%d",today.strftime('%d'))
+        t = t.replace("%m",today.strftime('%m'))
+        t = t.replace("%H",today.strftime('%H'))
+        t = t.replace("%M",today.strftime('%M'))
+        text = t.split(',')
+        stext = ""
+        for i in range(len(text)):
+                stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
+        os.system("mpg123 -q -f 2100 "+stext)
+
+    y = list(str(holyday))
+    yy = y[2]+y[3]+y[4]+y[5]
+    mm = y[6]+y[7]
+    dd = y[8]+y[9]
+    x = dt.datetime(int(yy), int(mm), int(dd))
+    z = x.strftime("%B %A %d")
+    speak("next Buddha holy day is " + z)
+    t = "วันพระ,หน้า,คือ,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m"
+    t = t.replace("%w",x.strftime('%w'))
+    t = t.replace("%d",x.strftime('%d'))
+    t = t.replace("%m",x.strftime('%m'))
+    text = t.split(',')
+    stext = ""
+    for i in range(len(text)):
+            stext += " ../thaivoices/thwords/" + text[i] + ".mp3" 
+    os.system("mpg123 -q -f 2100 "+stext) 
+    os.system("mpg123 -q -f 2100 "+bdaytext) 
+    return None
 
                                     
 parser = argparse.ArgumentParser(add_help=False)
@@ -299,48 +335,14 @@ try:
             print('#' * 80)
             # print(args.samplerate)
             # print(args.device)
-
-            speak("Welcome to Anat ta Project, your Buddhist true friend ever")
-
-            if have_internet():
-                today = dt.datetime.now()
-                z = today.strftime("%B %A %d %H %M")
-                speak("Today is" + z)
-                t = "วันนี้,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m,เวลา,59/%H,นาฬิกา,59/%M,นาที"
-                t = t.replace("%w",today.strftime('%w'))
-                t = t.replace("%d",today.strftime('%d'))
-                t = t.replace("%m",today.strftime('%m'))
-                t = t.replace("%H",today.strftime('%H'))
-                t = t.replace("%M",today.strftime('%M'))
-                text = t.split(',')
-                stext = ""
-                for i in range(len(text)):
-                        stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
-                os.system("mpg123 -q -f 2100 "+stext)
-
-            y = list(str(holyday))
-            yy = y[2]+y[3]+y[4]+y[5]
-            mm = y[6]+y[7]
-            dd = y[8]+y[9]
-            x = dt.datetime(int(yy), int(mm), int(dd))
-            z = x.strftime("%B %A %d")
-            speak("next Buddha holy day is " + z)
-            t = "วันพระ,หน้า,คือ,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m"
-            t = t.replace("%w",x.strftime('%w'))
-            t = t.replace("%d",x.strftime('%d'))
-            t = t.replace("%m",x.strftime('%m'))
-            text = t.split(',')
-            stext = ""
-            for i in range(len(text)):
-                    stext += " ../thaivoices/thwords/" + text[i] + ".mp3" 
-            os.system("mpg123 -q -f 2100 "+stext) 
-            os.system("mpg123 -q -f 2100 "+bdaytext) 
-
-            get_help()
+            # speak("Welcome to Anat ta Project, your Buddhist true friend ever")
+            # get_help()
+            os.system('espeak -s 130 -a 10 -v "english-us" "Nothing is worth insisting on"')
+            os.system('mpg123 -q -f 1000 ../thaivoices/hello.mp3')
 
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start '
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown thai lyric ip address sutra up down '
-            v += 'one two three four five six seven eight nine ten zero yes no"]'
+            v += 'one two three four five six seven eight nine ten zero yes no ok"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
 
@@ -382,6 +384,8 @@ try:
                                         proc.kill()
                                     today = datetime.today().strftime('%B %A %d')
                                     speak("Today is " + today)
+                                elif "buddha" in words and "day" in words:
+                                    buddha_day()
                                     
                                 elif "zen" in words and "story" in words:
                                     if find_name('mpg123'):
@@ -401,10 +405,9 @@ try:
                                 elif "chanting" in words and "english" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
-                                    speak("Thai chanting")
+                                    speak("English chanting")
                                     subprocess.run(["mpg123","-f","1500","-C","--list","chanting.txt"])
                                                                         
-
                                 elif "radio" in words and "play" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
@@ -423,7 +426,6 @@ try:
                                     proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../thaivoices/buddho0.mp3"])
                                     press_for_stop('g')
                                     
-
                                 elif "play" in words and "mantra" in words and "one" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
@@ -432,7 +434,6 @@ try:
                                     proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
                                     press_for_stop('r')
                                     
-
                                 elif "play" in words and "mantra" in words and "two" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
@@ -442,7 +443,6 @@ try:
                                     time.sleep(1800)
                                     proc.kill()
                                     
-                                    # press_for_stop()
                                 elif "play" in words and "mantra" in words and "three" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
@@ -456,7 +456,6 @@ try:
                                     time.sleep(1800)
                                     proc.kill()
                                     
-                                    # press_for_stop()
                                 elif "play" in words and "mantra" in words and "four" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
@@ -474,29 +473,31 @@ try:
                                     proc.kill()
                                     shutdown()
                                     break  
-                                elif "play" in words and "mantra" in words and "five" in words:
+                                elif "play" in words and "mantra" in words and "six" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
-                                    speak("one and a half hour buddho mantra then shutdown")
+                                    speak("4 hours buddho mantra then shutdown")
                                     leds.update(Leds.rgb_on(Color.GREEN)) 
-                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1500","-q","--loop","-1","../thaivoices/buddho.mp3"])
                                     time.sleep(1800)
                                     proc.kill()
                                     speak("Do not forget to mind your breathing, mind your body movement and mind your mind.")
                                     text = " ../thaivoices/sati.mp3"
                                     os.system("mpg123 -q -f 2000 "+text)
                                     leds.update(Leds.rgb_on(Color.YELLOW)) 
-                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1500","-q","--loop","-1","../thaivoices/buddho.mp3"])
                                     time.sleep(1800)
                                     proc.kill()
-                                    speak("ātāpī sampajāno satimā, vineyya loke apid chah domanassang. Ardent, fully aware, and mindful, after removing avarice and sorrow regarding the world.")
+                                    speak("Ardent, fully aware, and mindful, after removing avarice and sorrow regarding the world.")
                                     text = " ../thaivoices/right_sati.mp3"
                                     os.system("mpg123 -q -f 2000 "+text)
                                     leds.update(Leds.rgb_on(Color.RED)) 
                                     proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                    time.sleep(1800)
+                                    time.sleep(10800)
                                     proc.kill()
-                                    shutdown()
+                                    board.led.state = Led.OFF
+                                    os.system("sudo shutdown now")
+                                    # shutdown()
                                     break                           
 
                                 elif "meditation" in words and "time" in words:
@@ -511,15 +512,13 @@ try:
                                     proc = subprocess.Popen(["mpg123","-f","1500","-q","--loop","-1","../dataen/bell15min.mp3"])
                                     press_for_stop('g')
                                     
-
                                 elif "buddha" in words and "dhamma" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
                                     speak("Buddha dhamma")
                                     proc = subprocess.Popen(["mpg123","-f","1500","-q","-Z","--list","THbuddhadham.txt"]) 
                                     press_for_stop('b')
-                                    
-                                    
+                                            
                                 elif "dhamma" in words and "play" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
@@ -600,17 +599,19 @@ try:
                                 elif "ip" in words and "address" in words:
                                     ip = get_ip()
                                     speak(ip)
-                                    
+
+                                elif "say" in words:
+                                    listToStr = ' '.join(map(str, words))
+                                    listToStr = listToStr.replace("say",'')
+                                    speak("You said, " + listToStr)
+
                                 elif len(words) > 0:
                                     listToStr = ' '.join(map(str, words))
                                     speak("words i heard , " + listToStr)
                                     time.sleep(3)
                                     with q.mutex:
                                         q.queue.clear()
-                                elif "say" in words:
-                                    listToStr = ' '.join(map(str, words))
-                                    listToStr = listToStr.replace("say",'')
-                                    speak("You said, " + listToStr)
+                                
                             else:
 
                                 if zen:
@@ -646,3 +647,6 @@ except KeyboardInterrupt:
     parser.exit(0)
 except Exception as e:
     parser.exit(type(e).__name__ + ': ' + str(e))
+
+'''
+For Martian Monk Bhavana practice
