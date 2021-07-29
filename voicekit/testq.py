@@ -557,8 +557,6 @@ try:
                                             os.system("killall mpg123")        
                                         try:
                                             os.system("export DISPLAY=:0.0 && vlc -f --play-and-exit buddha-story.mp4")
-                                            # os.system("export DISPLAY=:0.0")
-                                            # subprocess.run(["vlc","-f","--play-and-exit","buddha-story.mp4"], shell=True, check=True) 
                                         except:
                                             speak("sorry can not play video clip")
                                     else:
@@ -648,5 +646,5 @@ except KeyboardInterrupt:
 except Exception as e:
     parser.exit(type(e).__name__ + ': ' + str(e))
 
-'''
-For Martian Monk Bhavana practice
+
+# For Martian Monk Bhavana practice
