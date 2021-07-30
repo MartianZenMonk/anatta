@@ -86,69 +86,6 @@ def speakf(v,t,*args):
 voices = ["kal", "slt", "rms", "awb", "awb_time", "kal16"]
 
 
-d = {
-    "zen101":[
-        {"title":"A cup of tea",
-        "story":[
-            {"voice":"1","text":"Nan-in, a Japanese master during the Meiji era (1868-1912) received a university professor who came to inquire about Zen."},
-            {"voice":"1","text":"Nan-in saved tea. He poured his visitor's cup full, and then kept on pouring."},
-            {"voice":"1","text":"The professor watched the overflow until he no longer could restrain himself."},
-            {"voice":"2","text":"It is overfull. No more will go in"},
-            {"voice":"3","text":"Like this cup,You are full of your own opinions and speculations. How can I show you Zen unless you first empty your cup?"},
-            ]
-        },
-        {"title":"Is That So?",
-        "story":[
-            {"voice":"1","text":"The Zen master Hakuin was praised by his neighbors as one living a pure life."},
-            {"voice":"1","text":"A beautiful Japanese girl whose parents owned a food store lived near him. Suddenly, without any warning her parents discovered she was with child."},
-            {"voice":"1","text":"This made her parents angry. She would not confess who the man was, but after much harassment at last named Hakuin."},
-            {"voice":"1","text":"In great anger the parents went to the master."},
-            {"voice":"2","text":"Is that so?"},
-            {"voice":"1","text":"was all he would say."},
-            {"voice":"1","text":"After the child was born it was brought to Hakuin. By this time he had lost his reputation, which did not trouble him, but good care of the child. He obtained milk from his neighbors and everything else the little one needed."},
-            {"voice":"1","text":"A year later the girl-mother could stand it no longer. She told her parents the truth - that the real father of the child was a in the fish market."},
-            {"voice":"1","text":"The mother and father of the girl at once went to Hakuin to ask his forgiveness, to apologize at length, and to get the child back again."},
-            {"voice":"1","text":"Hakuin was willing. In yielding the child, all he said was"},
-            {"voice":"2","text":"Is that so?"}
-            ]
-        },
-        {"title":"The Moon cannot be Stolen",
-        "story":[
-            {"voice":"1","text":"Ryokan, a Zen master, lived the simplest kind of life in a little hut at the foot of a mountain. One evening a thief visited the hut only to discover there was nothing in it to stea1."},
-            {"voice":"1","text":"Ryokan returned and caught him."},
-            {"voice":"2","text":"You may have come a long way to visit me and you should not return empty-handed. Please take my clothes as a gift."},
-            {"voice":"1","text":"The thief was bewildered. He took the clothes and slunk away.Ryokan sat naked, watching the moon."},
-            {"voice":"2","text":"Poor fellow, I wish I could give him this beautiful moon."},
-            {"voice":"1","text":"No one can steal your beautiful heart"}
-            ]
-        },
-        {"title":"Muddy Road",
-        "story":[
-            {"voice":"1","text":"Tanzan and Ekido were once traveling together down a muddy road. A heavy rain was still falling."},
-            {"voice":"1","text":"Coming around a bend, they met a lovely girl in a silk kimono and sash, unable to cross the intersection."},
-            {"voice":"2","text":"Come on, girl"},
-            {"voice":"1","text":"said Tanzan at once. Lifting her in his arms, he carried her over the mud."},
-            {"voice":"1","text":"Ekido did not speak again until that night when they reached a lodging temple. Then he no longer could restrain himself."},
-            {"voice":"3","text":"We monks don't go near females, especially not young and lovely ones. It is dangerous. Why did you do that?"},
-            {"voice":"2","text":"I left the girl there, Are you still carrying her?"}
-            ]
-        },
-        {"title":"Learning to be Silent",
-        "story":[
-            {"voice":"1","text":"The pupils of the Tendai School used to study meditation before Zen entered Japan. Four of them who were intimate friends promised one another to observe seven days of silence."},
-            {"voice":"1","text":"On the first day all were silent Their meditation had begun auspiciously, but when night came and the oil-lamps were growing dim one of the pupils could not help exclaiming to a servant"},
-            {"voice":"2","text":"Fix those lamps"},
-            {"voice":"1","text":"The second pupil was surprised to hear the first one talk."},
-            {"voice":"3","text":"We are not supposed to say a word"},
-            {"voice":"4","text":"You two are stupid. Why did you talk?"},
-            {"voice":"1","text":"asked the third"},
-            {"voice":"5","text":"I am the only one who has not talked"},
-            {"voice":"1","text":"muttered the fourth pupil."}
-            ]
-        }
-        ]
-    }
-
 q = queue.Queue()
 
 def int_or_str(text):
@@ -188,7 +125,7 @@ def press_for_stop(c=''):
 
 def get_help():
     text = "words you can say are Thai chanting, meditaion time, play radio, play mantra 0 1 2 3 4 6, buddha dhamma, play dhamma"
-    text += ", play sutra, what time, what day, buddha day, zen story, shutdown now"
+    text += ", play sutra, what time, what day, buddha day, zen story, please shutdown"
     speak(text)
     time.sleep(3)
     with q.mutex:
@@ -220,7 +157,7 @@ def speakThai(text):
     stext = ""
     for i in range(len(text)):
         stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
-    os.system('mpg123 -f 2000 ' + stext)
+    os.system('mpg123 -d 2 -f 2000 ' + stext)
 
 
 def buddha_day():
@@ -278,6 +215,13 @@ def buddha_day():
     os.system("mpg123 -q -f 2100 "+stext) 
     os.system("mpg123 -q -f 2100 "+bdaytext) 
     return None
+
+# read zenstories file
+with open('zenstories.json', 'r') as myfile:
+    zdata=myfile.read()
+
+# parse file
+d = json.loads(zdata)
 
                                     
 parser = argparse.ArgumentParser(add_help=False)
@@ -341,7 +285,7 @@ try:
             os.system('mpg123 -q -f 1000 ../thaivoices/hello.mp3')
 
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start '
-            v += 'browse chanting mantra say speak stop volume turn on off exit shutdown thai lyric ip address sutra up down '
+            v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down '
             v += 'one two three four five six seven eight nine ten zero yes no ok"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
@@ -390,7 +334,7 @@ try:
                                 elif "zen" in words and "story" in words:
                                     if find_name('mpg123'):
                                         proc.kill()
-                                    n = random.randint(0,4)
+                                    n = random.randint(0,len(d["zen101"])-1)
                                     speak(d["zen101"][n]["title"])
                                     focus = True
                                     zen = True
@@ -544,7 +488,7 @@ try:
                                 #         proc.kill()
                                 #     speak("Exit voices control mode")
                                 #     break
-                                elif "shutdown" in words and "now" in words:
+                                elif "shutdown" in words and "please" in words:
                                     shutdown()
                                     break
                                     
@@ -616,7 +560,7 @@ try:
                                     if "no" in words:
                                         if find_name('mpg123'):
                                             proc.kill()
-                                        n = random.randint(0,4)
+                                        n = random.randint(0,len(d["zen101"])-1)
                                         speak(d["zen101"][n]["title"])
                                     elif "yes" in words:
                                         lines = d["zen101"][n]["story"]
@@ -648,3 +592,4 @@ except Exception as e:
 
 
 # For Martian Monk Bhavana practice
+# twitter @MartianZenMonk
