@@ -157,7 +157,21 @@ def speakThai(text):
     stext = ""
     for i in range(len(text)):
         stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
-    os.system('mpg123 -d 2 -f 2000 ' + stext)
+    os.system('mpg123 -f 2000 ' + stext)
+
+
+def enwords(text):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../dataen/" + text[i] + ".mp3"
+    return stext
+
+
+def thwords(text):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
+    return stext
 
 
 def buddha_day():
@@ -417,6 +431,30 @@ try:
                                     proc.kill()
                                     shutdown()
                                     break  
+                                elif "play" in words and "mantra" in words and "five" in words:
+                                    if find_name('mpg123'):
+                                        os.system("killall mpg123")
+                                    speak("30 minutes mantra")
+                                    th_right = thwords(['ขวา','ย่าง','หนอ'])
+                                    th_left = thwords(['ซ้าย','ย่าง','หนอ'])
+                                    en = enwords(['lifting','moving','treading'])
+                                    leds.update(Leds.rgb_on(Color.BLUE))
+                                    timeout = time.time() + 60*30   # 30 minutes from now
+                                    while True:
+                                        
+                                        if time.time() > timeout:
+                                            break
+                                        else:
+                                            os.system('mpg123 -f 2000 ' + th_right)
+                                            time.sleep(1)
+                                            os.system('mpg123 -f 2000 ' + th_left)
+                                            time.sleep(1)
+
+                                            os.system('mpg123 -f 2000 ' + en)
+                                            time.sleep(1)
+                                            os.system('mpg123 -f 2000 ' + en)
+                                            time.sleep(1)
+
                                 elif "play" in words and "mantra" in words and "six" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")

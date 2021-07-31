@@ -139,7 +139,8 @@ from gtts import gTTS
       
 #     write.writerow(text)
 
-text = ["ฟัง","ธรรม"]
+text = ["ย่าง"]
+# text = ["moving","lifting","treading","standing"]
 for i in range(len(text)):
   speech = gTTS(text = text[i],lang='th',slow = False)
   speech.save(str("thwords/"+text[i]) + ".mp3")
