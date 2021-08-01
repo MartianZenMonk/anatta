@@ -307,8 +307,8 @@ try:
             os.system('mpg123 -q -f 1000 ../thaivoices/hello.mp3')
 
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start '
-            v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down '
-            v += 'one two three four five six seven eight nine ten zero yes no ok coca cola stage"]'
+            v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
+            v += 'one two three four five six seven eight nine ten zero yes no ok coca cola stage fold path nature truth dependent origination"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
 
@@ -363,12 +363,40 @@ try:
                                     speak(d["zen101"][n]["title"])
                                     focus = True
                                     zen = True
-                                                                                
-                                elif "chanting" in words and "thai" in words:
+
+                                elif "breathing" in words and "chanting" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
-                                    speak("Thai chanting")
-                                    proc = subprocess.Popen(["mpg123","-f","1500","-C","-Z","--list","THchanting.txt"], stdin=master)
+                                    speak("Thai Anapanasati chanting")
+                                    proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/anapanasati-cut.mp3"], stdin=master)
+                                    press_for_stop()
+
+                                elif "nature" in words and "truth" in words and "chanting" in words:
+                                    if find_name('mpg123'):
+                                        os.system("killall mpg123")
+                                    speak("Thai Dhamma Ni yam chanting")
+                                    proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/dhammaniyam.mp3"], stdin=master)
+                                    press_for_stop()
+
+                                elif "dependent" in words and "origination" in words and "chanting" in words:
+                                    if find_name('mpg123'):
+                                        os.system("killall mpg123")
+                                    speak("Thai Itup paj ja ya ta Pa tij ja sa mup path chanting")
+                                    proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/ituppajjayata.mp3"], stdin=master)
+                                    press_for_stop()
+
+                                elif "eight" in words and "fold" in words and "path" in words and "thai" in words:
+                                    if find_name('mpg123'):
+                                        os.system("killall mpg123")
+                                    speak("Thai Noble 8 fold path chanting")
+                                    proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/8.mp3"], stdin=master)
+                                    press_for_stop()
+
+                                elif "eight" in words and "fold" in words and "path" in words and "english" in words:
+                                    if find_name('mpg123'):
+                                        os.system("killall mpg123")
+                                    speak("English Noble 8 fold path chanting")
+                                    proc = subprocess.Popen(["mpg123","-f","4000","-C","--loop","-1","../dataen/chanting/noble8fold.mp3"], stdin=master)
                                     press_for_stop()
 
                                 elif "chanting" in words and "english" in words:
@@ -376,6 +404,13 @@ try:
                                         os.system("killall mpg123")
                                     speak("English chanting")
                                     subprocess.run(["mpg123","-f","1500","-C","--list","chanting.txt"])
+
+                                elif "chanting" in words and "thai" in words:
+                                    if find_name('mpg123'):
+                                        os.system("killall mpg123")
+                                    speak("Thai chanting")
+                                    proc = subprocess.Popen(["mpg123","-f","1500","-C","-Z","--list","THchanting.txt"], stdin=master)
+                                    press_for_stop()
                                                                         
                                 elif "radio" in words and "play" in words:
                                     if find_name('mpg123'):
