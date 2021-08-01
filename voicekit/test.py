@@ -19,14 +19,14 @@ def speaken(text):
 
 while True:
 
-	speakThai(['ขวา','ย่าง','หนอ'])
+	speakThai(["ยกส้นหนอ","ยกหนอ","ย่างหนอ","ลงหนอ","ถูกหนอ","กดหนอ"])
 	time.sleep(1)
-	speakThai(['ซ้าย','ย่าง','หนอ'])
+	speakThai(["ยกส้นหนอ","ยกหนอ","ย่างหนอ","ลงหนอ","ถูกหนอ","กดหนอ"])
 	time.sleep(1)
 
-	speaken(['lifting','moving','treading'])
+	speaken(["heelup","lifting","moving","lowering","touching","pressing"])
 	time.sleep(1)
-	speaken(['lifting','moving','treading'])
+	speaken(["heelup","lifting","moving","lowering","touching","pressing"])
 	time.sleep(1)
 
 # read zenstories file

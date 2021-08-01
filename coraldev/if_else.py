@@ -9,13 +9,14 @@ import sys
 import json
 import random
 import time
-
+import datetime as dt
 import subprocess
 from subprocess import call
 from datetime import datetime
 
 import psutil
 import pty
+import gc
 
 import requests
 from pprint import pprint
@@ -45,105 +46,6 @@ def ipInfo(addr=''):
     return res.json();
 
 
-zen = {
-    "zenstories":[
-        {"title":"A cup of tea",
-        "story":[
-            {"voice":"1","text":"Nan-in, a Japanese master during the Meiji era (1868-1912) received a university professor who came to inquire about Zen."},
-            {"voice":"1","text":"Nan-in saved tea. He poured his visitor's cup full, and then kept on pouring."},
-            {"voice":"1","text":"The professor watched the overflow until he no longer could restrain himself."},
-            {"voice":"2","text":"It is overfull. No more will go in"},
-            {"voice":"3","text":"Like this cup,You are full of your own opinions and speculations. How can I show you Zen unless you first empty your cup?"},
-            ]
-        },
-        {"title":"Is That So?",
-        "story":[
-            {"voice":"1","text":"The Zen master Hakuin was praised by his neighbors as one living a pure life."},
-            {"voice":"1","text":"A beautiful Japanese girl whose parents owned a food store lived near him. Suddenly, without any warning her parents discovered she was with child."},
-            {"voice":"1","text":"This made her parents angry. She would not confess who the man was, but after much harassment at last named Hakuin."},
-            {"voice":"1","text":"In great anger the parents went to the master. 'Is that so?' was all he would say."},
-            {"voice":"1","text":"After the child was born it was brought to Hakuin. By this time he had lost his reputation, which did not trouble him, but good care of the child. He obtained milk from his neighbors and everything else the little one needed."},
-            {"voice":"1","text":"A year later the girl-mother could stand it no longer. She told her parents the truth - that the real father of the child was a in the fish market."},
-            {"voice":"1","text":"The mother and father of the girl at once went to Hakuin to ask his forgiveness, to apologize at length, and to get the child back again."},
-            {"voice":"1","text":"Hakuin was willing. In yielding the child, all he said was"},
-            {"voice":"2","text":"Is that so?"}
-            ]
-        },
-        {"title":"The Moon cannot be Stolen",
-        "story":[
-            {"voice":"1","text":"Ryokan, a Zen master, lived the simplest kind of life in a little hut at the foot of a mountain. One evening a thief visited the hut only to discover there was nothing in it to stea1."},
-            {"voice":"1","text":"Ryokan returned and caught him."},
-            {"voice":"2","text":"You may have come a long way to visit me and you should not return empty-handed. Please take my clothes as a gift."},
-            {"voice":"1","text":"The thief was bewildered. He took the clothes and slunk away.Ryokan sat naked, watching the moon."},
-            {"voice":"2","text":"Poor fellow, I wish I could give him this beautiful moon."},
-            {"voice":"1","text":"No one can steal your beautiful heart"}
-            ]
-        },
-        {"title":"Muddy Road",
-        "story":[
-            {"voice":"1","text":"Tanzan and Ekido were once traveling together down a muddy road. A heavy rain was still falling."},
-            {"voice":"1","text":"Coming around a bend, they met a lovely girl in a silk kimono and sash, unable to cross the intersection."},
-            {"voice":"2","text":"Come on, girl"},
-            {"voice":"1","text":"said Tanzan at once. Lifting her in his arms, he carried her over the mud."},
-            {"voice":"1","text":"Ekido did not speak again until that night when they reached a lodging temple. Then he no longer could restrain himself."},
-            {"voice":"3","text":"We monks don't go near females, especially not young and lovely ones. It is dangerous. Why did you do that?"},
-            {"voice":"2","text":"I left the girl there, Are you still carrying her?"}
-            ]
-        },
-        {"title":"Learning to be Silent",
-        "story":[
-            {"voice":"1","text":"The pupils of the Tendai School used to study meditation before Zen entered Japan. Four of them who were intimate friends promised one another to observe seven days of silence."},
-            {"voice":"1","text":"On the first day all were silent Their meditation had begun auspiciously, but when night came and the oil-lamps were growing dim one of the pupils could not help exclaiming to a servant"},
-            {"voice":"2","text":"Fix those lamps"},
-            {"voice":"1","text":"The second pupil was surprised to hear the first one talk."},
-            {"voice":"3","text":"We are not supposed to say a word"},
-            {"voice":"4","text":"You two are stupid. Why did you talk?"},
-            {"voice":"1","text":"asked the third"},
-            {"voice":"5","text":"I am the only one who has not talked"},
-            {"voice":"1","text":"muttered the fourth pupil."}
-            ]
-        }
-        ]
-    }
-
-sutta = {
-    "sutta":[
-        {"title":"Cankama Sutta",
-            "content":[
-                {"voice":"1","text":"These are the five rewards for one who practices walking meditation. Which five?"},
-                {"voice":"1","text":"He can endure traveling by foot"},
-                {"voice":"1","text":"he can endure exertion"},
-                {"voice":"1","text":"he becomes free from disease"},
-                {"voice":"1","text":"whatever he has eaten & drunk, chewed & savored, becomes well-digested"},
-                {"voice":"1","text":"the concentration he wins while doing walking meditation lasts for a long time"},
-                {"voice":"1","text":"These are the five rewards for one who practices walking meditation"}
-                ]
-         },
-         {"title":"Moggallana Sutta",
-            "content":[
-                {"voice":"1","text":"the Blessed One said to Ven. Maha Moggallana,"},
-                {"voice":"2","text":"Are you nodding, Moggallana? Are you nodding?"},
-                {"voice":"3","text":"Yes, lord"},
-                {"voice":"2","text":"Well then, Moggallana, whatever perception you have in mind when drowsiness descends on you, don't attend to that perception, don't pursue it. It's possible that by doing this you will shake off your drowsiness."},
-                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then recall to your awareness the Dhamma as you have heard & memorized it, re-examine it & ponder it over in your mind. It's possible that by doing this you will shake off your drowsiness."},
-                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then repeat aloud in detail the Dhamma as you have heard & memorized it. It's possible that by doing this you will shake off your drowsiness."},
-                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then pull both your earlobes and rub your limbs with your hands. It's possible that by doing this you will shake off your drowsiness."},
-                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then get up from your seat and, after washing your eyes out with water, look around in all directions and upward to the major stars & constellations. It's possible that by doing this you will shake off your drowsiness."},
-                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then attend to the perception of light, resolve on the perception of daytime, [dwelling] by night as by day, and by day as by night. By means of an awareness thus open & unhampered, develop a brightened mind. It's possible that by doing this you will shake off your drowsiness."},
-                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then — percipient of what lies in front & behind — set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards. It's possible that by doing this you will shake off your drowsiness."},
-                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then — reclining on your right side — take up the lion's posture, one foot placed on top of the other, mindful, alert, with your mind set on getting up. As soon as you wake up, get up quickly, with the thought, 'I won't stay indulging in the pleasure of lying down, the pleasure of reclining, the pleasure of drowsiness.' That is how you should train yourself."},
-                {"voice":"2","text":"Furthermore, Moggallana, should you train yourself: 'I will not visit families with my pride lifted high.' That is how you should train yourself. Among families there are many jobs that have to be done, so that people don't pay attention to a visiting monk. If a monk visits them with his trunk lifted high, the thought will occur to him, 'Now who, I wonder, has caused a split between me and this family? The people seem to have no liking for me.' Getting nothing, he becomes abashed. Abashed, he becomes restless. Restless, he becomes unrestrained. Unrestrained, his mind is far from concentration."},
-                {"voice":"2","text":"Furthermore, Moggallana, should you train yourself: 'I will speak no confrontational speech.' That is how you should train yourself. When there is confrontational speech, a lot of discussion can be expected. When there is a lot of discussion, there is restlessness. One who is restless becomes unrestrained. Unrestrained, his mind is far from concentration."},
-                {"voice":"2","text":"It's not the case, Moggallana, that I praise association of every sort. But it's not the case that I dispraise association of every sort. I don't praise association with householders and renunciates. But as for dwelling places that are free from noise, free from sound, their atmosphere devoid of people, appropriately secluded for resting undisturbed by human beings: I praise association with dwelling places of this sort."},
-                {"voice":"1","text":"When this was said, Ven. Moggallana said to the Blessed One"},
-                {"voice":"3","text":"Briefly, lord, in what respect is a monk released through the ending of craving, utterly complete, utterly free from bonds, a follower of the utterly holy life, utterly consummate: foremost among human & heavenly beings?"},
-                {"voice":"2","text":"There is the case, Moggallana, where a monk has heard, 'All phenomena are unworthy of attachment.' Having heard that all phenomena are unworthy of attachment, he fully knows all things. Fully knowing all things, he fully comprehends all things. Fully comprehending all things, then whatever feeling he experiences — pleasure, pain, neither pleasure nor pain — he remains focused on inconstancy, focused on dispassion, focused on cessation, focused on relinquishing with regard to that feeling. As he remains focused on inconstancy, focused on dispassion, focused on cessation, focused on relinquishing with regard to that feeling, he is unsustained by anything in the world. Unsustained, he is not agitated. Unagitated, he is unbound right within. He discerns: 'Birth is ended, the holy life fulfilled, the task done. There is nothing further for this world"},
-                {"voice":"2","text":"It is in this respect, Moggallana, that a monk, in brief, is released through the ending of craving, utterly complete, utterly free from bonds, a follower of the utterly holy life, utterly consummate: foremost among human & heavenly beings."}
-                ]
-         }
-         ]
-    }
-
 buddhism = {
     "buddha":[
         {"title":"Gautama Buddha",
@@ -171,6 +73,15 @@ buddhism = {
          ]
     }
 
+
+# read zenstories file
+with open('../dataen/zenstories.json', 'r') as myfile:
+    zdata=myfile.read()
+
+# parse file
+d = json.loads(zdata)
+del zdata
+gc.collect()
 
 
 global pop 
@@ -207,7 +118,8 @@ for i in range(len(data)):
         if(int(data[i][1])>int(today)):
             holyday.append(data[i][1])
             
-# print(holyday)
+del data
+gc.collect()
 
 """VOICE"""
 
@@ -292,8 +204,8 @@ def buddha_day():
     mm = y[6]+y[7]
     dd = y[8]+y[9]
     # print(yy,mm,dd)
-    import datetime
-    x = datetime.datetime(int(yy),int(mm),int(dd))
+    
+    x = dt.datetime(int(yy),int(mm),int(dd))
     z = x.strftime("%B %A %d")
     # print(holyday[0])
     speak("Next Buddha Holy day is " + z)
@@ -301,8 +213,8 @@ def buddha_day():
 
 
 def zen_story():
-    i = random.randint(0,4)
-    lines = zen["zenstories"][i]["story"]
+    i = random.randint(0,len(d["zen101"])-1)
+    lines = d["zen101"][i]["story"]
     speak(lines)
     for i in range(len(lines)):
         x = int(lines[i]["voice"])

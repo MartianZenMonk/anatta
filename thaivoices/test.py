@@ -139,10 +139,37 @@ from gtts import gTTS
       
 #     write.writerow(text)
 
-text = ["ย่าง"]
-# text = ["moving","lifting","treading","standing"]
+# จงกรม 6 ระยะ ยกส้นหนอ-ยกหนอ-ย่างหนอ-ลงหนอ-ถูกหนอ-กดหนอ
+
+# กำหนดว่า หายใจหนอ เข้าออกหนอ นี่ขั้นหนึ่ง สั้นยาวหนอ ขั้นหนึ่ง หยาบละเอียดหนอ ขั้นหนึ่ง เป็นนามเป็นรูปหนอ ขั้นหนึ่ง เป็นการเกิดการดับหนอ ขั้นหนึ่ง เป็นอนิจจังหนอ ขั้นหนึ่ง เป็นอนัตตา ขั้นหนึ่ง อ้าว! จางแล้วโว้ยๆ นี่ขั้นหนึ่ง ดับแล้วโว้ย ขั้นหนึ่ง โยนหมดแล้วโว้ย อีกขั้นหนึ่ง ขั้นนี้ไม่ต้องก็ได้ เพราะว่าถ้าดับแล้ว มันก็วางของมันเอง กี่ขั้นล่ะ 1 2 3 4 5 6 7 8 9 10 11 ขั้นน่ะ รวบรัดเสียบ้าง เหลือ 5-6 ขั้นก็ได้ 
+
+# there are six stages of walking exercise
+# การเดินจงกรม  มี  ๖ ระยะ
+
+# 1. Stages: Right goes thus, Left goes thus
+# ๑.  ระยะที่  ๑:   ขวา  ย่าง  หนอ ,  ซ้าย   ย่าง  หนอ
+
+# 2. Stages: Lifting, Treading
+# ๒.  ระยะที่  ๒  : ยกหนอ ,  เหยียบหนอ
+
+# 3. Stages: Lifting, Moving, Treading
+# ๓.  ระยะที่ ๓:  ยกหนอ, ย่างหนอ, เหยียบหนอ
+
+# 4. Stages: Heel up, Lifting, Moving, and Treading
+# ๔.  ระยะที่ ๔:  ยกส้นหนอ,  ยกหนอ, ย่างหนอ, เหยียบหนอ
+
+# 5. Stages: Heel up, Lifting, Moving, Lowering, Touching
+# ๕.  ระยะที่ ๕:  ยกส้นหนอ, ยกหนอ, ย่างหนอ, ลงหนอ,  ถูกหนอ
+
+# 6. Stages: Heel up, Lifting, Moving, Lowering, Touching, and Pressing
+
+
+text = ["ยกส้นหนอ","ยกหนอ","ย่างหนอ","ลงหนอ","ถูกหนอ","กดหนอ"]
+# text = ["heel up","lifting","moving","lowering","touching","pressing"]
 for i in range(len(text)):
   speech = gTTS(text = text[i],lang='th',slow = False)
   speech.save(str("thwords/"+text[i]) + ".mp3")
+  # speech = gTTS(text = text[i],lang='en',slow = False)
+  # speech.save(str("../dataen/"+text[i]) + ".mp3")
 
 

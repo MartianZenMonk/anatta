@@ -124,7 +124,7 @@ def press_for_stop(c=''):
 
 
 def get_help():
-    text = "words you can say are Thai chanting, meditaion time, play radio, play mantra 0 1 2 3 4 6, buddha dhamma, play dhamma"
+    text = "words you can say are Thai chanting, meditaion time, play radio, play mantra 0 to 6, play 1 3 6 stage, buddha dhamma, play dhamma"
     text += ", play sutra, what time, what day, buddha day, zen story, please shutdown"
     speak(text)
     time.sleep(3)
@@ -157,7 +157,7 @@ def speakThai(text):
     stext = ""
     for i in range(len(text)):
         stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
-    os.system('mpg123 -f 2000 ' + stext)
+    os.system('mpg123 -d 2 -f 2000 ' + stext)
 
 
 def enwords(text):
@@ -190,7 +190,7 @@ def buddha_day():
                 thholyday.append(data[i][0])
     t = thholyday[0].replace("(", " ")
     x = t.split()
-
+    
     bdaytext = ""
     for i in range(len(x)-1):
       bdaytext += " ../thaivoices/thwords/" + x[i] + ".mp3"
@@ -228,6 +228,12 @@ def buddha_day():
             stext += " ../thaivoices/thwords/" + text[i] + ".mp3" 
     os.system("mpg123 -q -f 2100 "+stext) 
     os.system("mpg123 -q -f 2100 "+bdaytext) 
+    del data
+    del stext
+    del bdaytext
+    del t
+    del text
+    gc.collect()
     return None
 
 # read zenstories file
@@ -236,6 +242,8 @@ with open('zenstories.json', 'r') as myfile:
 
 # parse file
 d = json.loads(zdata)
+del zdata
+gc.collect()
 
                                     
 parser = argparse.ArgumentParser(add_help=False)
@@ -295,14 +303,17 @@ try:
             # print(args.device)
             # speak("Welcome to Anat ta Project, your Buddhist true friend ever")
             # get_help()
-            os.system('espeak -s 130 -a 10 -v "english-us" "Nothing is worth insisting on"')
+            os.system('espeak -s 130 -a 5 -v "english-us" "Nothing is worth insisting on"')
             os.system('mpg123 -q -f 1000 ../thaivoices/hello.mp3')
 
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start '
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down '
-            v += 'one two three four five six seven eight nine ten zero yes no ok"]'
+            v += 'one two three four five six seven eight nine ten zero yes no ok coca cola stage"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
+
+            del v
+            gc.collect()
 
             focus = False
             zen = False
@@ -431,30 +442,7 @@ try:
                                     proc.kill()
                                     shutdown()
                                     break  
-                                elif "play" in words and "mantra" in words and "five" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
-                                    speak("30 minutes mantra")
-                                    th_right = thwords(['ขวา','ย่าง','หนอ'])
-                                    th_left = thwords(['ซ้าย','ย่าง','หนอ'])
-                                    en = enwords(['lifting','moving','treading'])
-                                    leds.update(Leds.rgb_on(Color.BLUE))
-                                    timeout = time.time() + 60*30   # 30 minutes from now
-                                    while True:
-                                        
-                                        if time.time() > timeout:
-                                            break
-                                        else:
-                                            os.system('mpg123 -f 2000 ' + th_right)
-                                            time.sleep(1)
-                                            os.system('mpg123 -f 2000 ' + th_left)
-                                            time.sleep(1)
-
-                                            os.system('mpg123 -f 2000 ' + en)
-                                            time.sleep(1)
-                                            os.system('mpg123 -f 2000 ' + en)
-                                            time.sleep(1)
-
+                                
                                 elif "play" in words and "mantra" in words and "six" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
@@ -480,7 +468,89 @@ try:
                                     board.led.state = Led.OFF
                                     os.system("sudo shutdown now")
                                     # shutdown()
-                                    break                           
+                                    break  
+
+                                elif "play" in words and "one" in words and "stage" in words:
+                                    if find_name('mpg123'):
+                                        os.system("killall mpg123")
+                                    speak("30 minutes 1 stage walking practice")
+                                    th_right = thwords(['ขวา','ย่าง','หนอ'])
+                                    th_left = thwords(['ซ้าย','ย่าง','หนอ'])
+                                    en_right = enwords(['right','goes','thus'])
+                                    en_left = enwords(['left','goes','thus'])
+                                    leds.update(Leds.rgb_on(Color.BLUE))
+                                    timeout = time.time() + 60*30   # 30 minutes from now
+                                    while True:
+                                        
+                                        if time.time() > timeout:
+                                            break
+                                        else:
+                                            os.system('mpg123 -f 2000 ' + th_right)
+                                            time.sleep(1)
+                                            os.system('mpg123 -f 2000 ' + th_left)
+                                            time.sleep(1)
+
+                                            os.system('mpg123 -f 2000 ' + en_right)
+                                            time.sleep(1)
+                                            os.system('mpg123 -f 2000 ' + en_left)
+                                            time.sleep(1)
+                                    del th_left
+                                    del th_right
+                                    del en_left
+                                    del en_right
+                                    gc.collect()
+
+                                elif "play" in words and "three" in words and "stage" in words:
+                                    if find_name('mpg123'):
+                                        os.system("killall mpg123")
+                                    speak("30 minutes 3 stages walking practice")
+                                    th_stage = thwords(["ยกหนอ","ย่างหนอ","เหยียบหนอ"])
+                                    en_stage = enwords(['lifting','moving','treading'])
+                                    leds.update(Leds.rgb_on(Color.BLUE))
+                                    timeout = time.time() + 60*30   # 30 minutes from now
+                                    while True:
+                                        
+                                        if time.time() > timeout:
+                                            break
+                                        else:
+                                            os.system('mpg123 -f 2000 ' + th_stage)
+                                            time.sleep(1)
+                                            os.system('mpg123 -f 2000 ' + en_stage)
+                                            time.sleep(1)
+
+                                            os.system('mpg123 -f 2000 ' + th_stage)
+                                            time.sleep(1)
+                                            os.system('mpg123 -f 2000 ' + en_stage)
+                                            time.sleep(1)
+                                    del th_stage
+                                    del en_stage
+                                    gc.collect() 
+
+                                elif "play" in words and "six" in words and "stage" in words:
+                                    if find_name('mpg123'):
+                                        os.system("killall mpg123")
+                                    speak("15 minutes 6 stages walking practice")
+                                    th_stage = thwords(["ยกส้นหนอ","ยกหนอ","ย่างหนอ","ลงหนอ","ถูกหนอ","กดหนอ"])
+                                    en_stage = enwords(["heelup","lifting","moving","lowering","touching","pressing"])
+                                    leds.update(Leds.rgb_on(Color.BLUE))
+                                    timeout = time.time() + 60*15   # 15 minutes from now
+                                    while True:
+                                        
+                                        if time.time() > timeout:
+                                            break
+                                        else:
+                                            os.system('mpg123 -f 2000 ' + th_stage)
+                                            time.sleep(1)
+                                            os.system('mpg123 -f 2000 ' + en_stage)
+                                            time.sleep(1)
+
+                                            os.system('mpg123 -f 2000 ' + th_stage)
+                                            time.sleep(1)
+                                            os.system('mpg123 -f 2000 ' + en_stage)
+                                            time.sleep(1)
+                                    del th_stage
+                                    del en_stage
+                                    gc.collect()                     
 
                                 elif "meditation" in words and "time" in words:
                                     if find_name('mpg123'):
@@ -493,6 +563,8 @@ try:
                                     speak(text)
                                     proc = subprocess.Popen(["mpg123","-f","1500","-q","--loop","-1","../dataen/bell15min.mp3"])
                                     press_for_stop('g')
+                                    del text
+                                    gc.collect()
                                     
                                 elif "buddha" in words and "dhamma" in words:
                                     if find_name('mpg123'):
