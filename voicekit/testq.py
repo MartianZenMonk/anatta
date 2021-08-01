@@ -508,13 +508,13 @@ try:
                                 elif "play" in words and "one" in words and "stage" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
-                                    speak("30 minutes 1 stage walking practice")
+                                    speak("15 minutes 1 stage walking practice")
                                     th_right = thwords(['ขวา','ย่าง','หนอ'])
                                     th_left = thwords(['ซ้าย','ย่าง','หนอ'])
                                     en_right = enwords(['right','goes','thus'])
                                     en_left = enwords(['left','goes','thus'])
                                     leds.update(Leds.rgb_on(Color.BLUE))
-                                    timeout = time.time() + 60*30   # 30 minutes from now
+                                    timeout = time.time() + 60*15   # 15 minutes from now
                                     while True:
                                         
                                         if time.time() > timeout:
@@ -538,11 +538,11 @@ try:
                                 elif "play" in words and "three" in words and "stage" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
-                                    speak("30 minutes 3 stages walking practice")
+                                    speak("15 minutes 3 stages walking practice")
                                     th_stage = thwords(["ยกหนอ","ย่างหนอ","เหยียบหนอ"])
                                     en_stage = enwords(['lifting','moving','treading'])
                                     leds.update(Leds.rgb_on(Color.BLUE))
-                                    timeout = time.time() + 60*30   # 30 minutes from now
+                                    timeout = time.time() + 60*15   # 15 minutes from now
                                     while True:
                                         
                                         if time.time() > timeout:
@@ -564,11 +564,11 @@ try:
                                 elif "play" in words and "six" in words and "stage" in words:
                                     if find_name('mpg123'):
                                         os.system("killall mpg123")
-                                    speak("15 minutes 6 stages walking practice")
+                                    speak("5 minutes 6 stages walking practice")
                                     th_stage = thwords(["ยกส้นหนอ","ยกหนอ","ย่างหนอ","ลงหนอ","ถูกหนอ","กดหนอ"])
                                     en_stage = enwords(["heelup","lifting","moving","lowering","touching","pressing"])
                                     leds.update(Leds.rgb_on(Color.BLUE))
-                                    timeout = time.time() + 60*15   # 15 minutes from now
+                                    timeout = time.time() + 60*5   # 5 minutes from now
                                     while True:
                                         
                                         if time.time() > timeout:
