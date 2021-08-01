@@ -153,6 +153,14 @@ def get_ip():
     return IP
 
 #TEST
+def killPlayer():
+    if find_name('mpg123'):
+        os.system("killall mpg123")
+    if find_name('vlc'):
+        os.system("killall vlc")
+    return None
+
+
 def speakThai(text):
     stext = ""
     for i in range(len(text)):
@@ -308,7 +316,8 @@ try:
 
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start '
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
-            v += 'one two three four five six seven eight nine ten zero yes no ok coca cola stage fold path nature truth dependent origination"]'
+            v += 'one two three four five six seven eight nine ten zero fiftheen twenty thirty fourty fifthy sixty '
+            v += 'yes no ok coca cola stage fold path nature truth dependent origination"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
 
@@ -343,78 +352,65 @@ try:
                             if not focus:
 
                                 if "what" in words and "time" in words:
-                                    if find_name('mpg123'):
-                                        proc.kill()
                                     today = datetime.today().strftime('%H %M')
                                     speak("The time is " + today)
                                     
                                 elif "what" in words and "day" in words:
-                                    if find_name('mpg123'):
-                                        proc.kill()
                                     today = datetime.today().strftime('%B %A %d')
                                     speak("Today is " + today)
                                 elif "buddha" in words and "day" in words:
                                     buddha_day()
                                     
                                 elif "zen" in words and "story" in words:
-                                    if find_name('mpg123'):
-                                        proc.kill()
                                     n = random.randint(0,len(d["zen101"])-1)
                                     speak(d["zen101"][n]["title"])
                                     focus = True
                                     zen = True
 
                                 elif "breathing" in words and "chanting" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()   
                                     speak("Thai Anapanasati chanting")
                                     proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/anapanasati-cut.mp3"], stdin=master)
                                     press_for_stop()
 
                                 elif "nature" in words and "truth" in words and "chanting" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()
                                     speak("Thai Dhamma Ni yam chanting")
                                     proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/dhammaniyam.mp3"], stdin=master)
                                     press_for_stop()
 
                                 elif "dependent" in words and "origination" in words and "chanting" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()  
                                     speak("Thai Itup paj ja ya ta Pa tij ja sa mup path chanting")
                                     proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/ituppajjayata.mp3"], stdin=master)
                                     press_for_stop()
 
                                 elif "eight" in words and "fold" in words and "path" in words and "thai" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()   
                                     speak("Thai Noble 8 fold path chanting")
                                     proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/8.mp3"], stdin=master)
                                     press_for_stop()
 
                                 elif "eight" in words and "fold" in words and "path" in words and "english" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()   
                                     speak("English Noble 8 fold path chanting")
                                     proc = subprocess.Popen(["mpg123","-f","4000","-C","--loop","-1","../dataen/chanting/noble8fold.mp3"], stdin=master)
                                     press_for_stop()
 
                                 elif "chanting" in words and "english" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()  
                                     speak("English chanting")
                                     subprocess.run(["mpg123","-f","1500","-C","--list","chanting.txt"])
 
                                 elif "chanting" in words and "thai" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()   
                                     speak("Thai chanting")
                                     proc = subprocess.Popen(["mpg123","-f","1500","-C","-Z","--list","THchanting.txt"], stdin=master)
                                     press_for_stop()
                                                                         
                                 elif "radio" in words and "play" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()
+                                        
                                     if have_internet():
                                         speak("Tibetan Buddhist internet radio")
                                         proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])
@@ -423,46 +419,49 @@ try:
                                         speak("sorry no internet connection")
 
                                 elif "play" in words and "mantra" in words and "zero" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()
                                     speak("buddho mantra")
                                     leds.update(Leds.rgb_on(Color.BLUE)) 
                                     proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../thaivoices/buddho0.mp3"])
                                     press_for_stop('g')
                                     
                                 elif "play" in words and "mantra" in words and "one" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()    
                                     speak("buddho mantra")
                                     leds.update(Leds.rgb_on(Color.BLUE)) 
                                     proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
                                     press_for_stop('r')
                                     
                                 elif "play" in words and "mantra" in words and "two" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
-                                    speak("30 minutes buddho mantra")
+                                    killPlayer()   
+                                    if "ten" in words:
+                                        t = 10 
+                                    elif "fiftheen" in words:
+                                        t = 15
+                                    elif "twenty" in words:
+                                        t = 20
+                                    else:
+                                        t = 30
+                                    speak(str(t) + " minutes buddho mantra")
                                     leds.update(Leds.rgb_on(Color.BLUE)) 
                                     proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                    time.sleep(1800)
+                                    time.sleep(t*60)
                                     proc.kill()
                                     
                                 elif "play" in words and "mantra" in words and "three" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()   
                                     speak("one hour buddho mantra")
-                                    leds.update(Leds.rgb_on(Color.GREEN)) 
+                                    leds.update(Leds.rgb_on(Color.RED)) 
                                     proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
                                     time.sleep(1800)
                                     proc.kill()
-                                    leds.update(Leds.rgb_on(Color.RED)) 
+                                    leds.update(Leds.rgb_on(Color.GREEN)) 
                                     proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
                                     time.sleep(1800)
                                     proc.kill()
                                     
                                 elif "play" in words and "mantra" in words and "four" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()   
                                     speak("one hour buddho mantra then shutdown")
                                     leds.update(Leds.rgb_on(Color.GREEN)) 
                                     proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
@@ -479,8 +478,7 @@ try:
                                     break  
                                 
                                 elif "play" in words and "mantra" in words and "six" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()    
                                     speak("4 hours buddho mantra then shutdown")
                                     leds.update(Leds.rgb_on(Color.GREEN)) 
                                     proc = subprocess.Popen(["mpg123","-d","3","-f","1500","-q","--loop","-1","../thaivoices/buddho.mp3"])
@@ -506,8 +504,7 @@ try:
                                     break  
 
                                 elif "play" in words and "one" in words and "stage" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()   
                                     speak("15 minutes 1 stage walking practice")
                                     th_right = thwords(['ขวา','ย่าง','หนอ'])
                                     th_left = thwords(['ซ้าย','ย่าง','หนอ'])
@@ -536,8 +533,7 @@ try:
                                     gc.collect()
 
                                 elif "play" in words and "three" in words and "stage" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()    
                                     speak("15 minutes 3 stages walking practice")
                                     th_stage = thwords(["ยกหนอ","ย่างหนอ","เหยียบหนอ"])
                                     en_stage = enwords(['lifting','moving','treading'])
@@ -562,13 +558,13 @@ try:
                                     gc.collect() 
 
                                 elif "play" in words and "six" in words and "stage" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()   
                                     speak("5 minutes 6 stages walking practice")
                                     th_stage = thwords(["ยกส้นหนอ","ยกหนอ","ย่างหนอ","ลงหนอ","ถูกหนอ","กดหนอ"])
                                     en_stage = enwords(["heelup","lifting","moving","lowering","touching","pressing"])
                                     leds.update(Leds.rgb_on(Color.BLUE))
                                     timeout = time.time() + 60*5   # 5 minutes from now
+                                    
                                     while True:
                                         
                                         if time.time() > timeout:
@@ -588,8 +584,7 @@ try:
                                     gc.collect()                     
 
                                 elif "meditation" in words and "time" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()   
                                     text = "Meditation time will make 15 minutes bell sound, you may relax your self by walking then sitting. "
                                     text += "For walking, set a distance to meditate walking back and forth, your senses inwardly immersed, your mind not straying outwards. "
                                     text += "Lifting, Moving, Treading, slow moving and always mind your foot movement then you can increse your awakening sense, "
@@ -602,15 +597,13 @@ try:
                                     gc.collect()
                                     
                                 elif "buddha" in words and "dhamma" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()    
                                     speak("Buddha dhamma")
                                     proc = subprocess.Popen(["mpg123","-f","1500","-q","-Z","--list","THbuddhadham.txt"]) 
                                     press_for_stop('b')
                                             
                                 elif "dhamma" in words and "play" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()   
                                     speakThai(['ฟัง','ธรรม','ค่ะ'])
                                     proc = subprocess.Popen(["mpg123","-f","1500","-C","-z","--list","THdhamma4all.txt"], stdin=master)
                                     leds.update(Leds.rgb_on(Color.YELLOW))
@@ -622,17 +615,11 @@ try:
                                     press_for_stop()
 
                                 elif "sutra" in words and "play" in words:
-                                    if find_name('mpg123'):
-                                        os.system("killall mpg123")
+                                    killPlayer()    
                                     os.system("mpg123 -f 1000 ../datath/sutta/moggallana.mp3")
                                     proc = subprocess.Popen(["mpg123","-f","1000","-C","-Z","--list","sutra.txt"], stdin=master)
                                     press_for_stop('r') 
                                           
-                                # elif "exit" in words:
-                                #     if find_name('mpg123'):
-                                #         proc.kill()
-                                #     speak("Exit voices control mode")
-                                #     break
                                 elif "shutdown" in words and "please" in words:
                                     shutdown()
                                     break
@@ -642,8 +629,7 @@ try:
                                     have_display = bool(os.environ.get('DISPLAY', None))
                                     if have_display:
                                         speak("play buddha story")
-                                        if find_name('mpg123'):
-                                            os.system("killall mpg123")        
+                                        killPlayer()                
                                         try:
                                             os.system("export DISPLAY=:0.0 && vlc -f --play-and-exit buddha-story.mp4")
                                         except:
@@ -677,11 +663,9 @@ try:
                                     get_help()
                                 elif "volume" in words and "up" in words:
                                     call(["amixer","-D","pulse","sset","Master","95%"])
-                                    
                                     speak("set volume to 95%")
                                 elif "volume" in words and "down" in words:
                                     call(["amixer","-D","pulse","sset","Master","50%"])
-                                    
                                     speak("set volume to 50%")
                                 elif "ip" in words and "address" in words:
                                     ip = get_ip()
@@ -703,8 +687,6 @@ try:
 
                                 if zen:
                                     if "no" in words:
-                                        if find_name('mpg123'):
-                                            proc.kill()
                                         n = random.randint(0,len(d["zen101"])-1)
                                         speak(d["zen101"][n]["title"])
                                     elif "yes" in words:
