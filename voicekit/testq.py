@@ -291,6 +291,9 @@ try:
         # soundfile expects an int, sounddevice provides a float:
         args.samplerate = int(device_info['default_samplerate'])
 
+    # https://github.com/Motion-Project/motion/
+    os.system("sudo service motion stop")
+
     model = vosk.Model(args.model)
 
     if args.filename:
@@ -314,10 +317,10 @@ try:
             os.system('espeak -s 130 -a 5 -v "english-us" "Nothing is worth insisting on"')
             os.system('mpg123 -q -f 1000 ../thaivoices/hello.mp3')
 
-            v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start '
+            v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
-            v += 'one two three four five six seven eight nine ten zero fiftheen twenty thirty fourty fifthy sixty '
-            v += 'yes no ok coca cola stage fold path nature truth dependent origination"]'
+            v += 'one two three four five six seven eight nine ten zero fiftheen twenty thirty fourty fifthy sixty red green blue yellow '
+            v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
 
@@ -623,7 +626,31 @@ try:
                                 elif "shutdown" in words and "please" in words:
                                     shutdown()
                                     break
-                                    
+                                
+                                #PLAY
+                                elif "light" in words and "on" in words:
+                                    if "red" in words:
+                                        leds.update(Leds.rgb_on(Color.RED))
+                                    elif "green" in words:
+                                        leds.update(Leds.rgb_on(Color.GREEN))
+                                    elif "blue" in words:
+                                        leds.update(Leds.rgb_on(Color.BLUE))
+                                    elif "yellow" in words:
+                                        leds.update(Leds.rgb_on(Color.YELLOW))
+                                    else:
+                                        leds.update(Leds.rgb_on(Color.WHITE))
+                                    board.button.wait_for_press() 
+                                # https://pimylifeup.com/raspberry-pi-webcam-server/ 
+                                elif "turn" in words and "webcam" in words:
+                                    if "on" in words:
+                                        ip = get_ip()
+                                        speak("Turn on web camera at ip address")
+                                        speak(ip + " port number 8081") 
+                                        os.system("sudo service motion start") 
+                                    elif "off" in words:
+                                        speak("Turn off web camera")
+                                        os.system("sudo service motion stop")
+
                                 #TEST
                                 elif "buddha" in words and ("story" in words or "what" in words or "play" in words):
                                     have_display = bool(os.environ.get('DISPLAY', None))
