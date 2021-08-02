@@ -650,41 +650,36 @@ try:
                                     elif "off" in words:
                                         speak("Turn off web camera")
                                         os.system("sudo service motion stop")
+                                elif "browse" in words and "webcam" in words:
+                                    speak("open webcam on web browser")
+                                    ip = get_ip()
+                                    command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized " + ip + ":8081"
+                                    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                    press_for_stop()
+                                    os.system("sudo pkill -f chromium")
 
                                 #TEST
                                 elif "buddha" in words and ("story" in words or "what" in words or "play" in words):
-                                    have_display = bool(os.environ.get('DISPLAY', None))
-                                    if have_display:
-                                        speak("play buddha story")
-                                        killPlayer()                
-                                        try:
-                                            os.system("export DISPLAY=:0.0 && vlc -f --play-and-exit buddha-story.mp4")
-                                        except:
-                                            speak("sorry can not play video clip")
-                                    else:
-                                        speak("sorry, DISPLAY not available")
+                                    speak("play buddha story")
+                                    killPlayer()                
+                                    try:
+                                        os.system("export DISPLAY=:0.0 && vlc -f --play-and-exit buddha-story.mp4")
+                                    except:
+                                        speak("sorry can not play video clip")
 
                                 elif "browse" in words and "buddhism" in words:
-                                    have_display = bool(os.environ.get('DISPLAY', None))
-                                    if have_display:
-                                        speak("open Thai buddhism in wikipedia")
-                                        command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://th.wikipedia.org/wiki/ศาสนาพุทธ"
-                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                        press_for_stop()
-                                        os.system("sudo pkill -f chromium")
-                                    else:
-                                        speak("sorry, DISPLAY not available")
+                                    speak("open Thai buddhism in wikipedia")
+                                    command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://th.wikipedia.org/wiki/ศาสนาพุทธ"
+                                    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                    press_for_stop()
+                                    os.system("sudo pkill -f chromium")
 
                                 elif "browse" in words and "buddhist" in words and "story" in words:
-                                    have_display = bool(os.environ.get('DISPLAY', None))
-                                    if have_display:
-                                        speak("open youtube for buddhist stories")
-                                        command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://www.youtube.com/watch?v=tI-hgIhFDT0&list=PLYBNr5a72-497Q3UVkpDB24W4NTCD5f2K"
-                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                        press_for_stop()
-                                        os.system("sudo pkill -f chromium")
-                                    else:
-                                        speak("sorry, DISPLAY not available")
+                                    speak("open youtube for buddhist stories")
+                                    command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://www.youtube.com/watch?v=tI-hgIhFDT0&list=PLYBNr5a72-497Q3UVkpDB24W4NTCD5f2K"
+                                    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                    press_for_stop()
+                                    os.system("sudo pkill -f chromium")
    
                                 elif "help" in words and "please" in words:
                                     get_help()
@@ -702,6 +697,9 @@ try:
                                     listToStr = ' '.join(map(str, words))
                                     listToStr = listToStr.replace("say",'')
                                     speak("You said, " + listToStr)
+                                    time.sleep(3)
+                                    with q.mutex:
+                                        q.queue.clear()
 
                                 elif len(words) > 0:
                                     listToStr = ' '.join(map(str, words))
