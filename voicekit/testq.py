@@ -454,7 +454,7 @@ try:
 
                                 elif "buddha" in words and "thinking" in words and "play" in words:
                                     killPlayer()  
-                                    speak("Dependent Origination Application in Everyday Life")
+                                    speak("Yonisomanasikan")
                                     proc = subprocess.Popen(["mpg123","-f","2000","../datath/buddhadham/yoniso.mp3"])
                                     press_for_stop()
 
