@@ -202,7 +202,7 @@ def motion_detect():
             # print(str(w*h))
             # making green rectangle arround the moving object
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)
-            if w*h > 300000:
+            if w*h > 250000:
                 bk = True
 
         # Appending status of motion
@@ -210,6 +210,13 @@ def motion_detect():
 
         if bk:
             break
+
+        #cv2.imshow("Gray Frame", gray)
+        #cv2.imshow("Difference Frame", diff_frame)
+        #cv2.imshow("Threshold Frame", thresh_frame)
+        #cv2.imshow("Color Frame", frame)
+    proc.kill()
+        
     return None
 
 
@@ -379,7 +386,7 @@ try:
 
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
-            v += 'one two three four five six seven eight nine ten zero fiftheen twenty thirty fourty fifthy sixty red green blue yellow '
+            v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty red green blue yellow '
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
@@ -444,7 +451,6 @@ try:
                                     speak("Thai Dhamma Ni yam chanting")
                                     proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/dhammaniyam.mp3"], stdin=master)
                                     motion_detect()
-                                    proc.kill()
 
                                 elif "dependent" in words and "origination" in words and "chanting" in words:
                                     killPlayer()  
