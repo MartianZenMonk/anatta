@@ -167,9 +167,10 @@ from gtts import gTTS
 text = ["ยกส้นหนอ","ยกหนอ","ย่างหนอ","ลงหนอ","ถูกหนอ","กดหนอ"]
 # text = ["heel up","lifting","moving","lowering","touching","pressing"]
 for i in range(len(text)):
-  speech = gTTS(text = text[i],lang='th',slow = False)
-  speech.save(str("thwords/"+text[i]) + ".mp3")
+  # speech = gTTS(text = text[i],lang='th',slow = False)
+  # speech.save(str("thwords/"+text[i]) + ".mp3")
   # speech = gTTS(text = text[i],lang='en',slow = False)
   # speech.save(str("../dataen/"+text[i]) + ".mp3")
+
 
 

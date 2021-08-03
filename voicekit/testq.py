@@ -78,6 +78,15 @@ def speak(text):
 es_voices = ["englisg+f1","english+f2","english+m1","english+m3","english+m2","english_rp+m2"]
 
 
+def espeak(t,v='',s='130',a='10',*args):
+        if v == '':
+            v = es_voices[2]
+        text = 'espeak -s ' + s + ' -a ' + a + ' -v ' + v + ' "' + str(t) + '"'
+        print(t)
+        os.system(text)
+        return None
+
+
 
 # flite Voices available: kal awb_time kal16 awb rms slt  
 def speakf(v,t,*args):
@@ -387,7 +396,7 @@ try:
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty red green blue yellow '
-            v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop"]'
+            v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life thinking"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
 
@@ -436,6 +445,18 @@ try:
                                     speak(d["zen101"][n]["title"])
                                     focus = True
                                     zen = True
+
+                                elif "daily" in words and "life" in words and "dependent" in words and "origination" in words:
+                                    killPlayer()  
+                                    speak("Dependent Origination Application in Everyday Life")
+                                    proc = subprocess.Popen(["mpg123","-f","2000","../datath/buddhadham/paticcasamuppda.mp3"])
+                                    press_for_stop()
+
+                                elif "buddha" in words and "thinking" in words and "play" in words:
+                                    killPlayer()  
+                                    speak("Dependent Origination Application in Everyday Life")
+                                    proc = subprocess.Popen(["mpg123","-f","2000","../datath/buddhadham/yoniso.mp3"])
+                                    press_for_stop()
 
                                 elif "breathing" in words and "chanting" in words:
                                     killPlayer()
@@ -577,28 +598,45 @@ try:
                                     break  
 
                                 elif "play" in words and "one" in words and "stage" in words:
-                                    killPlayer()   
-                                    speak("15 minutes 1 stage walking practice")
+                                    killPlayer()
                                     th_right = thwords(['ขวา','ย่าง','หนอ'])
                                     th_left = thwords(['ซ้าย','ย่าง','หนอ'])
                                     en_right = enwords(['right','goes','thus'])
                                     en_left = enwords(['left','goes','thus'])
-                                    leds.update(Leds.rgb_on(Color.BLUE))
-                                    timeout = time.time() + 60*15   # 15 minutes from now
-                                    while True:
-                                        
-                                        if time.time() > timeout:
-                                            break
-                                        else:
-                                            os.system('mpg123 -f 2000 ' + th_right)
-                                            time.sleep(1)
-                                            os.system('mpg123 -f 2000 ' + th_left)
-                                            time.sleep(1)
 
-                                            os.system('mpg123 -f 2000 ' + en_right)
-                                            time.sleep(1)
-                                            os.system('mpg123 -f 2000 ' + en_left)
-                                            time.sleep(1)
+                                    if "ten" in words:
+                                        t = 10 
+                                    elif "fiftheen" in words:
+                                        t = 15
+                                    elif "twenty" in words:
+                                        t = 20
+                                    else:
+                                        t = 30
+
+                                    speak(str(t) + " minutes 1 stage walking practice")
+
+                                    if "english" in words:
+                                        leds.update(Leds.rgb_on(Color.GREEN))  
+                                        proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../dataen/one_stage.mp3"])
+                                        time.sleep(60*t)
+                                        proc.kill()
+                                    else:
+                                        leds.update(Leds.rgb_on(Color.BLUE))
+                                        timeout = time.time() + 60*t
+                                        while True:
+                                            
+                                            if time.time() > timeout:
+                                                break
+                                            else:
+                                                os.system('mpg123 -f 2000 ' + th_right)
+                                                time.sleep(1)
+                                                os.system('mpg123 -f 2000 ' + th_left)
+                                                time.sleep(1)
+
+                                                os.system('mpg123 -f 2000 ' + en_right)
+                                                time.sleep(1)
+                                                os.system('mpg123 -f 2000 ' + en_left)
+                                                time.sleep(1)
                                     del th_left
                                     del th_right
                                     del en_left
@@ -729,7 +767,7 @@ try:
                                     os.system("sudo pkill -f chromium")
 
                                 #TEST
-                                elif "buddha" in words and ("story" in words or "what" in words or "play" in words):
+                                elif "buddha" in words and ("story" in words or "what" in words):
                                     speak("play buddha story")
                                     killPlayer()                
                                     try:
