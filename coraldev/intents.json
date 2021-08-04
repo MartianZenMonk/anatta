@@ -38,6 +38,21 @@
          "patterns": [],
          "responses": [],
          "context": [""]
+        },
+        {"tag": "",
+         "patterns": [],
+         "responses": [],
+         "context": [""]
+        },
+        {"tag": "",
+         "patterns": [],
+         "responses": [],
+         "context": [""]
+        },
+        {"tag": "",
+         "patterns": [],
+         "responses": [],
+         "context": [""]
         }
    ]
 }

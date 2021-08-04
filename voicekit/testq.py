@@ -78,9 +78,17 @@ def speak(text):
 es_voices = ["englisg+f1","english+f2","english+m1","english+m3","english+m2","english_rp+m2"]
 
 
-def espeak(t,v='',s='130',a='10',*args):
+def espeak(t,a='',v='',s='',*args):
+
         if v == '':
             v = es_voices[2]
+
+        if a == '':
+            a = '10'
+
+        if s == '':
+            s = '125'
+
         text = 'espeak -s ' + s + ' -a ' + a + ' -v ' + v + ' "' + str(t) + '"'
         print(t)
         os.system(text)
@@ -134,8 +142,16 @@ def press_for_stop(c=''):
 
 
 def get_help():
-    text = "words you can say are Thai chanting, meditaion time, play radio, play mantra 0 to 6, play 1 3 6 stage, buddha dhamma, play dhamma"
-    text += ", play sutra, what time, what day, buddha day, zen story, please shutdown"
+    text =  '''
+            words you can say are,
+            daily dependent origination, buddha thinking Thai,
+            nature truth chanting, breathing chanting, dependent origination chanting,
+            8 fold path Thai, 8 fold path English, English chanting,
+            Thai chanting, meditaion time, play radio, play mantra 1 2 3 4 10 15 20,
+            play 1 3 6 stage, buddha dhamma, play dhamma, play sutra,
+            what time, what day, buddha day, zen story, please shutdown,
+            red green blue yellow light on
+            '''
     speak(text)
     time.sleep(3)
     with q.mutex:
@@ -446,15 +462,16 @@ try:
                                     focus = True
                                     zen = True
 
-                                elif "daily" in words and "life" in words and "dependent" in words and "origination" in words:
+                                elif "daily" in words and "dependent" in words and "origination" in words:
                                     killPlayer()  
-                                    speak("Dependent Origination Application in Everyday Life")
+                                    speak("Dependent Origination Application in Everyday Life in Thai")
                                     proc = subprocess.Popen(["mpg123","-f","2000","../datath/buddhadham/paticcasamuppda.mp3"])
                                     press_for_stop()
 
-                                elif "buddha" in words and "thinking" in words and "play" in words:
-                                    killPlayer()  
-                                    speak("Yonisomanasikan")
+                                elif "buddha" in words and "thinking" in words and "thai" in words:
+                                    killPlayer()
+                                    os.system("mpg123 -f 2000 -q ../thaivoices/yoniso_thai.mp3")
+                                    speak("Thai Buddhadham Yonisomanasikan")
                                     proc = subprocess.Popen(["mpg123","-f","2000","../datath/buddhadham/yoniso.mp3"])
                                     press_for_stop()
 
@@ -519,83 +536,141 @@ try:
                                     proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../thaivoices/buddho0.mp3"])
                                     press_for_stop('g')
                                     
-                                elif "play" in words and "mantra" in words and "one" in words:
-                                    killPlayer()    
-                                    speak("buddho mantra")
-                                    leds.update(Leds.rgb_on(Color.BLUE)) 
-                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                    press_for_stop('r')
+                                elif "play" in words and "mantra" in words:
+
+                                    killPlayer()                                     
+                                                                           
+                                    if "one" in words:  
+                                        speak("one hour buddho mantra")
+                                        leds.update(Leds.rgb_on(Color.RED)) 
+                                        proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                        time.sleep(1800)
+                                        proc.kill()
+                                        leds.update(Leds.rgb_on(Color.GREEN)) 
+                                        proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                        time.sleep(1800)
+                                        proc.kill()
                                     
-                                elif "play" in words and "mantra" in words and "two" in words:
-                                    killPlayer()   
-                                    if "ten" in words:
+                                    elif "two" in words:  
+                                        speak("one hour buddho mantra then shutdown")
+                                        leds.update(Leds.rgb_on(Color.GREEN)) 
+                                        proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                        time.sleep(1800)
+                                        proc.kill()
+                                        speak("Do not forget to mind your breathing, mind your body movement and mind your mind.")
+                                        text = " ../thaivoices/sati.mp3"
+                                        os.system("mpg123 -q -f 2000 "+text)
+                                        leds.update(Leds.rgb_on(Color.RED)) 
+                                        proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                        time.sleep(1800)
+                                        proc.kill()
+                                        shutdown()
+                                        break 
+
+                                    elif "three" in words:  
+                                        speak("4 hours mantra then shutdown")
+                                        th_right = thwords(['ขวา','ย่าง','หนอ'])
+                                        th_left = thwords(['ซ้าย','ย่าง','หนอ'])
+                                        en_right = enwords(['right','goes','thus'])
+                                        en_left = enwords(['left','goes','thus'])
+                                        leds.update(Leds.rgb_on(Color.GREEN))
+                                        speak("standing, standing, standing")
+                                        proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../dataen/one_stage.mp3"])
+                                        time.sleep(900)
+                                        proc.kill()
+                                        leds.update(Leds.rgb_on(Color.YELLOW))
+                                        timeout = time.time() + 900
+                                        while True:
+                                            
+                                            if time.time() > timeout:
+                                                break
+                                            else:
+                                                os.system('mpg123 -f 2000 ' + th_right)
+                                                time.sleep(1)
+                                                os.system('mpg123 -f 2000 ' + th_left)
+                                                time.sleep(1)
+
+                                                os.system('mpg123 -f 2000 ' + en_right)
+                                                time.sleep(1)
+                                                os.system('mpg123 -f 2000 ' + en_left)
+                                                time.sleep(1)
+                                        del th_left
+                                        del th_right
+                                        del en_left
+                                        del en_right
+                                        gc.collect()
+                                        
+                                        speak("Do not forget to mind your breathing, mind your body movement and mind your mind.")
+                                        text = " ../thaivoices/sati.mp3"
+                                        os.system("mpg123 -q -f 2000 "+text)
+                                        leds.update(Leds.rgb_on(Color.GREEN)) 
+                                        proc = subprocess.Popen(["mpg123","-d","3","-f","1500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                        time.sleep(1800)
+                                        proc.kill()
+                                        speak("Ardent, fully aware, and mindful, after removing avarice and sorrow regarding the world.")
+                                        text = " ../thaivoices/right_sati.mp3"
+                                        os.system("mpg123 -q -f 2000 "+text)
+                                        leds.update(Leds.rgb_on(Color.RED)) 
+                                        proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                        time.sleep(10800)
+                                        proc.kill()
+                                        board.led.state = Led.OFF
+                                        os.system("sudo shutdown now")
+                                        # shutdown()
+                                        break 
+
+                                    elif "four" in words:  
+                                        speak("4 hours buddho mantra then shutdown")
+                                        leds.update(Leds.rgb_on(Color.YELLOW)) 
+                                        proc = subprocess.Popen(["mpg123","-d","3","-f","1500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                        time.sleep(1800)
+                                        proc.kill()
+                                        speak("Do not forget to mind your breathing, mind your body movement and mind your mind.")
+                                        text = " ../thaivoices/sati.mp3"
+                                        os.system("mpg123 -q -f 2000 "+text)
+                                        leds.update(Leds.rgb_on(Color.GREEN)) 
+                                        proc = subprocess.Popen(["mpg123","-d","3","-f","1500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                        time.sleep(1800)
+                                        proc.kill()
+                                        speak("Ardent, fully aware, and mindful, after removing avarice and sorrow regarding the world.")
+                                        text = " ../thaivoices/right_sati.mp3"
+                                        os.system("mpg123 -q -f 2000 "+text)
+                                        leds.update(Leds.rgb_on(Color.RED)) 
+                                        proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                        time.sleep(10800)
+                                        proc.kill()
+                                        board.led.state = Led.OFF
+                                        os.system("sudo shutdown now")
+                                        # shutdown()
+                                        break
+
+                                    elif "ten" in words:
                                         t = 10 
                                     elif "fiftheen" in words:
                                         t = 15
                                     elif "twenty" in words:
                                         t = 20
-                                    else:
+                                    elif "thirty" in words:
                                         t = 30
-                                    speak(str(t) + " minutes buddho mantra")
-                                    leds.update(Leds.rgb_on(Color.BLUE)) 
-                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                    time.sleep(t*60)
-                                    proc.kill()
+                                    elif "forty" in words:
+                                        t = 40
+                                    elif "fifty" in words:
+                                        t = 50
+                                    else:
+                                        t = 0
                                     
-                                elif "play" in words and "mantra" in words and "three" in words:
-                                    killPlayer()   
-                                    speak("one hour buddho mantra")
-                                    leds.update(Leds.rgb_on(Color.RED)) 
-                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                    time.sleep(1800)
-                                    proc.kill()
-                                    leds.update(Leds.rgb_on(Color.GREEN)) 
-                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                    time.sleep(1800)
-                                    proc.kill()
-                                    
-                                elif "play" in words and "mantra" in words and "four" in words:
-                                    killPlayer()   
-                                    speak("one hour buddho mantra then shutdown")
-                                    leds.update(Leds.rgb_on(Color.GREEN)) 
-                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                    time.sleep(1800)
-                                    proc.kill()
-                                    speak("Do not forget to mind your breathing, mind your body movement and mind your mind.")
-                                    text = " ../thaivoices/sati.mp3"
-                                    os.system("mpg123 -q -f 2000 "+text)
-                                    leds.update(Leds.rgb_on(Color.RED)) 
-                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                    time.sleep(1800)
-                                    proc.kill()
-                                    shutdown()
-                                    break  
-                                
-                                elif "play" in words and "mantra" in words and "six" in words:
-                                    killPlayer()    
-                                    speak("4 hours buddho mantra then shutdown")
-                                    leds.update(Leds.rgb_on(Color.YELLOW)) 
-                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1500","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                    time.sleep(1800)
-                                    proc.kill()
-                                    speak("Do not forget to mind your breathing, mind your body movement and mind your mind.")
-                                    text = " ../thaivoices/sati.mp3"
-                                    os.system("mpg123 -q -f 2000 "+text)
-                                    leds.update(Leds.rgb_on(Color.GREEN)) 
-                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1500","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                    time.sleep(1800)
-                                    proc.kill()
-                                    speak("Ardent, fully aware, and mindful, after removing avarice and sorrow regarding the world.")
-                                    text = " ../thaivoices/right_sati.mp3"
-                                    os.system("mpg123 -q -f 2000 "+text)
-                                    leds.update(Leds.rgb_on(Color.RED)) 
-                                    proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-                                    time.sleep(10800)
-                                    proc.kill()
-                                    board.led.state = Led.OFF
-                                    os.system("sudo shutdown now")
-                                    # shutdown()
-                                    break  
+                                    if t > 5:
+                                        speak(str(t) + " minutes buddho mantra")
+                                        leds.update(Leds.rgb_on(Color.BLUE)) 
+                                        proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                        time.sleep(t*60)
+                                        proc.kill()
+
+                                    else:
+                                        speak("buddho mantra")
+                                        leds.update(Leds.rgb_on(Color.BLUE)) 
+                                        proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                        press_for_stop('r')
 
                                 elif "play" in words and "one" in words and "stage" in words:
                                     killPlayer()
@@ -604,7 +679,9 @@ try:
                                     en_right = enwords(['right','goes','thus'])
                                     en_left = enwords(['left','goes','thus'])
 
-                                    if "ten" in words:
+                                    if "five" in words:
+                                        t = 5
+                                    elif "ten" in words:
                                         t = 10 
                                     elif "fiftheen" in words:
                                         t = 15
@@ -616,12 +693,14 @@ try:
                                     speak(str(t) + " minutes 1 stage walking practice")
 
                                     if "english" in words:
-                                        leds.update(Leds.rgb_on(Color.GREEN))  
+                                        leds.update(Leds.rgb_on(Color.GREEN))
+                                        speak("standing, standing, standing")  
                                         proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../dataen/one_stage.mp3"])
                                         time.sleep(60*t)
                                         proc.kill()
                                     else:
                                         leds.update(Leds.rgb_on(Color.BLUE))
+                                        speak("standing, standing, standing")
                                         timeout = time.time() + 60*t
                                         while True:
                                             
@@ -649,6 +728,7 @@ try:
                                     th_stage = thwords(["ยกหนอ","ย่างหนอ","เหยียบหนอ"])
                                     en_stage = enwords(['lifting','moving','treading'])
                                     leds.update(Leds.rgb_on(Color.BLUE))
+                                    speak("standing, standing, standing")
                                     timeout = time.time() + 60*15   # 15 minutes from now
                                     while True:
                                         
@@ -674,6 +754,7 @@ try:
                                     th_stage = thwords(["ยกส้นหนอ","ยกหนอ","ย่างหนอ","ลงหนอ","ถูกหนอ","กดหนอ"])
                                     en_stage = enwords(["heelup","lifting","moving","lowering","touching","pressing"])
                                     leds.update(Leds.rgb_on(Color.BLUE))
+                                    speak("standing, standing, standing")
                                     timeout = time.time() + 60*5   # 5 minutes from now
                                     
                                     while True:
@@ -811,7 +892,7 @@ try:
 
                                 elif len(words) > 0:
                                     listToStr = ' '.join(map(str, words))
-                                    speak("words i heard , " + listToStr)
+                                    espeak("words i heard , " + listToStr, '5')
                                     time.sleep(3)
                                     with q.mutex:
                                         q.queue.clear()

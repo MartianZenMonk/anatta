@@ -164,13 +164,22 @@ from gtts import gTTS
 # 6. Stages: Heel up, Lifting, Moving, Lowering, Touching, and Pressing
 
 
-text = ["ยกส้นหนอ","ยกหนอ","ย่างหนอ","ลงหนอ","ถูกหนอ","กดหนอ"]
+# text = ["ยกส้นหนอ","ยกหนอ","ย่างหนอ","ลงหนอ","ถูกหนอ","กดหนอ"]
 # text = ["heel up","lifting","moving","lowering","touching","pressing"]
-for i in range(len(text)):
+# t = "ไม่ มี ทุกข์ ไม่ มี สุข มี แต่ ความ ที่ สติ เป็น ธรรมชาติ บริสุทธิ์ เพราะ อุเบกขา แล้ว แล อยู่"
+# t = "ไม่ มี ทุกข์ สุข แต่ ความ ที่ สติ เป็น ธรรมชาติ บริสุทธิ์ เพราะ อุเบกขา แล้ว แล อยู่"
+# text = t.split(" ")
+# text = ["ไม่มีทุกข์ ไม่มีสุข มีแต่ความที่สติเป็นธรรมชาติบริสุทธิ์เพราะอุเบกขา แล้วแลอยู่"]
+
+# text = ["คิดเป็นระเบียบ คิดถูกวิธี คิดเป็นเหตุเป็นผล คิดให้เกิดการกระทำที่เป็นกุศล"]
+
+
+# for i in range(len(text)):
+
+  # print(text[i])
+
   # speech = gTTS(text = text[i],lang='th',slow = False)
   # speech.save(str("thwords/"+text[i]) + ".mp3")
+
   # speech = gTTS(text = text[i],lang='en',slow = False)
   # speech.save(str("../dataen/"+text[i]) + ".mp3")
-
-
-
