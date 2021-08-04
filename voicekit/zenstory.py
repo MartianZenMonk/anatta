@@ -152,28 +152,130 @@ d = {
 			{"voice":"1","text":"A Zen master, who happened to be walking by, overheard the debate and interrupted them."},
 			{"voice":"4","text":"Neither the flag nor the wind is moving, It is MIND that moves."}
 			]
+		},
+		{"title":"Be the boss",
+		"story":[
+			{"voice":"1","text":"A horse suddenly came galloping quickly down the road. It seemed as though the man had somewhere important to go."},
+			{"voice":"1","text":"Another man, who was standing alongside the road, shouted, "},
+			{"voice":"2","text":"Where are you going?"},
+			{"voice":"1","text":"and the man on the horse replied,"},
+			{"voice":"3","text":"I don't know! Ask the horse!"},
+			{"voice":"1","text":"Explanation , The horse symbolizes our habit energy. The story explains the way we usually live,"},
+			{"voice":"1","text":"at the mercy of our old habit energies which have been established not by our intentional actions, but by our surroundings and mindless activity."}
+			]
+		},
+		{"title":"Non-judgment",
+		"story":[
+			{"voice":"1","text":"Once upon the time there was an old farmer who had worked his crops for many years. One day his horse ran away.Upon hearing the news, his neighbors came to visit."},
+			{"voice":"2","text":"Such bad luck"},
+			{"voice":"1","text":"they said sympathetically."},
+			{"voice":"3","text":"Maybe,"},
+			{"voice":"1","text":"the farmer replied."},
+			{"voice":"1","text":"The next morning the horse returned, bringing with it three other wild horses. "},
+			{"voice":"2","text":"How wonderful,"},
+			{"voice":"1","text":"the neighbors exclaimed."},
+			{"voice":"3","text":"Maybe,"},
+			{"voice":"1","text":"the farmer replied."},
+			{"voice":"1","text":"The following day, his son tried to ride one of the untamed horses, was thrown, and broke his leg. The neighbors again came to offer their sympathy on his misfortune."},
+			{"voice":"3","text":"Maybe,"},
+			{"voice":"1","text":"the farmer replied."},
+			{"voice":"1","text":"The day after, military officials came to the village to draft young men into the army. Seeing that the son’s leg was broken, they passed him by. "},
+			{"voice":"1","text":"The neighbors congratulated the farmer on how well things had turned out."},
+			{"voice":"3","text":"Maybe,"},
+			{"voice":"1","text":"the farmer replied."},
+			{"voice":"1","text":"Explanation, There's always tomorrow. And whether the day was good or bad, there are a million effects which can arise from one event. Good and bad are interconnected. "}
+			]
+		},
+		{"title":"Everything changes",
+		"story":[
+			{"voice":"2","text":"Suzuki Roshi, I've been listening to your lectures for years,"},
+			{"voice":"1","text":"a student said during the question and answer time following a lecture, "},
+			{"voice":"2","text":"but I just don't understand. Could you just please put it in a nutshell? Can you reduce Buddhism to one phrase?"},
+			{"voice":"1","text":"Everyone laughed. Suzuki laughed."},
+			{"voice":"3","text":"Everything changes,"},
+			{"voice":"1","text":"he said. Then he asked for another question."}
+			]
+		},
+		{"title":"Washing The Bowl",
+		"story":[
+			{"voice":"1","text":"A monk told Joshu,"},
+			{"voice":"2","text":"I have just entered this monastery. I beg you to teach me."},
+			{"voice":"3","text":"Have you eaten your rice porridge?"},
+			{"voice":"2","text":"I have."},
+			{"voice":"3","text":"Go and wash your bowl."},
+			{"voice":"1","text":"At that moment the monk was enlightened."}
+			]
+		},
+		{"title":"Nothing Exists",
+		"story":[
+			{"voice":"1","text":"Yamaoka Tesshu, as a young student of Zen, visited one master after another. He called upon Dokuon of Shokoku.Desiring to show his attainment, he said:"},
+			{"voice":"2","text":"The mind, Buddha, and sentient beings, after all, do not exist. The true nature of phenomena is emptiness."},
+			{"voice":"2","text":"There is no realization, no delusion, no sage, no mediocrity. There is no giving and nothing to be received."},
+			{"voice":"1","text":"Dokuon, who was smoking quietly, said nothing. Suddenly he whacked Yamaoka with his bamboo pipe. This made the youth quite angry."},
+			{"voice":"3","text":"If nothing exists,"},
+			{"voice":"1","text":"inquired Dokuon,"},
+			{"voice":"3","text":" where did this anger come from?"}
+			]
+		},
+		{"title":"Time to Die",
+		"story":[
+			{"voice":"1","text":"Ikkyu, the Zen master, was very clever even as a boy. His teacher had a precious teacup, a rare antique. Ikkyu happened to break this cup and was greatly perplexed. "},
+			{"voice":"1","text":"Hearing the footsteps of his teacher, he held the pieces of the cup behind him. When the master appeared, Ikkyu asked:"},
+			{"voice":"2","text":"Why do people have to die?"},
+			{"voice":"3","text":"This is natural,"},
+			{"voice":"1","text":"explained the older man. "},
+			{"voice":"3","text":"Everything has to die and has just so long to live."},
+			{"voice":"1","text":"Ikkyu, producing the shattered cup, added"},
+			{"voice":"2","text":"It was time for your cup to die."}
+			]
+		},
+		{"title":"The Other Side",
+		"story":[
+			{"voice":"1","text":"One day a young Buddhist on his journey home came to the banks of a wide river. "},
+			{"voice":"1","text":"Staring hopelessly at the great obstacle in front of him, he pondered for hours on just how to cross such a wide barrier."},
+			{"voice":"1","text":"Just as he was about to give up his pursuit to continue his journey he saw a great teacher on the other side of the river."},
+			{"voice":"1","text":"The young Buddhist yells over to the teacher, "},
+			{"voice":"2","text":"Oh wise one, can you tell me how to get to the other side of this river?"},
+			{"voice":"1","text":"The teacher ponders for a moment looks up and down the river and yells back,"},
+			{"voice":"3","text":"My son, you are on the other side"}
+			]
+		},
+		{"title":"Cliffhanger",
+		"story":[
+			{"voice":"1","text":"One day while walking through the wilderness a man stumbled upon a vicious tiger. He ran but soon came to the edge of a high cliff."},
+			{"voice":"1","text":"Desperate to save himself, he climbed down a vine and dangled over the fatal precipice."},
+			{"voice":"1","text":"As he hung there, two mice appeared from a hole in the cliff and began gnawing on the vine."},
+			{"voice":"1","text":"Suddenly, he noticed on the vine a plump wild strawberry. He plucked it and popped it in his mouth. It was incredibly delicious!"}
+			]
 		}
 		]
 	}
 
 
-# with open("zenstories.json", "w") as write_file:
-#     json.dump(d, write_file, indent=4)
-# print("Done writing PrettyPrinted JSON data into file with indent=4")
+with open("zenstories.json", "w") as write_file:
+    json.dump(d, write_file, indent=4)
+print("Done writing PrettyPrinted JSON data into file with indent=4")
 
-print (len(d["zen101"]))
-n = random.randint(0,len(d["zen101"]))
-print(d["zen101"][n]["title"])
-lines = d["zen101"][n]["story"]
-# print(lines)
-for i in range(len(lines)):
-	x = int(lines[i]["voice"])
-	# print(voices[x])
-	engine.setProperty('voice',voices[x]) 
-	engine.say(lines[i]["text"])
+# print (len(d["zen101"]))
+# n = random.randint(0,len(d["zen101"]))
+# print(d["zen101"][n]["title"])
+# lines = d["zen101"][n]["story"]
+# # print(lines)
+# for i in range(len(lines)):
+# 	x = int(lines[i]["voice"])
+# 	# print(voices[x])
+# 	engine.setProperty('voice',voices[x]) 
+# 	engine.say(lines[i]["text"])
 
-engine.runAndWait()
-engine.stop()
+# engine.runAndWait()
+# engine.stop()
+
+# m = len(d["zen101"])
+# print(m)
+# sequence = [i for i in range(m)]
+# print(sequence)
+# random.shuffle(sequence)
+# print(sequence)
 
 # For ubuntu
 # 1 install pyttsx3

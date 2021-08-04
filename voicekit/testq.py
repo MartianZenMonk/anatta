@@ -7,29 +7,40 @@ import sounddevice as sd
 import vosk
 import sys
 import json
-import math
-import numpy as np
 import random
-import subprocess
 import pty
 import gc
 import time
 import csv
-from subprocess import call
 import socket
 import cv2
-
+import psutil
+import subprocess
+from subprocess import call
 import datetime as dt
 from datetime import datetime
 from aiy.board import Board, Led
 from aiy.leds import (Leds, Pattern, PrivacyLed, RgbLeds, Color)
 
-import psutil
-
 # sd._terminate()
 # time.sleep(5)
 # sd._initialize()
 # sd.default.latency = 'low'
+
+import pyttsx3
+engine = pyttsx3.init() # object creation
+engine.setProperty('voice','english-us') 
+engine.setProperty('rate', 125)
+engine.setProperty('volume',0.1)
+
+
+def speak(text):
+        print(text)
+        engine.say(text)
+        engine.runAndWait()
+        engine.stop()
+        return None
+
 
 def find_name(name):
     for proc in psutil.process_iter():
@@ -58,21 +69,6 @@ def have_internet():
     except:
         conn.close()
         return False
-
-
-import pyttsx3
-engine = pyttsx3.init() # object creation
-engine.setProperty('voice','english-us') 
-engine.setProperty('rate', 125)
-engine.setProperty('volume',0.1)
-
-
-def speak(text):
-        print(text)
-        engine.say(text)
-        engine.runAndWait()
-        engine.stop()
-        return None
 
 
 es_voices = ["englisg+f1","english+f2","english+m1","english+m3","english+m2","english_rp+m2"]
@@ -117,7 +113,7 @@ def callback(indata, frames, time, status):
     """This is called (from a separate thread) for each audio block."""
     if status:
         print(status, file=sys.stderr)
-    if q.qsize() > 25:
+    if q.qsize() > 30:
         with q.mutex:
             q.queue.clear()
     else:
@@ -342,9 +338,12 @@ with open('zenstories.json', 'r') as myfile:
 
 # parse file
 d = json.loads(zdata)
+m = len(d["zen101"])
+n = 0
 del zdata
 gc.collect()
-
+sequence = [i for i in range(m)]
+random.shuffle(sequence)
                                     
 parser = argparse.ArgumentParser(add_help=False)
 parser.add_argument(
@@ -358,9 +357,6 @@ parser = argparse.ArgumentParser(
     description=__doc__,
     formatter_class=argparse.RawDescriptionHelpFormatter,
     parents=[parser])
-parser.add_argument(
-    '-f', '--filename', type=str, metavar='FILENAME',
-    help='audio file to store recording to')
 parser.add_argument(
     '-m', '--model', type=str, metavar='MODEL_PATH',
     help='Path to the model')
@@ -387,13 +383,6 @@ try:
     os.system("sudo service motion stop")
 
     model = vosk.Model(args.model)
-
-    if args.filename:
-        dump_fn = open(args.filename, "wb")
-    else:
-        dump_fn = None
-
-    # args.device = 0
 
     master, slave = os.openpty()
 
@@ -457,8 +446,8 @@ try:
                                     buddha_day()
                                     
                                 elif "zen" in words and "story" in words:
-                                    n = random.randint(0,len(d["zen101"])-1)
-                                    speak(d["zen101"][n]["title"])
+                                    nn = sequence[n]
+                                    speak(d["zen101"][nn]["title"])
                                     focus = True
                                     zen = True
 
@@ -901,29 +890,25 @@ try:
 
                                 if zen:
                                     if "no" in words:
-                                        n = random.randint(0,len(d["zen101"])-1)
-                                        speak(d["zen101"][n]["title"])
+                                        n = n + 1
+                                        if n == m:
+                                            n = 0
+                                        nn = sequence[n]                                         
+                                        speak(d["zen101"][nn]["title"])
                                     elif "yes" in words:
-                                        lines = d["zen101"][n]["story"]
+                                        lines = d["zen101"][nn]["story"]
                                         # print(lines)
                                         for i in range(len(lines)):
                                             x = int(lines[i]["voice"])
-                                            # speakf(voices[x], lines[i]["text"])
-                                            # print(voices[x])
                                             engine.setProperty('voice',es_voices[x]) 
                                             speak(lines[i]["text"])
                                         zen = False
-                                        focus = False
-
-                                                           
-                                
+                                        focus = False                   
 
                     else:
                         leds.update(Leds.rgb_on(Color.RED))
                         # x = rec.PartialResult()
                         # print(x)
-                    if dump_fn is not None:
-                        dump_fn.write(data)
 
 except KeyboardInterrupt:
     print('\nDone')
