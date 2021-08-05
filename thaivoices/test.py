@@ -173,13 +173,13 @@ from gtts import gTTS
 
 # text = ["คิดเป็นระเบียบ คิดถูกวิธี คิดเป็นเหตุเป็นผล คิดให้เกิดการกระทำที่เป็นกุศล"]
 
-
-# for i in range(len(text)):
+text = [""]
+for i in range(len(text)):
 
   # print(text[i])
 
-  # speech = gTTS(text = text[i],lang='th',slow = False)
-  # speech.save(str("thwords/"+text[i]) + ".mp3")
+  speech = gTTS(text = text[i],lang='th',slow = False)
+  speech.save(str("thwords/"+text[i]) + ".mp3")
 
   # speech = gTTS(text = text[i],lang='en',slow = False)
   # speech.save(str("../dataen/"+text[i]) + ".mp3")
