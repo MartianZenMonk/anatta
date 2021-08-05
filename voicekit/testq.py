@@ -229,12 +229,11 @@ def motion_detect(proc):
             # print(str(w*h))
             # making green rectangle arround the moving object
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)
-            if w*h > 250000:
+            if w*h > 200000:
                 bk = True
 
         # Appending status of motion
         motion_list.append(motion)
-        motion_list = motion_list[-2:]
 
         if bk:
             break
@@ -242,7 +241,7 @@ def motion_detect(proc):
         #cv2.imshow("Gray Frame", gray)
         #cv2.imshow("Difference Frame", diff_frame)
         #cv2.imshow("Threshold Frame", thresh_frame)
-        #cv2.imshow("Color Frame", frame)
+        # cv2.imshow("Color Frame", frame)
         # key = cv2.waitKey(1)
         # if q entered whole process will stop
         # if key == ord('q'):
@@ -758,6 +757,34 @@ try:
                                         os.system("sudo shutdown now")
                                         break
 
+                                    elif "six" in words:  
+                                        speak("4 hours buddho mantra then shutdown")
+
+                                        three_stages_th_en('b',10)
+
+                                        six_stages_th_en('y')
+
+                                        one_stage_en('g',15)
+
+                                        one_stage_th_en('y',15)
+
+                                        fast_buddho('g',15)
+                                        
+                                        remind_sati()
+
+                                        fast_buddho('y')
+
+                                        remind_sati()
+
+                                        fast_buddho('g')
+
+                                        remind_right_sati()
+
+                                        fast_buddho('r',120)
+                                        board.led.state = Led.OFF
+                                        os.system("sudo shutdown now")
+                                        break
+
                                     elif "ten" in words:
                                         t = 10 
                                     elif "fiftheen" in words:
@@ -773,7 +800,7 @@ try:
                                     else:
                                         t = 0
                                     
-                                    if t > 5:
+                                    if t > 6:
                                         speak(str(t) + " minutes buddho mantra")
                                         fast_buddho('g',t)
 

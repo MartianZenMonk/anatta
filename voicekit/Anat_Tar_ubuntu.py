@@ -93,9 +93,9 @@ def motion_detect(proc):
         if bk:
             break
 
-        cv2.imshow("Gray Frame", gray)
-        cv2.imshow("Difference Frame", diff_frame)
-        cv2.imshow("Threshold Frame", thresh_frame)
+        # cv2.imshow("Gray Frame", gray)
+        # cv2.imshow("Difference Frame", diff_frame)
+        # cv2.imshow("Threshold Frame", thresh_frame)
         cv2.imshow("Color Frame", frame)
 
         key = cv2.waitKey(1)
@@ -230,6 +230,11 @@ def callback(indata, frames, time, status):
         print(status, file=sys.stderr)
     q.put(bytes(indata))
 
+def clear_q():
+    with q.mutex:
+        q.queue.clear()
+
+
 parser = argparse.ArgumentParser(add_help=False)
 parser.add_argument(
     '-l', '--list-devices', action='store_true',
@@ -282,7 +287,7 @@ try:
             with q.mutex:
                 q.queue.clear()
 
-            rec = vosk.KaldiRecognizer(model, args.samplerate, '["acumen anat tar begin buddha buddhist chanting coronel day dhamma do down eighty face holy how meditation mindfulness news no now on play please quiet sermons seventy shutdown silent sitting sixty show sleep start stop story sutra tell time to turn up volume wake walking what when yes zen","[unk]"]')
+            rec = vosk.KaldiRecognizer(model, args.samplerate, '["acumen anat tar hey begin buddha buddhist chanting coronel day dhamma do down eighty face holy how meditation mindfulness news no now on play please quiet sermons seventy shutdown silent sitting sixty show sleep start stop story sutra tell time to turn up volume wake walking what when yes zen","[unk]"]')
             # rec1 = vosk.KaldiRecognizer(model, args.samplerate)
             while True:
                 data = q.get()
@@ -292,18 +297,18 @@ try:
                     # print(z["text"])  #print rec text
                     # print('Acumen is ',bot)
                     words = z["text"].split() 
-                    if bot_name == z["text"] or ("wake" in words and "up" in words and bot_name in words):
+                    if bot_name == z["text"] or ("hey" in words and bot_name in words):
                         bot = True
-                        engine.say('Yes sir')
-                        engine.runAndWait()
-                        engine.stop()
+                        speak("yes sir!")
                     if bot or focus:
                         print(z["text"])
                         print("Listening...")
                         if "chanting" in words:
-                            print("start playing") 
+                            print("Thai Chanting") 
                             proc = subprocess.Popen(["vlc","--random","--loop","--playlist-autostart","THchanting.xspf"]) 
-                            bot = False  
+                            bot = False
+                            motion_detect(proc)
+                            clear_q()
                         elif focus:
                             if "yes" in words:
                                 proc = subprocess.Popen(focus_event)
@@ -338,13 +343,13 @@ try:
                             proc = subprocess.Popen(["vlc","--random","--loop","--playlist-autostart","THdhamma.xspf"])
                             bot = False
                             motion_detect(proc)
+                            clear_q()
                         elif "meditation" in words and ("start" in words or "begin" in words or "time" in words):
                             print("start meditation bell ring every 15 minutes") 
                             proc = subprocess.Popen(["vlc","--loop","../dataen/bell15min.mp3"])
                             bot = False
                         elif "stop" in words:
-                            print("stop playing")
-                            # proc.kill()
+                            print("killall vlc")
                             os.system("killall vlc")
                             bot = False
                         elif "quiet" in words or "silent" in words or "sleep" in words:
@@ -419,6 +424,7 @@ try:
                                 engine.setProperty('voice',voices[x]) 
                                 speak(lines[i]["text"])
                             n = n + 1
+                            engine.setProperty('voice',voices[2]) 
                             bot = False
                         elif "play" in words and "sutra" in words:
                             i = random.randint(0,1)
@@ -431,6 +437,7 @@ try:
                                 engine.say(lines[i]["text"])
                                 engine.runAndWait()
                                 engine.stop()
+                                engine.setProperty('voice',voices[2]) 
                                 bot = False
                         elif "shutdown" in words and "now" in words:
                             # print("Shutdown the system")
