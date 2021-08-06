@@ -11,6 +11,8 @@ import random
 import csv
 import cv2
 import gc
+import psutil
+import pyautogui
 
 import subprocess
 from subprocess import call
@@ -31,6 +33,20 @@ def speak(text):
         engine.runAndWait()
         engine.stop()
         return None
+
+
+def find_name(name):
+    for proc in psutil.process_iter():
+        try:
+            pinfo = proc.as_dict(attrs=['pid', 'name'])
+            if pinfo['name'] == name:
+                return True
+            else:
+                continue
+        except psutil.NoSuchProcess:
+            pass
+    return False
+
 
 # https://docs.opencv.org/4.5.2/d7/d4d/tutorial_py_thresholding.html
 def motion_detect(proc):
@@ -117,7 +133,7 @@ with open('myhora-buddha-2564.csv', newline='') as f:
 
 today = datetime.today().strftime('%Y%m%d')
 holyday = []
-print(len(data))
+# print(len(data))
 for i in range(len(data)):
     if i>0:
         if(int(data[i][1])>int(today)):
@@ -277,7 +293,13 @@ try:
             print('Hello my name is ',bot_name,' please call my name before speak to me ;)')
             print('Press Ctrl+C to stop')
             print('#' * 80)
-            datetime.today().strftime('%Y%m%d')
+
+            runv  = '["acumen anat tar hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
+            runv += 'meditation mindfulness news no now on open play please quiet sermons seventy shutdown silent sitting sixty '
+            runv += 'mouse left right scroll click exit '
+            runv += 'show sleep start stop story sutra tell time to turn up volume wake walking what when who yes zen fire fox"]'
+            
+            rec = vosk.KaldiRecognizer(model, args.samplerate, runv)
 
             engine.say('Hello my name is '+bot_name+' please call my name before speak to me')
             engine.runAndWait()
@@ -287,15 +309,12 @@ try:
             with q.mutex:
                 q.queue.clear()
 
-            rec = vosk.KaldiRecognizer(model, args.samplerate, '["acumen anat tar hey begin buddha buddhist chanting coronel day dhamma do down eighty face holy how meditation mindfulness news no now on play please quiet sermons seventy shutdown silent sitting sixty show sleep start stop story sutra tell time to turn up volume wake walking what when yes zen","[unk]"]')
-            # rec1 = vosk.KaldiRecognizer(model, args.samplerate)
             while True:
                 data = q.get()
                 if rec.AcceptWaveform(data):
                     w = rec.Result()
                     z = json.loads(w)
-                    # print(z["text"])  #print rec text
-                    # print('Acumen is ',bot)
+                    # print(z["text"])  
                     words = z["text"].split() 
                     if bot_name == z["text"] or ("hey" in words and bot_name in words):
                         bot = True
@@ -304,8 +323,10 @@ try:
                         print(z["text"])
                         print("Listening...")
                         if "chanting" in words:
-                            print("Thai Chanting") 
-                            proc = subprocess.Popen(["vlc","--random","--loop","--playlist-autostart","THchanting.xspf"]) 
+                            speak("Thai chanting")
+                            proc = subprocess.Popen(["mpg123","-z","--list","THchanting.txt"])        
+                            # print("Thai Chanting") 
+                            # proc = subprocess.Popen(["vlc","--random","--loop","--playlist-autostart","THchanting.xspf"]) 
                             bot = False
                             motion_detect(proc)
                             clear_q()
@@ -317,7 +338,7 @@ try:
                             elif "no" in words:
                                 focus = False
                                 focus_event = []
-                        elif "tell" in words and "buddha" in words:
+                        elif "who" in words and "buddha" in words:
                             lines = buddhism["buddha"][0]["content"]
                             # print(lines)
                             for i in range(len(lines)):
@@ -339,8 +360,10 @@ try:
                         #     proc = subprocess.Popen(["vlc","--play-and-exit","-f","--video-on-top","--no-video-title-show","face3.mp4"])
                         #     bot = False
                         elif "play" in words and ("sermons" in words or "dhamma" in words):
-                            print("play daily sermons") 
-                            proc = subprocess.Popen(["vlc","--random","--loop","--playlist-autostart","THdhamma.xspf"])
+                            speak("play Thai dhamma")
+                            proc = subprocess.Popen(["mpg123","-z","--list","THdhamma4all.txt"])
+                            # print("play daily sermons") 
+                            # proc = subprocess.Popen(["vlc","--random","--loop","--playlist-autostart","THdhamma.xspf"])
                             bot = False
                             motion_detect(proc)
                             clear_q()
@@ -349,8 +372,12 @@ try:
                             proc = subprocess.Popen(["vlc","--loop","../dataen/bell15min.mp3"])
                             bot = False
                         elif "stop" in words:
-                            print("killall vlc")
-                            os.system("killall vlc")
+                            if find_name('vlc'):
+                                print("killall vlc")
+                                os.system("killall vlc")
+                            if find_name('mpg123'):
+                                print("killall mpg123")
+                                os.system("killall mpg123")
                             bot = False
                         elif "quiet" in words or "silent" in words or "sleep" in words:
                             speak("ok")
@@ -446,7 +473,41 @@ try:
                             engine.stop()
                             os.system("shutdown now")
                             break
-                    else:
+
+                        elif "open" in words and "fire" in words and "fox" in words:
+                            speak("open firefox web browser")
+                            command = "firefox -safe-mode https://free.facebook.com/"
+                            subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                            bot = False
+                        elif "close" in words and "fire" in words and "fox" in words:
+                            if find_name('firefox'):
+                                os.system("pkill -f firefox")
+                            bot = False
+                        elif "buddha" in words and "mantra" in words:
+                            speak("buddho mantra")
+                            proc = subprocess.Popen(["mpg123","-d","3","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                            motion_detect(proc)
+                            bot=False
+                        #MOUSE CONTROL
+                        elif "mouse" in words and "up" in words:
+                            pyautogui.move(0, -25)
+                        elif "mouse" in words and "down" in words:
+                            pyautogui.move(0, 25)
+                        elif "mouse" in words and "left" in words:
+                            pyautogui.move(-50, 0)
+                        elif "mouse" in words and "right" in words:
+                            pyautogui.move(50, 0)
+                        elif "scroll" in words and "up" in words:
+                            pyautogui.scroll(5)
+                        elif "scroll" in words and "down" in words:
+                            pyautogui.scroll(-5)
+                        elif "mouse" in words and "click" in words:
+                            pyautogui.click(button='left')
+                        elif "mouse" in words and "exit" in words:
+                            speak("stop mouse control")
+                            bot = False
+                            
+            else:
                         pass
                         # x = rec.PartialResult()
                         # print(x)

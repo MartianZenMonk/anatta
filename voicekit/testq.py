@@ -583,7 +583,7 @@ try:
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty red green blue yellow '
-            v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life thinking"]'
+            v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life thinking technique"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
 
@@ -727,9 +727,11 @@ try:
                                     elif "three" in words:  
                                         speak("4 hours mantra then shutdown")
                                         
-                                        one_stage_en('g',15)
+                                        one_stage_th_en('y',10)
 
-                                        one_stage_th_en('y',15)
+                                        one_stage_en('g',10)
+
+                                        three_stages_th_en('b',10)
                                         
                                         remind_sati()
 
@@ -744,6 +746,7 @@ try:
 
                                     elif "four" in words:  
                                         speak("4 hours buddho mantra then shutdown")
+
                                         fast_buddho('y')
 
                                         remind_sati()
@@ -936,6 +939,13 @@ try:
                                     proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
                                     press_for_stop('g',proc)
                                     os.system("sudo pkill -f chromium")
+
+                                elif "browse" in words and "meditation" in words and "technique" in words:
+                                    speak("open youtube for meditation technique")
+                                    command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://www.youtube.com/playlist?list=PLUh8U5np7D-7FMh6ONGwnaltFppPBwTVI"
+                                    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                    press_for_stop('g',proc)
+                                    os.system("sudo pkill -f chromium")
    
                                 elif "help" in words and "please" in words:
                                     get_help()
@@ -982,6 +992,7 @@ try:
                                             speak(lines[i]["text"])
                                         zen = False
                                         focus = False
+                                        engine.setProperty('voice',es_voices[2]) 
                                         n = n +1                  
 
                     else:
