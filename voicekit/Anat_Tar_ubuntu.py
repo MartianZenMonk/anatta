@@ -13,6 +13,7 @@ import cv2
 import gc
 import psutil
 import pyautogui
+import time
 
 import subprocess
 from subprocess import call
@@ -296,7 +297,7 @@ try:
 
             runv  = '["acumen anat tar hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
             runv += 'meditation mindfulness news no now on open play please quiet sermons seventy shutdown silent sitting sixty '
-            runv += 'mouse left right scroll click exit '
+            runv += 'mouse left right scroll click exit center '
             runv += 'show sleep start stop story sutra tell time to turn up volume wake walking what when who yes zen fire fox"]'
             
             rec = vosk.KaldiRecognizer(model, args.samplerate, runv)
@@ -478,6 +479,8 @@ try:
                             speak("open firefox web browser")
                             command = "firefox -safe-mode https://free.facebook.com/"
                             subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                            screenWidth, screenHeight = pyautogui.size()
+                            pyautogui.moveTo(int(screenWidth*5/8), int(screenHeight*19/32))
                             bot = False
                         elif "close" in words and "fire" in words and "fox" in words:
                             if find_name('firefox'):
@@ -488,19 +491,28 @@ try:
                             proc = subprocess.Popen(["mpg123","-d","3","-q","--loop","-1","../thaivoices/buddho.mp3"])
                             motion_detect(proc)
                             bot=False
-                        #MOUSE CONTROL
+                        #MOUSE CONTROL https://pypi.org/project/PyAutoGUI/
+                        elif "mouse" in words and "center" in words:
+                            screenWidth, screenHeight = pyautogui.size()
+                            pyautogui.moveTo(int(screenWidth/2), int(screenHeight/2))
                         elif "mouse" in words and "up" in words:
-                            pyautogui.move(0, -25)
+                            pyautogui.move(0, -23)
                         elif "mouse" in words and "down" in words:
                             pyautogui.move(0, 25)
                         elif "mouse" in words and "left" in words:
-                            pyautogui.move(-50, 0)
+                            pyautogui.move(-52, 0)
                         elif "mouse" in words and "right" in words:
                             pyautogui.move(50, 0)
                         elif "scroll" in words and "up" in words:
                             pyautogui.scroll(5)
+                            for s in range(5):
+                                pyautogui.scroll(1)
+                                time.sleep(0.5)
                         elif "scroll" in words and "down" in words:
-                            pyautogui.scroll(-5)
+                            # pyautogui.scroll(-7)
+                            for s in range(7):
+                                pyautogui.scroll(-1)
+                                time.sleep(0.5)
                         elif "mouse" in words and "click" in words:
                             pyautogui.click(button='left')
                         elif "mouse" in words and "exit" in words:
