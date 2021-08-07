@@ -347,6 +347,12 @@ def buddha_day():
     return None
 
 #BHAVANA
+def wise_one(c='r'):
+    proc = subprocess.Popen(["mpg123","-d","3","-f","500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+    press_for_stop(c,proc)
+    return None
+
+
 def fast_buddho(c='', t=30):
     ledc(c)
     th_stand = thwords(["ยืน","หนอ"])
@@ -583,7 +589,7 @@ try:
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty red green blue yellow '
-            v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life thinking technique"]'
+            v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
 
@@ -617,7 +623,10 @@ try:
 
                             if not focus:
 
-                                if "what" in words and "time" in words:
+                                if "wise" in words and "one" in words:
+                                    wise_one()
+
+                                elif "what" in words and "time" in words:
                                     today = datetime.today().strftime('%H %M')
                                     speak("The time is " + today)
                                     
@@ -969,7 +978,7 @@ try:
 
                                 elif len(words) > 0:
                                     listToStr = ' '.join(map(str, words))
-                                    espeak("words i heard , " + listToStr, '6')
+                                    espeak("words i heard , " + listToStr, '5')
                                     time.sleep(3)
                                     with q.mutex:
                                         q.queue.clear()

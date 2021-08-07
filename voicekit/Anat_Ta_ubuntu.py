@@ -215,7 +215,7 @@ buddhism = {
 
 
 q = queue.Queue()
-bot_name = "anat tar" # shall use rare vocabulary and add to list such as acumen, coronel
+bot_name = "anat ta" # shall use rare vocabulary and add to list such as acumen, coronel
 bot = False
 focus = False
 focus_event = []
@@ -250,6 +250,15 @@ def callback(indata, frames, time, status):
 def clear_q():
     with q.mutex:
         q.queue.clear()
+
+def stop_player():
+    if find_name('vlc'):
+        print("killall vlc")
+        os.system("killall vlc")
+    if find_name('mpg123'):
+        print("killall mpg123")
+        os.system("killall mpg123")
+
 
 
 parser = argparse.ArgumentParser(add_help=False)
@@ -295,18 +304,22 @@ try:
             print('Press Ctrl+C to stop')
             print('#' * 80)
 
-            runv  = '["acumen anat tar hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
+            runv  = '["acumen anat ta hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
             runv += 'meditation mindfulness news no now on open play please quiet sermons seventy shutdown silent sitting sixty '
-            runv += 'mouse left right scroll click exit center '
+            runv += 'mouse left right scroll click exit center sky star page browse technique wise speak player '
+            runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty '
+            runv += 'a b c d e f g h i j k l m n o p q r s t u v w x y z '
             runv += 'show sleep start stop story sutra tell time to turn up volume wake walking what when who yes zen fire fox"]'
             
             rec = vosk.KaldiRecognizer(model, args.samplerate, runv)
 
+            stop_player()
             engine.say('Hello my name is '+bot_name+' please call my name before speak to me')
             engine.runAndWait()
             engine.stop()
             n = 0
-            proc = 0
+            global proc
+            proc_ck = False
             with q.mutex:
                 q.queue.clear()
 
@@ -315,15 +328,29 @@ try:
                 if rec.AcceptWaveform(data):
                     w = rec.Result()
                     z = json.loads(w)
-                    # print(z["text"])  
-                    words = z["text"].split() 
+                    words = z["text"].split()
+
+                    if not bot:
+                        print(words)  
+                     
                     if bot_name == z["text"] or ("hey" in words and bot_name in words):
                         bot = True
-                        speak("yes sir!")
+                        speak("yes sir")
                     if bot or focus:
                         print(z["text"])
                         print("Listening...")
-                        if "chanting" in words:
+                        if "wise" in words and "one" in words:
+                            if "play" in words:
+                                proc = subprocess.Popen(["mpg123","-d","3","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                proc_ck = True
+                                bot = False
+                            elif "stop" in words:
+                                if proc_ck:
+                                    proc.kill()
+                                    proc_ck = False
+                                bot = False
+
+                        elif "chanting" in words:
                             speak("Thai chanting")
                             proc = subprocess.Popen(["mpg123","-z","--list","THchanting.txt"])        
                             # print("Thai Chanting") 
@@ -331,6 +358,7 @@ try:
                             bot = False
                             motion_detect(proc)
                             clear_q()
+
                         elif focus:
                             if "yes" in words:
                                 proc = subprocess.Popen(focus_event)
@@ -339,6 +367,7 @@ try:
                             elif "no" in words:
                                 focus = False
                                 focus_event = []
+
                         elif "who" in words and "buddha" in words:
                             lines = buddhism["buddha"][0]["content"]
                             # print(lines)
@@ -372,13 +401,8 @@ try:
                             print("start meditation bell ring every 15 minutes") 
                             proc = subprocess.Popen(["vlc","--loop","../dataen/bell15min.mp3"])
                             bot = False
-                        elif "stop" in words:
-                            if find_name('vlc'):
-                                print("killall vlc")
-                                os.system("killall vlc")
-                            if find_name('mpg123'):
-                                print("killall mpg123")
-                                os.system("killall mpg123")
+                        elif "stop" in words and "player" in words:
+                            stop_player()
                             bot = False
                         elif "quiet" in words or "silent" in words or "sleep" in words:
                             speak("ok")
@@ -475,6 +499,27 @@ try:
                             os.system("shutdown now")
                             break
 
+                        elif "open" in words and "sky" in words:
+                            speak("open stellarium - A real-time realistic planetarium ")
+                            command = "stellarium"
+                            subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                            screenWidth, screenHeight = pyautogui.size()
+                            pyautogui.moveTo(int(screenWidth/2), int(screenHeight/2))
+                            bot = False
+                        elif "close" in words and "sky" in words:
+                            if find_name('stellarium'):
+                                speak("Quit stellarium")
+                                os.system("pkill -f stellarium")
+                            bot = False
+
+                        elif "browse" in words and "meditation" in words and "technique" in words:
+                            speak("open Meditation technique on youtube")
+                            command = "firefox -safe-mode https://www.youtube.com/playlist?list=PLUh8U5np7D-7FMh6ONGwnaltFppPBwTVI"
+                            subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                            screenWidth, screenHeight = pyautogui.size()
+                            pyautogui.moveTo(int(screenWidth*5/8), int(screenHeight*19/32))
+                            bot = False
+
                         elif "open" in words and "fire" in words and "fox" in words:
                             speak("open firefox web browser")
                             command = "firefox -safe-mode https://free.facebook.com/"
@@ -503,12 +548,12 @@ try:
                             pyautogui.move(-52, 0)
                         elif "mouse" in words and "right" in words:
                             pyautogui.move(50, 0)
-                        elif "scroll" in words and "up" in words:
+                        elif "scroll" in words  or "page" in words and "up" in words:
                             pyautogui.scroll(5)
                             for s in range(5):
                                 pyautogui.scroll(1)
                                 time.sleep(0.5)
-                        elif "scroll" in words and "down" in words:
+                        elif "scroll" in words or "page" in words and "down" in words:
                             # pyautogui.scroll(-7)
                             for s in range(7):
                                 pyautogui.scroll(-1)
@@ -518,11 +563,21 @@ try:
                         elif "mouse" in words and "exit" in words:
                             speak("stop mouse control")
                             bot = False
+                        elif "speak" in words:
+                            listToStr = ' '.join(map(str, words))
+                            listToStr = listToStr.replace("speak",'')
+                            speak("You said, " + listToStr)
+                            time.sleep(3)
+                            with q.mutex:
+                                q.queue.clear()
                             
             else:
-                        pass
-                        # x = rec.PartialResult()
-                        # print(x)
+                pass
+                # if not bot:
+                #     x = rec.PartialResult()
+                #     print(x)
+                # else:
+                #     pass
 
 except KeyboardInterrupt:
     print('\nDone')
