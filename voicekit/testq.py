@@ -121,16 +121,49 @@ def callback(indata, frames, time, status):
 
 
 def ledc(c=''):
+    # print('Set blink pattern: period=500ms (2Hz)')
+    leds.pattern = Pattern.blink(100) # alpha 10 Hz
+
     if c == 'r':
         leds.update(Leds.rgb_on(Color.RED))
+    elif c == 'rr':
+        leds.update(Leds.rgb_pattern(Color.RED))
+
     elif c == 'g':
         leds.update(Leds.rgb_on(Color.GREEN))
+    elif c == "gg":
+        leds.update(Leds.rgb_pattern(Color.GREEN))
+
     elif c == 'b':
         leds.update(Leds.rgb_on(Color.BLUE))
+    elif c == 'bb':
+        leds.update(Leds.rgb_pattern(Color.BLUE))
+
     elif c == 'y':
         leds.update(Leds.rgb_on(Color.YELLOW))
+    elif c == 'yy':
+        leds.update(Leds.rgb_pattern(Color.YELLOW))
+
+    elif c == 'p':
+        leds.update(Leds.rgb_on(Color.PURPLE))     
+    elif c == 'pp':
+        leds.update(Leds.rgb_pattern(Color.PURPLE))
+
+    elif c == 'c':
+        leds.update(Leds.rgb_on(Color.CYAN))
+    elif c == 'cc':
+        leds.update(Leds.rgb_pattern(Color.CYAN))
+
+    elif c == 'd':
+        # dark or black = rgb(0,0,0)
+        leds.update(Leds.rgb_on(Color.BLACK))
+
+    elif c == 'off':
+        board.led.state = Led.OFF
+
     else:
         leds.update(Leds.rgb_on(Color.WHITE))
+
     return None
 
 
@@ -354,10 +387,10 @@ def monk_rules(c='g'):
     return None
 
 
-def pure_alpha(c='g'):
+def pure_alpha(c='yy'):
     ledc(c)
-    speak("play 1 hour pure alpha sound, or push button for stop")
-    proc = subprocess.Popen(["mpg123","-f","4000","-q","--loop","-1","../mars/pureAlpha.mp3"])
+    speak("pure alpha sound, push button for stop")
+    proc = subprocess.Popen(["mpg123","-q","--loop","-1","../mars/pureAlpha.mp3"])
     press_for_stop(c,proc)
     return None
 
@@ -369,14 +402,13 @@ def morning_practice(c=''):
     proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
     time.sleep(600)
     proc.kill()
-    text = ["รู้","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
+    text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
     stext = thwords(text)
     os.system("mpg123 -q -f 1000 " + stext)
     subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
     # start
-    subprocess.run(["mpg123","-q","../dataen/alpha12Hz.mp3"])
-    proc = subprocess.Popen(["mpg123","-q","-f","2000","../mars/pureAlpha.mp3"])
-    time.sleep(2700)
+    proc = subprocess.Popen(["mpg123","-q","--loop","-1","../mars/pureAlpha.mp3"])
+    time.sleep(3600)
     proc.kill()
     subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
     # cool down
@@ -403,7 +435,7 @@ def morning_practice_chanting_mode(c='',m=1):
     proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
     time.sleep(600)
     proc.kill()
-    text = ["รู้","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
+    text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
     stext = thwords(text)
     os.system("mpg123 -q -f 1000 " + stext)
     subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
@@ -421,7 +453,7 @@ def morning_practice_chanting_mode(c='',m=1):
     return None
 
 #BHAVANA
-def wise_one(c='r'):
+def wise_one(c='off'):
     proc = subprocess.Popen(["mpg123","-d","3","-f","500","-q","--loop","-1","../thaivoices/buddho.mp3"])
     press_for_stop(c,proc)
     return None
@@ -430,7 +462,7 @@ def wise_one(c='r'):
 def breathing_alpha_meditation(c='g',t=30):
     ledc(c)
     vol = "500"
-    text = ["รู้","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
+    text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
     stext = thwords(text)
     print(stext)
     os.system("mpg123 -q -f 1000 " + stext)
@@ -464,6 +496,7 @@ def alpha_meditation(c='g',t=30):
 
 def fast_buddho(c='', t=30):
     ledc(c)
+
     th_stand = thwords(["ยืน","หนอ"])
     for i in range(3):
         os.system('mpg123 -f 2000 ' + th_stand)
@@ -757,13 +790,13 @@ try:
                                 # for martian monk only 
                                 elif "morning" in words and "practice" in words:
                                     if"one" in words:
-                                        morning_practice_chanting_mode('r',1)
+                                        morning_practice_chanting_mode('d',1)
                                     elif "two" in words:
-                                        morning_practice_chanting_mode('r',2)
+                                        morning_practice_chanting_mode('d',2)
                                     elif "three" in words:
-                                        morning_practice_chanting_mode('r',3)
+                                        morning_practice_chanting_mode('d',3)
                                     else:
-                                        morning_practice('r')
+                                        morning_practice('d')
 
                                 elif "what" in words and "time" in words:
                                     today = datetime.today().strftime('%H %M')
@@ -855,20 +888,20 @@ try:
                                     if "five" in words:
                                         t = 5
                                         speak("slow buddho mantra, push button for stop")
-                                        slow_buddho('g',0)
+                                        slow_buddho('gg',0)
                                                                                
                                     elif "one" in words:  
                                         speak("one hour buddho mantra")
-                                        fast_buddho('r')
-                                        fast_buddho('g')
+                                        fast_buddho('rr')
+                                        fast_buddho('gg')
                                     
                                     elif "two" in words:  
                                         speak("one hour buddho mantra then shutdown")
-                                        fast_buddho('g')
+                                        fast_buddho('gg')
 
                                         remind_sati()
 
-                                        fast_buddho('r')
+                                        fast_buddho('rr')
                                         shutdown()
                                         break 
 
@@ -883,12 +916,12 @@ try:
                                         
                                         remind_sati()
 
-                                        fast_buddho('g')
+                                        fast_buddho('gg')
 
                                         remind_right_sati()
 
-                                        fast_buddho('r',180)
-                                        board.led.state = Led.OFF
+                                        fast_buddho('off',180)
+                                        # board.led.state = Led.OFF
                                         os.system("sudo shutdown now")
                                         break 
 
@@ -899,40 +932,40 @@ try:
 
                                         remind_sati()
 
-                                        fast_buddho('g')
+                                        fast_buddho('gg')
 
                                         remind_right_sati()
 
-                                        fast_buddho('r',180)
-                                        board.led.state = Led.OFF
+                                        fast_buddho('off',180)
+                                        # board.led.state = Led.OFF
                                         os.system("sudo shutdown now")
                                         break
 
                                     elif "six" in words:  
                                         speak("4 hours buddho mantra then shutdown")
 
-                                        three_stages_th_en('b',10)
+                                        three_stages_th_en('c',10)
 
                                         six_stages_th_en('y')
 
-                                        one_stage_en('g',15)
+                                        one_stage_en('b',15)
 
-                                        one_stage_th_en('y',15)
+                                        one_stage_th_en('g',15)
 
-                                        fast_buddho('g',15)
+                                        fast_buddho('p',15)
                                         
                                         remind_sati()
 
-                                        fast_buddho('y')
+                                        fast_buddho('gg')
 
                                         remind_sati()
 
-                                        fast_buddho('g')
+                                        fast_buddho('pp')
 
                                         remind_right_sati()
 
-                                        fast_buddho('r',120)
-                                        board.led.state = Led.OFF
+                                        fast_buddho('off',120)
+                                        # board.led.state = Led.OFF
                                         os.system("sudo shutdown now")
                                         break
 
@@ -1035,15 +1068,18 @@ try:
 
                                 elif "light" in words and "on" in words:
                                     if "red" in words:
-                                        leds.update(Leds.rgb_on(Color.RED))
+                                        ledc('r')
                                     elif "green" in words:
-                                        leds.update(Leds.rgb_on(Color.GREEN))
+                                        ledc('g')
                                     elif "blue" in words:
-                                        leds.update(Leds.rgb_on(Color.BLUE))
+                                        ledc('b')
                                     elif "yellow" in words:
-                                        leds.update(Leds.rgb_on(Color.YELLOW))
+                                        ledc('y')
+                                    elif "alpha" in words:
+                                        ledc('gg')
                                     else:
-                                        leds.update(Leds.rgb_on(Color.WHITE))
+                                        ledc()
+
                                     board.button.wait_for_press() 
 
                                 # https://pimylifeup.com/raspberry-pi-webcam-server/ 
