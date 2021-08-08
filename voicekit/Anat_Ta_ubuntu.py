@@ -309,6 +309,7 @@ try:
             runv += 'mouse left right scroll click exit center sky star page browse technique wise speak player '
             runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty '
             runv += 'a b c d e f g h i j k l m n o p q r s t u v w x y z '
+            # runv += 'is am are be was were do does did done had have has can could shall should might may maybe '
             runv += 'show sleep start stop story sutra tell time to turn up volume wake walking what when who yes zen fire fox"]'
             
             rec = vosk.KaldiRecognizer(model, args.samplerate, runv)
@@ -344,7 +345,17 @@ try:
                     if bot or focus:
                         print(z["text"])
                         print("Listening...")
-                        if "wise" in words and "one" in words:
+
+                        if focus:
+                            if "yes" in words:
+                                proc = subprocess.Popen(focus_event)
+                                focus = False
+                                focus_event = []
+                            elif "no" in words:
+                                focus = False
+                                focus_event = []
+
+                        elif "wise" in words and "one" in words:
                             if "play" in words:
                                 proc = subprocess.Popen(["mpg123","-d","3","-q","--loop","-1","../thaivoices/buddho.mp3"])
                                 proc_ck = True
@@ -364,14 +375,6 @@ try:
                             motion_detect(proc)
                             clear_q()
 
-                        elif focus:
-                            if "yes" in words:
-                                proc = subprocess.Popen(focus_event)
-                                focus = False
-                                focus_event = []
-                            elif "no" in words:
-                                focus = False
-                                focus_event = []
 
                         elif "who" in words and "buddha" in words:
                             lines = buddhism["buddha"][0]["content"]
@@ -383,7 +386,7 @@ try:
                                 engine.say(lines[i]["text"])
                                 engine.runAndWait()
                                 engine.stop()
-                            focus_event = ["vlc","-f","--video-on-top","--play-and-exit","buddha-story.mp4"]
+                            focus_event = ["vlc","-f","--video-on-top","--play-and-exit","../mars/buddha-story.mp4"]
                             focus = True
                             bot = False                 
                         # elif "buddhist" in words and "story" in words:
