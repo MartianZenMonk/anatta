@@ -356,32 +356,69 @@ def monk_rules(c='g'):
 
 def pure_alpha(c='g'):
     ledc(c)
-    proc = subprocess.Popen(["mpg123","-f","1000","-q","../mars/pureAlpha.mp3"])
+    speak("play 1 hour pure alpha sound, or push button for stop")
+    proc = subprocess.Popen(["mpg123","-f","4000","-q","--loop","-1","../mars/pureAlpha.mp3"])
     press_for_stop(c,proc)
     return None
 
 
 def morning_practice(c=''):
     ledc(c)
+    vol = "200"
     # warm up
-    proc = subprocess.Popen(["mpg123","-d","3","-f","500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
     time.sleep(600)
     proc.kill()
     text = ["รู้","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
     stext = thwords(text)
     os.system("mpg123 -q -f 1000 " + stext)
-    os.system("mpg123 -q -f 1000 --loop 3 ../dataen/bell.mp3")
+    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
     # start
-    proc = subprocess.Popen(["mpg123","-q","../dataen/alpha15min.mp3"])
+    subprocess.run(["mpg123","-q","../dataen/alpha12Hz.mp3"])
+    proc = subprocess.Popen(["mpg123","-q","-f","2000","../mars/pureAlpha.mp3"])
     time.sleep(2700)
     proc.kill()
-    os.system("mpg123 -q -f 1000 --loop 3 ../dataen/bell.mp3")
+    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
     # cool down
-    proc = subprocess.Popen(["mpg123","-d","3","-f","500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
     time.sleep(1800)
     proc.kill()
+    del stext
+    gc.collect()
     return None
 
+
+def morning_practice_chanting_mode(c='',m=1):
+    if m == 1:
+        cm = '../mars/matika.mp3'
+    elif m == 2:
+        cm = '../mars/7kampee.mp3'
+    else:
+        cm = '../mars/pahung.mp3'
+
+    vol = "200"
+
+    ledc(c)
+    # warm up
+    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
+    time.sleep(600)
+    proc.kill()
+    text = ["รู้","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
+    stext = thwords(text)
+    os.system("mpg123 -q -f 1000 " + stext)
+    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
+    # start
+    proc = subprocess.Popen(["mpg123","-q","-f",vol,"--loop","-1",cm])
+    time.sleep(3600)
+    proc.kill()
+    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
+    # cool down
+    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
+    time.sleep(1800)
+    proc.kill()
+    del stext
+    gc.collect()
+    return None
 
 #BHAVANA
 def wise_one(c='r'):
@@ -392,31 +429,35 @@ def wise_one(c='r'):
 
 def breathing_alpha_meditation(c='g',t=30):
     ledc(c)
+    vol = "500"
     text = ["รู้","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
     stext = thwords(text)
     print(stext)
     os.system("mpg123 -q -f 1000 " + stext)
-    os.system("mpg123 -q -f 1000 --loop 3 ../dataen/bell.mp3")
-    proc = subprocess.Popen(["mpg123","-q","../dataen/alpha15min.mp3"])
+    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
+    proc = subprocess.Popen(["mpg123","-q","--loop","-1","../dataen/alpha12Hz.mp3"])
     time.sleep(60*t)
     proc.kill()
-    os.system("mpg123 -q -f 1000 --loop 3 ../dataen/bell.mp3")
-    proc = subprocess.Popen(["mpg123","-d","3","-f","500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
+    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
     press_for_stop(c,proc)
+    del stext
+    gc.collect()
     return None
 
 
 def alpha_meditation(c='g',t=30):
     ledc(c)
-    os.system("mpg123 -q -f 1000 --loop 3 ../dataen/bell.mp3")
-    proc = subprocess.Popen(["mpg123","-d","3","-f","500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+    vol = "500"
+    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
+    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
     time.sleep(300)
     proc.kill()
-    proc = subprocess.Popen(["mpg123","-q","../dataen/alpha15min.mp3"])
+    proc = subprocess.Popen(["mpg123","-q","--loop","-1","../dataen/alpha12Hz.mp3"])
     time.sleep(60*t)
     proc.kill()
-    os.system("mpg123 -q -f 1000 --loop 3 ../dataen/bell.mp3")
-    proc = subprocess.Popen(["mpg123","-d","3","-f","500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
+    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
     press_for_stop(c,proc)
     return None
 
@@ -651,8 +692,8 @@ try:
             # print(args.device)
             # speak("Welcome to Anat ta Project, your Buddhist true friend ever")
             # get_help()
-            os.system('espeak -s 130 -a 5 -v "english-us" "Nothing is worth insisting on"')
-            os.system('mpg123 -q -f 1000 ../thaivoices/hello.mp3')
+            os.system('espeak -s 130 -a 4 -v "english-us" "Nothing is worth insisting on"')
+            os.system('mpg123 -q -f 400 ../thaivoices/hello.mp3')
 
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
@@ -707,15 +748,22 @@ try:
                                     if "breathing" in words:
                                         breathing_alpha_meditation('g',t);
                                     elif "pure" in words:
-                                        pure_alpha() # for martian monk only ei ei
+                                        pure_alpha() # for martian monk only 
                                     else:
                                         alpha_meditation('g',t)
-
+                                # for martian monk only 
                                 elif "monk" in words and "rule" in words:
-                                    monk_rules() # for martian monk only ei ei
-
+                                    monk_rules() 
+                                # for martian monk only 
                                 elif "morning" in words and "practice" in words:
-                                    morning_practice('r')
+                                    if"one" in words:
+                                        morning_practice_chanting_mode('r',1)
+                                    elif "two" in words:
+                                        morning_practice_chanting_mode('r',2)
+                                    elif "three" in words:
+                                        morning_practice_chanting_mode('r',3)
+                                    else:
+                                        morning_practice('r')
 
                                 elif "what" in words and "time" in words:
                                     today = datetime.today().strftime('%H %M')
