@@ -314,7 +314,7 @@ try:
             rec = vosk.KaldiRecognizer(model, args.samplerate, runv)
 
             stop_player()
-            engine.say('Hello my name is '+bot_name+' please call my name before speak to me')
+            engine.say('Hello my name is '+ bot_name +' please call my name before speak to me')
             engine.runAndWait()
             engine.stop()
             n = 0
@@ -325,13 +325,18 @@ try:
 
             while True:
                 data = q.get()
+                # print(q.qsize())    
                 if rec.AcceptWaveform(data):
                     w = rec.Result()
                     z = json.loads(w)
                     words = z["text"].split()
 
                     if not bot:
-                        print(words)  
+                        if len(words)==0:
+                            print("[-_-]")
+                        else:
+                            print("[^_^]o ")
+                            print(words)  
                      
                     if bot_name == z["text"] or ("hey" in words and bot_name in words):
                         bot = True

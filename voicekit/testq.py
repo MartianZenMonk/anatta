@@ -346,8 +346,53 @@ def buddha_day():
     gc.collect()
     return None
 
+# FOR MARTIAN MONK ONLY
+def monk_rules(c='g'):
+    ledc(c)
+    proc = subprocess.Popen(["mpg123","-f","2000","-q","../mars/patimok.mp3"])
+    press_for_stop(c,proc)
+    return None
+
+
+def pure_alpha(c='g'):
+    ledc(c)
+    proc = subprocess.Popen(["mpg123","-f","1000","-q","../mars/pureAlpha.mp3"])
+    press_for_stop(c,proc)
+    return None
+
+
 #BHAVANA
 def wise_one(c='r'):
+    proc = subprocess.Popen(["mpg123","-d","3","-f","500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+    press_for_stop(c,proc)
+    return None
+
+
+def breathing_alpha_meditation(c='g',t=30):
+    ledc(c)
+    text = ["รู้","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
+    stext = thwords(text)
+    print(stext)
+    os.system("mpg123 -q -f 1000 " + stext)
+    os.system("mpg123 -q -f 1000 --loop 3 ../dataen/bell.mp3")
+    proc = subprocess.Popen(["mpg123","-q","../dataen/alpha15min.mp3"])
+    time.sleep(60*t)
+    proc.kill()
+    os.system("mpg123 -q -f 1000 --loop 3 ../dataen/bell.mp3")
+    proc = subprocess.Popen(["mpg123","-d","3","-f","500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+    press_for_stop(c,proc)
+    return None
+
+
+def alpha_meditation(c='g',t=30):
+    ledc(c)
+    os.system("mpg123 -q -f 1000 --loop 3 ../dataen/bell.mp3")
+    subprocess.run(["mpg123","-d","3","-f","500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+    time.sleep(300)
+    proc = subprocess.Popen(["mpg123","-q","../dataen/alpha15min.mp3"])
+    time.sleep(60*t)
+    proc.kill()
+    os.system("mpg123 -q -f 1000 --loop 3 ../dataen/bell.mp3")
     proc = subprocess.Popen(["mpg123","-d","3","-f","500","-q","--loop","-1","../thaivoices/buddho.mp3"])
     press_for_stop(c,proc)
     return None
@@ -588,7 +633,9 @@ try:
 
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
-            v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty red green blue yellow '
+            v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
+            # v += 'a b c d e f g h i j k l m n o p q r s t u v w x y z '
+            v += 'red green blue yellow alpha breathing pure monk rule '
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
@@ -625,6 +672,24 @@ try:
 
                                 if "wise" in words and "one" in words:
                                     wise_one()
+
+                                elif "alpha" in words and "meditation" in words:
+                                    if "sixty" in words:
+                                        t = 60
+                                    elif "ninety" in words:
+                                        t = 90
+                                    else:
+                                        t = 30
+                                    
+                                    if "breathing" in words:
+                                        breathing_alpha_meditation('g',t);
+                                    elif "pure" in words:
+                                        pure_alpha() # for martian monk only ei ei
+                                    else:
+                                        alpha_meditation('g',t)
+
+                                elif "monk" in words and "rule" in words:
+                                    monk_rules() # for martian monk only ei ei
 
                                 elif "what" in words and "time" in words:
                                     today = datetime.today().strftime('%H %M')
