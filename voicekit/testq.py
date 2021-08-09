@@ -786,6 +786,7 @@ try:
 
             focus = False
             zen = False
+            proc_bool = False
             
             with q.mutex:
                 q.queue.clear()
@@ -1123,14 +1124,16 @@ try:
                                         ledc('y')
                                     elif "alpha" in words:
                                         ledc('gg')
-                                        proc_alpha = subprocess.Popen(["mpg123","-q","--loop","-1","../dataen/alpha12Hz.mp3"])
+                                        proc = subprocess.Popen(["mpg123","-q","--loop","-1","../dataen/alpha12Hz.mp3"])
+                                        proc_bool = True
                                         
                                     else:
                                         ledc()
 
                                     board.button.wait_for_press()
-                                    if find_name('mpg123'):
-                                        proc_alpha.kill()
+                                    if proc_bool:
+                                        proc.kill()
+                                        proc_bool = False
 
                                 # https://www.raspberrypi.org/documentation/remote-access/web-server/nginx.md        
                                 elif "web" in words and "server" in words:
