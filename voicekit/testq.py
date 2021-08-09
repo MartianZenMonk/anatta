@@ -157,6 +157,8 @@ def ledc(c=''):
     elif c == 'd':
         # dark or black = rgb(0,0,0)
         leds.update(Leds.rgb_on(Color.BLACK))
+    elif c == 'dd':
+        leds.update(Leds.rgb_pattern(Color.BLACK))
 
     elif c == 'off':
         board.led.state = Led.OFF
@@ -379,7 +381,28 @@ def buddha_day():
     gc.collect()
     return None
 
+
+def fast_buddho(c='', t=30, vol='1000'):
+
+    ledc(c)
+
+    if t==0:
+        proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
+        press_for_stop(c,proc)
+    else:
+        proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
+        time.sleep(60*t)
+        proc.kill() 
+   
+    return None
+
+
 # FOR MARTIAN MONK ONLY
+def bell(l=3,vol='200'):
+    subprocess.run(["mpg123","-q","-f",vol,"--loop",l,"../dataen/bell.mp3"])
+    return None
+
+
 def monk_rules(c='g'):
     ledc(c)
     proc = subprocess.Popen(["mpg123","-f","2000","-q","../mars/patimok.mp3"])
@@ -399,22 +422,18 @@ def morning_practice(c=''):
     ledc(c)
     vol = "200"
     # warm up
-    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
-    time.sleep(600)
-    proc.kill()
+    fast_buddho(c,10,vol)
     text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
     stext = thwords(text)
     os.system("mpg123 -q -f 1000 " + stext)
-    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
+    bell('3',vol)
     # start
     proc = subprocess.Popen(["mpg123","-q","--loop","-1","../mars/pureAlpha.mp3"])
     time.sleep(3600)
     proc.kill()
-    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
+    bell('3',vol)
     # cool down
-    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
-    time.sleep(1800)
-    proc.kill()
+    fast_buddho(c,30,vol)
     del stext
     gc.collect()
     return None
@@ -432,29 +451,25 @@ def morning_practice_chanting_mode(c='',m=1):
 
     ledc(c)
     # warm up
-    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
-    time.sleep(600)
-    proc.kill()
+    fast_buddho(c,10,vol)
     text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
     stext = thwords(text)
     os.system("mpg123 -q -f 1000 " + stext)
-    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
+    bell('3',vol)
     # start
     proc = subprocess.Popen(["mpg123","-q","-f",vol,"--loop","-1",cm])
     time.sleep(3600)
     proc.kill()
-    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
+    bell('3',vol)
     # cool down
-    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
-    time.sleep(1800)
-    proc.kill()
+    fast_buddho(c,30,vol)
     del stext
     gc.collect()
     return None
 
 #BHAVANA
-def wise_one(c='off'):
-    proc = subprocess.Popen(["mpg123","-d","3","-f","500","-q","--loop","-1","../thaivoices/buddho.mp3"])
+def wise_one(c='off',vol="500"):
+    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
     press_for_stop(c,proc)
     return None
 
@@ -466,50 +481,35 @@ def breathing_alpha_meditation(c='g',t=30):
     stext = thwords(text)
     print(stext)
     os.system("mpg123 -q -f 1000 " + stext)
-    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
+    bell('3',vol)
+    if len(c) == 1:
+        ledc(c+c)
+    else:
+        ledc(c)
     proc = subprocess.Popen(["mpg123","-q","--loop","-1","../dataen/alpha12Hz.mp3"])
     time.sleep(60*t)
     proc.kill()
-    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
-    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
-    press_for_stop(c,proc)
+    ledc(c)
+    bell('3',vol)
+    wise_one(c,vol)
     del stext
     gc.collect()
     return None
 
 
 def alpha_meditation(c='g',t=30):
-    ledc(c)
     vol = "500"
-    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
-    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
-    time.sleep(300)
-    proc.kill()
+    bell('3',vol)
+    fast_buddho(c,5,vol)
+    if len(c) == 1:
+        ledc(c+c)
+    else:
+        ledc(c)
     proc = subprocess.Popen(["mpg123","-q","--loop","-1","../dataen/alpha12Hz.mp3"])
     time.sleep(60*t)
     proc.kill()
-    subprocess.run(["mpg123","-q","-f",vol,"--loop","3","../dataen/bell.mp3"])
-    proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
-    press_for_stop(c,proc)
-    return None
-
-
-def fast_buddho(c='', t=30):
-    ledc(c)
-
-    th_stand = thwords(["ยืน","หนอ"])
-    for i in range(3):
-        os.system('mpg123 -f 2000 ' + th_stand)
-        time.sleep(1)
-    if t==0:
-        proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-        press_for_stop(c,proc)
-    else:
-        proc = subprocess.Popen(["mpg123","-d","3","-f","1000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-        time.sleep(60*t)
-        proc.kill()
-    del th_stand
-    gc.collect()
+    bell('3',vol)
+    wise_one(c,vol)
     return None
 
 
@@ -661,6 +661,50 @@ def remind_right_sati():
     text = " ../thaivoices/right_sati.mp3"
     os.system("mpg123 -q -f 2000 "+text)
 
+# For Buddha holy day
+def evening_practice(c='',t=60):
+    ledc(c)
+    vol = "200"
+    # warm up
+    bell('3',vol)
+
+    one_stage_th_en('y',10)
+
+    one_stage_en('g',10)
+
+    three_stages_th_en('b',10)
+    
+    remind_sati()
+
+    fast_buddho('gg')
+
+    remind_right_sati()
+
+    fast_buddho('r')
+
+    fast_buddho('d')
+
+    bell('3',vol)
+
+    text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
+    stext = thwords(text)
+    os.system("mpg123 -q -f 1000 " + stext)
+    
+    # start
+    proc = subprocess.Popen(["mpg123","-q","--loop","-1","../mars/pureAlpha.mp3"])
+    time.sleep(60*t)
+    proc.kill()
+    
+    bell('3',vol)
+    
+    # cool down
+    fast_buddho('off',60*(480-t),vol)
+
+    del stext
+    gc.collect()
+    
+    return None
+
 
 # read zenstories file
 with open('zenstories.json', 'r') as myfile:
@@ -732,7 +776,7 @@ try:
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             # v += 'a b c d e f g h i j k l m n o p q r s t u v w x y z '
-            v += 'red green blue yellow alpha breathing pure monk rule morning practice '
+            v += 'red green blue yellow alpha breathing pure monk rule morning evening practice web server '
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
@@ -797,6 +841,8 @@ try:
                                         morning_practice_chanting_mode('d',3)
                                     else:
                                         morning_practice('d')
+                                elif "evening" in words and "practice" in words:
+                                    evening_practice()
 
                                 elif "what" in words and "time" in words:
                                     today = datetime.today().strftime('%H %M')
@@ -1077,10 +1123,31 @@ try:
                                         ledc('y')
                                     elif "alpha" in words:
                                         ledc('gg')
+                                        proc_alpha = subprocess.Popen(["mpg123","-q","--loop","-1","../dataen/alpha12Hz.mp3"])
+                                        
                                     else:
                                         ledc()
 
-                                    board.button.wait_for_press() 
+                                    board.button.wait_for_press()
+                                    if find_name('mpg123'):
+                                        proc_alpha.kill()
+
+                                # https://www.raspberrypi.org/documentation/remote-access/web-server/nginx.md        
+                                elif "web" in words and "server" in words:
+                                    ip = get_ip()
+                                    if "start" in words:
+                                        if find_name('nginx'):
+                                            speak("web server already start at ip " + ip)
+                                        else:
+                                            os.system("sudo /etc/init.d/nginx start")
+                                            speak("web server start at ip " + ip)
+                                    if "stop" in words:
+                                        if find_name('nginx'):
+                                            os.system("sudo /etc/init.d/nginx stop")
+                                            speak("stop web server")
+                                        else:
+                                            speak("web server already stop")
+
 
                                 # https://pimylifeup.com/raspberry-pi-webcam-server/ 
                                 elif "turn" in words and "webcam" in words:
