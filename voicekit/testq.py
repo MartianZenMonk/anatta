@@ -1043,7 +1043,7 @@ try:
                                         remind_right_sati()
 
                                         fast_buddho('off',180)
-                                        # board.led.state = Led.OFF
+                                        
                                         os.system("sudo shutdown now")
                                         break 
 
@@ -1059,7 +1059,7 @@ try:
                                         remind_right_sati()
 
                                         fast_buddho('off',180)
-                                        # board.led.state = Led.OFF
+                                        
                                         os.system("sudo shutdown now")
                                         break
 
@@ -1087,7 +1087,7 @@ try:
                                         remind_right_sati()
 
                                         fast_buddho('off',120)
-                                        # board.led.state = Led.OFF
+                                        
                                         os.system("sudo shutdown now")
                                         break
 
@@ -1116,34 +1116,35 @@ try:
                                     else:
                                         pass
 
-                                elif "play" in words and "one" in words and "stage" in words:
-                                    
-                                    killPlayer()
+                                elif "play" in words and "stage" in words:
 
-                                    if "five" in words:
-                                        t = 5
-                                    elif "ten" in words:
-                                        t = 10 
-                                    elif "fiftheen" in words:
-                                        t = 15
-                                    elif "twenty" in words:
-                                        t = 20
-                                    else:
-                                        t = 30
+                                    if "one" in words:
 
-                                    speak(str(t) + " minutes 1 stage walking practice")
+                                        killPlayer()
 
-                                    if "english" in words:
-                                        one_stage_en('g',t)
-                                    else:
-                                        one_stage_th_en('g',t)
+                                        if "five" in words:
+                                            t = 5
+                                        elif "ten" in words:
+                                            t = 10 
+                                        elif "fiftheen" in words:
+                                            t = 15
+                                        elif "twenty" in words:
+                                            t = 20
+                                        else:
+                                            t = 30
 
-                                elif "play" in words and "three" in words and "stage" in words:
-                                    three_stages_th_en('g')
-                                    
+                                        speak(str(t) + " minutes 1 stage walking practice")
 
-                                elif "play" in words and "six" in words and "stage" in words:
-                                    six_stages_th_en('g')                    
+                                        if "english" in words:
+                                            one_stage_en('g',t)
+                                        else:
+                                            one_stage_th_en('g',t)
+
+                                    elif "three" in words:
+                                        three_stages_th_en('g')
+
+                                    elif "six" in words:
+                                        six_stages_th_en('g')                    
 
                                 elif "meditation" in words and "time" in words:
                                     killPlayer()   
@@ -1153,10 +1154,10 @@ try:
                                     text += "or free walking, just focus on Treading, "
                                     text += "For sitting, breathing in calm, breathing out down, always mind your breathing, your citta will not go around"
                                     speak(text)
-                                    proc = subprocess.Popen(["mpg123","-f","1500","-q","--loop","-1","../dataen/bell15min.mp3"])
-                                    press_for_stop('g',proc)
                                     del text
                                     gc.collect()
+                                    proc = subprocess.Popen(["mpg123","-f","1500","-q","--loop","-1","../dataen/bell15min.mp3"])
+                                    press_for_stop('g',proc)
                                     
                                 elif "buddha" in words and "dhamma" in words:
                                     killPlayer()    
