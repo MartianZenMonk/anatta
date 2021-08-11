@@ -1099,8 +1099,8 @@ try:
                                         alpha_meditation('g',t)
 
                                 elif "math" in words and "meditation" in words:
-                                    a = random.randint(1,9)
-                                    b = random.randint(1,9)
+                                    a = random.randint(1,20)
+                                    b = random.randint(1,20)
                                     speak("what is "+ str(a) + " plus "+ str(b))
                                     c = a + b
                                     sc = ''
@@ -1512,10 +1512,14 @@ try:
 
                                         if sc == ans:
                                             speak("well done")
-                                            a = random.randint(1,9)
-                                            b = random.randint(1,9)
-                                            speak("what is "+ str(a) + " plus "+ str(b))
-                                            c = a + b
+                                            a = random.randint(1,20)
+                                            b = random.randint(1,20)
+                                            if a>b:
+                                                speak("what is "+ str(a) + " minus "+ str(b))
+                                                c = a - b
+                                            else:
+                                                speak("what is "+ str(a) + " plus "+ str(b))
+                                                c = a + b
                                             sc = ''
                                             lc = list(str(c))
                                             for i in lc:
