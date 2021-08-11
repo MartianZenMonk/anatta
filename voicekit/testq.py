@@ -1031,7 +1031,7 @@ try:
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             # v += 'a b c d e f g h i j k l m n o p q r s t u v w x y z '
-            v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math new '
+            v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
@@ -1524,15 +1524,32 @@ try:
                                             lc = list(str(c))
                                             for i in lc:
                                                 sc += int2word(int(i))
+                                            clear_q()
 
                                         elif "stop" in words:
                                             math = False
                                             focus = False
                                             speak("quit math meditation")
                                             clear_q()
+                                        elif "next" in words:
+                                            speak("the answer is " + sc)
+                                            a = random.randint(1,20)
+                                            b = random.randint(1,20)
+                                            if a>b:
+                                                speak("what is "+ str(a) + " minus "+ str(b))
+                                                c = a - b
+                                            else:
+                                                speak("what is "+ str(a) + " plus "+ str(b))
+                                                c = a + b
+                                            sc = ''
+                                            lc = list(str(c))
+                                            for i in lc:
+                                                sc += int2word(int(i))
+                                            clear_q()                                     
 
                                         else:
-                                            speak("not yet")
+                                            speak("i heard "+ ans + " , it's incorrect")
+                                            clear_q()
 
 
                     else:
