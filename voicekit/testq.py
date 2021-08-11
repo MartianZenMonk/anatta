@@ -91,6 +91,52 @@ def espeak(t,a='',v='',s='',*args):
         return None
 
 
+def word2int(w):
+
+    if w == "one":
+        return 1
+    elif w == "two":
+        return 2
+    elif w == "three":
+        return 3
+    elif w == "four":
+        return 4
+    elif w == "five":
+        return 5
+    elif w == "six":
+        return 6
+    elif w == "seven":
+        return 7
+    elif w == "eight":
+        return 8
+    elif w == "nine":
+        return 9
+    elif w == "zero":
+        return 0
+
+def int2word(n):
+
+    if n == 1:
+        return "one"
+    elif n == 2:
+        return "two"
+    elif n == 3:
+        return "three"
+    elif n == 4:
+        return "four"
+    elif n == 5:
+        return "five"
+    elif n == 6:
+        return "six"
+    elif n == 7:
+        return "seven"
+    elif n == 8:
+        return "eight"
+    elif n == 9:
+        return "nine"
+    elif n == 0:
+        return "zero"
+
 
 # flite Voices available: kal awb_time kal16 awb rms slt  
 def speakf(v,t,*args):
@@ -117,7 +163,12 @@ def callback(indata, frames, time, status):
         with q.mutex:
             q.queue.clear()
     else:
-        q.put(bytes(indata))  
+        q.put(bytes(indata)) 
+
+
+def clear_q():
+    with q.mutex:
+        q.queue.clear()
 
 
 def ledc(c=''):
@@ -980,7 +1031,7 @@ try:
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             # v += 'a b c d e f g h i j k l m n o p q r s t u v w x y z '
-            v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my new '
+            v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math new '
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
@@ -991,6 +1042,8 @@ try:
             focus = False
             zen = False
             proc_bool = False
+            math = False
+            sc = ""
             
             with q.mutex:
                 q.queue.clear()
@@ -1013,7 +1066,7 @@ try:
                             print(words) 
                         
                         with Board() as board:
-
+                            #coding
                             if not focus:
 
                                 if "wise" in words and "one" in words:
@@ -1044,6 +1097,19 @@ try:
                                         pure_alpha() # for martian monk only 
                                     else:
                                         alpha_meditation('g',t)
+
+                                elif "math" in words and "meditation" in words:
+                                    a = random.randint(1,9)
+                                    b = random.randint(1,9)
+                                    speak("what is "+ str(a) + " plus "+ str(b))
+                                    c = a + b
+                                    sc = ''
+                                    lc = list(str(c))
+                                    for i in lc:
+                                        sc += int2word(int(i))
+                                    focus = True
+                                    math = True
+
                                 # for martian monk only 
                                 elif "monk" in words and "rule" in words:
                                     monk_rules() 
@@ -1127,7 +1193,7 @@ try:
                                     if "five" in words:
                                         t = 5
                                         speak("slow buddho mantra, push button for stop")
-                                        slow_buddho('gg',0)
+                                        slow_buddho('off',0)
                                                                                
                                     elif "one" in words:  
                                         speak("one hour buddho mantra")
@@ -1408,15 +1474,13 @@ try:
                                     listToStr = listToStr.replace("say",'')
                                     speak("You said, " + listToStr)
                                     time.sleep(3)
-                                    with q.mutex:
-                                        q.queue.clear()
+                                    clear_q()
 
                                 elif len(words) > 0:
                                     listToStr = ' '.join(map(str, words))
                                     espeak("words i heard , " + listToStr, '5')
                                     time.sleep(3)
-                                    with q.mutex:
-                                        q.queue.clear()
+                                    clear_q()
                                 
                             else:
 
@@ -1438,7 +1502,34 @@ try:
                                         zen = False
                                         focus = False
                                         engine.setProperty('voice',es_voices[2]) 
-                                        n = n +1                  
+                                        n = n +1 
+                                elif math:
+                                    
+                                    if len(words)>0:
+                                        ans = ''
+                                        for x in words:
+                                            ans += x
+
+                                        if sc == ans:
+                                            speak("well done")
+                                            a = random.randint(1,9)
+                                            b = random.randint(1,9)
+                                            speak("what is "+ str(a) + " plus "+ str(b))
+                                            c = a + b
+                                            sc = ''
+                                            lc = list(str(c))
+                                            for i in lc:
+                                                sc += int2word(int(i))
+
+                                        elif "stop" in words:
+                                            math = False
+                                            focus = False
+                                            speak("quit math meditation")
+                                            clear_q()
+
+                                        else:
+                                            speak("not yet")
+
 
                     else:
                         leds.update(Leds.rgb_on(Color.RED))

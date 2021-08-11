@@ -5,6 +5,10 @@ THANK YOU VERY MUCH TO MR. Peter Malkin FOR GIVING ME THE VOICEKIT AND CORAL DEV
 https://aiyprojects.withgoogle.com/voice/
 
 
+
+2 min story at https://medium.com/@martianmonk/bhavana-with-aiy-voice-kit-5168e5b918c9
+
+
 use
 
 git clone https://github.com/MartianZenMonk/anatta.git
