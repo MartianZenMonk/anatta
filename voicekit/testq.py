@@ -184,13 +184,15 @@ def get_help():
             daily dependent origination, buddha thinking Thai,
             nature truth chanting, breathing chanting, dependent origination chanting,
             8 fold path Thai, 8 fold path English, English chanting,
-            Thai chanting, meditaion time, play radio, play mantra 1 2 3 4 10 15 20,
+            Thai chanting, meditaion time, play radio, 
+            play mantra 1 2 3 4 5 6 ( 10 15 20 30 40 50 minutes),
             play 1 3 6 stage, buddha dhamma, play dhamma, play sutra,
             what time, what day, buddha day, zen story, please shutdown,
-            red green blue yellow alpha light on
+            red green blue yellow (sound, alpha) light on
+            (pure, breathing) alpha meditation
             moring practice
-            evening practice
-            wise one alpha
+            wise one (alpha)
+            play my dhamma
             '''
     speak(text)
     time.sleep(3)
@@ -385,7 +387,7 @@ def buddha_day():
     return None
 
 
-def fast_buddho(c='', t=30, vol='1000'):
+def fast_buddho(c='off', t=30, vol='1000'):
 
     ledc(c)
 
@@ -421,19 +423,20 @@ def pure_alpha(c='yy'):
     return None
 
 
-def morning_practice(c=''):
+def morning_practice(c='d'):
     ledc(c)
     vol = "200"
     # warm up
     fast_buddho(c,50,vol)
-
+    time.sleep(600)
+    bell('3',vol)
     text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
     stext = thwords(text)
     os.system("mpg123 -q -f 1000 " + stext)
     del stext
     gc.collect()
 
-    bell('3',vol)
+    # bell('3',vol)
     # start
     proc = subprocess.Popen(["mpg123","-q","--loop","-1","../mars/pureAlpha.mp3"])
     time.sleep(3600)
@@ -446,7 +449,7 @@ def morning_practice(c=''):
     return None
 
 
-def morning_practice_chanting_mode(c='',m=1):
+def morning_practice_chanting_mode(c='d',m=1):
     if m == 1:
         cm = '../mars/pahung.mp3'
         
@@ -462,6 +465,7 @@ def morning_practice_chanting_mode(c='',m=1):
     # warm up
     fast_buddho(c,50,vol)
 
+    bell('3',vol)
     text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
     stext = thwords(text)
     os.system("mpg123 -q -f 1000 " + stext)
@@ -489,6 +493,9 @@ def wise_one(c='off',vol="500"):
 def breathing_alpha_meditation(c='g',t=30):
 
     vol = "500"
+    speak(str(t) + " minutes alpha sound")
+
+    bell('3',vol)
     text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
     stext = thwords(text)
     print(stext)
@@ -506,19 +513,18 @@ def breathing_alpha_meditation(c='g',t=30):
     time.sleep(60*t)
     proc.kill()
 
-    ledc(c)
     bell('3',vol)
-    wise_one(c,vol)
     
     return None
 
 
-def alpha_meditation(c='g',t=30):
+def alpha_meditation(c='off',t=30):
 
     vol = "500"
 
+    speak(str(t) + " minutes alpha sound")
+
     bell('3',vol)
-    fast_buddho(c,5,vol)
 
     if len(c) == 1:
         ledc(c+c)
@@ -529,7 +535,6 @@ def alpha_meditation(c='g',t=30):
     proc.kill()
 
     bell('3',vol)
-    wise_one(c,vol)
 
     return None
 
@@ -707,8 +712,8 @@ def mixed_mode(c='',t=10,n=0):
 
 # For Buddha holy day start at 6:00 pm
 def evening_practice(d=0):
-
-    vol = "400"
+    # 8 + 2:30 hrs
+    vol = "500"
     bell('3',vol)
 
     one_stage_th_en('r',10)
@@ -719,17 +724,17 @@ def evening_practice(d=0):
     
     remind_sati()
 
-    fast_buddho('y')
+    slow_buddho('c',30)
 
     remind_right_sati()
 
+    fast_buddho('yy',15)
+    fast_buddho('d',15)
+
     fast_buddho('gg',15)
-    fast_buddho('g',15)
+    fast_buddho('d',15)
 
-    fast_buddho('rr',15)
-    fast_buddho('r',15)
-
-    vol = "200"
+    vol = "300"
     bell('3',vol)
     ledc('off')
 
@@ -738,14 +743,21 @@ def evening_practice(d=0):
     os.system("mpg123 -q -f 1000 " + stext)
     del stext
     gc.collect()
-    
-    proc = subprocess.Popen(["mpg123","-q","--loop","-1","../mars/pureAlpha.mp3"])
-    time.sleep(3600)
-    proc.kill()
-    
+
+    if d == 6:
+        d = 0
+        proc = subprocess.Popen(["mpg123","-q","--loop","-1","../mars/pureAlpha.mp3"])
+        time.sleep(60*360) # 6 hrs
+        proc.kill()
+
+    else:    
+        proc = subprocess.Popen(["mpg123","-q","--loop","-1","../mars/pureAlpha.mp3"])
+        time.sleep(3600)
+        proc.kill()
+        bell('3',vol)
+        fast_buddho('off',300,vol) # 5 hrs
+
     bell('3',vol)
-    
-    fast_buddho('off',420,vol)
 
     if d == 1 or d == 2 or d == 3 or d == 4:
         if d == 4:
@@ -755,6 +767,147 @@ def evening_practice(d=0):
         morning_practice()
  
     return None
+
+
+def get_new_dhamma_files():
+    new_files = []
+    for file in os.listdir("../mars/dhamma"):
+        if file.endswith(".mp3"):
+            new_files.append(os.path.join("../mars/dhamma", file))
+
+    # print(new_files)
+    random.shuffle(new_files)
+    newfiles = " + ".join(str(x) for x in new_files) 
+    # print(newfiles)
+    return newfiles
+
+
+# Features
+def what_time():
+    today = datetime.today().strftime('%H %M')
+    speak("The time is " + today)
+
+
+def what_day():
+    today = datetime.today().strftime('%B %A %d')
+    speak("Today is " + today)
+
+
+def play_daily_dependent_origination_thai():
+    killPlayer()  
+    speak("Dependent Origination Application in Everyday Life in Thai")
+    proc = subprocess.Popen(["mpg123","-f","2000","../datath/buddhadham/paticcasamuppda.mp3"])
+    press_for_stop('g',proc)
+
+
+def play_buddha_thinking_thai():
+    killPlayer()
+    os.system("mpg123 -f 2000 -q ../thaivoices/yoniso_thai.mp3")
+    speak("Thai Buddhadham Yonisomanasikan")
+    proc = subprocess.Popen(["mpg123","-f","2000","../datath/buddhadham/yoniso.mp3"])
+    press_for_stop('g',proc)
+
+
+def play_breathing_chanting_thai():
+    killPlayer()
+    if "loop" in words:
+        speak("Thai Anapanasati chanting")
+        proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/anapanasati-cut.mp3"], stdin=master)
+        press_for_stop('g',proc)
+    else:
+        subprocess.run(["mpg123","-f","2000","../datath/chanting/anapanasati-cut.mp3"])
+
+
+def play_nature_truth_chanting_thai():
+    killPlayer()
+    speak("Thai Dhamma Ni yam chanting")
+    proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/dhammaniyam.mp3"], stdin=master)
+    motion_detect(proc)
+
+
+def play_dependent_origination_chanting_thai():
+    killPlayer()  
+    speak("Thai Itup paj ja ya ta Pa tij ja sa mup path chanting")
+    proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/ituppajjayata.mp3"], stdin=master)
+    press_for_stop('g',proc)
+
+def play_eight_fold_path_chanting_thai():
+    killPlayer()   
+    speak("Thai Noble 8 fold path chanting")
+    proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/8.mp3"], stdin=master)
+    press_for_stop('g',proc)
+
+
+def play_eight_fold_path_chanting_english():
+    killPlayer()   
+    speak("English Noble 8 fold path chanting")
+    proc = subprocess.Popen(["mpg123","-f","4000","-C","--loop","-1","../dataen/chanting/noble8fold.mp3"], stdin=master)
+    press_for_stop('g',proc)
+
+
+def english_chating():
+    killPlayer()  
+    speak("English chanting")
+    subprocess.run(["mpg123","-f","1500","-C","--list","chanting.txt"])
+
+
+def thai_chanting():
+    killPlayer()   
+    speak("Thai chanting")
+    proc = subprocess.Popen(["mpg123","-f","1500","-C","-Z","--list","THchanting.txt"], stdin=master)
+    press_for_stop('g',proc)
+
+
+def play_radio():
+    killPlayer()                                    
+    if have_internet():
+        speak("Tibetan Buddhist internet radio")
+        proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])
+        press_for_stop('g',proc)
+    else:
+        speak("sorry no internet connection")  
+
+
+def meditation_time():
+    killPlayer()   
+    text = "Meditation time will make 15 minutes bell sound, you may relax your self by walking then sitting. "
+    text += "For walking, set a distance to meditate walking back and forth, your senses inwardly immersed, your mind not straying outwards. "
+    text += "Lifting, Moving, Treading, slow moving and always mind your foot movement then you can increse your awakening sense, "
+    text += "or free walking, just focus on Treading, "
+    text += "For sitting, breathing in calm, breathing out down, always mind your breathing, your citta will not go around"
+    speak(text)
+    del text
+    gc.collect()
+    proc = subprocess.Popen(["mpg123","-f","1500","-q","--loop","-1","../dataen/bell15min.mp3"])
+    press_for_stop('g',proc)
+
+
+def buddha_dhamma():
+    killPlayer()    
+    speak("Buddha dhamma")
+    proc = subprocess.Popen(["mpg123","-f","1500","-q","-z","--list","THbuddhadham.txt"]) 
+    press_for_stop('b',proc)
+
+
+def play_dhamma():
+    killPlayer()   
+    speakThai(['ฟัง','ธรรม','ค่ะ'])
+    proc = subprocess.Popen(["mpg123","-f","1500","-C","-z","--list","THdhamma4all.txt"], stdin=master)
+    leds.update(Leds.rgb_on(Color.YELLOW))
+    board.button.wait_for_press()
+    os.write(slave, b'f')
+    leds.update(Leds.rgb_on(Color.RED))
+    board.button.wait_for_press()
+    os.write(slave, b'f')
+    press_for_stop('g',proc)
+
+
+def play_sutra():
+    killPlayer()    
+    os.system("mpg123 -f 1000 ../datath/sutta/moggallana.mp3")
+    proc = subprocess.Popen(["mpg123","-f","1000","-C","-z","--list","sutra.txt"], stdin=master)
+    press_for_stop('r',proc)
+
 
 
 # read zenstories file
@@ -827,7 +980,7 @@ try:
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             # v += 'a b c d e f g h i j k l m n o p q r s t u v w x y z '
-            v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server '
+            v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my new '
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
@@ -856,7 +1009,7 @@ try:
                         # print(q.qsize())  
                         words += z["text"].split()
                         if len(words) > 0:
-                            leds.update(Leds.rgb_on(Color.YELLOW))
+                            ledc('d')
                             print(words) 
                         
                         with Board() as board:
@@ -868,6 +1021,14 @@ try:
                                         wise_one('gg')
                                     else:
                                         wise_one()
+
+                                elif "my" in words and "dhamma" in words:
+
+                                        files= get_new_dhamma_files()
+                                        cmd = "mpg123 -d 1.5 -f 2000 "+files
+                                        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
+                                        press_for_stop('g',proc) 
+                                        killPlayer()                                                                          
 
                                 elif "alpha" in words and "meditation" in words:
                                     if "sixty" in words:
@@ -896,6 +1057,7 @@ try:
                                         morning_practice_chanting_mode('d',3)
                                     else:
                                         morning_practice('d')
+
                                 elif "evening" in words and "practice" in words:
                                     if "one" in words:
                                         d = 1
@@ -905,6 +1067,8 @@ try:
                                         d = 3
                                     elif "four" in words:
                                         d = 4
+                                    elif "six" in words:
+                                        d = 6 
                                     else:
                                         d = 0
 
@@ -927,71 +1091,34 @@ try:
                                     zen = True
 
                                 elif "daily" in words and "dependent" in words and "origination" in words:
-                                    killPlayer()  
-                                    speak("Dependent Origination Application in Everyday Life in Thai")
-                                    proc = subprocess.Popen(["mpg123","-f","2000","../datath/buddhadham/paticcasamuppda.mp3"])
-                                    press_for_stop('g',proc)
+                                    play_daily_dependent_origination_thai()
 
                                 elif "buddha" in words and "thinking" in words and "thai" in words:
-                                    killPlayer()
-                                    os.system("mpg123 -f 2000 -q ../thaivoices/yoniso_thai.mp3")
-                                    speak("Thai Buddhadham Yonisomanasikan")
-                                    proc = subprocess.Popen(["mpg123","-f","2000","../datath/buddhadham/yoniso.mp3"])
-                                    press_for_stop('g',proc)
+                                    play_buddha_thinking_thai()
 
                                 elif "breathing" in words and "chanting" in words:
-                                    killPlayer()
-                                    if "loop" in words:
-                                        speak("Thai Anapanasati chanting")
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/anapanasati-cut.mp3"], stdin=master)
-                                        press_for_stop('g',proc)
-                                    else:
-                                        subprocess.run(["mpg123","-f","2000","../datath/chanting/anapanasati-cut.mp3"])
+                                    play_breathing_chanting_thai()
 
                                 elif "nature" in words and "truth" in words and "chanting" in words:
-                                    killPlayer()
-                                    speak("Thai Dhamma Ni yam chanting")
-                                    proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/dhammaniyam.mp3"], stdin=master)
-                                    motion_detect(proc)
+                                    play_nature_truth_chanting_thai()
 
                                 elif "dependent" in words and "origination" in words and "chanting" in words:
-                                    killPlayer()  
-                                    speak("Thai Itup paj ja ya ta Pa tij ja sa mup path chanting")
-                                    proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/ituppajjayata.mp3"], stdin=master)
-                                    press_for_stop('g',proc)
+                                    play_dependent_origination_chanting_thai()
 
                                 elif "eight" in words and "fold" in words and "path" in words and "thai" in words:
-                                    killPlayer()   
-                                    speak("Thai Noble 8 fold path chanting")
-                                    proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/8.mp3"], stdin=master)
-                                    press_for_stop('g',proc)
+                                    play_eight_fold_path_chanting_thai()
 
                                 elif "eight" in words and "fold" in words and "path" in words and "english" in words:
-                                    killPlayer()   
-                                    speak("English Noble 8 fold path chanting")
-                                    proc = subprocess.Popen(["mpg123","-f","4000","-C","--loop","-1","../dataen/chanting/noble8fold.mp3"], stdin=master)
-                                    press_for_stop('g',proc)
+                                    play_eight_fold_path_chanting_english()
 
                                 elif "chanting" in words and "english" in words:
-                                    killPlayer()  
-                                    speak("English chanting")
-                                    subprocess.run(["mpg123","-f","1500","-C","--list","chanting.txt"])
+                                    english_chating()
 
                                 elif "chanting" in words and "thai" in words:
-                                    killPlayer()   
-                                    speak("Thai chanting")
-                                    proc = subprocess.Popen(["mpg123","-f","1500","-C","-Z","--list","THchanting.txt"], stdin=master)
-                                    press_for_stop('g',proc)
+                                    thai_chanting()
                                                                         
                                 elif "radio" in words and "play" in words:
-                                    killPlayer()
-                                        
-                                    if have_internet():
-                                        speak("Tibetan Buddhist internet radio")
-                                        proc = subprocess.Popen(["mpg123","-f","2000","-q","http://199.180.72.2:9097/lamrim"])
-                                        press_for_stop('g',proc)
-                                    else:
-                                        speak("sorry no internet connection")                                  
+                                    play_radio()                                
                                     
                                 elif "play" in words and "mantra" in words:
 
@@ -1147,41 +1274,16 @@ try:
                                         six_stages_th_en('g')                    
 
                                 elif "meditation" in words and "time" in words:
-                                    killPlayer()   
-                                    text = "Meditation time will make 15 minutes bell sound, you may relax your self by walking then sitting. "
-                                    text += "For walking, set a distance to meditate walking back and forth, your senses inwardly immersed, your mind not straying outwards. "
-                                    text += "Lifting, Moving, Treading, slow moving and always mind your foot movement then you can increse your awakening sense, "
-                                    text += "or free walking, just focus on Treading, "
-                                    text += "For sitting, breathing in calm, breathing out down, always mind your breathing, your citta will not go around"
-                                    speak(text)
-                                    del text
-                                    gc.collect()
-                                    proc = subprocess.Popen(["mpg123","-f","1500","-q","--loop","-1","../dataen/bell15min.mp3"])
-                                    press_for_stop('g',proc)
+                                    meditation_time()
                                     
                                 elif "buddha" in words and "dhamma" in words:
-                                    killPlayer()    
-                                    speak("Buddha dhamma")
-                                    proc = subprocess.Popen(["mpg123","-f","1500","-q","-z","--list","THbuddhadham.txt"]) 
-                                    press_for_stop('b',proc)
+                                    buddha_dhamma()
                                             
                                 elif "dhamma" in words and "play" in words:
-                                    killPlayer()   
-                                    speakThai(['ฟัง','ธรรม','ค่ะ'])
-                                    proc = subprocess.Popen(["mpg123","-f","1500","-C","-z","--list","THdhamma4all.txt"], stdin=master)
-                                    leds.update(Leds.rgb_on(Color.YELLOW))
-                                    board.button.wait_for_press()
-                                    os.write(slave, b'f')
-                                    leds.update(Leds.rgb_on(Color.RED))
-                                    board.button.wait_for_press()
-                                    os.write(slave, b'f')
-                                    press_for_stop('g',proc)
+                                    play_dhamma()
 
                                 elif "play" in words and "speech" in words or "sutra" in words:
-                                    killPlayer()    
-                                    os.system("mpg123 -f 1000 ../datath/sutta/moggallana.mp3")
-                                    proc = subprocess.Popen(["mpg123","-f","1000","-C","-z","--list","sutra.txt"], stdin=master)
-                                    press_for_stop('r',proc) 
+                                    play_sutra()
                                           
                                 elif "shutdown" in words and "please" in words:
                                     shutdown()
@@ -1190,21 +1292,33 @@ try:
                                 #PLAY
 
                                 elif "light" in words and "on" in words:
+
                                     if "red" in words:
-                                        ledc('r')
+                                        c = 'r'
+                                    
                                     elif "green" in words:
-                                        ledc('g')
+                                        c = 'g'
+                                    
                                     elif "blue" in words:
-                                        ledc('b')
+                                        c = 'b'
+                                    
                                     elif "yellow" in words:
-                                        ledc('y')
-                                    elif "alpha" in words:
-                                        ledc('gg')
+                                        c = 'y'
+
+                                    else:
+                                        c = ''
+
+                                    if "alpha" in words:
+                                        if len(c) == 1:
+                                           c += c
+
+                                    # may say : color sound alpha light
+                                    if "sound" in words:
+                                        ledc(c)
                                         proc = subprocess.Popen(["mpg123","-q","--loop","-1","../dataen/alpha12Hz.mp3"])
                                         proc_bool = True
-                                        
                                     else:
-                                        ledc()
+                                        ledc(c)                                        
 
                                     board.button.wait_for_press()
                                     if proc_bool:

@@ -259,6 +259,17 @@ def stop_player():
         print("killall mpg123")
         os.system("killall mpg123")
 
+def get_new_dhamma_files():
+    new_files = []
+    for file in os.listdir("../mars/dhamma"):
+        if file.endswith(".mp3"):
+            new_files.append(os.path.join("../mars/dhamma", file))
+
+    # print(new_files)
+    newfiles = " + ".join(str(x) for x in new_files) 
+    # print(newfiles)
+    return newfiles
+
 
 
 parser = argparse.ArgumentParser(add_help=False)
@@ -306,7 +317,7 @@ try:
 
             runv  = '["acumen anat ta hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
             runv += 'meditation mindfulness news no now on open play please quiet sermons seventy shutdown silent sitting sixty '
-            runv += 'mouse left right scroll click exit center sky star page browse technique wise speak player '
+            runv += 'mouse left right scroll click exit center sky star page browse technique wise new playing speak '
             runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty '
             runv += 'a b c d e f g h i j k l m n o p q r s t u v w x y z '
             # runv += 'is am are be was were do does did done had have has can could shall should might may maybe '
@@ -329,6 +340,7 @@ try:
                 # print(q.qsize())    
                 if rec.AcceptWaveform(data):
                     w = rec.Result()
+                    # print(w)
                     z = json.loads(w)
                     words = z["text"].split()
 
@@ -339,7 +351,7 @@ try:
                             print("[^_^]o ")
                             print(words)  
                      
-                    if bot_name == z["text"] or ("hey" in words and bot_name in words):
+                    if bot_name == z["text"]: #or ("hey" in words and "anat" in words and "ta" in words):
                         bot = True
                         speak("yes sir")
                     if bot or focus:
@@ -375,6 +387,14 @@ try:
                             motion_detect(proc)
                             clear_q()
 
+                        elif "new" in words and "dhamma" in words:
+                            
+                            files= get_new_dhamma_files()
+                            cmd = "mpg123 -d 1.5 "+files
+                            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
+                            motion_detect(proc)
+                            stop_player()
+                            clear_q()
 
                         elif "who" in words and "buddha" in words:
                             lines = buddhism["buddha"][0]["content"]
@@ -409,7 +429,7 @@ try:
                             print("start meditation bell ring every 15 minutes") 
                             proc = subprocess.Popen(["vlc","--loop","../dataen/bell15min.mp3"])
                             bot = False
-                        elif "stop" in words and "player" in words:
+                        elif "stop" in words and "playing" in words:
                             stop_player()
                             bot = False
                         elif "quiet" in words or "silent" in words or "sleep" in words:
