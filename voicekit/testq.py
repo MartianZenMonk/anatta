@@ -172,8 +172,8 @@ def clear_q():
 
 
 def ledc(c=''):
-    # print('Set blink pattern: period=500ms (2Hz)')
-    leds.pattern = Pattern.blink(100) # alpha 10 Hz
+    # print('Set blink pattern: period=500ms ( Delta 2Hz)')
+    leds.pattern = Pattern.blink(100) # Alpha 10 Hz
 
     if c == 'r':
         leds.update(Leds.rgb_on(Color.RED))
@@ -453,16 +453,20 @@ def fast_buddho(c='off', t=30, vol='1000'):
     return None
 
 
-# FOR MARTIAN MONK ONLY
+
 def bell(l=3,vol='200'):
     subprocess.run(["mpg123","-q","-f",vol,"--loop",l,"../dataen/bell.mp3"])
     return None
 
 
-def monk_rules(c='g'):
-    ledc(c)
-    proc = subprocess.Popen(["mpg123","-f","2000","-q","../mars/patimok.mp3"])
-    press_for_stop(c,proc)
+def relax_thai(vol="500"):
+    bell('3',vol)
+    text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
+    stext = thwords(text)
+    # print(stext)
+    os.system("mpg123 -q -f " + vol + " " + stext)
+    del stext
+    gc.collect()
     return None
 
 
@@ -474,65 +478,12 @@ def pure_alpha(c='yy'):
     return None
 
 
-def morning_practice(c='d'):
-    ledc(c)
-    vol = "200"
-    # warm up
-    fast_buddho(c,50,vol)
-    time.sleep(600)
-    bell('3',vol)
-    text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
-    stext = thwords(text)
-    os.system("mpg123 -q -f 1000 " + stext)
-    del stext
-    gc.collect()
-
-    # bell('3',vol)
-    # start
+def alpha_wave(t):
     proc = subprocess.Popen(["mpg123","-q","--loop","-1","../mars/pureAlpha.mp3"])
-    time.sleep(3600)
+    time.sleep(60*t)
     proc.kill()
-
-    bell('3',vol)
-    # cool down
-    fast_buddho(c,30,vol)
-    
     return None
 
-
-def morning_practice_chanting_mode(c='d',m=1):
-    if m == 1:
-        cm = '../mars/pahung.mp3'
-        
-    elif m == 2:
-        cm = '../mars/matika.mp3'
-        
-    elif m == 3:
-        cm = '../mars/7kampee.mp3'
-
-    vol = "200"
-
-    ledc(c)
-    # warm up
-    fast_buddho(c,50,vol)
-
-    bell('3',vol)
-    text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
-    stext = thwords(text)
-    os.system("mpg123 -q -f 1000 " + stext)
-    del stext
-    gc.collect()
-
-    bell('3',vol)
-    # start
-    proc = subprocess.Popen(["mpg123","-q","-f",vol,"--loop","-1",cm])
-    time.sleep(3600)
-    proc.kill()
-    bell('3',vol)
-    # cool down
-    fast_buddho(c,30,vol)
-    
-    return None
 
 #BHAVANA
 def wise_one(c='off',vol="500"):
@@ -546,34 +497,27 @@ def breathing_alpha_meditation(c='g',t=30):
     vol = "500"
     speak(str(t) + " minutes alpha sound")
 
-    bell('3',vol)
-    text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
-    stext = thwords(text)
-    print(stext)
-    os.system("mpg123 -q -f 1000 " + stext)
-    del stext
-    gc.collect()
+    
+    relax_thai()
 
     bell('3',vol)
+
     if len(c) == 1:
         ledc(c+c)
     else:
         ledc(c)
 
-    proc = subprocess.Popen(["mpg123","-q","--loop","-1","../dataen/alpha12Hz.mp3"])
-    time.sleep(60*t)
-    proc.kill()
+    alpha_wave(t)
 
     bell('3',vol)
     
     return None
 
 
-def alpha_meditation(c='off',t=30):
+def alpha_meditation(m=60,t=15,c='off',vol="500"):
 
-    vol = "500"
 
-    speak(str(t) + " minutes alpha sound")
+    speak(str(m) + " minutes alpha sound")
 
     bell('3',vol)
 
@@ -581,11 +525,21 @@ def alpha_meditation(c='off',t=30):
         ledc(c+c)
     else:
         ledc(c)
-    proc = subprocess.Popen(["mpg123","-q","--loop","-1","../dataen/alpha12Hz.mp3"])
-    time.sleep(60*t)
-    proc.kill()
 
-    bell('3',vol)
+    if t == 0:
+        t = m
+        alpha_wave(t)
+        bell('3',vol)
+    else:
+        timeout = time.time() + 60*m
+        while True:
+        
+            if time.time() > timeout:
+                break
+            else:
+                alpha_wave(t)
+                bell('3',vol)
+
 
     return None
 
@@ -741,6 +695,18 @@ def remind_sati():
     os.system("mpg123 -q -f 2000 "+text)
 
 
+def remind_sati_bikkhu():
+    entext = """
+            Come you, monk, have mindfulness and situational awareness. Act with situational awareness 
+            when going out and coming back; when looking ahead and aside; when bending and extending the limbs; 
+            when bearing the outer robe, bowl and robes; when eating, drinking, chewing, and tasting; 
+            when urinating and defecating; when walking, standing, sitting, sleeping, waking, speaking, and keeping silent.
+            """
+    speak(entext)
+    text = " ../thaivoices/sati_bikkhu.mp3"
+    os.system("mpg123 -q -f 2000 "+text)
+
+
 def remind_right_sati():
     speak("Ardent, fully aware, and mindful, after removing avarice and sorrow regarding the world.")
     text = " ../thaivoices/right_sati.mp3"
@@ -761,65 +727,6 @@ def mixed_mode(c='',t=10,n=0):
     return None
 
 
-# For Buddha holy day start at 6:00 pm
-def evening_practice(d=0):
-    # 8 + 2:30 hrs
-    vol = "500"
-    bell('3',vol)
-
-    one_stage_th_en('r',10)
-
-    one_stage_en('g',10)
-
-    three_stages_th_en('b',10)
-    
-    remind_sati()
-
-    slow_buddho('c',30)
-
-    remind_right_sati()
-
-    fast_buddho('yy',15)
-    fast_buddho('d',15)
-
-    fast_buddho('gg',15)
-    fast_buddho('d',15)
-
-    vol = "300"
-    bell('3',vol)
-    ledc('off')
-
-    text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
-    stext = thwords(text)
-    os.system("mpg123 -q -f 1000 " + stext)
-    del stext
-    gc.collect()
-
-    if d == 6:
-        d = 0
-        proc = subprocess.Popen(["mpg123","-q","--loop","-1","../mars/pureAlpha.mp3"])
-        time.sleep(60*360) # 6 hrs
-        proc.kill()
-
-    else:    
-        proc = subprocess.Popen(["mpg123","-q","--loop","-1","../mars/pureAlpha.mp3"])
-        time.sleep(3600)
-        proc.kill()
-        bell('3',vol)
-        fast_buddho('off',300,vol) # 5 hrs
-
-    bell('3',vol)
-
-    if d == 1 or d == 2 or d == 3 or d == 4:
-        if d == 4:
-            d = random.randint(0,2)
-        morning_practice_chanting_mode('d',d)
-    else:
-        morning_practice()
- 
-    return None
-
-
 def get_new_dhamma_files():
     new_files = []
     for file in os.listdir("../mars/dhamma"):
@@ -830,6 +737,8 @@ def get_new_dhamma_files():
     random.shuffle(new_files)
     newfiles = " + ".join(str(x) for x in new_files) 
     # print(newfiles)
+    del new_files
+    gc.collect()
     return newfiles
 
 
@@ -882,10 +791,10 @@ def play_dependent_origination_chanting_thai():
     proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/ituppajjayata.mp3"], stdin=master)
     press_for_stop('g',proc)
 
-def play_eight_fold_path_chanting_thai():
+def play_eight_fold_path_chanting_thai(vol="2000"):
     killPlayer()   
-    speak("Thai Noble 8 fold path chanting")
-    proc = subprocess.Popen(["mpg123","-f","2000","-C","--loop","-1","../datath/chanting/8.mp3"], stdin=master)
+    # speak("Thai Noble 8 fold path chanting")
+    proc = subprocess.Popen(["mpg123","-f",vol,"-C","--loop","-1","../datath/chanting/8.mp3"], stdin=master)
     press_for_stop('g',proc)
 
 
@@ -953,13 +862,136 @@ def play_dhamma():
     press_for_stop('g',proc)
 
 
-def play_sutra():
+def play_sutra(vol="1000"):
     killPlayer()    
-    os.system("mpg123 -f 1000 ../datath/sutta/moggallana.mp3")
-    proc = subprocess.Popen(["mpg123","-f","1000","-C","-z","--list","sutra.txt"], stdin=master)
+    os.system("mpg123 -f " + vol + " ../datath/sutta/moggallana.mp3")
+    proc = subprocess.Popen(["mpg123","-f",vol,"-C","-z","--list","sutra.txt"], stdin=master)
     press_for_stop('r',proc)
 
 
+# FOR MARTIAN MONK ONLY
+def monk_rules(c='g'):
+    ledc(c)
+    proc = subprocess.Popen(["mpg123","-f","2000","-q","../mars/patimok.mp3"])
+    press_for_stop(c,proc)
+    return None
+
+
+def morning_practice(c='d',vol="200"):
+
+    ledc(c)
+    # warm up
+    fast_buddho(c,10,vol)
+    alpha_wave(30)
+    fast_buddho(c,10,vol)
+    time.sleep(300)
+    
+    relax_thai(vol)
+
+    # bell('3',vol)
+    # start
+    ledc('off')
+    alpha_wave(60)
+
+    bell('3',vol)
+    # cool down
+    ledc(c)
+    fast_buddho(c,30,vol)
+
+    play_eight_fold_path_chanting_thai('500')
+    
+    return None
+
+
+def morning_practice_chanting_mode(c='d',m=1,vol="200"):
+
+    if m == 1:
+        cm = '../mars/pahung.mp3'
+        
+    elif m == 2:
+        cm = '../mars/matika.mp3'
+        
+    elif m == 3:
+        cm = '../mars/7kampee.mp3'
+
+    ledc(c)
+    # warm up
+    fast_buddho(c,10,vol)
+    alpha_wave(30)
+    fast_buddho(c,10,vol)
+    time.sleep(300)
+
+    relax_thai(vol)
+
+    bell('3',vol)
+    # start
+    ledc('off')
+    proc = subprocess.Popen(["mpg123","-q","-f",vol,"--loop","-1",cm])
+    time.sleep(3600)
+    proc.kill()
+
+    bell('3',vol)
+    # cool down
+    ledc(c)
+    fast_buddho(c,30,vol)
+
+    play_sutra('500')
+    
+    return None
+
+# For Buddha holy day start at 6:00 pm
+def evening_practice(d=0,vol="500"):
+    # 8 + 2:30 hrs
+
+    remind_sati_bikkhu()
+
+    bell('3',vol)
+
+    six_stages_th_en ('y',10)
+
+    three_stages_th_en('b',10)
+
+    one_stage_th_en('r',10)
+
+    remind_sati()
+
+    one_stage_en('g',10)
+   
+    slow_buddho('c',20)
+
+    remind_right_sati()
+
+    fast_buddho('yy',15)
+    fast_buddho('d',15)
+
+    fast_buddho('gg',15)
+    fast_buddho('d',15)
+
+    vol = "300"
+    bell('3',vol)
+    ledc('off')
+
+    relax_thai(vol)
+
+    if d == 6:
+        d = 0
+        alpha_wave(360) # 6 hrs
+
+    else:    
+        alpha_wave(60)
+        bell('3',vol)
+        fast_buddho('off',300,vol) # 5 hrs
+
+    bell('3',vol)
+
+    if d == 1 or d == 2 or d == 3 or d == 4:
+        if d == 4:
+            d = random.randint(0,2)
+        morning_practice_chanting_mode('d',d)
+    else:
+        morning_practice()
+ 
+    return None
 
 # read zenstories file
 with open('zenstories.json', 'r') as myfile:
@@ -1081,7 +1113,9 @@ try:
                                         cmd = "mpg123 -d 1.5 -f 2000 "+files
                                         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
                                         press_for_stop('g',proc) 
-                                        killPlayer()                                                                          
+                                        killPlayer()    
+                                        del files
+                                        gc.collect()                                                                      
 
                                 elif "alpha" in words and "meditation" in words:
                                     if "sixty" in words:
@@ -1096,7 +1130,7 @@ try:
                                     elif "pure" in words:
                                         pure_alpha() # for martian monk only 
                                     else:
-                                        alpha_meditation('g',t)
+                                        alpha_meditation(t,15,'g')
 
                                 elif "math" in words and "meditation" in words:
                                     a = random.randint(1,20)
@@ -1122,7 +1156,7 @@ try:
                                     elif "three" in words:
                                         morning_practice_chanting_mode('d',3)
                                     else:
-                                        morning_practice('d')
+                                        morning_practice('dd')
 
                                 elif "evening" in words and "practice" in words:
                                     if "one" in words:
@@ -1197,7 +1231,9 @@ try:
                                                                                
                                     elif "one" in words:  
                                         speak("one hour buddho mantra")
-                                        fast_buddho('rr')
+                                        bell(3,500)
+                                        fast_buddho('yy')
+                                        bell(3,500)
                                         fast_buddho('gg')
                                     
                                     elif "two" in words: 
@@ -1216,12 +1252,16 @@ try:
                                         mixed_mode(c[3],10,n[3])                                       
                                         
                                         remind_sati()
-
-                                        fast_buddho('g',20)
+                                        
+                                        slow_buddho(c[4],10)
+                                        fast_buddho(c[5],10)
                                         
 
                                     elif "three" in words:  
-                                        speak("4 hours mantra then shutdown")
+
+                                        speak("4 hours mantra and 4 hours alpha sound")
+
+                                        remind_sati_bikkhu()
                                         
                                         one_stage_th_en('y',10)
 
@@ -1237,8 +1277,8 @@ try:
 
                                         fast_buddho('off',180)
                                         
-                                        os.system("sudo shutdown now")
-                                        break 
+                                        ledc('off')
+                                        alpha_wave(240)
 
                                     elif "four" in words:  
                                         speak("4 hours buddho mantra then shutdown")
@@ -1257,27 +1297,31 @@ try:
                                         break
 
                                     elif "six" in words:  
-                                        speak("4 hours buddho mantra then shutdown")
+                                        speak("4 hours mixed mode then shutdown")
+
+                                        remind_sati_bikkhu()
 
                                         three_stages_th_en('c',10)
 
                                         six_stages_th_en('y')
 
-                                        one_stage_en('b',15)
-
                                         one_stage_th_en('g',15)
+
+                                        one_stage_en('b',15)
 
                                         fast_buddho('p',15)
                                         
-                                        remind_sati()
-
-                                        fast_buddho('gg')
-
-                                        remind_sati()
-
-                                        fast_buddho('pp')
-
                                         remind_right_sati()
+
+                                        slow_buddho('yy',15)
+
+                                        fast_buddho('off',15)
+
+                                        remind_sati()
+
+                                        slow_buddho('gg',15)
+
+                                        fast_buddho('off',15)
 
                                         fast_buddho('off',120)
                                         
