@@ -351,7 +351,7 @@ try:
                             print("[^_^]o ")
                             print(words)  
                      
-                    if bot_name == z["text"]: #or ("hey" in words and "anat" in words and "ta" in words):
+                    if bot_name == z["text"] or ("hey" in words and "acumen" in words):
                         bot = True
                         speak("yes sir")
                     if bot or focus:

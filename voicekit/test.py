@@ -83,6 +83,9 @@ def speaken(text):
 	os.system('mpg123 ' + stext)
 
 
+t = "อนิจจาวะตะสังขารา, สังขารทั้งหลายไม่เที่ยงหนอ, อุปปาทะวะยะธัมมิโน, มีอันเกิดขึ้นและเสื่อมไปเป็นธรรมดา, อุปปัชชิตะวานิรุชฌันติ, บังเกิดขึ้นแล้วย่อมดับไป, เตสังวูปะสะโมสุโข, การเข้าไประงับสังขารเหล่านั้นเสียได้เป็นความสุข"
+
+
 # while True:
 
 # 	speakThai(["ยกส้นหนอ","ยกหนอ","ย่างหนอ","ลงหนอ","ถูกหนอ","กดหนอ"])
@@ -104,13 +107,13 @@ def speaken(text):
 
 # print (len(d["zen101"]))
 
-a = random.randint(0,9)
-b = random.randint(0,9)
-espeak("what is "+ str(a) + " plus "+ str(b))
-c = a + b
-sc = ''
-lc = list(str(c))
-for i in lc:
-    sc += int2word(int(i))
+# a = random.randint(0,9)
+# b = random.randint(0,9)
+# espeak("what is "+ str(a) + " plus "+ str(b))
+# c = a + b
+# sc = ''
+# lc = list(str(c))
+# for i in lc:
+#     sc += int2word(int(i))
 
-print(sc)
+# print(sc)

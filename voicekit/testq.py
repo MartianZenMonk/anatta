@@ -171,9 +171,12 @@ def clear_q():
         q.queue.clear()
 
 
-def ledc(c=''):
-    # print('Set blink pattern: period=500ms ( Delta 2Hz)')
-    leds.pattern = Pattern.blink(100) # Alpha 10 Hz
+def ledc(c='', f='alpha'):
+    # print('Set blink pattern: period=500ms (2Hz)')
+    if f == 'alpha':
+        leds.pattern = Pattern.blink(100) # Alpha 10 Hz
+    else:
+        leds.pattern = Pattern.blink(500) # Delta 2 Hz
 
     if c == 'r':
         leds.update(Leds.rgb_on(Color.RED))
@@ -1134,7 +1137,9 @@ try:
             zen = False
             proc_bool = False
             math = False
+            mantra = False
             sc = ""
+            t = 0
             
             with q.mutex:
                 q.queue.clear()
@@ -1218,7 +1223,7 @@ try:
                                     elif "three" in words:
                                         morning_practice_chanting_mode('d',3)
                                     else:
-                                        morning_practice('dd')
+                                        morning_practice()
 
                                 elif "evening" in words and "practice" in words:
                                     if "one" in words:
@@ -1248,6 +1253,7 @@ try:
                                     
                                 elif "zen" in words and "story" in words:
                                     nn = sequence[n]
+                                    speak("Do you want to listen to this zen story?")
                                     speak(d["zen101"][nn]["title"])
                                     focus = True
                                     zen = True
@@ -1284,136 +1290,60 @@ try:
                                     
                                 elif "play" in words and "mantra" in words:
 
-                                    killPlayer()                                     
+                                    killPlayer() 
+                                    mantra = True  
+                                    focus = True                                  
                                       
                                     if "five" in words:
                                         t = 5
-                                        speak("slow buddho mantra, push button for stop")
-                                        slow_buddho('off',0)
+                                        speak("Do you want to play slow buddho mantra, push button for stop?")
                                                                                
                                     elif "one" in words:  
-                                        speak("one hour buddho mantra")
-                                        bell(3,500)
-                                        fast_buddho('yy')
-                                        bell(3,500)
-                                        fast_buddho('gg')
+                                        t = 1
+                                        speak("Do you want to play one hour buddho mantra?")
                                     
                                     elif "two" in words: 
-
-                                        speak("mixed mode 1 hour") 
-                                        
-                                        c = ["r","g","b","y","p","c"]
-                                        n = [0,1,2,3]
-
-                                        random.shuffle(c)
-                                        random.shuffle(n)
-
-                                        mixed_mode(c[0],10,n[0])
-                                        mixed_mode(c[1],10,n[1])
-                                        mixed_mode(c[2],10,n[2])
-                                        mixed_mode(c[3],10,n[3])                                       
-                                        
-                                        remind_sati()
-                                        
-                                        slow_buddho(c[4],10)
-                                        fast_buddho(c[5],10)
-                                        
+                                        t = 2
+                                        speak("Do you want to play  mixed mode 1 hour?")                                        
 
                                     elif "three" in words:  
-
-                                        speak("4 hours mantra and 4 hours alpha sound")
-
-                                        remind_sati_bikkhu()
-                                        
-                                        one_stage_th_en('y',10)
-
-                                        one_stage_en('g',10)
-
-                                        three_stages_th_en('b',10)
-                                        
-                                        remind_sati()
-
-                                        fast_buddho('gg')
-
-                                        remind_right_sati()
-
-                                        fast_buddho('off',180)
-                                        
-                                        ledc('off')
-                                        alpha_wave(240)
+                                        t = 3
+                                        speak("Do you want to play 4 hours mantra and 4 hours alpha sound?")
 
                                     elif "four" in words:  
-                                        speak("4 hours buddho mantra then shutdown")
-
-                                        fast_buddho('y')
-
-                                        remind_sati()
-
-                                        fast_buddho('gg')
-
-                                        remind_right_sati()
-
-                                        fast_buddho('off',180)
-                                        
-                                        os.system("sudo shutdown now")
-                                        break
+                                        t = 4
+                                        speak("Do you want to play 4 hours buddho mantra then shutdown?")
 
                                     elif "six" in words:  
-                                        speak("4 hours mixed mode then shutdown")
+                                        t = 6
+                                        speak("Do you want to play 4 hours mixed mode then shutdown?")
 
-                                        remind_sati_bikkhu()
-
-                                        three_stages_th_en('c',10)
-
-                                        six_stages_th_en('y')
-
-                                        one_stage_th_en('g',15)
-
-                                        one_stage_en('b',15)
-
-                                        fast_buddho('p',15)
-                                        
-                                        remind_right_sati()
-
-                                        slow_buddho('yy',15)
-
-                                        fast_buddho('off',15)
-
-                                        remind_sati()
-
-                                        slow_buddho('gg',15)
-
-                                        fast_buddho('off',15)
-
-                                        fast_buddho('off',120)
-                                        
-                                        os.system("sudo shutdown now")
-                                        break
+                                    elif "eight" in words:
+                                        t = 8
+                                        speak("fast buddho mantra push button to stop")
 
                                     elif "ten" in words:
                                         t = 10 
+                                        speak("Do you want to play " + str(t) + " minutes buddho mantra?")
                                     elif "fiftheen" in words:
                                         t = 15
+                                        speak("Do you want to play " + str(t) + " minutes buddho mantra?")
                                     elif "twenty" in words:
                                         t = 20
+                                        speak("Do you want to play " + str(t) + " minutes buddho mantra?")
                                     elif "thirty" in words:
                                         t = 30
+                                        speak("Do you want to play " + str(t) + " minutes buddho mantra?")
                                     elif "forty" in words:
                                         t = 40
+                                        speak("Do you want to play " + str(t) + " minutes buddho mantra?")
                                     elif "fifty" in words:
                                         t = 50
+                                        speak("Do you want to play " + str(t) + " minutes buddho mantra?")
                                     else:
                                         t = 0
-                                    
-                                    if t > 6:
-                                        speak(str(t) + " minutes buddho mantra")
-                                        fast_buddho('g',t)
-
-                                    elif t == 0:
-                                        speak("buddho mantra, push button for stop")
-                                        fast_buddho('r',t)
-                                    else:
-                                        pass
+                                        mantra = False
+                                        focus = False                             
 
                                 elif "play" in words and "stage" in words:
 
@@ -1596,8 +1526,9 @@ try:
                                         if n == m:
                                             random.shuffle(sequence)
                                             n = 0
-                                        nn = sequence[n]                                         
-                                        speak(d["zen101"][nn]["title"])
+                                        nn = sequence[n]    
+                                        speak("Do you want to listen to this zen story?")                                     
+                                        speak(d["zen101"][nn]["title"])  
                                     elif "yes" in words:
                                         lines = d["zen101"][nn]["story"]
                                         # print(lines)
@@ -1609,6 +1540,10 @@ try:
                                         focus = False
                                         engine.setProperty('voice',es_voices[2]) 
                                         n = n +1 
+                                    else:
+                                        speak("please speak yes or no")
+                                        clear_q()
+
                                 elif math:
                                     
                                     if len(words)>0:
@@ -1657,6 +1592,131 @@ try:
                                             speak("i heard "+ ans + " , it's incorrect")
                                             clear_q()
 
+                                elif mantra:
+
+                                    if "yes" in words:
+
+                                        if t == 1:
+                                            bell('3','500')
+                                            fast_buddho('yy')
+                                            bell('3','500')
+                                            fast_buddho('gg')
+                                            mantra = False
+                                            focus = False
+
+                                        elif t == 2:
+                                            c = ["r","g","b","y","p","c"]
+                                            n = [0,1,2,3]
+
+                                            random.shuffle(c)
+                                            random.shuffle(n)
+
+                                            mixed_mode(c[0],10,n[0])
+                                            mixed_mode(c[1],10,n[1])
+                                            mixed_mode(c[2],10,n[2])
+                                            mixed_mode(c[3],10,n[3])                                       
+                                            
+                                            remind_sati()
+                                            
+                                            slow_buddho(c[4],10)
+                                            fast_buddho(c[5],10)
+                                            mantra = False
+                                            focus = False
+
+                                        elif t == 3:
+                                            remind_sati_bikkhu()
+                                        
+                                            one_stage_th_en('y',10)
+
+                                            one_stage_en('g',10)
+
+                                            three_stages_th_en('b',10)
+                                            
+                                            remind_sati()
+
+                                            fast_buddho('gg')
+
+                                            remind_right_sati()
+
+                                            fast_buddho('off',180)
+                                            
+                                            ledc('off')
+                                            alpha_wave(240)
+                                            mantra = False
+                                            focus = False
+
+                                        elif t == 4:
+                                            fast_buddho('y')
+
+                                            remind_sati()
+
+                                            fast_buddho('gg')
+
+                                            remind_right_sati()
+
+                                            fast_buddho('off',180)
+                                            
+                                            os.system("sudo shutdown now")
+                                            break
+
+                                        elif t == 5:
+                                            slow_buddho('off',0)
+                                            mantra = False
+                                            focus = False
+
+                                        elif t == 6:
+                                            remind_sati_bikkhu()
+
+                                            three_stages_th_en('c',10)
+
+                                            six_stages_th_en('y')
+
+                                            one_stage_th_en('g',15)
+
+                                            one_stage_en('b',15)
+
+                                            fast_buddho('p',15)
+                                            
+                                            remind_right_sati()
+
+                                            slow_buddho('yy',15)
+
+                                            fast_buddho('off',15)
+
+                                            remind_sati()
+
+                                            slow_buddho('gg',15)
+
+                                            fast_buddho('off',15)
+
+                                            fast_buddho('off',120)
+                                            
+                                            os.system("sudo shutdown now")
+                                            break
+
+                                        elif t == 8:
+                                            speak("fast buddho mantra push button to stop")
+                                            bell('3','500')
+                                            fast_buddho('r',0)
+                                            mantra = False
+                                            focus = False
+
+                                        else :
+                                            speak(str(t) + " minutes buddho mantra")
+                                            bell('3','500')
+                                            fast_buddho('g',t)
+                                            mantra = False
+                                            focus = False
+
+                                    elif "no" in words:
+                                        speak('sorry its my fault, please repeat your command again')
+                                        mantra = False
+                                        focus = False
+
+                                    else:
+                                        speak("please speak yes or no")
+                                        clear_q()
+                                        
 
                     else:
                         leds.update(Leds.rgb_on(Color.RED))
