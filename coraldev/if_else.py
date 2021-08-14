@@ -75,7 +75,7 @@ buddhism = {
 
 
 # read zenstories file
-with open('../dataen/zenstories.json', 'r') as myfile:
+with open('zenstories.json', 'r') as myfile:
     zdata=myfile.read()
 
 # parse file
@@ -238,6 +238,20 @@ def buddhist_story():
     return proc
 
 
+def pose_net(w):
+
+    if "start" in w:
+        command = "cd /home/mendel/project-posenet; python3 pose_camera.py --mirror"
+        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+        speak("pose net start")
+        return proc
+    elif "stop" in w:
+        proc.kill();
+        speak("pose net stop")
+        return None
+
+
+
 q = queue.Queue()
 
 
@@ -293,11 +307,6 @@ try:
 
     model = vosk.Model(args.model)
 
-    if args.filename:
-        dump_fn = open(args.filename, "wb")
-    else:
-        dump_fn = None
-
     with sd.RawInputStream(samplerate=args.samplerate, blocksize = 8000, device=args.device, dtype='int16',
                             channels=1, callback=callback):
             print('#' * 80)
@@ -314,19 +323,24 @@ try:
 
             master, slave = os.openpty()
 
-            rec = vosk.KaldiRecognizer(model, args.samplerate, '["acumen begin buddha buddhist chanting coronel day hey dhamma do down eighty face how meditation mindfulness news no now on play please quiet radio reboot speak sermons seventy shutdown silent sitting sixty show sleep start stop story sutra tell temperature time to turn up volume wake walking what yes zen"]')
-            # rec = vosk.KaldiRecognizer(model, args.samplerate, '["shutdown acumen coronel now sutra mindfulness dhamma buddha holy day zen buddhist story chanting sermons meditation time sleep wake up down turn on begin start stop play how to do what tell yes no walking sitting please quiet silent news when volume sixty seventy eighty show speak face","[unk]"]')
+            vocab  = '["acumen anat begin buddha buddhist chanting playing pose net day hey dhamma do down eighty face how '
+            vocab += 'meditation mindfulness news no now on play please quiet radio reboot speak sermons seventy shutdown '
+            vocan += 'silent sitting sixty show sleep start stop story sutra ta tell temperature time to turn up volume wake '
+            vocab += 'walking what yes zen"]'
+
+            rec = vosk.KaldiRecognizer(model, args.samplerate, vocab)
+            
             # rec = vosk.KaldiRecognizer(model, args.samplerate)
             while True:
                 data = q.get()
                 if rec.AcceptWaveform(data):
                     w = rec.Result()
                     z = json.loads(w)
-                    # print(z["text"])  #print rec text
+                    # print(w)  
                     # print('Acumen is ',bot)
                     words = z["text"].split() 
                     # if bot_name == z["text"] or ("wake" in words and "up" in words and bot_name in words):
-                    if bot_name in words and "hey" in words:
+                    if bot_name in words and "hey" in words or "anat" in words and "ta" in words:
                         if pop:
                             os.write(slave, b's')
                         bot = True
@@ -374,7 +388,7 @@ try:
                             proc = how_mindfulness()
                             pop = True
                             bot = False                            
-                        elif "stop" in words:
+                        elif "stop" in words and "palying" in words:
                             clear_proc(proc,pop)                            
                             speak("stop playing")
                             bot = False                            
@@ -436,6 +450,9 @@ try:
                         elif "play" in words and "sutra" in words:
                             play_sutra()
                             bot = False
+                        elif "pose" in words and "net" in words:
+                            pose_net(words)
+                            bot = False
                         elif "reboot" in words and "now" in words:
                             # print("Shutdown the system")
                             speak("reboot the system, please wait")
@@ -452,14 +469,10 @@ try:
                                 speak("You said, " + listToStr)
                                 bot = False
                     else:
-                        x = rec.PartialResult()
+                        pass
+                        # x = rec.PartialResult()
                         # print(x)
-                    if dump_fn is not None:
-                        dump_fn.write(data)
-                    # if rec1.AcceptWaveform(data):
-                    #     w1 = rec1.Result()
-                    #     z1 = json.loads(w1)
-                    #     print(z1["text"])
+                    
 
 except KeyboardInterrupt:
     print('\nDone')

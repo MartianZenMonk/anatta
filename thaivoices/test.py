@@ -175,14 +175,20 @@ from gtts import gTTS
 
 # text = ["หาย","ใจ","เข้า","ออก","รู้","สั้น","ยาว","หยาบ","ละเอียด","หนัก","เบา","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
 
-text = ["ทำ","ตัว","ผ่อน","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","ที่","ลม"]
+# text = ["ทำ","ตัว","ผ่อน","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","ที่","ลม"]
 
-for i in range(len(text)):
+# for i in range(len(text)):
 
-  # print(text[i])
+#   print(text[i])
 
-  speech = gTTS(text = text[i],lang='th',slow = False)
-  speech.save(str("thwords/"+text[i]) + ".mp3")
+#   speech = gTTS(text = text[i],lang='th',slow = False)
+#   speech.save(str("thwords/"+text[i]) + ".mp3")
+
 
   # speech = gTTS(text = text[i],lang='en',slow = False)
   # speech.save(str("../dataen/"+text[i]) + ".mp3")
+
+t = "อนิจจาวะตะสังขารา, สังขารทั้งหลายไม่เที่ยงหนอ, อุปปาทะวะยะธัมมิ โน , มีอันเกิดขึ้นและเสื่อมไปเป็นธรรมดา, อุปปัชชิตะวานิรุชฌันติ, บังเกิดขึ้นแล้วย่อมดับไป, เตสังวูปะสะโมสุโข, การเข้าไประงับสังขารเหล่านั้นเสียได้เป็นความสุข"
+
+speech = gTTS(text = t,lang='th',slow = False)
+speech.save(str("dead.mp3"))

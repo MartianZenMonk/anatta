@@ -159,7 +159,7 @@ def callback(indata, frames, time, status):
     """This is called (from a separate thread) for each audio block."""
     if status:
         print(status, file=sys.stderr)
-    if q.qsize() > 30:
+    if q.qsize() > 10:
         with q.mutex:
             q.queue.clear()
     else:
@@ -454,7 +454,7 @@ def fast_buddho(c='off', t=30, vol='1000'):
 
 
 
-def bell(l=3,vol='200'):
+def bell(l='3',vol='200'):
     subprocess.run(["mpg123","-q","-f",vol,"--loop",l,"../dataen/bell.mp3"])
     return None
 
@@ -713,6 +713,11 @@ def remind_right_sati():
     os.system("mpg123 -q -f 2000 "+text)
 
 
+def remind_dead():
+    text = " ../thaivoices/dead.mp3"
+    os.system("mpg123 -q -f 2000 "+text)
+
+
 def mixed_mode(c='',t=10,n=0):
 
     if n == 1:
@@ -867,6 +872,59 @@ def play_sutra(vol="1000"):
     os.system("mpg123 -f " + vol + " ../datath/sutta/moggallana.mp3")
     proc = subprocess.Popen(["mpg123","-f",vol,"-C","-z","--list","sutra.txt"], stdin=master)
     press_for_stop('r',proc)
+
+
+def walking_meditation_count(c='yy'):
+    
+    speak("one stage walking practice, please count your step then you can verify it in the end")
+
+    th_right = thwords(['ขวา','ย่าง','หนอ'])
+    th_left = thwords(['ซ้าย','ย่าง','หนอ'])
+    th_stand = thwords(["ยืน","หนอ"])
+    en_right = enwords(['right','goes','thus'])
+    en_left = enwords(['left','goes','thus'])
+    
+    ledc(c)
+    for i in range(3):
+        os.system('mpg123 -f 2000 ' + th_stand)
+        time.sleep(1)
+        speak("standing")
+        time.sleep(1)
+
+    bell()
+    count = 0
+    t = random.randint(5,10)
+    timeout = time.time() + 60*t
+    while True:
+        
+        if time.time() > timeout:
+            break
+        else:
+            t1 = random.randint(1,2)
+            t2 = random.randint(1,2)
+            os.system('mpg123 -f 2000 ' + th_right)
+            time.sleep(t1)
+            os.system('mpg123 -f 2000 ' + th_left)
+            time.sleep(t2)
+
+            os.system('mpg123 -f 2000 ' + en_right)
+            time.sleep(t2)
+            os.system('mpg123 -f 2000 ' + en_left)
+            time.sleep(t1)
+
+            count +=1
+
+    bell('1')
+    speak("you walk for " + str(count*4) + "steps")
+
+    del th_left
+    del th_right
+    del th_stand
+    del en_left
+    del en_right
+    gc.collect()
+
+    return None
 
 
 # FOR MARTIAN MONK ONLY
@@ -1063,6 +1121,7 @@ try:
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             # v += 'a b c d e f g h i j k l m n o p q r s t u v w x y z '
+            v += 'walking '
             v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
 
@@ -1143,6 +1202,9 @@ try:
                                         sc += int2word(int(i))
                                     focus = True
                                     math = True
+
+                                elif "walking" in words and "meditation" in words:
+                                    walking_meditation_count()
 
                                 # for martian monk only 
                                 elif "monk" in words and "rule" in words:
