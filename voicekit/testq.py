@@ -1466,7 +1466,7 @@ try:
                                 elif "browse" in words and "webcam" in words:
                                     speak("open webcam on web browser")
                                     ip = get_ip()
-                                    command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized " + ip + ":8081"
+                                    command = "export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized " + ip + ":8081"
                                     proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
                                     press_for_stop('g',proc)
                                     os.system("sudo pkill -f chromium")
@@ -1482,21 +1482,21 @@ try:
 
                                 elif "browse" in words and "buddhism" in words:
                                     speak("open Thai buddhism in wikipedia")
-                                    command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://th.wikipedia.org/wiki/ศาสนาพุทธ"
+                                    command = "export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized https://th.wikipedia.org/wiki/ศาสนาพุทธ"
                                     proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
                                     press_for_stop('g',proc)
                                     os.system("sudo pkill -f chromium")
 
                                 elif "browse" in words and "buddhist" in words and "story" in words:
                                     speak("open youtube for buddhist stories")
-                                    command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://www.youtube.com/watch?v=tI-hgIhFDT0&list=PLYBNr5a72-497Q3UVkpDB24W4NTCD5f2K"
+                                    command = "export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized https://www.youtube.com/watch?v=tI-hgIhFDT0&list=PLYBNr5a72-497Q3UVkpDB24W4NTCD5f2K"
                                     proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
                                     press_for_stop('g',proc)
                                     os.system("sudo pkill -f chromium")
 
                                 elif "browse" in words and "meditation" in words and "technique" in words:
                                     speak("open youtube for meditation technique")
-                                    command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://www.youtube.com/playlist?list=PLUh8U5np7D-7FMh6ONGwnaltFppPBwTVI"
+                                    command = "export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized https://www.youtube.com/playlist?list=PLUh8U5np7D-7FMh6ONGwnaltFppPBwTVI"
                                     proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
                                     press_for_stop('g',proc)
                                     os.system("sudo pkill -f chromium")
@@ -1752,7 +1752,7 @@ try:
                                             
                                         elif "search" in words:
                                             speak("I will google for " + spell_words + "please see the search result on the monitor and push button to quit")
-                                            command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://www.google.com/search?channel=fs&q=" + spell_words
+                                            command = 'export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized https://www.google.com/search?q="' + spell_words + '"'
                                             proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
                                             press_for_stop('g',proc)
                                             os.system("sudo pkill -f chromium")
@@ -1761,7 +1761,7 @@ try:
 
                                         elif "translate" in words:
                                             speak("please see the translation on the monitor and push button to Quit")
-                                            command = "export DISPLAY=:0.0; chromium-browser --start-fullscreen --start-maximized https://translate.google.co.th/?sl=en&tl=th&text=" + spell_words + "&op=translate"
+                                            command = 'export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized https://www.google.com/search?q="translate ' + spell_words + '"'
                                             proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
                                             press_for_stop('g',proc)
                                             os.system("sudo pkill -f chromium")
