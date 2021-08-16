@@ -206,6 +206,7 @@ def callback(indata, frames, time, status):
 
 
 def clear_q():
+    time.sleep(1)
     with q.mutex:
         q.queue.clear()
 
@@ -1224,6 +1225,8 @@ try:
             mantra = False
             spell = False
             save = False
+            yesno = False
+            right_words = []
             add_letter = ''
             spell_words = ''
             sc = ""
@@ -1243,8 +1246,30 @@ try:
                         w = rec.Result()
                         z = json.loads(w)
                         # print(z["text"])
-                        # print(q.qsize())  
+                        # print(q.qsize()) 
                         words += z["text"].split()
+
+                        if not yesno and len(words) > 0:
+                            espeak("Do you said " + z["text"] + "?",'10') 
+                            right_words = words
+                            words = []
+                            yesno = True
+                            clear_q()
+                        elif yesno:
+                            if "no" in words:
+                                words = []
+                                yesno = False
+                                espeak("ok, please speak again",'5')
+                                clear_q()
+                            elif "yes" in words:
+                                words = right_words
+                                yesno = False
+                            else:
+                                words = []
+                                text  =  " ".join(str(x) for x in right_words) 
+                                espeak("Do you said " + text + "?",'5')
+                                espeak("please answer yes or no",'5')
+                                clear_q()
                          
                         with Board() as board:
                             #coding
@@ -1609,13 +1634,11 @@ try:
                                     listToStr = ' '.join(map(str, words))
                                     listToStr = listToStr.replace("say",'')
                                     speak("You said, " + listToStr)
-                                    time.sleep(3)
                                     clear_q()
 
                                 elif len(words) > 0:
                                     listToStr = ' '.join(map(str, words))
                                     espeak("words i heard , " + listToStr, '5')
-                                    time.sleep(3)
                                     clear_q()
                                 
                             else:
@@ -1813,7 +1836,7 @@ try:
                                                 focus = False
 
                                         elif "no" in words:
-                                            speak('sorry its my fault, please repeat your command again')
+                                            speak('ok, please repeat your command again')
                                             mantra = False
                                             focus = False
 
@@ -1916,7 +1939,6 @@ try:
                                                 espeak("please answer yes or no",'5')
                                             else:
                                                 espeak("next letter please", '5')
-                                            time.sleep(3)
                                             clear_q()                                              
 
                     else:
