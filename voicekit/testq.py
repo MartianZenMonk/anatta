@@ -42,6 +42,45 @@ def speak(text):
         return None
 
 
+sutta = {
+    "sutta":[
+        {"title":"Cankama Sutta",
+            "content":[
+                {"voice":"1","text":"These are the five rewards for one who practices walking meditation. Which five?"},
+                {"voice":"1","text":"He can endure traveling by foot"},
+                {"voice":"1","text":"he can endure exertion"},
+                {"voice":"1","text":"he becomes free from disease"},
+                {"voice":"1","text":"whatever he has eaten & drunk, chewed & savored, becomes well-digested"},
+                {"voice":"1","text":"the concentration he wins while doing walking meditation lasts for a long time"},
+                {"voice":"1","text":"These are the five rewards for one who practices walking meditation"}
+                ]
+         },
+         {"title":"Moggallana Sutta",
+            "content":[
+                {"voice":"1","text":"the Blessed One said to Ven. Maha Moggallana,"},
+                {"voice":"2","text":"Are you nodding, Moggallana? Are you nodding?"},
+                {"voice":"3","text":"Yes, lord"},
+                {"voice":"2","text":"Well then, Moggallana, whatever perception you have in mind when drowsiness descends on you, don't attend to that perception, don't pursue it. It's possible that by doing this you will shake off your drowsiness."},
+                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then recall to your awareness the Dhamma as you have heard & memorized it, re-examine it & ponder it over in your mind. It's possible that by doing this you will shake off your drowsiness."},
+                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then repeat aloud in detail the Dhamma as you have heard & memorized it. It's possible that by doing this you will shake off your drowsiness."},
+                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then pull both your earlobes and rub your limbs with your hands. It's possible that by doing this you will shake off your drowsiness."},
+                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then get up from your seat and, after washing your eyes out with water, look around in all directions and upward to the major stars & constellations. It's possible that by doing this you will shake off your drowsiness."},
+                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then attend to the perception of light, resolve on the perception of daytime, [dwelling] by night as by day, and by day as by night. By means of an awareness thus open & unhampered, develop a brightened mind. It's possible that by doing this you will shake off your drowsiness."},
+                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then — percipient of what lies in front & behind — set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards. It's possible that by doing this you will shake off your drowsiness."},
+                {"voice":"2","text":"But if by doing this you don't shake off your drowsiness, then — reclining on your right side — take up the lion's posture, one foot placed on top of the other, mindful, alert, with your mind set on getting up. As soon as you wake up, get up quickly, with the thought, 'I won't stay indulging in the pleasure of lying down, the pleasure of reclining, the pleasure of drowsiness.' That is how you should train yourself."},
+                {"voice":"2","text":"Furthermore, Moggallana, should you train yourself: 'I will not visit families with my pride lifted high.' That is how you should train yourself. Among families there are many jobs that have to be done, so that people don't pay attention to a visiting monk. If a monk visits them with his trunk lifted high, the thought will occur to him, 'Now who, I wonder, has caused a split between me and this family? The people seem to have no liking for me.' Getting nothing, he becomes abashed. Abashed, he becomes restless. Restless, he becomes unrestrained. Unrestrained, his mind is far from concentration."},
+                {"voice":"2","text":"Furthermore, Moggallana, should you train yourself: 'I will speak no confrontational speech.' That is how you should train yourself. When there is confrontational speech, a lot of discussion can be expected. When there is a lot of discussion, there is restlessness. One who is restless becomes unrestrained. Unrestrained, his mind is far from concentration."},
+                {"voice":"2","text":"It's not the case, Moggallana, that I praise association of every sort. But it's not the case that I dispraise association of every sort. I don't praise association with householders and renunciates. But as for dwelling places that are free from noise, free from sound, their atmosphere devoid of people, appropriately secluded for resting undisturbed by human beings: I praise association with dwelling places of this sort."},
+                {"voice":"1","text":"When this was said, Ven. Moggallana said to the Blessed One"},
+                {"voice":"3","text":"Briefly, lord, in what respect is a monk released through the ending of craving, utterly complete, utterly free from bonds, a follower of the utterly holy life, utterly consummate: foremost among human & heavenly beings?"},
+                {"voice":"2","text":"There is the case, Moggallana, where a monk has heard, 'All phenomena are unworthy of attachment.' Having heard that all phenomena are unworthy of attachment, he fully knows all things. Fully knowing all things, he fully comprehends all things. Fully comprehending all things, then whatever feeling he experiences — pleasure, pain, neither pleasure nor pain — he remains focused on inconstancy, focused on dispassion, focused on cessation, focused on relinquishing with regard to that feeling. As he remains focused on inconstancy, focused on dispassion, focused on cessation, focused on relinquishing with regard to that feeling, he is unsustained by anything in the world. Unsustained, he is not agitated. Unagitated, he is unbound right within. He discerns: 'Birth is ended, the holy life fulfilled, the task done. There is nothing further for this world"},
+                {"voice":"2","text":"It is in this respect, Moggallana, that a monk, in brief, is released through the ending of craving, utterly complete, utterly free from bonds, a follower of the utterly holy life, utterly consummate: foremost among human & heavenly beings."}
+                ]
+         }
+         ]
+    }
+
+
 def find_name(name):
     for proc in psutil.process_iter():
         try:
@@ -256,6 +295,7 @@ def get_help():
 
 
 def shutdown():
+    os.system("mpg123 -f 1000 ../thaivoices/dead.mp3")
     speak("The system is shutting down, wait until the green light in the box turn off")
     board.led.state = Led.OFF
     os.system("sudo shutdown now")
@@ -378,6 +418,24 @@ def thwords(text):
     return stext
 
 
+def runtime_vocabulary():
+    with open('vocabulary.csv', newline='') as f:
+        reader = csv.reader(f)
+        data = list(reader)
+
+    new_vocab = " ".join(str(x[0]) for x in data) 
+    del data
+    gc.collect()
+    return new_vocab
+
+
+def save_vocabulary(w):
+    wlist = []
+    wlist.append(w)
+    writer = csv.writer(open("vocabulary.csv", "a"))
+    writer.writerow(thislist)
+
+
 def buddha_day():
     with open('myhora-buddha-2564.csv', newline='') as f:
         reader = csv.reader(f)
@@ -463,11 +521,13 @@ def bell(l='3',vol='200'):
 
 
 def relax_thai(vol="500"):
-    bell('3',vol)
-    text = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ","เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
+
+    text  = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ",]
+    text += ["เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ","แล"]
+    text += ["ไม่","มี","ทุกข์","ไม่","มี","สุข","มี","แต่","ความ","ที่","สติ","เป็น","ธรรมชาติ","บริสุทธิ์","เพราะ","อุเบกขา","แล้ว","แล","อยู่"]
     stext = thwords(text)
     # print(stext)
-    os.system("mpg123 -q -f " + vol + " " + stext)
+    os.system("mpg123 -q -d 2 -f " + vol + " " + stext)
     del stext
     gc.collect()
     return None
@@ -476,6 +536,7 @@ def relax_thai(vol="500"):
 def pure_alpha(c='yy'):
     ledc(c)
     speak("pure alpha sound, push button for stop")
+    os.system("mpg123 -f 1000 ../thaivoices/right_concentation.mp3")
     proc = subprocess.Popen(["mpg123","-q","--loop","-1","../mars/pureAlpha.mp3"])
     press_for_stop(c,proc)
     return None
@@ -689,6 +750,21 @@ def six_stages_th_en(c='',t=5):
     del en_stage
     gc.collect() 
 
+    return None
+
+def read_sutta(d):
+    speak(d["title"])
+    lines = d["content"]
+    # print(lines)
+    for i in range(len(lines)):
+        x = int(lines[i]["voice"])
+        engine.setProperty('voice',es_voices[x]) 
+        speak(lines[i]["text"])
+    engine.setProperty('voice',es_voices[2])
+    return None
+
+def walking_reward():
+    read_sutta(sutta["sutta"][0]) 
     return None
 
 
@@ -1054,6 +1130,13 @@ def evening_practice(d=0,vol="500"):
  
     return None
 
+# International Code of Signals
+ics  = 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
+ics += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x xray y yankee z zulu'
+ics_list = ics.split(' ')
+del ics
+gc.collect()
+
 # read zenstories file
 with open('zenstories.json', 'r') as myfile:
     zdata=myfile.read()
@@ -1119,12 +1202,13 @@ try:
             # get_help()
             os.system('espeak -s 130 -a 4 -v "english-us" "Nothing is worth insisting on"')
             os.system('mpg123 -q -f 400 ../thaivoices/hello.mp3')
-
+            # will add load new runtime vocabulary
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
-            v += 'a b c d e f g h i j k l m n o p q r s t u v w x y z letter repeat space spelling mode search translate cancel '
-            v += 'walking '
+            v += 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
+            v += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
+            v += 'walking mode search translate service cancel restart save '
             v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
 
@@ -1139,6 +1223,7 @@ try:
             math = False
             mantra = False
             spell = False
+            save = False
             add_letter = ''
             spell_words = ''
             sc = ""
@@ -1211,6 +1296,7 @@ try:
                                     math = True
 
                                 elif "walking" in words and "meditation" in words:
+                                    walking_reward()
                                     walking_meditation_count()
 
                                 # for martian monk only 
@@ -1244,9 +1330,11 @@ try:
                                     evening_practice(d)
 
                                 elif "spelling" in words and "mode" in words:
-                                    speak("spelling mode, please say letter a letter b letter c and so on as you want")
+                                    speak("spelling mode, please use international code of signals such as, c charlie but can say letter c too")
                                     spell = True
                                     focus = True
+                                    yesno = False
+                                    save  = False
                                     spell_words = ''
 
                                 elif "what" in words and "time" in words:
@@ -1399,8 +1487,12 @@ try:
                                     shutdown()
                                     break
                                 
-                                #PLAY
+                                elif "please" in words and "restart" in words:
+                                    speak("restart the service, please wait")
+                                    os.system("sudo systemctl restart myscript.service")
+                                    break
 
+                                #PLAY
                                 elif "light" in words and "on" in words:
 
                                     if "red" in words:
@@ -1645,7 +1737,8 @@ try:
                                                 
                                                 remind_sati()
 
-                                                fast_buddho('gg')
+                                                fast_buddho('c',15)
+                                                fast_buddho('gg',15)
 
                                                 remind_right_sati()
 
@@ -1730,25 +1823,68 @@ try:
 
                                     elif spell:
 
-                                        if "letter" == words[0] and len(words) >1:
-                                            add_letter = words[1]
-                                            speak("Do you want to add letter " + words[1] + "?")
+                                        if len(words) > 1 and not yesno:
+
+                                            try:
+                                                if len(words[1]) > 1:
+                                                    b = ics_list.index(words[1])-1
+                                                    add_letter = ics_list[b]
+                                                    speak("Do you want to add letter " + add_letter + " " + words[1] + "?")
+                                                    yesno = True
+                                                else:
+                                                    if len(words[1]) == 1:   
+                                                        add_letter = words[1]
+                                                        b = ics_list.index(words[1])+1
+                                                        speak("Do you want to add letter " + add_letter + " " + ics_list[b] + "?")
+                                                        yesno = True
+                                                    else:
+                                                        pass
+                                            except:
+                                                if words[0] == "letter" and len(words[1]) == 1:
+                                                    add_letter = words[1]
+                                                    b = ics_list.index(words[1])+1
+                                                    speak("Do you want to add letter " + add_letter + " " + ics_list[b] + "?")
+                                                    yesno = True
+                                                else:
+                                                    if words[1] == "space":
+                                                        add_letter = "space"
+                                                        speak("Do you want to add letter " + add_letter + "?")
+                                                        yesno = True
+                                                    else:
+                                                        pass
 
                                         elif "yes" in words:
-                                            if add_letter == "space":
+                                            if save:
+                                                #save words for runtime vocabulary
+                                                save_vocabulary(spell_words)
+                                                save = False
+                                            elif add_letter == "space":
                                                 spell_words += ' '
                                             else:
                                                 spell_words += add_letter
 
-                                            speak("done, next letter please")
+                                            speak("done, what's next?")
+                                            yesno = False
 
                                         elif "repeat" in words:
                                             spw = list(spell_words)
                                             for l in spw:
                                                 speak(l)
 
+                                        elif "speak" in words:
+                                            speak(spell_words)
+
                                         elif "no" in words: 
-                                            speak("please repeat the letter you want again")
+                                            if save:
+                                                speak("ok, do not save it")
+                                            else:
+                                                speak("please repeat the letter you want again")
+                                            yesno = False
+
+                                        elif "save" in words:
+                                            speak("Do you really want to save " + spell_words + " to runtime vocabulary?")
+                                            yesno = True
+                                            save = True
                                             
                                         elif "search" in words:
                                             speak("I will google for " + spell_words + "please see the search result on the monitor and push button to quit")
@@ -1774,9 +1910,14 @@ try:
                                             spell = False
 
                                         else:
-                                            speak('please speak next letter or yes or no or repeat or exit to quit')
-                                            clear_q()
-                                        
+                                            listToStr = ' '.join(map(str, words))
+                                            espeak("i heard , " + listToStr, '5')
+                                            if yesno:
+                                                espeak("please answer yes or no",'5')
+                                            else:
+                                                espeak("next letter please", '5')
+                                            time.sleep(3)
+                                            clear_q()                                              
 
                     else:
                         leds.update(Leds.rgb_on(Color.RED))

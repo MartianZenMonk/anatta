@@ -37,11 +37,17 @@ from gtts import gTTS
 # for i in range(len(text)):
 # 	speech = gTTS(text = text[i],lang='th',slow = False)
 # 	speech.save(str(text[i]) + ".mp3")
+
+
+# text  = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ",]
+# text += ["เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ","แล"]
+# text += ["ไม่","มี","ทุกข์","ไม่","มี","สุข","มี","แต่","ความ","ที่","สติ","เป็น","ธรรมชาติ","บริสุทธิ์","เพราะ","อุเบกขา","แล้ว","แล","อยู่"]
+
 # ftext = ""
 # for i in range(len(text)):
 # 	ftext += " thwords/" + text[i] + ".mp3"
 
-# os.system('mpg123 -h 1 -d 2  ' + ftext)
+# os.system('mpg123 ' + ftext)
 
 
 # import requests
@@ -177,6 +183,9 @@ from gtts import gTTS
 
 # text = ["ทำ","ตัว","ผ่อน","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","ที่","ลม"]
 
+
+# text = ["ทุกข์","แต่","สติ","เป็น","ธรรมชาติ","บริสุทธิ์","เพราะ","อุเบกขา","แล้ว","แล","อยู่"]
+
 # for i in range(len(text)):
 
 #   print(text[i])
@@ -188,7 +197,30 @@ from gtts import gTTS
   # speech = gTTS(text = text[i],lang='en',slow = False)
   # speech.save(str("../dataen/"+text[i]) + ".mp3")
 
-t = "อนิจจาวะตะสังขารา, สังขารทั้งหลายไม่เที่ยงหนอ, อุปปาทะวะยะธัมมิ โน , มีอันเกิดขึ้นและเสื่อมไปเป็นธรรมดา, อุปปัชชิตะวานิรุชฌันติ, บังเกิดขึ้นแล้วย่อมดับไป, เตสังวูปะสะโมสุโข, การเข้าไประงับสังขารเหล่านั้นเสียได้เป็นความสุข"
+# t = "อนิจจาวะตะสังขารา, สังขารทั้งหลายไม่เที่ยงหนอ, อุปปาทะวะยะธัมมิ โน , มีอันเกิดขึ้นและเสื่อมไปเป็นธรรมดา, อุปปัชชิตะวานิรุชฌันติ, บังเกิดขึ้นแล้วย่อมดับไป, เตสังวูปะสะโมสุโข, การเข้าไประงับสังขารเหล่านั้นเสียได้เป็นความสุข"
 
-speech = gTTS(text = t,lang='th',slow = False)
-speech.save(str("dead.mp3"))
+# t = 'ฝึกเพื่อให้มีความรู้สึกตัวไว ทันต่อการรับรู้ทาง ตา หู จมูก ลิ้น กาย ใจ'
+# speech = gTTS(text = t,lang='th',slow = False)
+# speech.save(str("goal.mp3"))
+
+def runtime_vocabulary():
+    with open('vocabulary.csv', newline='') as f:
+        reader = csv.reader(f)
+        data = list(reader)
+    print(data)
+    new_vocab = " ".join(str(x[0]) for x in data) 
+    
+    return new_vocab
+
+
+def save_vocabulary(w):
+    wlist = []
+    wlist.append(w)
+    writer = csv.writer(open("vocabulary.csv", "a"))
+    writer.writerow(wlist)
+
+
+save_vocabulary("orange")
+
+v = runtime_vocabulary()
+print(v)
