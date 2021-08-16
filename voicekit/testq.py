@@ -527,7 +527,7 @@ def relax_thai(vol="500"):
     text += ["ไม่","มี","ทุกข์","ไม่","มี","สุข","มี","แต่","ความ","ที่","สติ","เป็น","ธรรมชาติ","บริสุทธิ์","เพราะ","อุเบกขา","แล้ว","แล","อยู่"]
     stext = thwords(text)
     # print(stext)
-    os.system("mpg123 -q -d 2 -f " + vol + " " + stext)
+    os.system("mpg123 -q -f " + vol + " " + stext)
     del stext
     gc.collect()
     return None
