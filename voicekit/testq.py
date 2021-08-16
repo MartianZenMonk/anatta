@@ -1209,7 +1209,7 @@ try:
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             v += 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
             v += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
-            v += 'walking mode search translate service cancel restart save '
+            v += 'walking mode search translate service cancel restart save anat ta '
             v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
 
@@ -1218,6 +1218,7 @@ try:
             del v
             gc.collect()
 
+            bot = False
             focus = False
             zen = False
             proc_bool = False
@@ -1248,8 +1249,15 @@ try:
                         # print(z["text"])
                         # print(q.qsize()) 
                         words += z["text"].split()
+                        # say "anat ta" to start
+                        if z["text"] == "anat ta":
+                            if not bot:
+                                bot = True
+                                words = []
+                                speak("yes sir, what can i do for you?")
+                                clear_q()
 
-                        if not yesno and len(words) > 0:
+                        if not yesno and bot and len(words) > 0:
                             espeak("Do you said " + z["text"] + "?",'10') 
                             right_words = words
                             words = []
@@ -1270,6 +1278,8 @@ try:
                                 espeak("Do you said " + text + "?",'5')
                                 espeak("please answer yes or no",'5')
                                 clear_q()
+                        else:
+                            words = []
                          
                         with Board() as board:
                             #coding
@@ -1282,6 +1292,10 @@ try:
                                         wise_one('gg')
                                     else:
                                         wise_one()
+
+                                elif "anat" in words and "ta" in words and "stop" in words:
+                                    bot = False
+                                    speak("ok, call my name when you need help, bye bye!")
 
                                 elif "my" in words and "dhamma" in words:
 
@@ -1394,10 +1408,10 @@ try:
                                 elif "dependent" in words and "origination" in words and "chanting" in words:
                                     play_dependent_origination_chanting_thai()
 
-                                elif "eight" in words and "fold" in words and "path" in words and "thai" in words:
+                                elif "eight" in words and "path" in words and "thai" in words:
                                     play_eight_fold_path_chanting_thai()
 
-                                elif "eight" in words and "fold" in words and "path" in words and "english" in words:
+                                elif "eight" in words and "path" in words and "english" in words:
                                     play_eight_fold_path_chanting_english()
 
                                 elif "chanting" in words and "english" in words:
@@ -1539,7 +1553,7 @@ try:
                                         if len(c) == 1:
                                            c += c
 
-                                    # may say : color sound alpha light
+                                    # may say : color sound alpha light on
                                     if "sound" in words:
                                         ledc(c)
                                         proc = subprocess.Popen(["mpg123","-q","--loop","-1","../dataen/alpha12Hz.mp3"])
