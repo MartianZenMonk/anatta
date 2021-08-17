@@ -270,6 +270,31 @@ def get_new_dhamma_files():
     # print(newfiles)
     return newfiles
 
+def runtime_vocabulary():
+    with open('vocabulary.csv', newline='') as f:
+        reader = csv.reader(f)
+        data = list(reader)
+
+    new_vocab = " ".join(str(x[0]) for x in data) 
+    new_vocab += ' '
+    del data
+    gc.collect()
+    return new_vocab
+
+
+def save_vocabulary(w):
+    wlist = []
+    wlist.append(w)
+    writer = csv.writer(open("vocabulary.csv", "a"))
+    writer.writerow(thislist)
+
+
+# International Code of Signals
+ics  = 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
+ics += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x xray y yankee z zulu'
+ics_list = ics.split(' ')
+del ics
+gc.collect()
 
 
 parser = argparse.ArgumentParser(add_help=False)
@@ -315,11 +340,14 @@ try:
             print('Press Ctrl+C to stop')
             print('#' * 80)
 
+            new_vocab = runtime_vocabulary()
+
             runv  = '["acumen anat ta hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
             runv += 'meditation mindfulness news no now on open play please quiet sermons seventy shutdown silent sitting sixty '
-            runv += 'mouse left right scroll click exit center sky star page browse technique wise new playing speak '
+            runv += 'mouse left right scroll click exit center sky star page browse technique wise new playing speak kill all '
             runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty '
-            runv += 'a b c d e f g h i j k l m n o p q r s t u v w x y z '
+            runv += 'letter a b c d e f g h i j k l m n o p q r s t u v w x y z '
+            runv += new_vocab
             # runv += 'is am are be was were do does did done had have has can could shall should might may maybe '
             runv += 'show sleep start stop story sutra tell time to turn up volume wake walking what when who yes zen fire fox"]'
             
@@ -366,6 +394,12 @@ try:
                             elif "no" in words:
                                 focus = False
                                 focus_event = []
+
+                        elif "kill" in words and "all" in words:
+                            if "fire" in words and "fox" in words:
+                                os.system("killall firefox")
+                                speak("kill all firefox done")
+                            bot = False
 
                         elif "wise" in words and "one" in words:
                             if "play" in words:

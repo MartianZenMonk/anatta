@@ -274,19 +274,28 @@ def press_for_stop(c='',proc=0):
 
 def get_help():
     text =  '''
-            words you can say are,
-            daily dependent origination, buddha thinking Thai,
-            nature truth chanting, breathing chanting, dependent origination chanting,
-            8 fold path Thai, 8 fold path English, English chanting,
-            Thai chanting, meditaion time, play radio, 
-            play mantra 1 2 3 4 5 6 ( 10 15 20 30 40 50 minutes),
-            play 1 3 6 stage, buddha dhamma, play dhamma, play sutra,
-            what time, what day, buddha day, zen story, please shutdown,
-            red green blue yellow (sound, alpha) light on
-            (pure, breathing) alpha meditation
-            moring practice
-            wise one (alpha)
-            play my dhamma
+            You have to start with words anat ta,
+            and then you can say,
+            repeat mode on off,
+            daily dependent origination,
+            buddha thinking,
+            nature truth chanting,
+            breathing chanting,
+            dependent origination chanting,
+            8 fold path Thai, 8 fold path English,
+            English chanting, Thai chanting,
+            meditaion time, play radio, 
+            play mantra 1 2 3 4 5 6 or 10 15 20 30 40 50 minutes,
+            play 1 3 6 stage,
+            buddha dhamma, play dhamma, play sutra, my dhamma
+            what time, what day, buddha day, zen story,
+            red green blue yellow or sound and or alpha light on,
+            pure or breathing alpha meditation,
+            math meditation,
+            walking practice,
+            moring practice,
+            wise one and or alpha,
+            please shutdown or anat ta stop,
             '''
     speak(text)
     time.sleep(3)
@@ -764,6 +773,11 @@ def read_sutta(d):
     engine.setProperty('voice',es_voices[2])
     return None
 
+def meditation_goal():
+    text = " ../thaivoices/goal.mp3"
+    os.system("mpg123 -q -f 2000 "+text)
+
+
 def walking_reward():
     read_sutta(sutta["sutta"][0]) 
     return None
@@ -827,6 +841,23 @@ def get_new_dhamma_files():
     return newfiles
 
 
+def play_my_dhamma():
+    files= get_new_dhamma_files()
+    cmd = "mpg123 -C -d 1.5 -f 2000 "+files
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True, stdin=master)
+    leds.update(Leds.rgb_on(Color.YELLOW))
+    board.button.wait_for_press()
+    os.write(slave, b'f')
+    leds.update(Leds.rgb_on(Color.RED))
+    board.button.wait_for_press()
+    os.write(slave, b'f')
+    press_for_stop('g',proc)
+    killPlayer()    
+    del files
+    gc.collect() 
+    return None
+
+
 # Features
 def what_time():
     today = datetime.today().strftime('%H %M')
@@ -880,7 +911,7 @@ def play_eight_fold_path_chanting_thai(vol="2000"):
     killPlayer()   
     # speak("Thai Noble 8 fold path chanting")
     proc = subprocess.Popen(["mpg123","-f",vol,"-C","--loop","-1","../datath/chanting/8.mp3"], stdin=master)
-    press_for_stop('g',proc)
+    press_for_stop('off',proc)
 
 
 def play_eight_fold_path_chanting_english():
@@ -1015,7 +1046,7 @@ def monk_rules(c='g'):
     return None
 
 
-def morning_practice(c='d',vol="200"):
+def morning_practice(c='off',vol="200"):
 
     ledc(c)
     # warm up
@@ -1099,11 +1130,11 @@ def evening_practice(d=0,vol="500"):
 
     remind_right_sati()
 
-    fast_buddho('yy',15)
-    fast_buddho('d',15)
-
     fast_buddho('gg',15)
+    fast_buddho('dd',15)
+
     fast_buddho('d',15)
+    fast_buddho('off',15)
 
     vol = "300"
     bell('3',vol)
@@ -1127,7 +1158,7 @@ def evening_practice(d=0,vol="500"):
             d = random.randint(0,2)
         morning_practice_chanting_mode('d',d)
     else:
-        morning_practice()
+        morning_practice('d')
  
     return None
 
@@ -1203,7 +1234,9 @@ try:
             # get_help()
             os.system('espeak -s 130 -a 4 -v "english-us" "Nothing is worth insisting on"')
             os.system('mpg123 -q -f 400 ../thaivoices/hello.mp3')
-            # will add load new runtime vocabulary
+            
+            # new runtime vocabulary
+            new_vocab = runtime_vocabulary()
             v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
             v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
@@ -1211,6 +1244,7 @@ try:
             v += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
             v += 'walking mode search translate service cancel restart save anat ta '
             v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
+            v += new_vocab
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
 
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
@@ -1227,12 +1261,13 @@ try:
             spell = False
             save = False
             yesno = False
+            repeat = False
             right_words = []
             add_letter = ''
             spell_words = ''
             sc = ""
             t = 0
-            
+            meditation_goal()
             with q.mutex:
                 q.queue.clear()
 
@@ -1249,6 +1284,7 @@ try:
                         # print(z["text"])
                         # print(q.qsize()) 
                         words += z["text"].split()
+
                         # say "anat ta" to start
                         if z["text"] == "anat ta":
                             if not bot:
@@ -1256,30 +1292,37 @@ try:
                                 words = []
                                 speak("yes sir, what can i do for you?")
                                 clear_q()
-
-                        if not yesno and bot and len(words) > 0:
-                            espeak("Do you said " + z["text"] + "?",'10') 
-                            right_words = words
+                        elif z["text"] == "please help":
+                            get_help()
                             words = []
-                            yesno = True
-                            clear_q()
-                        elif yesno:
-                            if "no" in words:
+                        elif not bot:
+                            words = []
+
+                        if repeat:  
+
+                            if not yesno and bot and len(words) > 0:
+                                espeak("Do you said " + z["text"] + "?",'10') 
+                                right_words = words
                                 words = []
-                                yesno = False
-                                espeak("ok, please speak again",'5')
+                                yesno = True
                                 clear_q()
-                            elif "yes" in words:
-                                words = right_words
-                                yesno = False
+                            elif yesno:
+                                if "no" in words:
+                                    words = []
+                                    yesno = False
+                                    espeak("ok, please speak again",'5')
+                                    clear_q()
+                                elif "yes" in words:
+                                    words = right_words
+                                    yesno = False
+                                else:
+                                    words = []
+                                    text  =  " ".join(str(x) for x in right_words) 
+                                    espeak("Do you said " + text + "?",'5')
+                                    espeak("please answer yes or no",'5')
+                                    clear_q()
                             else:
                                 words = []
-                                text  =  " ".join(str(x) for x in right_words) 
-                                espeak("Do you said " + text + "?",'5')
-                                espeak("please answer yes or no",'5')
-                                clear_q()
-                        else:
-                            words = []
                          
                         with Board() as board:
                             #coding
@@ -1293,19 +1336,21 @@ try:
                                     else:
                                         wise_one()
 
+                                elif "repeat" in words and "mode" in words:
+                                    if "on" in words:
+                                        repeat = True
+                                        speak("Repeat mode on")
+                                    elif "off" in words:
+                                        repeat = False
+                                        speak("Repeat mode off")
+
                                 elif "anat" in words and "ta" in words and "stop" in words:
                                     bot = False
                                     speak("ok, call my name when you need help, bye bye!")
 
                                 elif "my" in words and "dhamma" in words:
 
-                                        files= get_new_dhamma_files()
-                                        cmd = "mpg123 -d 1.5 -f 2000 "+files
-                                        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
-                                        press_for_stop('g',proc) 
-                                        killPlayer()    
-                                        del files
-                                        gc.collect()                                                                      
+                                    play_my_dhamma()                                                                    
 
                                 elif "alpha" in words and "meditation" in words:
                                     if "sixty" in words:
@@ -1334,7 +1379,7 @@ try:
                                     focus = True
                                     math = True
 
-                                elif "walking" in words and "meditation" in words:
+                                elif "walking" in words and "practice" in words:
                                     walking_reward()
                                     walking_meditation_count()
 
@@ -1396,7 +1441,7 @@ try:
                                 elif "daily" in words and "dependent" in words and "origination" in words:
                                     play_daily_dependent_origination_thai()
 
-                                elif "buddha" in words and "thinking" in words and "thai" in words:
+                                elif "buddha" in words and "thinking" in words:
                                     play_buddha_thinking_thai()
 
                                 elif "breathing" in words and "chanting" in words:
