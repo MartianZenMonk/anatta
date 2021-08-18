@@ -434,6 +434,7 @@ def runtime_vocabulary():
         data = list(reader)
 
     new_vocab = " ".join(str(x[0]) for x in data) 
+    new_vocab += ' '
     del data
     gc.collect()
     return new_vocab
@@ -560,6 +561,28 @@ def alpha_wave(t):
 
 
 #BHAVANA
+def remind_breathing(t=30,vol='500'):
+    text = ["หาย","ใจ","เข้า","พุท","หาย","ใจ","ออก","โธ"]
+    tx   = thwords(text)
+    timeout = time.time() + 60*t   
+    while True:
+        if time.time() > timeout:
+            break
+        else:
+            os.system("mpg123 -f "+ vol + " " + tx)
+    bell('1','500')
+    return None
+    
+
+def loop_sati(t=30,vol='500'):
+    os.system('mpg123 -f ' + vol + ' -loop -1 ')
+    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../thaivoices/sati-cut.mp3"])
+    time.sleep(60*t)
+    proc.kill()
+    bell('1','500')
+    return None
+
+
 def wise_one(c='off',vol="500"):
     proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
     press_for_stop(c,proc)
@@ -583,7 +606,7 @@ def breathing_alpha_meditation(c='g',t=30):
 
     alpha_wave(t)
 
-    bell('3',vol)
+    bell('1',vol)
     
     return None
 
@@ -592,6 +615,8 @@ def alpha_meditation(m=60,t=15,c='off',vol="500"):
 
 
     speak(str(m) + " minutes alpha sound")
+    if t > 0:
+        speak("and "+ str(t) + " minutes bell sound")
 
     bell('3',vol)
 
@@ -603,7 +628,7 @@ def alpha_meditation(m=60,t=15,c='off',vol="500"):
     if t == 0:
         t = m
         alpha_wave(t)
-        bell('3',vol)
+        bell('1',vol)
     else:
         timeout = time.time() + 60*m
         while True:
@@ -612,9 +637,9 @@ def alpha_meditation(m=60,t=15,c='off',vol="500"):
                 break
             else:
                 alpha_wave(t)
-                bell('3',vol)
+                bell('1',vol)
 
-
+    bell('3',vol)
     return None
 
 
@@ -1242,7 +1267,7 @@ try:
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             v += 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
             v += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
-            v += 'walking mode search translate service cancel restart save anat ta '
+            v += 'walking mode search translate service cancel restart save anat ta sitting '
             v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             v += new_vocab
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -1252,22 +1277,31 @@ try:
             del v
             gc.collect()
 
-            bot = False
-            focus = False
-            zen = False
-            proc_bool = False
-            math = False
+            bot    = False
+            focus  = False
+            zen    = False
+            math   = False
             mantra = False
-            spell = False
-            save = False
-            yesno = False
+            spell  = False
+            save   = False
+            yesno  = False
             repeat = False
+            sit    = False
+            proc_bool   = False
             right_words = []
-            add_letter = ''
+            add_letter  = ''
             spell_words = ''
             sc = ""
-            t = 0
+            t  = 0
+            k  = 0
+            ch = ['a','b','c','d','e']
+            ch_name  = ['fast buddho mantra','breathing in and out mantra in Thai']
+            ch_name += ['alpha sound with alpha light',' only alpha sound','only alpha light']
+            time.sleep(1)
             meditation_goal()
+            time.sleep(1)
+            speak('hi,there! my name is anat ta, please call my name if you want to start')
+            time.sleep(1)
             with q.mutex:
                 q.queue.clear()
 
@@ -1290,7 +1324,7 @@ try:
                             if not bot:
                                 bot = True
                                 words = []
-                                speak("yes sir, what can i do for you?")
+                                speak("yes, what can i do for you?")
                                 clear_q()
                         elif z["text"] == "please help":
                             get_help()
@@ -1382,6 +1416,25 @@ try:
                                 elif "walking" in words and "practice" in words:
                                     walking_reward()
                                     walking_meditation_count()
+
+                                elif "sitting" in words and "practice" in words:
+
+                                    if "one" in words:
+                                        t = 60
+                                    elif "two" in words:
+                                        t = 120
+                                    else:
+                                        t = 30
+
+                                    speak("sitting meditation practice for " + str(t) + " minutes")
+                                    speak("which practice mode you like?")
+
+                                    for i in range(len(ch)):
+                                        speak(ch[i] + ", " + ch_name[i])
+                                        time.sleep(1)
+
+                                    sit   = True
+                                    focus = True
 
                                 # for martian monk only 
                                 elif "monk" in words and "rule" in words:
@@ -1998,10 +2051,67 @@ try:
                                                 espeak("please answer yes or no",'5')
                                             else:
                                                 espeak("next letter please", '5')
-                                            clear_q()                                              
+                                            clear_q()   
+                                    
+                                    elif sit:
+
+                                        if yesno:
+                                            if "yes" in words:
+                                                speak(str(t) + " minutes " + ch_name[k])
+                                                if ch[k] == 'a':
+                                                    bell('3','500')
+                                                    fast_buddho('off',t)
+                                                    bell('1','500')
+                                                    focus = False
+                                                    sit = False
+                                                elif ch[k] == 'b':
+                                                    bell('3','500')
+                                                    remind_breathing(t)
+                                                    bell('1','500')
+                                                    focus = False
+                                                    sit = False
+                                                elif ch[k] == 'c':
+                                                    breathing_alpha_meditation('gg',t)
+                                                    focus = False
+                                                    sit = False
+                                                elif ch[k] == 'd':
+                                                    breathing_alpha_meditation('off',t)
+                                                    focus = False
+                                                    sit = False
+                                                elif ch[k] == 'e':
+                                                    bell('3','500')
+                                                    ledc('gg')
+                                                    time.sleep(60*t)
+                                                    bell('1','500')
+                                                    focus = False
+                                                    sit = False
+                                            elif "no" in words:
+                                                yesno = False
+                                                speak("please select new choice ")
+                                                speak(ch)
+                                            else:
+                                                listToStr = ' '.join(map(str, words))
+                                                espeak("i heard , " + listToStr, '5')
+                                                espeak("please answer yes or no",'5')
+                                                clear_q()                                                
+                                            
+                                        elif len(words[0]) == 1:
+                                            try:
+                                                k = ch.index(words[0])
+                                                speak("Do you want to play " + ch_name[k] + "?")
+                                                yesno = True
+                                                
+                                            except:
+                                                speak("please select")
+                                                speak(ch)
+                                                yesno = False
+                                                
 
                     else:
-                        leds.update(Leds.rgb_on(Color.RED))
+                        if bot:
+                            leds.update(Leds.rgb_on(Color.RED))
+                        else:
+                            leds.update(Leds.rgb_on(Color.BLACK))
                         # x = rec.PartialResult()
                         # print(x)
 

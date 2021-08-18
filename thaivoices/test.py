@@ -1,5 +1,7 @@
 import os
 import sys
+import subprocess
+import time
 import csv
 from gtts import gTTS 
 
@@ -43,11 +45,13 @@ from gtts import gTTS
 # text += ["เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ","แล"]
 # text += ["ไม่","มี","ทุกข์","ไม่","มี","สุข","มี","แต่","ความ","ที่","สติ","เป็น","ธรรมชาติ","บริสุทธิ์","เพราะ","อุเบกขา","แล้ว","แล","อยู่"]
 
+# text = ["หาย","ใจ","เข้า","พุท","หาย","ใจ","ออก","โธ"]
 # ftext = ""
 # for i in range(len(text)):
 # 	ftext += " thwords/" + text[i] + ".mp3"
 
 # os.system('mpg123 ' + ftext)
+
 
 
 # import requests
@@ -200,27 +204,10 @@ from gtts import gTTS
 # t = "อนิจจาวะตะสังขารา, สังขารทั้งหลายไม่เที่ยงหนอ, อุปปาทะวะยะธัมมิ โน , มีอันเกิดขึ้นและเสื่อมไปเป็นธรรมดา, อุปปัชชิตะวานิรุชฌันติ, บังเกิดขึ้นแล้วย่อมดับไป, เตสังวูปะสะโมสุโข, การเข้าไประงับสังขารเหล่านั้นเสียได้เป็นความสุข"
 
 # t = 'ฝึกเพื่อให้มีความรู้สึกตัวไว ทันต่อการรับรู้ทาง ตา หู จมูก ลิ้น กาย ใจ'
+# t = "หายใจเข้า พุท หายใจออก โธ"
 # speech = gTTS(text = t,lang='th',slow = False)
 # speech.save(str("goal.mp3"))
 
-def runtime_vocabulary():
-    with open('vocabulary.csv', newline='') as f:
-        reader = csv.reader(f)
-        data = list(reader)
-    print(data)
-    new_vocab = " ".join(str(x[0]) for x in data) 
-    
-    return new_vocab
 
 
-def save_vocabulary(w):
-    wlist = []
-    wlist.append(w)
-    writer = csv.writer(open("vocabulary.csv", "a"))
-    writer.writerow(wlist)
 
-
-save_vocabulary("orange")
-
-v = runtime_vocabulary()
-print(v)

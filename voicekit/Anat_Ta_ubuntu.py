@@ -289,6 +289,20 @@ def save_vocabulary(w):
     writer.writerow(thislist)
 
 
+def clear_q():
+    time.sleep(1)
+    with q.mutex:
+        q.queue.clear()
+
+
+def pure_alpha():
+    speak("pure alpha sound, move your hand close to webcam to stop")
+    os.system("mpg123 -f 1000 ../thaivoices/right_concentation.mp3")
+    proc = subprocess.Popen(["mpg123","--loop","-1","../mars/pureAlpha.mp3"])
+    motion_detect(proc)
+    return None
+
+
 # International Code of Signals
 ics  = 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
 ics += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x xray y yankee z zulu'
@@ -342,10 +356,10 @@ try:
 
             new_vocab = runtime_vocabulary()
 
-            runv  = '["acumen anat ta hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
-            runv += 'meditation mindfulness news no now on open play please quiet sermons seventy shutdown silent sitting sixty '
+            runv  = '["acumen anat alpha ta hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
+            runv += 'meditation mindfulness news no now on off open play please quiet sermons seventy shutdown silent sitting sixty '
             runv += 'mouse left right scroll click exit center sky star page browse technique wise new playing speak kill all '
-            runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty '
+            runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty repeat mode '
             runv += 'letter a b c d e f g h i j k l m n o p q r s t u v w x y z '
             runv += new_vocab
             # runv += 'is am are be was were do does did done had have has can could shall should might may maybe '
@@ -357,9 +371,13 @@ try:
             engine.say('Hello my name is '+ bot_name +' please call my name before speak to me')
             engine.runAndWait()
             engine.stop()
-            n = 0
+
             global proc
+            n = 0
             proc_ck = False
+            repeat  = False
+            yesno   = False
+
             with q.mutex:
                 q.queue.clear()
 
@@ -382,6 +400,31 @@ try:
                     if bot_name == z["text"] or ("hey" in words and "acumen" in words):
                         bot = True
                         speak("yes sir")
+                        clear_q()
+                        words = []
+
+                    if not yesno and bot and repeat and len(words) > 0:
+                        speak("Do you said " + z["text"] + "?") 
+                        right_words = words
+                        words = []
+                        yesno = True
+                        clear_q()
+                    elif yesno:
+                        if "no" in words:
+                            words = []
+                            yesno = False
+                            speak("ok, please speak again")
+                            clear_q()
+                        elif "yes" in words:
+                            words = right_words
+                            yesno = False
+                        else:
+                            words = []
+                            text  =  " ".join(str(x) for x in right_words) 
+                            speak("Do you said " + text + "?")
+                            speak("please answer yes or no")
+                            clear_q()
+                   
                     if bot or focus:
                         print(z["text"])
                         print("Listening...")
@@ -394,6 +437,15 @@ try:
                             elif "no" in words:
                                 focus = False
                                 focus_event = []
+
+                        elif "repeat" in words and "mode" in words:
+                            if "on" in words:
+                                repeat = True
+                                speak("Repeat mode on")
+                            elif "off" in words:
+                                repeat = False
+                                speak("Repeat mode off")
+                            bot = False
 
                         elif "kill" in words and "all" in words:
                             if "fire" in words and "fox" in words:
@@ -411,6 +463,10 @@ try:
                                     proc.kill()
                                     proc_ck = False
                                 bot = False
+
+                        elif "alpha" in words and "meditation" in words:
+                            pure_alpha()
+                            bot = False
 
                         elif "chanting" in words:
                             speak("Thai chanting")
