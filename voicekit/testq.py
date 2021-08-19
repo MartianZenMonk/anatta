@@ -198,7 +198,7 @@ def callback(indata, frames, time, status):
     """This is called (from a separate thread) for each audio block."""
     if status:
         print(status, file=sys.stderr)
-    if q.qsize() > 10:
+    if q.qsize() > 15:
         with q.mutex:
             q.queue.clear()
     else:
@@ -285,7 +285,7 @@ def get_help():
             8 fold path Thai, 8 fold path English,
             English chanting, Thai chanting,
             meditaion time, play radio, 
-            play mantra 1 2 3 4 5 6 or 10 15 20 30 40 50 minutes,
+            mantra 1 2 3 4 5 6 or 10 15 20 30 40 50 minutes,
             play 1 3 6 stage,
             buddha dhamma, play dhamma, play sutra, my dhamma
             what time, what day, buddha day, zen story,
@@ -1062,8 +1062,28 @@ def walking_meditation_count(c='yy'):
 
     return None
 
+def raining_meditation(c='d',vol="6000"):
+    ledc(c)
+    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/rainymood.mp3"])
+    press_for_stop(c,proc)
+    return None
+
+
+def thunder_meditation(c='d',vol="6000"):
+    ledc(c)
+    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/thunderstorm.mp3"])
+    press_for_stop(c,proc)
+    return None
+
 
 # FOR MARTIAN MONK ONLY
+def music_meditation(c='off',vol="6000"):
+    ledc(c)
+    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../mars/youtubeRelaxmusic.mp3"])
+    press_for_stop(c,proc)
+    return None
+
+
 def monk_rules(c='g'):
     ledc(c)
     proc = subprocess.Popen(["mpg123","-f","2000","-q","../mars/patimok.mp3"])
@@ -1082,16 +1102,16 @@ def morning_practice(c='off',vol="200"):
     
     relax_thai(vol)
 
-    # bell('3',vol)
+    bell('3',vol)
     # start
     ledc('off')
     alpha_wave(60)
 
-    bell('3',vol)
+    bell('1',vol)
     # cool down
     ledc(c)
     fast_buddho(c,30,vol)
-
+    bell('3',vol)
     play_eight_fold_path_chanting_thai('500')
     
     return None
@@ -1110,9 +1130,7 @@ def morning_practice_chanting_mode(c='d',m=1,vol="200"):
 
     ledc(c)
     # warm up
-    fast_buddho(c,10,vol)
-    alpha_wave(30)
-    fast_buddho(c,10,vol)
+    fast_buddho(c,50,vol)
     time.sleep(300)
 
     relax_thai(vol)
@@ -1124,11 +1142,11 @@ def morning_practice_chanting_mode(c='d',m=1,vol="200"):
     time.sleep(3600)
     proc.kill()
 
-    bell('3',vol)
+    bell('1',vol)
     # cool down
     ledc(c)
     fast_buddho(c,30,vol)
-
+    bell('3',vol)
     play_sutra('500')
     
     return None
@@ -1180,7 +1198,7 @@ def evening_practice(d=0,vol="500"):
 
     if d == 1 or d == 2 or d == 3 or d == 4:
         if d == 4:
-            d = random.randint(0,2)
+            d = random.randint(1,3)
         morning_practice_chanting_mode('d',d)
     else:
         morning_practice('d')
@@ -1255,8 +1273,7 @@ try:
             print('#' * 80)
             # print(args.samplerate)
             # print(args.device)
-            # speak("Welcome to Anat ta Project, your Buddhist true friend ever")
-            # get_help()
+
             os.system('espeak -s 130 -a 4 -v "english-us" "Nothing is worth insisting on"')
             os.system('mpg123 -q -f 400 ../thaivoices/hello.mp3')
             
@@ -1267,17 +1284,18 @@ try:
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             v += 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
             v += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
-            v += 'walking mode search translate service cancel restart save anat ta sitting '
+            v += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder '
             v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             v += new_vocab
+            # v += ' how are you today what can i do for you ' #test
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
-
+            
             rec = vosk.KaldiRecognizer(model, args.samplerate,v)
 
             del v
             gc.collect()
 
-            bot    = False
+            bot    = True
             focus  = False
             zen    = False
             math   = False
@@ -1287,10 +1305,16 @@ try:
             yesno  = False
             repeat = False
             sit    = False
+            verify = False
             proc_bool   = False
+            # mc = morning practice
+            mc = False
+            ep = False
+            d  = 0
             right_words = []
             add_letter  = ''
             spell_words = ''
+            verify_words= ''
             sc = ""
             t  = 0
             k  = 0
@@ -1299,8 +1323,8 @@ try:
             ch_name += ['alpha sound with alpha light',' only alpha sound','only alpha light']
             time.sleep(1)
             meditation_goal()
-            time.sleep(1)
-            speak('hi,there! my name is anat ta, please call my name if you want to start')
+            # time.sleep(1)
+            # espeak('hi,there! my name is anat ta, please call my name if you want to start','5')
             time.sleep(1)
             with q.mutex:
                 q.queue.clear()
@@ -1360,7 +1384,7 @@ try:
                          
                         with Board() as board:
                             #coding
-                            if not focus and len(words) > 0:
+                            if not focus and len(words) > 1:
 
                                 print(words)
 
@@ -1383,8 +1407,22 @@ try:
                                     speak("ok, call my name when you need help, bye bye!")
 
                                 elif "my" in words and "dhamma" in words:
+                                    play_my_dhamma()  
 
-                                    play_my_dhamma()                                                                    
+                                elif "music" in words and "meditation" in words:
+                                    bell('3')
+                                    music_meditation()  
+
+                                elif "sound" in words:
+                                    if "raining" in words:
+                                        speak("raining sound meditation")
+                                        bell('3')
+                                        raining_meditation()
+
+                                    elif "thunder" in words:
+                                        speak("thunder storm sound meditation")
+                                        bell('3')
+                                        thunder_meditation()
 
                                 elif "alpha" in words and "meditation" in words:
                                     if "sixty" in words:
@@ -1412,59 +1450,78 @@ try:
                                         sc += int2word(int(i))
                                     focus = True
                                     math = True
+                                    words = []
 
-                                elif "walking" in words and "practice" in words:
-                                    walking_reward()
-                                    walking_meditation_count()
+                                elif "practice" in words:
 
-                                elif "sitting" in words and "practice" in words:
+                                    if "walking" in words:
+                                        walking_reward()
+                                        walking_meditation_count()
 
-                                    if "one" in words:
-                                        t = 60
-                                    elif "two" in words:
-                                        t = 120
-                                    else:
-                                        t = 30
+                                    elif "sitting" in words:
 
-                                    speak("sitting meditation practice for " + str(t) + " minutes")
-                                    speak("which practice mode you like?")
+                                        if "one" in words:
+                                            t = 60
+                                        elif "two" in words:
+                                            t = 120
+                                        else:
+                                            t = 30
 
-                                    for i in range(len(ch)):
-                                        speak(ch[i] + ", " + ch_name[i])
-                                        time.sleep(1)
+                                        speak("sitting meditation practice for " + str(t) + " minutes")
+                                        speak("which practice mode you like?")
 
-                                    sit   = True
-                                    focus = True
+                                        for i in range(len(ch)):
+                                            speak(ch[i] + ", " + ch_name[i])
+                                            time.sleep(1)
+
+                                        sit   = True
+                                        focus = True
+                                    # for martian monk only     
+                                    elif "morning" in words:
+                                        if"one" in words:
+                                            verify_words = 'Do you want to play pahoong chanting morning practice?'
+                                            d = 1
+                                        elif "two" in words:
+                                            verify_words = 'Do you want to play martika chanting morning practice?'
+                                            d = 2
+                                        elif "three" in words:
+                                            verify_words = 'Do you want to play 7 kumpee chanting morning practice?'
+                                            d = 3
+                                        else:
+                                            verify_words = 'Do you want to play morning practice?'
+                                            d = 0
+
+                                        mc = True    
+                                        verify = True
+                                        focus  = True
+
+                                    elif "evening" in words:
+                                        if "one" in words:
+                                            verify_words = 'Do you want to play pahoong chanting in the morning?'
+                                            d = 1
+                                        elif "two" in words:
+                                            verify_words = 'Do you want to play martika chanting in the morning?'
+                                            d = 2
+                                        elif "three" in words:
+                                            verify_words = 'Do you want to play 7 kumpee chanting in the morning?'
+                                            d = 3
+                                        elif "four" in words:
+                                            verify_words = 'Do you want to play random chanting in the morning?'
+                                            d = 4
+                                        elif "six" in words:
+                                            verify_words = 'Do you want to play alpha sound in the evening?'
+                                            d = 6 
+                                        else:
+                                            verify_words = 'Do you want to play basic mode evening practice?'
+                                            d = 0
+
+                                        ep = True
+                                        verify = True
+                                        focus  = True
 
                                 # for martian monk only 
                                 elif "monk" in words and "rule" in words:
-                                    monk_rules() 
-                                # for martian monk only 
-                                elif "morning" in words and "practice" in words:
-                                    if"one" in words:
-                                        morning_practice_chanting_mode('d',1)
-                                    elif "two" in words:
-                                        morning_practice_chanting_mode('d',2)
-                                    elif "three" in words:
-                                        morning_practice_chanting_mode('d',3)
-                                    else:
-                                        morning_practice()
-
-                                elif "evening" in words and "practice" in words:
-                                    if "one" in words:
-                                        d = 1
-                                    elif "two" in words:
-                                        d = 2
-                                    elif "three" in words:
-                                        d = 3
-                                    elif "four" in words:
-                                        d = 4
-                                    elif "six" in words:
-                                        d = 6 
-                                    else:
-                                        d = 0
-
-                                    evening_practice(d)
+                                    monk_rules()                                
 
                                 elif "spelling" in words and "mode" in words:
                                     speak("spelling mode, please use international code of signals such as, c charlie but can say letter c too")
@@ -1481,6 +1538,7 @@ try:
                                 elif "what" in words and "day" in words:
                                     today = datetime.today().strftime('%B %A %d')
                                     speak("Today is " + today)
+
                                 elif "buddha" in words and "day" in words:
                                     buddha_day()
                                     
@@ -1491,8 +1549,11 @@ try:
                                     focus = True
                                     zen = True
 
-                                elif "daily" in words and "dependent" in words and "origination" in words:
-                                    play_daily_dependent_origination_thai()
+                                elif "dependent" in words and "origination" in words:
+                                    if "daily" in words:
+                                        play_daily_dependent_origination_thai()
+                                    elif "chanting" in words:
+                                        play_dependent_origination_chanting_thai()
 
                                 elif "buddha" in words and "thinking" in words:
                                     play_buddha_thinking_thai()
@@ -1501,16 +1562,13 @@ try:
                                     play_breathing_chanting_thai()
 
                                 elif "nature" in words and "truth" in words and "chanting" in words:
-                                    play_nature_truth_chanting_thai()
+                                    play_nature_truth_chanting_thai()                                  
 
-                                elif "dependent" in words and "origination" in words and "chanting" in words:
-                                    play_dependent_origination_chanting_thai()
-
-                                elif "eight" in words and "path" in words and "thai" in words:
-                                    play_eight_fold_path_chanting_thai()
-
-                                elif "eight" in words and "path" in words and "english" in words:
-                                    play_eight_fold_path_chanting_english()
+                                elif "fold" in words and "path" in words:
+                                    if "thai" in words:
+                                        play_eight_fold_path_chanting_thai()
+                                    elif "english" in words:
+                                        play_eight_fold_path_chanting_english()
 
                                 elif "chanting" in words and "english" in words:
                                     english_chating()
@@ -1521,7 +1579,7 @@ try:
                                 elif "radio" in words and "play" in words:
                                     play_radio()                                
                                     
-                                elif "play" in words and "mantra" in words:
+                                elif "mantra" in words:
 
                                     killPlayer() 
                                     mantra = True  
@@ -1529,7 +1587,7 @@ try:
                                       
                                     if "five" in words:
                                         t = 5
-                                        speak("Do you want to play slow buddho mantra, push button for stop?")
+                                        speak("Do you want to play slow buddho mantra and push button to stop?")
                                                                                
                                     elif "one" in words:  
                                         t = 1
@@ -1549,7 +1607,7 @@ try:
 
                                     elif "six" in words:  
                                         t = 6
-                                        speak("Do you want to play 4 hours mixed mode then shutdown?")
+                                        speak("Do you want to play mixed mode 4 hours mantra then shutdown?")
 
                                     elif "eight" in words:
                                         t = 8
@@ -1757,7 +1815,32 @@ try:
 
                                 if len(words)>0:
 
-                                    if zen:
+                                    if verify:
+                                        if "no" in words:
+                                            speak('ok')
+                                            verify = False
+                                            focus = False
+                                        elif "yes" in words:
+                                            if mc:
+                                                if d == o:
+                                                    morning_practice()
+                                                else:
+                                                    morning_practice_chanting_mode('d',d)
+                                                verify = False
+                                                mc = False
+                                                focus = False
+                                            elif ep:
+                                                evening_practice(d)
+                                                verify = False
+                                                ep = False
+                                                focus = False
+
+                                        else:
+                                            speak(verify_words)
+                                            speak("please answer yes or no")
+                                            clear_q()
+
+                                    elif zen:
                                         if "no" in words:
                                             n = n + 1
                                             if n == m:
@@ -2089,6 +2172,7 @@ try:
                                                 yesno = False
                                                 speak("please select new choice ")
                                                 speak(ch)
+                                                clear_q()
                                             else:
                                                 listToStr = ' '.join(map(str, words))
                                                 espeak("i heard , " + listToStr, '5')
@@ -2102,9 +2186,12 @@ try:
                                                 yesno = True
                                                 
                                             except:
+                                                listToStr = ' '.join(map(str, words))
+                                                espeak("i heard , " + listToStr, '5')
                                                 speak("please select")
                                                 speak(ch)
                                                 yesno = False
+                                                clear_q()
                                                 
 
                     else:
