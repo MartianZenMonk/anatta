@@ -1076,6 +1076,19 @@ def thunder_meditation(c='d',vol="6000"):
     return None
 
 
+def jungle_meditation(c='d',vol="6000"):
+    ledc(c)
+    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/jungle.mp3"])
+    press_for_stop(c,proc)
+    return None
+
+
+def tibetan_meditation(c='d',vol="6000"):
+    ledc(c)
+    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/tibetan.mp3"])
+    press_for_stop(c,proc)
+    return None
+
 # FOR MARTIAN MONK ONLY
 def music_meditation(c='off',vol="6000"):
     ledc(c)
@@ -1275,7 +1288,7 @@ try:
             # print(args.device)
 
             os.system('espeak -s 130 -a 4 -v "english-us" "Nothing is worth insisting on"')
-            os.system('mpg123 -q -f 400 ../thaivoices/hello.mp3')
+            os.system('mpg123 -q -f 400 ../thaivoices/play.mp3')
             
             # new runtime vocabulary
             new_vocab = runtime_vocabulary()
@@ -1284,7 +1297,7 @@ try:
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             v += 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
             v += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
-            v += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder '
+            v += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan '
             v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             v += new_vocab
             # v += ' how are you today what can i do for you ' #test
@@ -1307,10 +1320,10 @@ try:
             sit    = False
             verify = False
             proc_bool   = False
-            # mc = morning practice
-            mc = False
+            # mp = morning practice
+            mp = False
             ep = False
-            d  = 0
+            mn = 0
             right_words = []
             add_letter  = ''
             spell_words = ''
@@ -1424,6 +1437,16 @@ try:
                                         bell('3')
                                         thunder_meditation()
 
+                                    elif "jungle" in words:
+                                        speak("jungle sound meditation")
+                                        bell('3')
+                                        jungle_meditation()
+
+                                    elif "tibetan" in words:
+                                        speak("Tibetan sound meditation")
+                                        bell('3')
+                                        tibetan_meditation()
+
                                 elif "alpha" in words and "meditation" in words:
                                     if "sixty" in words:
                                         t = 60
@@ -1480,40 +1503,40 @@ try:
                                     elif "morning" in words:
                                         if"one" in words:
                                             verify_words = 'Do you want to play pahoong chanting morning practice?'
-                                            d = 1
+                                            mn = 1
                                         elif "two" in words:
                                             verify_words = 'Do you want to play martika chanting morning practice?'
-                                            d = 2
+                                            mn = 2
                                         elif "three" in words:
                                             verify_words = 'Do you want to play 7 kumpee chanting morning practice?'
-                                            d = 3
+                                            mn = 3
                                         else:
                                             verify_words = 'Do you want to play morning practice?'
-                                            d = 0
+                                            mn = 0
 
-                                        mc = True    
+                                        mp = True    
                                         verify = True
                                         focus  = True
 
                                     elif "evening" in words:
                                         if "one" in words:
                                             verify_words = 'Do you want to play pahoong chanting in the morning?'
-                                            d = 1
+                                            mn = 1
                                         elif "two" in words:
                                             verify_words = 'Do you want to play martika chanting in the morning?'
-                                            d = 2
+                                            mn = 2
                                         elif "three" in words:
                                             verify_words = 'Do you want to play 7 kumpee chanting in the morning?'
-                                            d = 3
+                                            mn = 3
                                         elif "four" in words:
                                             verify_words = 'Do you want to play random chanting in the morning?'
-                                            d = 4
+                                            mn = 4
                                         elif "six" in words:
                                             verify_words = 'Do you want to play alpha sound in the evening?'
-                                            d = 6 
+                                            mn = 6 
                                         else:
                                             verify_words = 'Do you want to play basic mode evening practice?'
-                                            d = 0
+                                            mn = 0
 
                                         ep = True
                                         verify = True
@@ -1609,7 +1632,7 @@ try:
                                         t = 6
                                         speak("Do you want to play mixed mode 4 hours mantra then shutdown?")
 
-                                    elif "eight" in words:
+                                    elif "play" in words:
                                         t = 8
                                         speak("fast buddho mantra push button to stop")
 
@@ -1821,13 +1844,13 @@ try:
                                             verify = False
                                             focus = False
                                         elif "yes" in words:
-                                            if mc:
-                                                if d == o:
+                                            if mp:
+                                                if mn == 0:
                                                     morning_practice()
                                                 else:
-                                                    morning_practice_chanting_mode('d',d)
+                                                    morning_practice_chanting_mode('d',mn)
                                                 verify = False
-                                                mc = False
+                                                mp = False
                                                 focus = False
                                             elif ep:
                                                 evening_practice(d)
@@ -1968,11 +1991,12 @@ try:
                                                 focus = False
 
                                             elif t == 4:
-                                                fast_buddho('y')
+                                                fast_buddho('off')
 
                                                 remind_sati()
 
-                                                fast_buddho('gg')
+                                                fast_buddho('gg',15)
+                                                fast_buddho('bb',15)
 
                                                 remind_right_sati()
 
