@@ -130,51 +130,26 @@ def espeak(t,a='',v='',s='',*args):
         return None
 
 
+word  = ["zero","one","two","three","four","five","six","seven","eight","nine","ten"]
+word += ["eleven","twelve","thirteen","forteen","fifteen","sixteen","seventeen","eighteen","nineteen"]
+number = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+
 def word2int(w):
+    
+    try:
+        n = word.index(w)
+        return number[n]
+    except:
+        return None
 
-    if w == "one":
-        return 1
-    elif w == "two":
-        return 2
-    elif w == "three":
-        return 3
-    elif w == "four":
-        return 4
-    elif w == "five":
-        return 5
-    elif w == "six":
-        return 6
-    elif w == "seven":
-        return 7
-    elif w == "eight":
-        return 8
-    elif w == "nine":
-        return 9
-    elif w == "zero":
-        return 0
 
-def int2word(n):
-
-    if n == 1:
-        return "one"
-    elif n == 2:
-        return "two"
-    elif n == 3:
-        return "three"
-    elif n == 4:
-        return "four"
-    elif n == 5:
-        return "five"
-    elif n == 6:
-        return "six"
-    elif n == 7:
-        return "seven"
-    elif n == 8:
-        return "eight"
-    elif n == 9:
-        return "nine"
-    elif n == 0:
-        return "zero"
+def int2word(i):
+    
+    try:
+        n = number.index(i)
+        return word[n]
+    except:
+        return None
 
 
 # flite Voices available: kal awb_time kal16 awb rms slt  
@@ -533,7 +508,7 @@ def bell(l='3',vol='200'):
 
 def relax_thai(vol="500"):
 
-    text  = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ",]
+    text  = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ"]
     text += ["เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ","แล"]
     text += ["ไม่","มี","ทุกข์","ไม่","มี","สุข","มี","แต่","ความ","ที่","สติ","เป็น","ธรรมชาติ","บริสุทธิ์","เพราะ","อุเบกขา","แล้ว","แล","อยู่"]
     stext = thwords(text)
@@ -562,6 +537,7 @@ def alpha_wave(t):
 
 #BHAVANA
 def remind_breathing(t=30,vol='500'):
+    bell('3',vol)
     text = ["หาย","ใจ","เข้า","พุท","หาย","ใจ","ออก","โธ"]
     tx   = thwords(text)
     timeout = time.time() + 60*t   
@@ -570,16 +546,32 @@ def remind_breathing(t=30,vol='500'):
             break
         else:
             os.system("mpg123 -f "+ vol + " " + tx)
-    bell('1','500')
+    bell('1',vol)
     return None
-    
+
+
+def remind_relax(t=30,vol='500'):
+    bell('3',vol)
+    text  = ["ทำ","ตัว","ผ่อน","คลาย","หาย","ใจ","ยาว","ยาว","คลาย","ความ","กังวล","ตั้ง","จิต","มั่น","รู้","ลม","หาย","ใจ"]
+    text += ["เข้า","ออก","สั้น","ยาว","หยาบ","ละเอียด","เกิด","ดับ","ไม่","เที่ยง","หนอ"]
+    tx   = thwords(text)
+    timeout = time.time() + 60*t   
+    while True:
+        if time.time() > timeout:
+            break
+        else:
+            os.system("mpg123 -f "+ vol + " " + tx)
+    bell('1',vol)
+    return None
+
 
 def loop_sati(t=30,vol='500'):
+    bell('3',vol)
     os.system('mpg123 -f ' + vol + ' -loop -1 ')
     proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../thaivoices/sati-cut.mp3"])
     time.sleep(60*t)
     proc.kill()
-    bell('1','500')
+    bell('1',vol)
     return None
 
 
@@ -971,11 +963,13 @@ def play_radio():
 
 def meditation_time():
     killPlayer()   
-    text = "Meditation time will make 15 minutes bell sound, you may relax your self by walking then sitting. "
-    text += "For walking, set a distance to meditate walking back and forth, your senses inwardly immersed, your mind not straying outwards. "
-    text += "Lifting, Moving, Treading, slow moving and always mind your foot movement then you can increse your awakening sense, "
-    text += "or free walking, just focus on Treading, "
-    text += "For sitting, breathing in calm, breathing out down, always mind your breathing, your citta will not go around"
+    text = """
+            Meditation time will make 15 minutes bell sound, you may relax your self by walking then sitting. 
+            For walking, set a distance to meditate walking back and forth, your senses inwardly immersed, your mind not straying outwards. 
+            Lifting, Moving, Treading, slow moving and always mind your foot movement then you can increse your awakening sense, 
+            or free walking, just focus on Treading, "
+            For sitting, breathing in calm, breathing out down, always mind your breathing, your citta will not go around
+            """
     speak(text)
     del text
     gc.collect()
@@ -1062,40 +1056,90 @@ def walking_meditation_count(c='yy'):
 
     return None
 
-def raining_meditation(c='d',vol="6000"):
+
+def heart_sutra(t=0,c='d',vol="6000"):
     ledc(c)
-    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/rainymood.mp3"])
-    press_for_stop(c,proc)
+    if t == 0:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../dataen/chanting/heart-sutra.mp3"])
+        press_for_stop(c,proc)
+    else:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../dataen/chanting/heart-sutra.mp3"])
+        time.sleep(60*t)
+        proc.kill()
     return None
 
 
-def thunder_meditation(c='d',vol="6000"):
+def raining_meditation(t=0,c='d',vol="6000"):
     ledc(c)
-    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/thunderstorm.mp3"])
-    press_for_stop(c,proc)
+    if t == 0:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/rainymood.mp3"])
+        press_for_stop(c,proc)
+    else:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/rainymood.mp3"])
+        time.sleep(60*t)
+        proc.kill()
     return None
 
 
-def jungle_meditation(c='d',vol="6000"):
+def thunder_meditation(t=0,c='d',vol="6000"):
     ledc(c)
-    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/jungle.mp3"])
-    press_for_stop(c,proc)
+    if t == 0:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/thunderstorm.mp3"])
+        press_for_stop(c,proc)
+    else:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/thunderstorm.mp3"])
+        time.sleep(60*t)
+        proc.kill()
     return None
 
 
-def tibetan_meditation(c='d',vol="6000"):
+def jungle_meditation(t=0,c='d',vol="6000"):
     ledc(c)
-    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/tibetan.mp3"])
-    press_for_stop(c,proc)
+    if t == 0:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/jungle.mp3"])
+        press_for_stop(c,proc)
+    else:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/jungle.mp3"])
+        time.sleep(60*t)
+        proc.kill()
+    return None
+
+
+def tibetan_meditation(t=0,c='d',vol="6000"):
+    ledc(c)
+    if t == 0:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/tibetan.mp3"])
+        press_for_stop(c,proc)
+    else:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/tibetan.mp3"])
+        time.sleep(60*t)
+        proc.kill()
+    return None
+
+
+def om_meditation(t=0,c='d',vol="6000"):
+    ledc(c)
+    if t == 0:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/OM417Hz.mp3"])
+        press_for_stop(c,proc)
+    else:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/OM417Hz.mp3"])
+        time.sleep(60*t)
+        proc.kill()
     return None
 
 # FOR MARTIAN MONK ONLY
-def music_meditation(c='off',vol="6000"):
+def music_meditation(t=0,c='d',vol="6000"):
     ledc(c)
-    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../mars/youtubeRelaxmusic.mp3"])
-    press_for_stop(c,proc)
+    if t == 0:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/youtubeRelaxmusic.mp3"])
+        press_for_stop(c,proc)
+    else:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/youtubeRelaxmusic.mp3"])
+        time.sleep(60*t)
+        proc.kill()
     return None
-
+    
 
 def monk_rules(c='g'):
     ledc(c)
@@ -1288,7 +1332,7 @@ try:
             # print(args.device)
 
             os.system('espeak -s 130 -a 4 -v "english-us" "Nothing is worth insisting on"')
-            os.system('mpg123 -q -f 400 ../thaivoices/play.mp3')
+            os.system('mpg123 -q -f 400 ../thaivoices/hello.mp3')
             
             # new runtime vocabulary
             new_vocab = runtime_vocabulary()
@@ -1297,8 +1341,9 @@ try:
             v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             v += 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
             v += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
-            v += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan '
+            v += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
+            v += 'ohm '
             v += new_vocab
             # v += ' how are you today what can i do for you ' #test
             v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -1331,9 +1376,9 @@ try:
             sc = ""
             t  = 0
             k  = 0
-            ch = ['a','b','c','d','e']
-            ch_name  = ['fast buddho mantra','breathing in and out mantra in Thai']
-            ch_name += ['alpha sound with alpha light',' only alpha sound','only alpha light']
+            ch = ['a','b','c','d','e','f','i','j']
+            ch_name  = ['fast buddho mantra','breathing in and out mantra in Thai','alpha sound with alpha light']
+            ch_name += [' only alpha sound','only alpha light','relax and mindful mantra in Thai','Ohm sound','Meditation Music']
             time.sleep(1)
             meditation_goal()
             # time.sleep(1)
@@ -1427,25 +1472,43 @@ try:
                                     music_meditation()  
 
                                 elif "sound" in words:
+                                    i = words.index('sound') + 1
+                                    
+                                    try:
+                                        r = word2int(words[i])
+                                    except:
+                                        r = 'None'
+
+                                    if r == 'None':
+                                        t = 0
+                                    else:
+                                        t = r*60
+                                        speak(str(t) + " minutes")
+
                                     if "raining" in words:
                                         speak("raining sound meditation")
                                         bell('3')
-                                        raining_meditation()
+                                        raining_meditation(t)
 
                                     elif "thunder" in words:
                                         speak("thunder storm sound meditation")
                                         bell('3')
-                                        thunder_meditation()
+                                        thunder_meditation(t)
 
                                     elif "jungle" in words:
                                         speak("jungle sound meditation")
                                         bell('3')
-                                        jungle_meditation()
+                                        jungle_meditation(t)
 
                                     elif "tibetan" in words:
                                         speak("Tibetan sound meditation")
                                         bell('3')
-                                        tibetan_meditation()
+                                        tibetan_meditation(t)
+
+                                    elif "ohm" in words:
+                                        speak("Ohm at 417 Herzt sound meditation")
+                                        bell('3')
+                                        om_meditation(t)
 
                                 elif "alpha" in words and "meditation" in words:
                                     if "sixty" in words:
@@ -1697,6 +1760,9 @@ try:
                                             
                                 elif "dhamma" in words and "play" in words:
                                     play_dhamma()
+
+                                elif "heart" in words and "sutra" in words:
+                                    heart_sutra(0)
 
                                 elif "play" in words and "speech" in words or "sutra" in words:
                                     play_sutra()
@@ -2189,6 +2255,22 @@ try:
                                                     bell('3','500')
                                                     ledc('gg')
                                                     time.sleep(60*t)
+                                                    bell('1','500')
+                                                    focus = False
+                                                    sit = False
+                                                elif ch[k] == 'f':
+                                                    remind_relax(t)
+                                                    focus = False
+                                                    sit = False
+                                                elif ch[k] == 'i':
+                                                    bell('3','500')
+                                                    om_meditation(t)
+                                                    bell('1','500')
+                                                    focus = False
+                                                    sit = False
+                                                elif ch[k] == 'j':
+                                                    bell('3','500')
+                                                    music_meditation(t)
                                                     bell('1','500')
                                                     focus = False
                                                     sit = False
