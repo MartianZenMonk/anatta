@@ -1336,21 +1336,21 @@ try:
             
             # new runtime vocabulary
             new_vocab = runtime_vocabulary()
-            v =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
-            v += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
-            v += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
-            v += 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
-            v += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
-            v += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
-            v += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
-            v += 'ohm '
-            v += new_vocab
-            # v += ' how are you today what can i do for you ' #test
-            v += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
+            vrun  =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
+            vrun += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
+            vrun += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
+            vrun += 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
+            vrun += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
+            vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
+            vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
+            vrun += 'ohm the sun blooming flower clip monitor display '
+            vrun += new_vocab
+            # vrun += ' how are you today what can i do for you ' #test
+            vrun += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
             
-            rec = vosk.KaldiRecognizer(model, args.samplerate,v)
+            rec = vosk.KaldiRecognizer(model, args.samplerate,vrun)
 
-            del v
+            del vrun
             gc.collect()
 
             bot    = True
@@ -1761,8 +1761,19 @@ try:
                                 elif "dhamma" in words and "play" in words:
                                     play_dhamma()
 
-                                elif "heart" in words and "sutra" in words:
-                                    heart_sutra(0)
+                                elif "heart" in words and "chanting" in words:
+                                    if "clip" in words:
+                                        speak("play heart sutra with lyrics")
+                                        killPlayer()                
+                                        try:
+                                            command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../dataen/chanting/heart-sutra.mp4"
+                                            proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                            press_for_stop('d',proc)
+                                            killPlayer() 
+                                        except:
+                                            speak("sorry can not play video clip")
+                                    else:
+                                        heart_sutra(0)
 
                                 elif "play" in words and "speech" in words or "sutra" in words:
                                     play_sutra()
@@ -1852,7 +1863,32 @@ try:
                                     speak("play buddha story")
                                     killPlayer()                
                                     try:
-                                        os.system("export DISPLAY=:0.0 && vlc -f --play-and-exit buddha-story.mp4")
+                                        command = "export DISPLAY=:0.0; vlc -f --play-and-exit buddha-story.mp4"
+                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                        # press_for_stop('d',proc)
+                                        # killPlayer() 
+                                    except:
+                                        speak("sorry can not play video clip")
+
+                                elif "the" in words and "sun" in words:
+                                    speak("the sun time lapse for fire meditation")
+                                    killPlayer()                
+                                    try:
+                                        command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../sound/sun2.mp4"
+                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                        press_for_stop('d',proc)
+                                        killPlayer() 
+                                    except:
+                                        speak("sorry can not play video clip")
+
+                                elif "blooming" in words and "flower" in words:
+                                    speak("the blooming flowers time lapse for cheerful meditation")
+                                    killPlayer()                
+                                    try:
+                                        command = "export DISPLAY=:0.0; vlc -f --loop --stop-time 153 --video-on-top ../sound/BloomingFlowers.mp4"
+                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                        press_for_stop('d',proc)
+                                        killPlayer() 
                                     except:
                                         speak("sorry can not play video clip")
 

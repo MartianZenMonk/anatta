@@ -12,6 +12,7 @@ import csv
 import cv2
 import gc
 import psutil
+import pty
 import pyautogui
 import time
 
@@ -359,7 +360,7 @@ try:
             runv  = '["acumen anat alpha ta hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
             runv += 'meditation mindfulness news no now on off open play please quiet sermons seventy shutdown silent sitting sixty '
             runv += 'mouse left right scroll click exit center sky star page browse technique wise new playing speak kill all '
-            runv += 'morning evening practice om tibetan ohm '
+            runv += 'morning evening practice om tibetan ohm blooming flower the sun heart clip thai '
             runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty repeat mode '
             runv += 'letter a b c d e f g h i j k l m n o p q r s t u v w x y z '
             runv += new_vocab
@@ -372,6 +373,8 @@ try:
             engine.say('Hello my name is '+ bot_name +' please call my name before speak to me')
             engine.runAndWait()
             engine.stop()
+
+            # master, slave = os.openpty()
 
             global proc
             n = 0
@@ -469,7 +472,7 @@ try:
                             pure_alpha()
                             bot = False
 
-                        elif "chanting" in words:
+                        elif "chanting" in words and "thai" in words:
                             speak("Thai chanting")
                             proc = subprocess.Popen(["mpg123","-z","--list","THchanting.txt"])        
                             # print("Thai Chanting") 
@@ -504,10 +507,29 @@ try:
                         #     print("play animated buddhist stories video") 
                         #     proc = subprocess.Popen(["vlc","--random","--loop","--playlist-autostart","-f","--video-on-top","buddhiststories.xspf"])
                         #     bot = False
-                        # elif "show" in words and "face" in words:
-                        #     print("show robot face") 
-                        #     proc = subprocess.Popen(["vlc","--play-and-exit","-f","--video-on-top","--no-video-title-show","face3.mp4"])
-                        #     bot = False
+                        elif "heart" in words and "chanting" in words:
+                            speak("play heart sutra with lyrics")
+                            stop_player()                
+                            try:
+                                command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../dataen/chanting/heart-sutra.mp4"
+                                proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                bot = False
+                                proc_ck = True 
+                            except:
+                                speak("sorry can not play video clip")
+
+                        elif "the" in words and "sun" in words: 
+                            proc = subprocess.Popen(["vlc","-f","--loop","--video-on-top","../mars/sun.mp4"])
+                            # proc = subprocess.Popen(["mplayer","-fs","-loop","0","../mars/sun.mp4"])
+                            bot = False
+                            proc_ck = True
+
+                        elif "blooming" in words and "flower" in words: 
+                            proc = subprocess.Popen(["vlc","-f","--stop-time","153","--loop","--video-on-top","../sound/BloomingFlowers.mp4"])
+                            # proc = subprocess.Popen(["mplayer","-fs","-loop","0","../sound/BloomingFlowers.mp4"])
+                            bot = False
+                            proc_ck = True
+                            
                         elif "play" in words and ("sermons" in words or "dhamma" in words):
                             speak("play Thai dhamma")
                             proc = subprocess.Popen(["mpg123","-z","--list","THdhamma4all.txt"])
@@ -520,7 +542,10 @@ try:
                             print("start meditation bell ring every 15 minutes") 
                             proc = subprocess.Popen(["vlc","--loop","../dataen/bell15min.mp3"])
                             bot = False
-                        elif "stop" in words and "playing" in words:
+                        elif "stop" in words and "play" in words:
+                            if proc_ck:
+                                proc.kill()
+                                proc_ck = False
                             stop_player()
                             bot = False
                         elif "quiet" in words or "silent" in words or "sleep" in words:
