@@ -790,9 +790,9 @@ def read_sutta(d):
     engine.setProperty('voice',es_voices[2])
     return None
 
-def meditation_goal():
+def meditation_goal(vol='2000'):
     text = " ../thaivoices/goal.mp3"
-    os.system("mpg123 -q -f 2000 "+text)
+    os.system("mpg123 -q -f " + vol + text)
 
 
 def walking_reward():
@@ -1343,7 +1343,7 @@ try:
             vrun += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
-            vrun += 'ohm the sun blooming flower clip monitor display '
+            vrun += 'ohm the sun blooming flower clip quit my display '
             vrun += new_vocab
             # vrun += ' how are you today what can i do for you ' #test
             vrun += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -1365,7 +1365,7 @@ try:
             sit    = False
             verify = False
             proc_bool   = False
-            # mp = morning practice
+            # mp morning practice , ep evening practice
             mp = False
             ep = False
             mn = 0
@@ -1373,14 +1373,16 @@ try:
             add_letter  = ''
             spell_words = ''
             verify_words= ''
+            proc_name   = ''
             sc = ""
             t  = 0
             k  = 0
-            ch = ['a','b','c','d','e','f','i','j']
+            ch = ['a','b','c','d','e','f','i','j','k','l','q']
             ch_name  = ['fast buddho mantra','breathing in and out mantra in Thai','alpha sound with alpha light']
             ch_name += [' only alpha sound','only alpha light','relax and mindful mantra in Thai','Ohm sound','Meditation Music']
+            ch_name += ['Tibetan music','Raining sound','Quit']
             time.sleep(1)
-            meditation_goal()
+            meditation_goal('500')
             # time.sleep(1)
             # espeak('hi,there! my name is anat ta, please call my name if you want to start','5')
             time.sleep(1)
@@ -1472,17 +1474,21 @@ try:
                                     music_meditation()  
 
                                 elif "sound" in words:
-                                    i = words.index('sound') + 1
+                                    i = int(words.index('sound')) + 1
                                     
                                     try:
                                         r = word2int(words[i])
+                                        if r == 'None':
+                                            h = 0
+                                        else:
+                                            h = int(r)
                                     except:
-                                        r = 'None'
+                                        h = 0
 
-                                    if r == 'None':
-                                        t = 0
+                                    t = h*60
+                                    if t == 0:
+                                        speak("push button to stop")
                                     else:
-                                        t = r*60
                                         speak(str(t) + " minutes")
 
                                     if "raining" in words:
@@ -1870,6 +1876,13 @@ try:
                                     except:
                                         speak("sorry can not play video clip")
 
+                                elif "my" in words and "sun" in words:
+                                    speak("open sun gif animation")
+                                    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/sun2.gif"
+                                    proc = subprocess.Popen(command, shell=True)
+                                    proc_name = "testgif"
+                                    proc_bool = True
+
                                 elif "the" in words and "sun" in words:
                                     speak("the sun time lapse for fire meditation")
                                     killPlayer()                
@@ -1885,7 +1898,7 @@ try:
                                     speak("the blooming flowers time lapse for cheerful meditation")
                                     killPlayer()                
                                     try:
-                                        command = "export DISPLAY=:0.0; vlc -f --loop --stop-time 153 --video-on-top ../sound/BloomingFlowers.mp4"
+                                        command = "export DISPLAY=:0.0; vlc -f --loop --stop-time 154.1 --video-on-top ../sound/BloomingFlowers.mp4"
                                         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
                                         press_for_stop('d',proc)
                                         killPlayer() 
@@ -1915,6 +1928,19 @@ try:
    
                                 elif "help" in words and "please" in words:
                                     get_help()
+
+                                elif "please" in words and "stop" in words:
+                                    killPlayer()
+                                    if len(proc_name) > 0:
+                                        os.system("pkill -f " + proc_name)
+                                        speak("kill " + proc_name)
+                                        proc_name = ''
+                                    if proc_bool:
+                                        proc.kill()
+                                        proc_bool = False
+                                        speak("kill the process")
+                                    speak("done")
+
                                 elif "volume" in words and "up" in words:
                                     call(["amixer","-D","pulse","sset","Master","95%"])
                                     speak("set volume to 95%")
@@ -1961,8 +1987,8 @@ try:
                                                 focus = False
 
                                         else:
-                                            speak(verify_words)
-                                            speak("please answer yes or no")
+                                            espeak(verify_words,'5')
+                                            espeak("please answer yes or no",'5')
                                             clear_q()
 
                                     elif zen:
@@ -2249,7 +2275,7 @@ try:
                                             spell = False
 
                                         elif "exit" == words[0]:
-                                            speak("Quit speeling mode")
+                                            speak("Quit spelling mode")
                                             focus = False
                                             spell = False
 
@@ -2310,6 +2336,18 @@ try:
                                                     bell('1','500')
                                                     focus = False
                                                     sit = False
+                                                elif ch[k] == 'k':
+                                                    bell('3','500')
+                                                    tibetan_meditation(t)
+                                                    bell('1','500')
+                                                    focus = False
+                                                    sit = False
+                                                elif ch[k] == 'l':
+                                                    bell('3','500')
+                                                    raining_meditation(t)
+                                                    bell('1','500')
+                                                    focus = False
+                                                    sit = False
                                             elif "no" in words:
                                                 yesno = False
                                                 speak("please select new choice ")
@@ -2322,18 +2360,24 @@ try:
                                                 clear_q()                                                
                                             
                                         elif len(words[0]) == 1:
-                                            try:
-                                                k = ch.index(words[0])
-                                                speak("Do you want to play " + ch_name[k] + "?")
-                                                yesno = True
-                                                
-                                            except:
-                                                listToStr = ' '.join(map(str, words))
-                                                espeak("i heard , " + listToStr, '5')
-                                                speak("please select")
-                                                speak(ch)
-                                                yesno = False
-                                                clear_q()
+
+                                            if words[0] == 'q':
+                                                speak("Quit sitting practice")
+                                                focus = False
+                                                sit = False
+                                            else:
+                                                try:
+                                                    k = ch.index(words[0])
+                                                    speak("Do you want to play " + ch_name[k] + "?")
+                                                    yesno = True
+                                                    
+                                                except:
+                                                    listToStr = ' '.join(map(str, words))
+                                                    espeak("i heard , " + listToStr, '5')
+                                                    speak("please select")
+                                                    speak(ch)
+                                                    yesno = False
+                                                    clear_q()
                                                 
 
                     else:

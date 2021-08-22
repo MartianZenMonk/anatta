@@ -360,7 +360,7 @@ try:
             runv  = '["acumen anat alpha ta hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
             runv += 'meditation mindfulness news no now on off open play please quiet sermons seventy shutdown silent sitting sixty '
             runv += 'mouse left right scroll click exit center sky star page browse technique wise new playing speak kill all '
-            runv += 'morning evening practice om tibetan ohm blooming flower the sun heart clip thai '
+            runv += 'morning evening practice om tibetan ohm blooming flower the sun heart clip thai my '
             runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty repeat mode '
             runv += 'letter a b c d e f g h i j k l m n o p q r s t u v w x y z '
             runv += new_vocab
@@ -378,6 +378,7 @@ try:
 
             global proc
             n = 0
+            proc_name = ''
             proc_ck = False
             repeat  = False
             yesno   = False
@@ -394,18 +395,22 @@ try:
                     z = json.loads(w)
                     words = z["text"].split()
 
-                    if not bot:
-                        if len(words)==0:
-                            print("[-_-]")
-                        else:
-                            print("[^_^]o ")
-                            print(words)  
-                     
                     if bot_name == z["text"] or ("hey" in words and "acumen" in words):
                         bot = True
                         speak("yes sir")
                         clear_q()
                         words = []
+
+                    elif not bot:
+                        if len(words)==0:
+                            print("[-_-]")
+                        else:
+                            print("[^_^]o ")
+                            print(words) 
+                            if "hello" in words:
+                                speak("Hello!") 
+                            # elif "hey" in words:
+                            #     speak('Hi!')
 
                     if not yesno and bot and repeat and len(words) > 0:
                         speak("Do you said " + z["text"] + "?") 
@@ -502,11 +507,22 @@ try:
                                 engine.stop()
                             focus_event = ["vlc","-f","--video-on-top","--play-and-exit","../mars/buddha-story.mp4"]
                             focus = True
-                            bot = False                 
-                        # elif "buddhist" in words and "story" in words:
-                        #     print("play animated buddhist stories video") 
-                        #     proc = subprocess.Popen(["vlc","--random","--loop","--playlist-autostart","-f","--video-on-top","buddhiststories.xspf"])
-                        #     bot = False
+                            bot = False     
+
+                        elif "show" in words and "face" in words:
+                            command = "export DISPLAY=:0.0; python3 ../mars/testgif.py -p ../mars/face.gif"
+                            proc = subprocess.Popen(command, shell=True)
+                            proc_name = "testgif.py"
+                            bot = False
+                            proc_ck = True 
+
+                        elif "my" in words and "sun" in words:
+                            command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/sun2.gif"
+                            proc = subprocess.Popen(command, shell=True)
+                            proc_name = "testgif.py"
+                            bot = False
+                            proc_ck = True 
+
                         elif "heart" in words and "chanting" in words:
                             speak("play heart sutra with lyrics")
                             stop_player()                
@@ -519,13 +535,13 @@ try:
                                 speak("sorry can not play video clip")
 
                         elif "the" in words and "sun" in words: 
-                            proc = subprocess.Popen(["vlc","-f","--loop","--video-on-top","../mars/sun.mp4"])
+                            proc = subprocess.Popen(["vlc","--loop","--video-on-top","../sound/sun1.mp4"])
                             # proc = subprocess.Popen(["mplayer","-fs","-loop","0","../mars/sun.mp4"])
                             bot = False
                             proc_ck = True
 
                         elif "blooming" in words and "flower" in words: 
-                            proc = subprocess.Popen(["vlc","-f","--stop-time","153","--loop","--video-on-top","../sound/BloomingFlowers.mp4"])
+                            proc = subprocess.Popen(["vlc","-f","--stop-time","154.1","--loop","--video-on-top","../sound/BloomingFlowers.mp4"])
                             # proc = subprocess.Popen(["mplayer","-fs","-loop","0","../sound/BloomingFlowers.mp4"])
                             bot = False
                             proc_ck = True
@@ -546,7 +562,13 @@ try:
                             if proc_ck:
                                 proc.kill()
                                 proc_ck = False
+                                speak("kill the process")
+                            if len(proc_name) > 0:
+                                os.system("pkill -f " + proc_name)
+                                speak("kill " + proc_name)
+                                proc_name = ''
                             stop_player()
+                            speak("done")
                             bot = False
                         elif "quiet" in words or "silent" in words or "sleep" in words:
                             speak("ok")

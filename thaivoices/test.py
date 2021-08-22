@@ -226,8 +226,10 @@ t = '''
 นิโรโธ โหติ อะยัง โข ภิกฺขะเว ทุก ขัส สะ อัตถังคโม
 '''
 
+t = 'เพียรฝึกให้ สุขง่าย ทุกข์ยาก มีความอยากเป็นฉันทะ'
+
 speech = gTTS(text = t,lang='th',slow = False)
-speech.save(str("circle_of_dukkha_pali.mp3"))
+speech.save(str("howtopractice.mp3"))
 
 
 
