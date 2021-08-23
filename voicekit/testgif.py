@@ -74,7 +74,7 @@ print(IMAGE_PATH)
 
 #demo :
 root = tk.Tk()
-root.attributes('-fullscreen', True)
+root.attributes('-fullscreen', fs)
 lbl = ImageLabel(root)
 lbl.pack()
 lbl.load(IMAGE_PATH)

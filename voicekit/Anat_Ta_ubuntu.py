@@ -517,7 +517,7 @@ try:
                             proc_ck = True 
 
                         elif "my" in words and "sun" in words:
-                            command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/sun2.gif"
+                            command = "export DISPLAY=:0.0; python3 testgif.py -p ../sound/sun.gif"
                             proc = subprocess.Popen(command, shell=True)
                             proc_name = "testgif.py"
                             bot = False
