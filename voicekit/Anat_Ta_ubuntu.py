@@ -360,7 +360,7 @@ try:
             runv  = '["acumen anat alpha ta hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
             runv += 'meditation mindfulness news no now on off open play please quiet sermons seventy shutdown silent sitting sixty '
             runv += 'mouse left right scroll click exit center sky star page browse technique wise new playing speak kill all '
-            runv += 'morning evening practice om tibetan ohm blooming flower the sun heart clip thai my '
+            runv += 'morning evening practice om tibetan ohm blooming flower the sun heart clip thai my water '
             runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty repeat mode '
             runv += 'letter a b c d e f g h i j k l m n o p q r s t u v w x y z '
             runv += new_vocab
@@ -464,7 +464,7 @@ try:
 
                         elif "wise" in words and "one" in words:
                             if "play" in words:
-                                proc = subprocess.Popen(["mpg123","-d","3","-q","--loop","-1","../thaivoices/buddho.mp3"])
+                                proc = subprocess.Popen(["mpg123","-d","3","-q","--loop","-1","../thaivoices/buddho2.mp3"])
                                 proc_ck = True
                                 bot = False
                             elif "stop" in words:
@@ -536,6 +536,12 @@ try:
 
                         elif "the" in words and "sun" in words: 
                             proc = subprocess.Popen(["vlc","--loop","--video-on-top","../sound/sun1.mp4"])
+                            # proc = subprocess.Popen(["mplayer","-fs","-loop","0","../mars/sun.mp4"])
+                            bot = False
+                            proc_ck = True
+
+                        elif "the" in words and "water" in words: 
+                            proc = subprocess.Popen(["vlc","--loop","-f","--video-on-top","../mars/water-droplets.mp4"])
                             # proc = subprocess.Popen(["mplayer","-fs","-loop","0","../mars/sun.mp4"])
                             bot = False
                             proc_ck = True

@@ -238,8 +238,13 @@ def ledc(c='', f='alpha'):
     return None
 
 
-def pkill_proc_name():
+def pkill_proc_name(name=''):
     global proc_name
+    if name == '':
+        pass
+    else:
+        proc_name = name
+
     if len(proc_name) > 0:
         os.system("pkill -f " + proc_name)
         espeak("kill " + proc_name,'4')
@@ -261,7 +266,7 @@ def get_help():
     text =  '''
             You have to start with words anat ta,
             and then you can say,
-            repeat mode on off,
+            repeat (mode) on off,
             daily dependent origination,
             buddha thinking,
             nature truth chanting,
@@ -280,7 +285,7 @@ def get_help():
             walking practice,
             sitting practice,
             moring practice,
-            wise one and or alpha,
+            wise one or alpha,
             please shutdown or anat ta stop,
             '''
     speak(text)
@@ -512,7 +517,6 @@ def fast_buddho(c='off', t=30, vol='2000'):
     return None
 
 
-
 def bell(l='3',vol='500'):
     subprocess.run(["mpg123","-q","-f",vol,"--loop",l,"../dataen/bell.mp3"])
     return None
@@ -667,6 +671,20 @@ def slow_buddho(c='',t=30):
         press_for_stop(c,proc)
     else:
         proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../thaivoices/buddho0.mp3"])
+        time.sleep(60*t)
+        proc.kill()
+    
+    return None
+
+
+def slow_buddho2(c='',t=30):
+    ledc(c)
+
+    if t==0:
+        proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../thaivoices/buddho1.mp3"])
+        press_for_stop(c,proc)
+    else:
+        proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../thaivoices/buddho1.mp3"])
         time.sleep(60*t)
         proc.kill()
     
@@ -883,7 +901,7 @@ def play_my_dhamma():
     leds.update(Leds.rgb_on(Color.YELLOW))
     board.button.wait_for_press()
     os.write(slave, b'f')
-    leds.update(Leds.rgb_on(Color.RED))
+    leds.update(Leds.rgb_on(Color.GREEN))
     board.button.wait_for_press()
     os.write(slave, b'f')
     press_for_stop('g',proc)
@@ -902,6 +920,19 @@ def what_time():
 def what_day():
     today = datetime.today().strftime('%B %A %d')
     speak("Today is " + today)
+    today = dt.datetime.now() 
+    # text = ["วันนี้","วัน","weekday/%w","ที่","59/%d","เดือน","month/%m","เวลา","59/%H","นาฬิกา","59/%M","นาที"]
+    t = "วันนี้,วัน,weekday/%w,ที่,59/%d,เดือน,month/%m,เวลา,59/%H,นาฬิกา,59/%M,นาที"
+    t = t.replace("%w",today.strftime('%w'))
+    t = t.replace("%d",today.strftime('%d'))
+    t = t.replace("%m",today.strftime('%m'))
+    t = t.replace("%H",today.strftime('%H'))
+    t = t.replace("%M",today.strftime('%M'))
+    text = t.split(',')
+    stext = ""
+    for i in range(len(text)):
+            stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
+    os.system("mpg123 -q -f 2100 "+stext)
 
 
 def play_daily_dependent_origination_thai():
@@ -1161,49 +1192,80 @@ def hdmi_display(s='on'):
     espeak("turn display " + s, '5')
     return None
 
-
-def testing_mode():
-    killPlayer()                
+# sitting
+def testing_mode2():
+    killPlayer()
+    bell('3') 
+    cheerful = ['BloomingFlowers.mp4','water-droplets.mp4','flowers-blooming.mp4']
+    i = random.randint(0,2)              
     try:
-        command = "export DISPLAY=:0.0; vlc -f --loop --stop-time 154.1 --video-on-top ../sound/BloomingFlowers.mp4"
+        command = "export DISPLAY=:0.0; vlc -f --loop --stop-time 154.1 --video-on-top ../sound/" + cheerful[i]
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
         # press_for_stop('d',proc)
-        time.sleep(10)
+        time.sleep(300)
+        proc.kill()
         killPlayer() 
     except:
         speak("sorry can not play video clip")
-    om_meditation(5)    
-    alpha_wave(30)
+    my_sun()
+    bell('1')
+    om_meditation(5) 
+    bell('1')   
+    alpha_wave(50)
+    bell('1')
     wise_one()
+    pkill_proc_name()
     return None
 
+# walking
+def testing_mode1():
+    bell('3')
+    sun = ['sun1.gif','sun2.gif','watermelon.gif','oranges.gif']
 
-def testing_mode2():
-    proc1 = subprocess.Popen(["mpg123","-d","3","-f","2000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-    sun = ['sun1.gif','sun2.gif']
-    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/"+sun[0]
+    i = random.randint(0,3) 
+    proc1 = subprocess.Popen(["mpg123","-f","2000","-q","--loop","-1","../thaivoices/buddho1.mp3"])
+    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/"+sun[i]
     proc = subprocess.Popen(command, shell=True)
-    time.sleep(30)
+    time.sleep(1800)
     proc.kill()
-    os.system('pkill -f "testgif"')
-    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/"+sun[1]
-    proc = subprocess.Popen(command, shell=True)
-    time.sleep(30)
-    proc.kill()
-    os.system('pkill -f "testgif"')
     proc1.kill()
+    pkill_proc_name("testgif")
+
+    i = random.randint(0,3)
+    proc1 = subprocess.Popen(["mpg123","-d","3","-f","2000","-q","--loop","-1","../thaivoices/buddho.mp3"])
+    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/"+sun[i]
+    proc = subprocess.Popen(command, shell=True)
+    time.sleep(1800)
+    proc.kill()
+    proc1.kill()
+    pkill_proc_name("testgif")
+    
+    bell('3')
     clear_q()
     return None
 
 
 def my_sun():
     global proc_name
-    sun = ['sun1.gif','sun2.gif']
-    i = random.randint(0,1)
+    sun = ['sun1.gif','sun2.gif','watermelon.gif','oranges.gif']
+    i = random.randint(0,3)
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/"+sun[i]
     proc = subprocess.Popen(command, shell=True)
     proc_name = "testgif"
     return proc_name
+
+
+def the_water():
+    speak("water droplet at 2500 fps for visual meditation")
+    killPlayer()                
+    try:
+        command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../mars/water-droplets.mp4"
+        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+        press_for_stop('d',proc)
+        killPlayer() 
+    except:
+        speak("sorry can not play video clip")
+    return None
 
 
 def music_meditation(t=0,c='d',vol="6000"):
@@ -1422,7 +1484,7 @@ try:
             vrun += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
-            vrun += 'ohm the sun blooming flower clip quit my display testing '
+            vrun += 'ohm the sun blooming flower clip quit my display testing water '
             vrun += new_vocab
             # vrun += ' how are you today what can i do for you ' #test
             vrun += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -1531,19 +1593,22 @@ try:
 
                                 print(words)
 
-                                if "wise" in words and "one" in words:
+                                if "wise" in words:
                                     if "alpha" in words:
                                         wise_one('gg')
-                                    else:
+                                    elif "one" in words:
                                         wise_one()
 
-                                elif "testing" in words and "mode" in words:
-                                    if "two" in words:
+                                elif "testing" in words:
+                                    if "one" in words:
+                                        testing_mode1()
+                                    elif "two" in words:
                                         testing_mode2()
-                                    elif "one" in words:
-                                        testing_mode()
+                                    elif "six" in words:
+                                        testing_mode1()
+                                        testing_mode2()
 
-                                elif "repeat" in words and "mode" in words:
+                                elif "repeat" in words:
                                     if "on" in words:
                                         repeat = True
                                         speak("Repeat mode on")
@@ -1958,10 +2023,10 @@ try:
                                     speak("play buddha story")
                                     killPlayer()                
                                     try:
-                                        command = "export DISPLAY=:0.0; vlc -f --play-and-exit buddha-story.mp4"
+                                        command = "export DISPLAY=:0.0; vlc -f --stop-time 453 --play-and-exit buddha-story.mp4"
                                         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                        # press_for_stop('d',proc)
-                                        # killPlayer() 
+                                        press_for_stop('d',proc)
+                                        killPlayer() 
                                     except:
                                         speak("sorry can not play video clip")
 
@@ -1979,12 +2044,15 @@ try:
                                     speak("the sun time lapse for fire meditation")
                                     killPlayer()                
                                     try:
-                                        command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../sound/sun2.mp4"
+                                        command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../sound/sun.mp4"
                                         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
                                         press_for_stop('d',proc)
                                         killPlayer() 
                                     except:
                                         speak("sorry can not play video clip")
+
+                                elif "the" in words and "water" in words:
+                                    the_water()
 
                                 elif "blooming" in words and "flower" in words:
                                     speak("the blooming flowers time lapse for cheerful meditation")
@@ -2199,7 +2267,7 @@ try:
                                                 
                                                 remind_sati()
 
-                                                fast_buddho('c',15)
+                                                slow_buddho2('c',15)
                                                 fast_buddho('gg',15)
 
                                                 remind_right_sati()
@@ -2214,12 +2282,13 @@ try:
                                             elif t == 4:
                                                 my_sun()
 
-                                                fast_buddho('off')
+                                                slow_buddho2('off',15)
+                                                fast_buddho('off',15)
                                                                                                 
                                                 remind_sati()
 
+                                                slow_buddho2('bb',15)
                                                 fast_buddho('gg',15)
-                                                fast_buddho('bb',15)
 
                                                 pkill_proc_name()
 
