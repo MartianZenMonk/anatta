@@ -228,8 +228,10 @@ t = '''
 
 t = 'เพียรฝึกให้ สุขง่าย ทุกข์ยาก มีความอยากเป็นฉันทะ'
 
+t = 'ยังทำตามความเคยชินอยู่ไหมหนอ'
+
 speech = gTTS(text = t,lang='th',slow = False)
-speech.save(str("howtopractice.mp3"))
+speech.save(str("samesame.mp3"))
 
 
 

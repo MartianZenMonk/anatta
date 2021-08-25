@@ -1087,6 +1087,16 @@ def play_8_fold_path_clip():
         speak("sorry can not play video clip")
 
 
+def play_dependent_origination_clip():
+    killPlayer() 
+    try:
+        command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../mars/11.mp4"
+        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+        press_for_stop('d',proc)      
+    except:
+        speak("sorry can not play video clip")
+
+
 def english_chating():
     killPlayer()  
     speak("English chanting")
@@ -1298,13 +1308,13 @@ def hdmi_display(s='on'):
 def testing_mode2():
     killPlayer()
     bell('3') 
-    cheerful = [['BloomingFlowers.mp4','154.1'],['flowers-blooming.mp4','192']]
+    cheerful = [['BloomingFlowers.mp4','154'],['flowers-blooming.mp4','192']]
     i = random.randint(0,1)              
     try:
         command = "export DISPLAY=:0.0; vlc -f --loop --stop-time " + cheerful[i][1] + " --video-on-top ../sound/" + cheerful[i][0]
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-        # press_for_stop('d',proc)
-        delay(5)
+        # delay(5)
+        board.button.wait_for_press(3*int(cheerful[i][1]))
         proc.kill()
         killPlayer() 
     except:
@@ -1353,7 +1363,7 @@ def testing_mode4():
 
     slow_buddho('off',30)
     bell('1')
-    fast_buddho2('off',30)
+    slow_buddho2('off',30)
     bell('1')
     slow_buddho('off',30)
     bell('1')
@@ -1933,6 +1943,8 @@ try:
                                         play_daily_dependent_origination_thai()
                                     elif "chanting" in words:
                                         play_dependent_origination_chanting_thai()
+                                    elif "clip" in words:
+                                        play_dependent_origination_clip()
 
                                 elif "buddha" in words and "thinking" in words:
                                     play_buddha_thinking_thai()

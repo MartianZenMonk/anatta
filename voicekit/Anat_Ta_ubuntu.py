@@ -433,7 +433,7 @@ try:
             runv  = '["acumen anat alpha ta hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
             runv += 'meditation mindfulness news no now on off open play please quiet sermons seventy shutdown silent sitting sixty '
             runv += 'mouse left right scroll click exit center sky star page browse technique wise new playing speak kill all '
-            runv += 'morning evening practice om tibetan ohm blooming flower the sun heart clip thai my water morse code '
+            runv += 'morning evening practice om tibetan ohm blooming flower the sun heart clip thai my water morse code real '
             runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty repeat mode '
             runv += 'letter a b c d e f g h i j k l m n o p q r s t u v w x y z '
             runv += new_vocab
@@ -536,11 +536,18 @@ try:
                             bot = False
 
                         elif "morse" in words and "code" in words:
+                                stop_player()
                                 morsecode('sati sati sati')
 
                         elif "wise" in words and "one" in words:
-                            if "play" in words:
+                            if not proc_ck and "play" in words:
+                                stop_player()
                                 proc = subprocess.Popen(["mpg123","-d","3","-q","--loop","-1","../thaivoices/buddho2.mp3"])
+                                proc_ck = True
+                                bot = False
+                            elif not proc_ck and "real" in words:
+                                stop_player()
+                                proc = subprocess.Popen(["mpg123","-q","--loop","-1","../thaivoices/samesame.mp3"])
                                 proc_ck = True
                                 bot = False
                             elif "stop" in words:
