@@ -42,6 +42,25 @@ def speak(text):
         return None
 
 
+freq = '../dataen/bell.mp3'#550 # Hz
+freq2 = '../dataen/3bell.mp3'
+dotLength  = 1 #60 # milliseconds
+dashLength = 3 #dotLength * 3
+pauseWords = 7 #dotLength * 7
+
+alphaToMorse = {'a': ".-", 'b': "-...", 'c': "-.-.", 'd': "-..", 'e': ".",
+                'f': "..-.", 'g': "--.", 'h': "....", 'i': "..", 'j': ".---", 'k': "-.-",
+                'l': ".-..", 'm': "--", 'n': "-.", 'o': "---", 'p': ".--.", 'q': "--.-",
+                'r': ".-.", 's': "...", 't': "-", 'u': "..-", 'v': "...-", 'w': ".--",
+                'x': "-..-", 'y': "-.--", 'z': "--..",
+                '1': ".----", '2': "..---", '3': "...--", '4': "....-", '5': ".....",
+                '6': "-....", '7': "--...", '8': "---..", '9': "----.", '0': "-----",
+                ' ': "/", '.': ".-.-.-", ',': "--..--", '?': "..--..", "'": ".----.",
+                '@': ".--.-.", '-': "-....-", '"': ".-..-.", ':': "---...", ';': "---...",
+                '=': "-...-", '!': "-.-.--", '/': "-..-.", '(': "-.--.", ')': "-.--.-",
+                'á': ".--.-", 'é': "..-.."}
+
+
 sutta = {
     "sutta":[
         {"title":"Cankama Sutta",
@@ -79,6 +98,63 @@ sutta = {
          }
          ]
     }
+
+
+def morsecode(message):
+    
+    if message == "":
+        return
+
+    # remembers characters that do not have standard morse code equivalent
+    unabletoconvert = ""
+    morse = ""
+    for char in message.lower():
+        if char in alphaToMorse:
+            morse += alphaToMorse[char] + ' '
+        else:
+            unabletoconvert += char
+    if len(unabletoconvert) != 0:
+        print("These characters are unable to be converted:\n" + ' '.join(unabletoconvert))
+    morse = morse[:-1]
+    print(morse)
+    morseaudio(morse)
+        
+def dot(dur):
+    os.system("mpg123 -q -f 4000 " + freq)
+    
+def dash(dur):
+    os.system("mpg123 -q -f 4000 " + freq2)
+
+def beep(dur):
+    """
+    makes noise for specific duration.
+    :param dur: duration of beep in milliseconds
+    """
+    #winsound.Beep(freq, dur)
+    os.system("mpg123 --loop " + str(dur) + ' -f 2000 ' + freq)
+
+def pause(dur):
+    """
+    pauses audio for dur milliseconds
+    :param dur: duration of pause in milliseconds
+    """
+    time.sleep(dur*5)
+
+def morseaudio(morse):
+    """
+    plays audio conversion of morse string using inbuilt windows module.
+    :param morse: morse code string.
+    """
+    for char in morse:
+        if char == ".":
+            dot(dotLength) #beep(dotLength)
+        elif char == "-":
+            dash(dashLength) #beep(dashLength)
+        elif char == "/":
+            pause(pauseWords)
+        else:
+            # char is blank space
+            pause(dashLength)
 
 
 def find_name(name):
@@ -238,6 +314,14 @@ def ledc(c='', f='alpha'):
     return None
 
 
+def killPlayer():
+    if find_name('mpg123'):
+        os.system("killall mpg123")
+    if find_name('vlc'):
+        os.system("killall vlc")
+    return None
+
+
 def pkill_proc_name(name=''):
     global proc_name
     if name == '':
@@ -247,16 +331,26 @@ def pkill_proc_name(name=''):
 
     if len(proc_name) > 0:
         os.system("pkill -f " + proc_name)
-        espeak("kill " + proc_name,'4')
         proc_name = ''
+        # espeak("kill " + proc_name,'4')
+        
     return None
 
 
-def press_for_stop(c='',proc=0):
+def delay(t):
+    board.button.wait_for_press(60*t)
+    return None
+
+
+def press_for_stop(c='',proc=0,t=0):
     ledc(c)
-    board.button.wait_for_press()
+    if t == 0 :
+        board.button.wait_for_press()
+    else:
+        board.button.wait_for_press(60*t)
     proc.kill()
     pkill_proc_name()
+    killPlayer()
     with q.mutex:
         q.queue.clear()
     return None
@@ -390,14 +484,6 @@ def motion_detect(proc):
     return None
 
 
-def killPlayer():
-    if find_name('mpg123'):
-        os.system("killall mpg123")
-    if find_name('vlc'):
-        os.system("killall vlc")
-    return None
-
-
 def speakThai(text):
     stext = ""
     for i in range(len(text)):
@@ -510,7 +596,7 @@ def fast_buddho(c='off', t=30, vol='2000'):
         press_for_stop(c,proc)
     else:
         proc = subprocess.Popen(["mpg123","-d","3","-f",vol,"-q","--loop","-1","../thaivoices/buddho.mp3"])
-        time.sleep(60*t)
+        delay(t)
         proc.kill()
         clear_q()
    
@@ -546,7 +632,7 @@ def pure_alpha(c='yy'):
 
 def alpha_wave(t):
     proc = subprocess.Popen(["mpg123","-q","--loop","-1","../sound/pureAlpha.mp3"])
-    time.sleep(60*t)
+    delay(t)
     proc.kill()
     clear_q()
     return None
@@ -588,7 +674,7 @@ def loop_sati(t=30,vol='500'):
     bell('3',vol)
     os.system('mpg123 -f ' + vol + ' -loop -1 ')
     proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../thaivoices/sati-cut.mp3"])
-    time.sleep(60*t)
+    delay(t)
     proc.kill()
     bell('1',vol)
     clear_q()
@@ -656,36 +742,36 @@ def alpha_meditation(m=60,t=15,c='off',vol="500"):
     return None
 
 
-def slow_buddho(c='',t=30):
+def slow_buddho(c='',t=30,vol='1000'):
     ledc(c)
     th_stand = thwords(["ยืน","หนอ"])
     for i in range(3):
-        os.system('mpg123 -f 2000 ' + th_stand)
+        os.system('mpg123 -f ' + vol + ' ' + th_stand)
         time.sleep(1)
 
     del th_stand
     gc.collect()
 
     if t==0:
-        proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../thaivoices/buddho0.mp3"])
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../thaivoices/buddho0.mp3"])
         press_for_stop(c,proc)
     else:
-        proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../thaivoices/buddho0.mp3"])
-        time.sleep(60*t)
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../thaivoices/buddho0.mp3"])
+        delay(t)
         proc.kill()
     
     return None
 
 
-def slow_buddho2(c='',t=30):
+def slow_buddho2(c='',t=30,vol='1000'):
     ledc(c)
 
     if t==0:
-        proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../thaivoices/buddho1.mp3"])
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../thaivoices/buddho1.mp3"])
         press_for_stop(c,proc)
     else:
-        proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../thaivoices/buddho1.mp3"])
-        time.sleep(60*t)
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../thaivoices/buddho1.mp3"])
+        delay(t)
         proc.kill()
     
     return None
@@ -697,7 +783,7 @@ def one_stage_en(c='',t=5):
         speak("standing")
         time.sleep(1)
     proc = subprocess.Popen(["mpg123","-f","1000","-q","--loop","-1","../dataen/one_stage.mp3"])
-    time.sleep(60*t)
+    delay(t)
     proc.kill()
     return None
 
@@ -933,6 +1019,10 @@ def what_day():
     for i in range(len(text)):
             stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
     os.system("mpg123 -q -f 2100 "+stext)
+    del t
+    del text
+    del stext
+    gc.collect()
 
 
 def play_daily_dependent_origination_thai():
@@ -985,6 +1075,16 @@ def play_eight_fold_path_chanting_english():
     speak("English Noble 8 fold path chanting")
     proc = subprocess.Popen(["mpg123","-f","4000","-C","--loop","-1","../dataen/chanting/noble8fold.mp3"], stdin=master)
     press_for_stop('g',proc)
+
+
+def play_8_fold_path_clip():
+    killPlayer() 
+    try:
+        command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../mars/8.mp4"
+        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+        press_for_stop('d',proc)      
+    except:
+        speak("sorry can not play video clip")
 
 
 def english_chating():
@@ -1048,9 +1148,11 @@ def play_dhamma():
 
 def play_sutra(vol="1000"):
     killPlayer()    
-    os.system("mpg123 -f " + vol + " ../datath/sutta/moggallana.mp3")
-    proc = subprocess.Popen(["mpg123","-f",vol,"-C","-z","--list","sutra.txt"], stdin=master)
-    press_for_stop('r',proc)
+    proc1 = subprocess.Popen(["mpg123","-f",vol,"../datath/sutta/moggallana.mp3"])
+    delay(15)
+    proc1.kill()
+    proc2 = subprocess.Popen(["mpg123","-f",vol,"-C","-z","--list","sutra.txt"], stdin=master)
+    press_for_stop('d',proc2)
 
 
 def walking_meditation_count(c='yy'):
@@ -1113,7 +1215,7 @@ def heart_sutra(t=0,c='d',vol="6000"):
         press_for_stop(c,proc)
     else:
         proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../dataen/chanting/heart-sutra.mp3"])
-        time.sleep(60*t)
+        delay(t)
         proc.kill()
         clear_q()
     return None
@@ -1126,7 +1228,7 @@ def raining_meditation(t=0,c='d',vol="6000"):
         press_for_stop(c,proc)
     else:
         proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/rainymood.mp3"])
-        time.sleep(60*t)
+        delay(t)
         proc.kill()
         clear_q()
     return None
@@ -1139,7 +1241,7 @@ def thunder_meditation(t=0,c='d',vol="6000"):
         press_for_stop(c,proc)
     else:
         proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/thunderstorm.mp3"])
-        time.sleep(60*t)
+        delay(t)
         proc.kill()
         clear_q()
     return None
@@ -1152,7 +1254,7 @@ def jungle_meditation(t=0,c='d',vol="6000"):
         press_for_stop(c,proc)
     else:
         proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/jungle.mp3"])
-        time.sleep(60*t)
+        delay(t)
         proc.kill()
         clear_q()
     return None
@@ -1165,7 +1267,7 @@ def tibetan_meditation(t=0,c='d',vol="6000"):
         press_for_stop(c,proc)
     else:
         proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/tibetan.mp3"])
-        time.sleep(60*t)
+        delay(t)
         proc.kill()
         clear_q()
     return None
@@ -1178,7 +1280,7 @@ def om_meditation(t=0,c='d',vol="6000"):
         press_for_stop(c,proc)
     else:
         proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/OM417Hz.mp3"])
-        time.sleep(60*t)
+        delay(t)
         proc.kill()
         clear_q()
     return None
@@ -1196,13 +1298,13 @@ def hdmi_display(s='on'):
 def testing_mode2():
     killPlayer()
     bell('3') 
-    cheerful = ['BloomingFlowers.mp4','water-droplets.mp4','flowers-blooming.mp4']
-    i = random.randint(0,2)              
+    cheerful = [['BloomingFlowers.mp4','154.1'],['flowers-blooming.mp4','192']]
+    i = random.randint(0,1)              
     try:
-        command = "export DISPLAY=:0.0; vlc -f --loop --stop-time 154.1 --video-on-top ../sound/" + cheerful[i]
+        command = "export DISPLAY=:0.0; vlc -f --loop --stop-time " + cheerful[i][1] + " --video-on-top ../sound/" + cheerful[i][0]
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
         # press_for_stop('d',proc)
-        time.sleep(300)
+        delay(5)
         proc.kill()
         killPlayer() 
     except:
@@ -1217,38 +1319,66 @@ def testing_mode2():
     pkill_proc_name()
     return None
 
-# walking
+# walking sun
 def testing_mode1():
     bell('3')
-    sun = ['sun1.gif','sun2.gif','watermelon.gif','oranges.gif']
-
-    i = random.randint(0,3) 
-    proc1 = subprocess.Popen(["mpg123","-f","2000","-q","--loop","-1","../thaivoices/buddho1.mp3"])
-    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/"+sun[i]
-    proc = subprocess.Popen(command, shell=True)
-    time.sleep(1800)
-    proc.kill()
+    sun = ['sun1.gif','sun2.gif']
+    
+    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[0]
+    proc1 = subprocess.Popen(command, shell=True)
+    slow_buddho('off',15)
+    slow_buddho2('off',15)
     proc1.kill()
     pkill_proc_name("testgif")
 
-    i = random.randint(0,3)
-    proc1 = subprocess.Popen(["mpg123","-d","3","-f","2000","-q","--loop","-1","../thaivoices/buddho.mp3"])
-    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/"+sun[i]
-    proc = subprocess.Popen(command, shell=True)
-    time.sleep(1800)
-    proc.kill()
+    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[1]
+    proc1 = subprocess.Popen(command, shell=True)
+    slow_buddho2("off",15)
+    fast_buddho('off',15)
     proc1.kill()
     pkill_proc_name("testgif")
     
-    bell('3')
+    bell('1')
     clear_q()
+    return None
+
+# walk 2 hrs sit 1 hr
+def testing_mode4():
+    bell('3')
+    fruit = ['watermelon.gif','oranges.gif']
+
+    i = random.randint(0,1) 
+    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + fruit[i]
+    proc1 = subprocess.Popen(command, shell=True)
+
+    slow_buddho('off',30)
+    bell('1')
+    fast_buddho2('off',30)
+    bell('1')
+    slow_buddho('off',30)
+    bell('1')
+    fast_buddho('off',30)
+    bell('1')
+    alpha_wave(60)
+    bell('2')
+
+    proc1.kill()
+    pkill_proc_name("testgif")
+    clear_q()
+    return None
+
+
+def testing_mode9():
+    testing_mode1()
+    fast_buddho('off',180)
+    os.system("sudo shutdown now")
     return None
 
 
 def my_sun():
     global proc_name
-    sun = ['sun1.gif','sun2.gif','watermelon.gif','oranges.gif']
-    i = random.randint(0,3)
+    sun = ['sun1.gif','sun2.gif']
+    i = random.randint(0,1)
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/"+sun[i]
     proc = subprocess.Popen(command, shell=True)
     proc_name = "testgif"
@@ -1275,7 +1405,7 @@ def music_meditation(t=0,c='d',vol="6000"):
         press_for_stop(c,proc)
     else:
         proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/youtubeRelaxmusic.mp3"])
-        time.sleep(60*t)
+        delay(t)
         proc.kill()
         clear_q()
     return None
@@ -1289,10 +1419,9 @@ def monk_rules(c='g'):
 
 
 def morning_practice(c='off',vol="200"):
-    my_sun()
     ledc(c)
     # warm up
-    fast_buddho(c,10,vol)
+    slow_buddho(c,10,vol)
     alpha_wave(30)
     fast_buddho(c,10,vol)
     time.sleep(300)
@@ -1309,7 +1438,6 @@ def morning_practice(c='off',vol="200"):
     ledc(c)
     fast_buddho(c,30,vol)
     bell('3',vol)
-    pkill_proc_name()
     play_eight_fold_path_chanting_thai('500')
     
     return None
@@ -1371,7 +1499,7 @@ def evening_practice(d=0,vol="500"):
 
     remind_right_sati()
 
-    fast_buddho('gg',15)
+    slow_buddho2('gg',15)
     fast_buddho('dd',15)
 
     fast_buddho('d',15)
@@ -1484,7 +1612,7 @@ try:
             vrun += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
-            vrun += 'ohm the sun blooming flower clip quit my display testing water '
+            vrun += 'ohm the sun blooming flower clip quit my display testing water morse code '
             vrun += new_vocab
             # vrun += ' how are you today what can i do for you ' #test
             vrun += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -1599,14 +1727,21 @@ try:
                                     elif "one" in words:
                                         wise_one()
 
+                                elif "morse" in words and "code" in words:
+                                    morsecode('sati sati sati')
+
                                 elif "testing" in words:
                                     if "one" in words:
                                         testing_mode1()
                                     elif "two" in words:
                                         testing_mode2()
+                                    elif "four" in words:
+                                        testing_mode4()
                                     elif "six" in words:
                                         testing_mode1()
                                         testing_mode2()
+                                    elif "nine" in words:
+                                        testing_mode9()
 
                                 elif "repeat" in words:
                                     if "on" in words:
@@ -1778,12 +1913,10 @@ try:
                                     spell_words = ''
 
                                 elif "what" in words and "time" in words:
-                                    today = datetime.today().strftime('%H %M')
-                                    speak("The time is " + today)
+                                    what_time()
                                     
                                 elif "what" in words and "day" in words:
-                                    today = datetime.today().strftime('%B %A %d')
-                                    speak("Today is " + today)
+                                    what_day()
 
                                 elif "buddha" in words and "day" in words:
                                     buddha_day()
@@ -1815,6 +1948,8 @@ try:
                                         play_eight_fold_path_chanting_thai()
                                     elif "english" in words:
                                         play_eight_fold_path_chanting_english()
+                                    elif "clip" in words:
+                                        play_8_fold_path_clip()
 
                                 elif "chanting" in words and "english" in words:
                                     english_chating()
@@ -2038,7 +2173,7 @@ try:
                                     proc = subprocess.Popen(command, shell=True)
                                     proc_name = "testgif"
                                     proc_bool = True
-                                    fast_buddho('d',0)
+                                    # fast_buddho('d',0)
 
                                 elif "the" in words and "sun" in words:
                                     speak("the sun time lapse for fire meditation")
@@ -2122,7 +2257,7 @@ try:
                                     listToStr = ' '.join(map(str, words))
                                     espeak("words i heard , " + listToStr, '5')
                                     clear_q()
-                                
+                                                               
                             else:
 
                                 if len(words)>0:
@@ -2280,17 +2415,13 @@ try:
                                                 focus = False
 
                                             elif t == 4:
-                                                my_sun()
-
+                                                slow_buddho('off',15)
                                                 slow_buddho2('off',15)
-                                                fast_buddho('off',15)
                                                                                                 
                                                 remind_sati()
 
                                                 slow_buddho2('bb',15)
                                                 fast_buddho('gg',15)
-
-                                                pkill_proc_name()
 
                                                 remind_right_sati()
 
@@ -2482,7 +2613,7 @@ try:
                                                 elif ch[k] == 'e':
                                                     bell('3','500')
                                                     ledc('gg')
-                                                    time.sleep(60*t)
+                                                    delay(t)
                                                     bell('1','500')
                                                     focus = False
                                                     sit = False

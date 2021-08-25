@@ -28,6 +28,79 @@ engine.setProperty('voice','english-us')
 engine.setProperty('rate', 125)
 engine.setProperty('volume',0.5)
 
+freq = '../dataen/bell.mp3'#550 # Hz
+freq2 = '../dataen/3bell.mp3'
+dotLength  = 1 #60 # milliseconds
+dashLength = 3 #dotLength * 3
+pauseWords = 7 #dotLength * 7
+
+alphaToMorse = {'a': ".-", 'b': "-...", 'c': "-.-.", 'd': "-..", 'e': ".",
+                'f': "..-.", 'g': "--.", 'h': "....", 'i': "..", 'j': ".---", 'k': "-.-",
+                'l': ".-..", 'm': "--", 'n': "-.", 'o': "---", 'p': ".--.", 'q': "--.-",
+                'r': ".-.", 's': "...", 't': "-", 'u': "..-", 'v': "...-", 'w': ".--",
+                'x': "-..-", 'y': "-.--", 'z': "--..",
+                '1': ".----", '2': "..---", '3': "...--", '4': "....-", '5': ".....",
+                '6': "-....", '7': "--...", '8': "---..", '9': "----.", '0': "-----",
+                ' ': "/", '.': ".-.-.-", ',': "--..--", '?': "..--..", "'": ".----.",
+                '@': ".--.-.", '-': "-....-", '"': ".-..-.", ':': "---...", ';': "---...",
+                '=': "-...-", '!': "-.-.--", '/': "-..-.", '(': "-.--.", ')': "-.--.-",
+                'á': ".--.-", 'é': "..-.."}
+
+def morsecode(message):
+    
+    if message == "":
+        return
+
+    # remembers characters that do not have standard morse code equivalent
+    unabletoconvert = ""
+    morse = ""
+    for char in message.lower():
+        if char in alphaToMorse:
+            morse += alphaToMorse[char] + ' '
+        else:
+            unabletoconvert += char
+    if len(unabletoconvert) != 0:
+        print("These characters are unable to be converted:\n" + ' '.join(unabletoconvert))
+    morse = morse[:-1]
+    print(morse)
+    morseaudio(morse)
+        
+def dot(dur):
+    os.system("mpg123 -q -f 4000 " + freq)
+    
+def dash(dur):
+    os.system("mpg123 -q -f 4000 " + freq2)
+
+def beep(dur):
+    """
+    makes noise for specific duration.
+    :param dur: duration of beep in milliseconds
+    """
+    #winsound.Beep(freq, dur)
+    os.system("mpg123 --loop " + str(dur) + ' -f 2000 ' + freq)
+
+def pause(dur):
+    """
+    pauses audio for dur milliseconds
+    :param dur: duration of pause in milliseconds
+    """
+    time.sleep(dur*5)
+
+def morseaudio(morse):
+    """
+    plays audio conversion of morse string using inbuilt windows module.
+    :param morse: morse code string.
+    """
+    for char in morse:
+        if char == ".":
+            dot(dotLength) #beep(dotLength)
+        elif char == "-":
+            dash(dashLength) #beep(dashLength)
+        elif char == "/":
+            pause(pauseWords)
+        else:
+            # char is blank space
+            pause(dashLength)
 
 def speak(text):
         print(text)
@@ -360,7 +433,7 @@ try:
             runv  = '["acumen anat alpha ta hey begin buddha buddhist chanting close day dhamma do down eighty face holy how mantra '
             runv += 'meditation mindfulness news no now on off open play please quiet sermons seventy shutdown silent sitting sixty '
             runv += 'mouse left right scroll click exit center sky star page browse technique wise new playing speak kill all '
-            runv += 'morning evening practice om tibetan ohm blooming flower the sun heart clip thai my water '
+            runv += 'morning evening practice om tibetan ohm blooming flower the sun heart clip thai my water morse code '
             runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty repeat mode '
             runv += 'letter a b c d e f g h i j k l m n o p q r s t u v w x y z '
             runv += new_vocab
@@ -461,6 +534,9 @@ try:
                                 os.system("killall firefox")
                                 speak("kill all firefox done")
                             bot = False
+
+                        elif "morse" in words and "code" in words:
+                                morsecode('sati sati sati')
 
                         elif "wise" in words and "one" in words:
                             if "play" in words:
