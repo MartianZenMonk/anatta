@@ -913,7 +913,7 @@ def read_sutta(d):
     return None
 
 def meditation_goal(vol='2000'):
-    text = " ../thaivoices/goal.mp3"
+    text = " ../thaivoices/dukkha.mp3 ../thaivoices/goal.mp3"
     os.system("mpg123 -q -f " + vol + text)
 
 def meditation_goal2(vol='2000'):
@@ -1312,6 +1312,18 @@ def om_meditation(t=0,c='d',vol="6000"):
     return None
 
 # FOR MARTIAN MONK ONLY
+def play_tripataka_chapter(p):
+    killPlayer()  
+    speak("play Thai reading Tripitaka Chapter " + p)
+    proc = subprocess.Popen(["mpg123","-f","2000","../mars/tripitaka/Tripidok" + p + ".mp3"])
+    press_for_stop('d',proc)
+
+def pali_chanting():
+    killPlayer()  
+    speak("Pali grammar chanting")
+    proc = subprocess.Popen(["mpg123","-f","2000","../mars/pali.mp3"])
+    press_for_stop('d',proc)
+
 def hdmi_display(s='on'):
     if s == 'off':
         os.system("/opt/vc/bin/tvservice -o")
@@ -1349,18 +1361,14 @@ def testing_mode2():
 def testing_mode1():
     bell('3')
     sun = ['sun1.gif','sun2.gif']
+    i = random.randint(0,1) 
     
-    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[0]
+    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[i]
     proc1 = subprocess.Popen(command, shell=True)
     slow_buddho('off',15)
     slow_buddho2('off',15)
-    proc1.kill()
-    pkill_proc_name("testgif")
-
-    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[1]
-    proc1 = subprocess.Popen(command, shell=True)
-    slow_buddho2("off",15)
-    fast_buddho('off',15)
+    slow_buddho("off",15)
+    fast_buddho('yy',15)
     proc1.kill()
     pkill_proc_name("testgif")
     
@@ -1638,7 +1646,7 @@ try:
             vrun += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
-            vrun += 'ohm the sun blooming flower clip quit my display testing water morse code good bye '
+            vrun += 'ohm the sun blooming flower clip quit my display testing water morse code good bye chapter pali '
             vrun += new_vocab
             # vrun += ' how are you today what can i do for you ' #test
             vrun += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -1775,6 +1783,23 @@ try:
                                                 pass
                                     else:
                                         morsecode('sati sati sati')
+
+                                elif "chapter" in words:
+                                    if "sixteen" in words:
+                                        p = '16'
+                                    elif "seventeen" in words:
+                                        p = '17'
+                                    elif "eighteen" in words:
+                                        p = '18'
+                                    elif "nineteen" in words:
+                                        p = '19'
+                                    else:
+                                        p = ''
+
+                                    if p == '':
+                                        pass
+                                    else:
+                                        play_tripataka_chapter(p)
 
                                 elif "testing" in words:
                                     if "one" in words:
@@ -2001,6 +2026,8 @@ try:
                                         play_breathing_chanting_thai()
                                     elif "nature" in words and "truth" in words:
                                         play_nature_truth_chanting_thai() 
+                                    elif "pali" in words:
+                                        pali_chanting()
                                                                         
                                 elif "radio" in words and "play" in words:
                                     play_radio()                                
