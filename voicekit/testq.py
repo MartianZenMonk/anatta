@@ -391,7 +391,7 @@ def get_help():
 
 def shutdown():
     os.system("mpg123 -f 1000 ../thaivoices/dead.mp3")
-    speak("The system is shutting down, wait until the green light in the box turn off")
+    espeak("The system is shutting down, wait until the green light in the box turn off",'10')
     board.led.state = Led.OFF
     os.system("sudo shutdown now")
     return None
@@ -916,6 +916,22 @@ def meditation_goal(vol='2000'):
     text = " ../thaivoices/goal.mp3"
     os.system("mpg123 -q -f " + vol + text)
 
+def meditation_goal2(vol='2000'):
+    text = " ../thaivoices/howtopractice.mp3"
+    os.system("mpg123 -q -f " + vol + text)
+
+def meditation_goal3(vol='2000'):
+    text = " ../thaivoices/natureTruth3.mp3"
+    os.system("mpg123 -q -f " + vol + text)
+
+def meditation_goal4(vol='2000'):
+    text = " ../thaivoices/circle_of_dukkha_thai.mp3"
+    os.system("mpg123 -q -f " + vol + text)
+
+def yoniso(vol='2000'):
+    text = " ../thaivoices/yoniso_thai.mp3"
+    os.system("mpg123 -q -f " + vol + text)
+
 
 def walking_reward():
     read_sutta(sutta["sutta"][0]) 
@@ -1355,9 +1371,9 @@ def testing_mode1():
 # walk 2 hrs sit 1 hr
 def testing_mode4():
     bell('3')
-    fruit = ['watermelon.gif','oranges.gif']
+    fruit = ['watermelon.gif','oranges.gif','redApple.gif','greenApple.gif','cantalupe.gif']
 
-    i = random.randint(0,1) 
+    i = random.randint(0,3) 
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + fruit[i]
     proc1 = subprocess.Popen(command, shell=True)
 
@@ -1380,7 +1396,7 @@ def testing_mode4():
 
 def testing_mode9():
     testing_mode1()
-    fast_buddho('off',180)
+    fast_buddho('off',180,'500')
     os.system("sudo shutdown now")
     return None
 
@@ -1611,7 +1627,7 @@ try:
             # print(args.device)
 
             os.system('espeak -s 130 -a 4 -v "english-us" "Nothing is worth insisting on"')
-            os.system('mpg123 -q -f 400 ../thaivoices/hello.mp3')
+            os.system('mpg123 -q -f 400 ../thaivoices/samesame.mp3 ../thaivoices/hello.mp3')
             
             # new runtime vocabulary
             new_vocab = runtime_vocabulary()
@@ -1622,7 +1638,7 @@ try:
             vrun += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
-            vrun += 'ohm the sun blooming flower clip quit my display testing water morse code '
+            vrun += 'ohm the sun blooming flower clip quit my display testing water morse code good bye '
             vrun += new_vocab
             # vrun += ' how are you today what can i do for you ' #test
             vrun += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -1661,7 +1677,17 @@ try:
             ch_name += [' only alpha sound','only alpha light','relax and mindful mantra in Thai','Ohm sound','Meditation Music']
             ch_name += ['Tibetan music','Raining sound','Quit']
             time.sleep(1)
-            meditation_goal('500')
+            i = random.randint(1,5)
+            if i == 1:
+                meditation_goal('500')
+            elif i == 2:
+                meditation_goal2('500')
+            elif i == 3:
+                meditation_goal3('500')
+            elif i == 4:
+                meditation_goal4('500')
+            else:
+                yoniso('555')
             # time.sleep(1)
             # espeak('hi,there! my name is anat ta, please call my name if you want to start','5')
             time.sleep(1)
@@ -1738,7 +1764,17 @@ try:
                                         wise_one()
 
                                 elif "morse" in words and "code" in words:
-                                    morsecode('sati sati sati')
+                                    if len(words) > 2:
+                                        lt = words[2]
+                                        if len(lt) == 1:
+                                            try:
+                                                n = ics_list.index(lt) + 1
+                                                speak(lt + ' ' + ics_list[n])
+                                                morsecode(lt)
+                                            except:
+                                                pass
+                                    else:
+                                        morsecode('sati sati sati')
 
                                 elif "testing" in words:
                                     if "one" in words:
@@ -1763,14 +1799,7 @@ try:
 
                                 elif "anat" in words and "ta" in words and "stop" in words:
                                     bot = False
-                                    speak("ok, call my name when you need help, bye bye!")
-
-                                elif "my" in words and "dhamma" in words:
-                                    play_my_dhamma()  
-
-                                elif "music" in words and "meditation" in words:
-                                    bell('3')
-                                    music_meditation()  
+                                    speak("ok, call my name when you need help, bye bye!") 
 
                                 elif "sound" in words:
                                     i = int(words.index('sound')) + 1
@@ -1815,7 +1844,7 @@ try:
                                         bell('3')
                                         om_meditation(t)
 
-                                elif "alpha" in words and "meditation" in words:
+                                elif "alpha" in words:
                                     if "sixty" in words:
                                         t = 60
                                     elif "ninety" in words:
@@ -1830,18 +1859,24 @@ try:
                                     else:
                                         alpha_meditation(t,15,'g')
 
-                                elif "math" in words and "meditation" in words:
-                                    a = random.randint(1,20)
-                                    b = random.randint(1,20)
-                                    speak("what is "+ str(a) + " plus "+ str(b))
-                                    c = a + b
-                                    sc = ''
-                                    lc = list(str(c))
-                                    for i in lc:
-                                        sc += int2word(int(i))
-                                    focus = True
-                                    math = True
-                                    words = []
+                                elif "meditation" in words:
+                                    if "math" in words:
+                                        a = random.randint(1,20)
+                                        b = random.randint(1,20)
+                                        speak("what is "+ str(a) + " plus "+ str(b))
+                                        c = a + b
+                                        sc = ''
+                                        lc = list(str(c))
+                                        for i in lc:
+                                            sc += int2word(int(i))
+                                        focus = True
+                                        math = True
+                                        words = []
+                                    elif "music" in words:
+                                        bell('3')
+                                        music_meditation() 
+                                    elif "time" in words:
+                                        meditation_time()
 
                                 elif "practice" in words:
 
@@ -1922,11 +1957,11 @@ try:
                                     save  = False
                                     spell_words = ''
 
-                                elif "what" in words and "time" in words:
-                                    what_time()
-                                    
-                                elif "what" in words and "day" in words:
-                                    what_day()
+                                elif "what" in words:
+                                    if "time" in words:
+                                        what_time()
+                                    elif "day" in words:
+                                        what_day()
 
                                 elif "buddha" in words and "day" in words:
                                     buddha_day()
@@ -1947,13 +1982,7 @@ try:
                                         play_dependent_origination_clip()
 
                                 elif "buddha" in words and "thinking" in words:
-                                    play_buddha_thinking_thai()
-
-                                elif "breathing" in words and "chanting" in words:
-                                    play_breathing_chanting_thai()
-
-                                elif "nature" in words and "truth" in words and "chanting" in words:
-                                    play_nature_truth_chanting_thai()                                  
+                                    play_buddha_thinking_thai()                                 
 
                                 elif "fold" in words and "path" in words:
                                     if "thai" in words:
@@ -1963,11 +1992,15 @@ try:
                                     elif "clip" in words:
                                         play_8_fold_path_clip()
 
-                                elif "chanting" in words and "english" in words:
-                                    english_chating()
-
-                                elif "chanting" in words and "thai" in words:
-                                    thai_chanting()
+                                elif "chanting" in words:
+                                    if "english" in words:
+                                        english_chating()
+                                    elif "thai" in words:
+                                        thai_chanting()
+                                    elif "breathing" in words:
+                                        play_breathing_chanting_thai()
+                                    elif "nature" in words and "truth" in words:
+                                        play_nature_truth_chanting_thai() 
                                                                         
                                 elif "radio" in words and "play" in words:
                                     play_radio()                                
@@ -2029,7 +2062,7 @@ try:
                                         mantra = False
                                         focus = False                             
 
-                                elif "play" in words and "stage" in words:
+                                elif "stage" in words:
 
                                     if "one" in words:
 
@@ -2058,15 +2091,14 @@ try:
 
                                     elif "six" in words:
                                         six_stages_th_en('g')                    
-
-                                elif "meditation" in words and "time" in words:
-                                    meditation_time()
-                                    
-                                elif "buddha" in words and "dhamma" in words:
-                                    buddha_dhamma()
-                                            
-                                elif "dhamma" in words and "play" in words:
-                                    play_dhamma()
+                                   
+                                elif "dhamma" in words:
+                                    if "buddha" in words:
+                                        buddha_dhamma()   
+                                    elif "play" in words:
+                                        play_dhamma()
+                                    elif "my" in words:
+                                        play_my_dhamma()
 
                                 elif "heart" in words and "chanting" in words:
                                     if "clip" in words:
@@ -2085,15 +2117,6 @@ try:
                                 elif "play" in words and "speech" in words or "sutra" in words:
                                     play_sutra()
                                           
-                                elif "shutdown" in words and "please" in words:
-                                    shutdown()
-                                    break
-                                
-                                elif "please" in words and "restart" in words:
-                                    speak("restart the service, please wait")
-                                    os.system("sudo systemctl restart myscript.service")
-                                    break
-
                                 #PLAY
                                 elif "light" in words and "on" in words:
 
@@ -2157,25 +2180,19 @@ try:
                                         speak("Turn off web camera")
                                         os.system("sudo service motion stop")
                                         
-                                elif "browse" in words and "webcam" in words:
-                                    speak("open webcam on web browser")
-                                    ip = get_ip()
-                                    command = "export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized " + ip + ":8081"
-                                    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                    press_for_stop('g',proc)
-                                    os.system("sudo pkill -f chromium")
 
                                 #TEST
-                                elif "buddha" in words and ("story" in words or "what" in words):
-                                    speak("play buddha story")
-                                    killPlayer()                
-                                    try:
-                                        command = "export DISPLAY=:0.0; vlc -f --stop-time 453 --play-and-exit buddha-story.mp4"
-                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                        press_for_stop('d',proc)
-                                        killPlayer() 
-                                    except:
-                                        speak("sorry can not play video clip")
+                                elif "buddha" in words:
+                                    if "story" in words or "what" in words:
+                                        speak("play buddha story")
+                                        killPlayer()                
+                                        try:
+                                            command = "export DISPLAY=:0.0; vlc -f --stop-time 453 --play-and-exit buddha-story.mp4"
+                                            proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                            press_for_stop('d',proc)
+                                            killPlayer() 
+                                        except:
+                                            speak("sorry can not play video clip")
 
                                 elif "my" in words and "sun" in words:
                                     espeak("open sun gif animation",'4')
@@ -2187,19 +2204,20 @@ try:
                                     proc_bool = True
                                     # fast_buddho('d',0)
 
-                                elif "the" in words and "sun" in words:
-                                    speak("the sun time lapse for fire meditation")
-                                    killPlayer()                
-                                    try:
-                                        command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../sound/sun.mp4"
-                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                        press_for_stop('d',proc)
-                                        killPlayer() 
-                                    except:
-                                        speak("sorry can not play video clip")
+                                elif "the" in words:
+                                    if "sun" in words:
+                                        speak("the sun time lapse for fire meditation")
+                                        killPlayer()                
+                                        try:
+                                            command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../sound/sun.mp4"
+                                            proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                            press_for_stop('d',proc)
+                                            killPlayer() 
+                                        except:
+                                            speak("sorry can not play video clip")
 
-                                elif "the" in words and "water" in words:
-                                    the_water()
+                                    elif "water" in words:
+                                        the_water()
 
                                 elif "blooming" in words and "flower" in words:
                                     speak("the blooming flowers time lapse for cheerful meditation")
@@ -2212,49 +2230,72 @@ try:
                                     except:
                                         speak("sorry can not play video clip")
 
-                                elif "browse" in words and "buddhism" in words:
-                                    speak("open Thai buddhism in wikipedia")
-                                    command = "export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized https://th.wikipedia.org/wiki/ศาสนาพุทธ"
-                                    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                    press_for_stop('g',proc)
-                                    os.system("sudo pkill -f chromium")
+                                elif "browse" in words:
+                                    if "buddhism" in words:
+                                        speak("open Thai buddhism in wikipedia")
+                                        command = "export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized https://th.wikipedia.org/wiki/ศาสนาพุทธ"
+                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                        press_for_stop('g',proc)
+                                        os.system("sudo pkill -f chromium")
 
-                                elif "browse" in words and "buddhist" in words and "story" in words:
-                                    speak("open youtube for buddhist stories")
-                                    command = "export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized https://www.youtube.com/watch?v=tI-hgIhFDT0&list=PLYBNr5a72-497Q3UVkpDB24W4NTCD5f2K"
-                                    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                    press_for_stop('g',proc)
-                                    os.system("sudo pkill -f chromium")
+                                    elif "buddhist" in words and "story" in words:
+                                        speak("open youtube for buddhist stories")
+                                        command = "export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized https://www.youtube.com/watch?v=tI-hgIhFDT0&list=PLYBNr5a72-497Q3UVkpDB24W4NTCD5f2K"
+                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                        press_for_stop('g',proc)
+                                        os.system("sudo pkill -f chromium")
 
-                                elif "browse" in words and "meditation" in words and "technique" in words:
-                                    speak("open youtube for meditation technique")
-                                    command = "export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized https://www.youtube.com/playlist?list=PLUh8U5np7D-7FMh6ONGwnaltFppPBwTVI"
-                                    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                    press_for_stop('g',proc)
-                                    os.system("sudo pkill -f chromium")
+                                    elif "meditation" in words and "technique" in words:
+                                        speak("open youtube for meditation technique")
+                                        command = "export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized https://www.youtube.com/playlist?list=PLUh8U5np7D-7FMh6ONGwnaltFppPBwTVI"
+                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                        press_for_stop('g',proc)
+                                        os.system("sudo pkill -f chromium")
+                                    elif "webcam" in words:
+                                        speak("open webcam on web browser")
+                                        ip = get_ip()
+                                        command = "export DISPLAY=:0.0; chromium-browser --incognito --start-fullscreen --start-maximized " + ip + ":8081"
+                                        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                        press_for_stop('g',proc)
+                                        os.system("sudo pkill -f chromium")
    
-                                elif "help" in words and "please" in words:
-                                    get_help()
+                                elif "please" in words:
+                                    if "help" in words:
+                                        get_help()
 
-                                elif "please" in words and "stop" in words:
-                                    killPlayer()
-                                    if len(proc_name) > 0:
-                                        os.system("pkill -f " + proc_name)
-                                        speak("kill " + proc_name)
-                                        proc_name = ''
-                                    if proc_bool:
-                                        proc.kill()
-                                        proc_bool = False
-                                        speak("kill the process")
-                                    speak("done")
-                                    clear_q()
+                                    elif "stop" in words:
+                                        killPlayer()
+                                        if len(proc_name) > 0:
+                                            os.system("pkill -f " + proc_name)
+                                            speak("kill " + proc_name)
+                                            proc_name = ''
+                                        if proc_bool:
+                                            proc.kill()
+                                            proc_bool = False
+                                            speak("kill the process")
+                                        speak("done")
+                                        clear_q()
+                                    elif "restart" in words:
+                                        speak("restart the service, please wait")
+                                        os.system("sudo systemctl restart myscript.service")
+                                        break
 
-                                elif "volume" in words and "up" in words:
-                                    call(["amixer","-D","pulse","sset","Master","95%"])
-                                    speak("set volume to 95%")
-                                elif "volume" in words and "down" in words:
-                                    call(["amixer","-D","pulse","sset","Master","50%"])
-                                    speak("set volume to 50%")
+                                    elif "shutdown" in words:
+                                        shutdown()
+                                        break
+
+                                elif "good" in words and "bye" in words:
+                                    shutdown()
+                                    break
+                                
+                                elif "volume" in words:
+                                    if "up" in words:
+                                        call(["amixer","-D","pulse","sset","Master","95%"])
+                                        speak("set volume to 95%")
+                                    elif "down" in words:
+                                        call(["amixer","-D","pulse","sset","Master","50%"])
+                                        speak("set volume to 50%")
+
                                 elif "ip" in words and "address" in words:
                                     ip = get_ip()
                                     speak(ip)
