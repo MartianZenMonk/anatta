@@ -261,8 +261,10 @@ def clear_q():
     with q.mutex:
         q.queue.clear()
 
+# see leds_example.py
 
 def ledc(c='', f='alpha'):
+    Color.ORANGE = (100, 5, 0)
     # print('Set blink pattern: period=500ms (2Hz)')
     if f == 'alpha':
         leds.pattern = Pattern.blink(100) # Alpha 10 Hz
@@ -304,7 +306,10 @@ def ledc(c='', f='alpha'):
         leds.update(Leds.rgb_on(Color.BLACK))
     elif c == 'dd':
         leds.update(Leds.rgb_pattern(Color.BLACK))
-
+    elif c == 'o':
+        leds.update(Leds.rgb_on(Color.ORANGE))
+    elif c == 'oo':
+        leds.update(Leds.rgb_pattern(Color.ORANGE))
     elif c == 'off':
         board.led.state = Led.OFF
 
@@ -1312,16 +1317,28 @@ def om_meditation(t=0,c='d',vol="6000"):
     return None
 
 # FOR MARTIAN MONK ONLY
+def play_plants(w):
+    plants = ['cells.mp4','light-sd.mp4','seed-sd.mp4','water-sd.mp4','co2.mp4','npk.mp4']
+    plists = ['cell','light','seed','water','carbon','food']           
+    try:
+        i = plists.index(w)
+        speak("Play Plants " + w)
+        command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../mars/plants/" + plants[i]
+        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+        press_for_stop('g',proc)
+    except:
+        speak("sorry can not play video clip")
+
 def play_tripataka_chapter(p):
     killPlayer()  
     speak("play Thai reading Tripitaka Chapter " + p)
-    proc = subprocess.Popen(["mpg123","-f","2000","../mars/tripitaka/Tripidok" + p + ".mp3"])
+    proc = subprocess.Popen(["mpg123","-d","2","-f","3000","../mars/tripitaka/Tripidok" + p + ".mp3"])
     press_for_stop('d',proc)
 
 def pali_chanting():
     killPlayer()  
     speak("Pali grammar chanting")
-    proc = subprocess.Popen(["mpg123","-f","2000","../mars/pali.mp3"])
+    proc = subprocess.Popen(["mpg123","-f","3000","../mars/pali.mp3"])
     press_for_stop('d',proc)
 
 def hdmi_display(s='on'):
@@ -1332,7 +1349,7 @@ def hdmi_display(s='on'):
     espeak("turn display " + s, '5')
     return None
 
-# sitting
+# sitting 1 hr
 def testing_mode2():
     killPlayer()
     bell('3') 
@@ -1353,27 +1370,43 @@ def testing_mode2():
     bell('1')   
     alpha_wave(50)
     bell('1')
-    wise_one()
     pkill_proc_name()
+    clear_q()
     return None
 
-# walking sun
+# walking 1 hr
 def testing_mode1():
     bell('3')
-    sun = ['sun1.gif','sun2.gif']
-    i = random.randint(0,1) 
+    sun = ['sun1.gif','sun2.gif','sun3.gif','sun4.gif']
+    i = random.randint(0,3) 
     
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[i]
     proc1 = subprocess.Popen(command, shell=True)
     slow_buddho('off',15)
     slow_buddho2('off',15)
     slow_buddho("off",15)
-    fast_buddho('yy',15)
+    fast_buddho('oo',15)
     proc1.kill()
     pkill_proc_name("testgif")
     
     bell('1')
     clear_q()
+    return None
+
+def testing_mode3():
+    bell('3')
+    sun = ['sun1.gif','sun2.gif','sun3.gif','sun4.gif']
+    i = random.randint(0,3) 
+    
+    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[i]
+    proc1 = subprocess.Popen(command, shell=True)
+    slow_buddho('off',15)
+    slow_buddho2('off',15)
+    proc1.kill()
+    pkill_proc_name("testgif")
+
+    testing_mode2()
+    
     return None
 
 # walk 2 hrs sit 1 hr
@@ -1411,8 +1444,8 @@ def testing_mode9():
 
 def my_sun():
     global proc_name
-    sun = ['sun1.gif','sun2.gif']
-    i = random.randint(0,1)
+    sun = ['sun1.gif','sun2.gif','sun3.gif','sun4.gif']
+    i = random.randint(0,3)
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/"+sun[i]
     proc = subprocess.Popen(command, shell=True)
     proc_name = "testgif"
@@ -1647,6 +1680,7 @@ try:
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             vrun += 'ohm the sun blooming flower clip quit my display testing water morse code good bye chapter pali '
+            vrun += 'sixteen seventeen eighteen nineteen plants seed carbon food cell '
             vrun += new_vocab
             # vrun += ' how are you today what can i do for you ' #test
             vrun += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -1777,12 +1811,21 @@ try:
                                         if len(lt) == 1:
                                             try:
                                                 n = ics_list.index(lt) + 1
-                                                speak(lt + ' ' + ics_list[n])
+                                                espeak('morse code for ' + lt + ' ' + ics_list[n],'5')
                                                 morsecode(lt)
                                             except:
                                                 pass
                                     else:
                                         morsecode('sati sati sati')
+                                elif "plants" in words:
+                                    i = words.index('plants') + 1
+                                    try:
+                                        if len(words[i]) > 1:
+                                            play_plants(words[i])
+                                        else:
+                                            pass
+                                    except:
+                                        pass
 
                                 elif "chapter" in words:
                                     if "sixteen" in words:
@@ -1806,6 +1849,8 @@ try:
                                         testing_mode1()
                                     elif "two" in words:
                                         testing_mode2()
+                                    elif "three" in words:
+                                        testing_mode3()
                                     elif "four" in words:
                                         testing_mode4()
                                     elif "six" in words:
@@ -2015,22 +2060,48 @@ try:
                                     elif "english" in words:
                                         play_eight_fold_path_chanting_english()
                                     elif "clip" in words:
+                                        speak("play 8 fold path with lyrics")
                                         play_8_fold_path_clip()
 
                                 elif "chanting" in words:
+
                                     if "english" in words:
                                         english_chating()
+
                                     elif "thai" in words:
                                         thai_chanting()
+
                                     elif "breathing" in words:
                                         play_breathing_chanting_thai()
+
                                     elif "nature" in words and "truth" in words:
                                         play_nature_truth_chanting_thai() 
+
                                     elif "pali" in words:
                                         pali_chanting()
+
+                                    elif "heart" in words:
+
+                                        if "clip" in words:
+                                            speak("play heart sutra with lyrics")
+                                            killPlayer()                
+                                            try:
+                                                command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../dataen/chanting/heart-sutra.mp4"
+                                                proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+                                                press_for_stop('d',proc)
+                                                killPlayer() 
+                                            except:
+                                                speak("sorry can not play video clip")
+                                        else:
+                                            heart_sutra(0)
                                                                         
-                                elif "radio" in words and "play" in words:
-                                    play_radio()                                
+                                elif "play" in words:
+
+                                    if "radio" in words:
+                                        play_radio()
+
+                                    elif "speech" in words or "sutra" in words:
+                                        play_sutra()                                
                                     
                                 elif "mantra" in words:
 
@@ -2126,23 +2197,6 @@ try:
                                         play_dhamma()
                                     elif "my" in words:
                                         play_my_dhamma()
-
-                                elif "heart" in words and "chanting" in words:
-                                    if "clip" in words:
-                                        speak("play heart sutra with lyrics")
-                                        killPlayer()                
-                                        try:
-                                            command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../dataen/chanting/heart-sutra.mp4"
-                                            proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                            press_for_stop('d',proc)
-                                            killPlayer() 
-                                        except:
-                                            speak("sorry can not play video clip")
-                                    else:
-                                        heart_sutra(0)
-
-                                elif "play" in words and "speech" in words or "sutra" in words:
-                                    play_sutra()
                                           
                                 #PLAY
                                 elif "light" in words and "on" in words:
