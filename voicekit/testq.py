@@ -1867,9 +1867,18 @@ try:
                                         repeat = False
                                         speak("Repeat mode off")
 
-                                elif "anat" in words and "ta" in words and "stop" in words:
-                                    bot = False
-                                    speak("ok, call my name when you need help, bye bye!") 
+                                elif "anat" in words and "ta" in words:
+                                    if "stop" in words:
+                                        killPlayer()
+                                        bot = False
+                                        speak("ok, call my name when you need help, bye bye!")
+                                    elif "restart" in words:
+                                        speak("restart the service, please wait")
+                                        os.system("sudo systemctl restart myscript.service")
+                                        break
+                                    elif "shutdown" in words:
+                                        shutdown()
+                                        break
 
                                 elif "sound" in words:
                                     i = int(words.index('sound')) + 1
@@ -2099,7 +2108,8 @@ try:
 
                                     if "radio" in words:
                                         play_radio()
-
+                                    elif "dhamma" in words:
+                                        play_dhamma()
                                     elif "speech" in words or "sutra" in words:
                                         play_sutra()                                
                                     
@@ -2193,8 +2203,6 @@ try:
                                 elif "dhamma" in words:
                                     if "buddha" in words:
                                         buddha_dhamma()   
-                                    elif "play" in words:
-                                        play_dhamma()
                                     elif "my" in words:
                                         play_my_dhamma()
                                           
@@ -2302,9 +2310,11 @@ try:
 
                                 elif "blooming" in words and "flower" in words:
                                     speak("the blooming flowers time lapse for cheerful meditation")
-                                    killPlayer()                
+                                    killPlayer()  
+                                    cheerful = [['BloomingFlowers.mp4','154'],['flowers-blooming.mp4','192']]
+                                    i = random.randint(0,1)              
                                     try:
-                                        command = "export DISPLAY=:0.0; vlc -f --loop --stop-time 154.1 --video-on-top ../sound/BloomingFlowers.mp4"
+                                        command = "export DISPLAY=:0.0; vlc -f --loop --stop-time " + cheerful[i][1] + " --video-on-top ../sound/" + cheerful[i][0]
                                         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
                                         press_for_stop('d',proc)
                                         killPlayer() 
