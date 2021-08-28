@@ -631,7 +631,7 @@ def relax_walk(t=5,vol='5000'):
     text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","ถอน","ความ","พอ","ใจ","และ","ความ","ไม่","พอ","ใจ","ใน","ใจ","ออก","เสีย","ได้"]
     tx   = thwords(text)
     tx_list = tx.split(' ')
-    print(tx_list)
+    # print(tx_list)
     i = 1
     n = len(tx_list) - 1
     timeout = time.time() + 60*t   
@@ -640,11 +640,13 @@ def relax_walk(t=5,vol='5000'):
             break
         else:
             os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
-        time.sleep(.5)
+        time.sleep(.4)
         if i < n:
             i += 1
         else:
             i = 1
+    os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+    time.sleep(1)
     del text
     del tx
     del tx_list
@@ -1381,10 +1383,10 @@ def testing_mode2():
     killPlayer()
     bell('3') 
     cheerful  = [['../sound/BloomingFlowers.mp4','154'],['../sound/flowers-blooming.mp4','192']]
-    cheerful += [['../mars/universe.mp4','141'],['../mars/universe2.mp4','172']]
+    cheerful += [['../mars/universe.mp4','283'],['../mars/universe2.mp4','344']]
     i = random.randint(0,3)              
     try:
-        command = "export DISPLAY=:0.0; vlc -f --loop --stop-time " + cheerful[i][1] + " --video-on-top ../sound/" + cheerful[i][0]
+        command = "export DISPLAY=:0.0; vlc -f --loop --stop-time " + cheerful[i][1] + " --video-on-top " + cheerful[i][0]
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
         # delay(5)
         board.button.wait_for_press(2*int(cheerful[i][1]))
@@ -1423,7 +1425,7 @@ def testing_mode1():
 
 def testing_mode3():
     bell('3')
-    relax_walk(10,'1000')
+    relax_walk(5,'1000')
     sun = ['sun1.gif','sun2.gif','sun3.gif','sun4.gif']
     i = random.randint(0,3) 
     
@@ -1486,7 +1488,7 @@ def the_water():
     speak("water droplet at 2500 fps for visual meditation")
     killPlayer()                
     try:
-        command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../mars/water-droplets.mp4"
+        command = "cvlc -f --loop --video-on-top ../mars/water-droplets.mp4"
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
         press_for_stop('d',proc)
         killPlayer() 
@@ -1496,12 +1498,15 @@ def the_water():
 
 
 def the_universe():
-    speak("play our universe video clip")
+    speak("play the space video clip")
     killPlayer()                
+    cheerful = ['../mars/universe2.mp4','../mars/moon.mp4','../mars/mars10000.mp4']
+    i = random.randint(0,2)              
     try:
-        command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../mars/universe2.mp4"
+        command = "cvlc -f --loop --video-on-top " + cheerful[i]
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
         press_for_stop('d',proc)
+        proc.kill()
         killPlayer() 
     except:
         speak("sorry can not play video clip")
@@ -1720,7 +1725,7 @@ try:
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             vrun += 'ohm the sun blooming flower clip quit my display testing water morse code good bye chapter pali '
-            vrun += 'sixteen seventeen eighteen nineteen plants seed carbon food cell universe '
+            vrun += 'sixteen seventeen eighteen nineteen plants seed carbon food cell universe your name '
             vrun += new_vocab
             # vrun += ' how are you today what can i do for you ' #test
             vrun += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -1908,7 +1913,9 @@ try:
                                         speak("Repeat mode off")
 
                                 elif "anat" in words and "ta" in words:
-                                    if "stop" in words:
+                                    if len(words) == 2:
+                                        speak("yes!")
+                                    elif "stop" in words:
                                         killPlayer()
                                         bot = False
                                         speak("ok, call my name when you need help, bye bye!")
@@ -2081,6 +2088,8 @@ try:
                                         what_time()
                                     elif "day" in words:
                                         what_day()
+                                    elif "your" in words and "name" in words:
+                                        speak("My name is Anat ta")
 
                                 elif "buddha" in words and "day" in words:
                                     buddha_day()

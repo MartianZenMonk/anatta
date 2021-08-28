@@ -386,26 +386,27 @@ def thwords(text):
         stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
     return stext
 
-def relax_walk(t=30,vol='5000'):
-    bell('3',vol)
+def relax_walk(t=5,vol='5000'):
     text  = ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","หาย","ใจ","รู้","กาย","เคลื่อน","ไหว","รู้","ใจ","นึก","คิด","มี","จิต","เบิก","บาน"]
     text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","ถอน","ความ","พอ","ใจ","และ","ความ","ไม่","พอ","ใจ","ใน","ใจ","ออก","เสีย","ได้"]
     tx   = thwords(text)
     tx_list = tx.split(' ')
-    print(tx_list)
+    # print(tx_list)
     i = 1
     n = len(tx_list) - 1
     timeout = time.time() + 60*t   
     while True:
-        if time.time() > timeout:
+        if time.time() > timeout and i == n:
             break
         else:
             os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
-        time.sleep(.5)
+        time.sleep(.4)
         if i < n:
             i += 1
         else:
             i = 1
+    os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+    time.sleep(1)
     bell('1',vol)
     clear_q()
     return None
@@ -454,7 +455,7 @@ try:
         args.samplerate = int(device_info['default_samplerate'])
 
     #TEST
-    relax_walk(5)
+    relax_walk(1)
 
     model = vosk.Model(args.model)
    
