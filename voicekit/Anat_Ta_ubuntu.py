@@ -376,6 +376,40 @@ def pure_alpha():
     motion_detect(proc)
     return None
 
+def bell(l='3',vol='500'):
+    subprocess.run(["mpg123","-q","-f",vol,"--loop",l,"../dataen/bell.mp3"])
+    return None
+
+def thwords(text):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
+    return stext
+
+def relax_walk(t=30,vol='5000'):
+    bell('3',vol)
+    text  = ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","หาย","ใจ","รู้","กาย","เคลื่อน","ไหว","รู้","ใจ","นึก","คิด","มี","จิต","เบิก","บาน"]
+    text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","ถอน","ความ","พอ","ใจ","และ","ความ","ไม่","พอ","ใจ","ใน","ใจ","ออก","เสีย","ได้"]
+    tx   = thwords(text)
+    tx_list = tx.split(' ')
+    print(tx_list)
+    i = 1
+    n = len(tx_list) - 1
+    timeout = time.time() + 60*t   
+    while True:
+        if time.time() > timeout:
+            break
+        else:
+            os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+        time.sleep(.5)
+        if i < n:
+            i += 1
+        else:
+            i = 1
+    bell('1',vol)
+    clear_q()
+    return None
+
 
 # International Code of Signals
 ics  = 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
@@ -419,6 +453,9 @@ try:
         # soundfile expects an int, sounddevice provides a float:
         args.samplerate = int(device_info['default_samplerate'])
 
+    #TEST
+    relax_walk(5)
+
     model = vosk.Model(args.model)
    
     with sd.RawInputStream(samplerate=args.samplerate, blocksize = 8000, device=args.device, dtype='int16',
@@ -435,7 +472,7 @@ try:
             runv += 'mouse left right scroll click exit center sky star page browse technique wise new playing speak kill all pali '
             runv += 'morning evening practice om tibetan ohm blooming flower the sun heart clip thai my water morse code real chapter '
             runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty repeat mode '
-            runv += 'letter a b c d e f g h i j k l m n o p q r s t u v w x y z '
+            runv += 'letter a b c d e f g h i j k l m n o p q r s t u v w x y z relax walk '
             runv += new_vocab
             # runv += 'is am are be was were do does did done had have has can could shall should might may maybe '
             runv += 'show sleep start stop story sutra tell time to turn up volume wake walking what when who yes zen fire fox"]'
@@ -448,7 +485,7 @@ try:
             engine.stop()
 
             # master, slave = os.openpty()
-
+            
             global proc
             n = 0
             proc_name = ''
@@ -528,6 +565,9 @@ try:
                                 repeat = False
                                 speak("Repeat mode off")
                             bot = False
+
+                        elif "relax" in words and "walk" in words:
+                            relax_walk(5)
 
                         elif "kill" in words and "all" in words:
                             if "fire" in words and "fox" in words:

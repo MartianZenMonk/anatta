@@ -626,6 +626,33 @@ def relax_thai(vol="500"):
     return None
 
 
+def relax_walk(t=5,vol='5000'):
+    text  = ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","หาย","ใจ","รู้","กาย","เคลื่อน","ไหว","รู้","ใจ","นึก","คิด","มี","จิต","เบิก","บาน"]
+    text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","ถอน","ความ","พอ","ใจ","และ","ความ","ไม่","พอ","ใจ","ใน","ใจ","ออก","เสีย","ได้"]
+    tx   = thwords(text)
+    tx_list = tx.split(' ')
+    print(tx_list)
+    i = 1
+    n = len(tx_list) - 1
+    timeout = time.time() + 60*t   
+    while True:
+        if time.time() > timeout and i == n:
+            break
+        else:
+            os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+        time.sleep(.5)
+        if i < n:
+            i += 1
+        else:
+            i = 1
+    del text
+    del tx
+    del tx_list
+    gc.collect()
+    clear_q()
+    return None
+
+
 def pure_alpha(c='yy'):
     ledc(c)
     speak("pure alpha sound, push button for stop")
@@ -1353,13 +1380,14 @@ def hdmi_display(s='on'):
 def testing_mode2():
     killPlayer()
     bell('3') 
-    cheerful = [['BloomingFlowers.mp4','154'],['flowers-blooming.mp4','192']]
-    i = random.randint(0,1)              
+    cheerful  = [['../sound/BloomingFlowers.mp4','154'],['../sound/flowers-blooming.mp4','192']]
+    cheerful += [['../mars/universe.mp4','141'],['../mars/universe2.mp4','172']]
+    i = random.randint(0,3)              
     try:
         command = "export DISPLAY=:0.0; vlc -f --loop --stop-time " + cheerful[i][1] + " --video-on-top ../sound/" + cheerful[i][0]
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
         # delay(5)
-        board.button.wait_for_press(3*int(cheerful[i][1]))
+        board.button.wait_for_press(2*int(cheerful[i][1]))
         proc.kill()
         killPlayer() 
     except:
@@ -1395,13 +1423,15 @@ def testing_mode1():
 
 def testing_mode3():
     bell('3')
+    relax_walk(10,'1000')
     sun = ['sun1.gif','sun2.gif','sun3.gif','sun4.gif']
     i = random.randint(0,3) 
     
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[i]
     proc1 = subprocess.Popen(command, shell=True)
-    slow_buddho('off',15)
-    slow_buddho2('off',15)
+    slow_buddho('off',10)
+    slow_buddho2('off',10)
+
     proc1.kill()
     pkill_proc_name("testgif")
 
@@ -1465,6 +1495,19 @@ def the_water():
     return None
 
 
+def the_universe():
+    speak("play our universe video clip")
+    killPlayer()                
+    try:
+        command = "export DISPLAY=:0.0; vlc -f --loop --video-on-top ../mars/universe2.mp4"
+        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+        press_for_stop('d',proc)
+        killPlayer() 
+    except:
+        speak("sorry can not play video clip")
+    return None
+
+
 def music_meditation(t=0,c='d',vol="6000"):
     ledc(c)
     if t == 0:
@@ -1502,11 +1545,8 @@ def morning_practice(c='off',vol="200"):
 
     bell('1',vol)
     # cool down
-    ledc(c)
-    fast_buddho(c,30,vol)
-    bell('3',vol)
-    play_eight_fold_path_chanting_thai('500')
-    
+    ledc('o')
+    tibetan_meditation() 
     return None
 
 
@@ -1680,7 +1720,7 @@ try:
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             vrun += 'ohm the sun blooming flower clip quit my display testing water morse code good bye chapter pali '
-            vrun += 'sixteen seventeen eighteen nineteen plants seed carbon food cell '
+            vrun += 'sixteen seventeen eighteen nineteen plants seed carbon food cell universe '
             vrun += new_vocab
             # vrun += ' how are you today what can i do for you ' #test
             vrun += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -2308,6 +2348,9 @@ try:
                                     elif "water" in words:
                                         the_water()
 
+                                    elif "universe" in words:
+                                        the_universe()
+
                                 elif "blooming" in words and "flower" in words:
                                     speak("the blooming flowers time lapse for cheerful meditation")
                                     killPlayer()  
@@ -2350,6 +2393,10 @@ try:
                                         press_for_stop('g',proc)
                                         os.system("sudo pkill -f chromium")
    
+                                elif "good" in words and "bye" in words:
+                                    shutdown()
+                                    break
+
                                 elif "please" in words:
                                     if "help" in words:
                                         get_help()
@@ -2374,10 +2421,6 @@ try:
                                     elif "shutdown" in words:
                                         shutdown()
                                         break
-
-                                elif "good" in words and "bye" in words:
-                                    shutdown()
-                                    break
                                 
                                 elif "volume" in words:
                                     if "up" in words:
