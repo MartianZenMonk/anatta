@@ -381,7 +381,7 @@ def get_help():
             red green blue yellow or sound and or alpha light on,
             pure or breathing alpha meditation,
             math meditation,
-            walking practice,
+            walking practice (one, two),
             sitting practice,
             moring practice,
             wise one or alpha,
@@ -507,6 +507,13 @@ def thwords(text):
     stext = ""
     for i in range(len(text)):
         stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
+    return stext
+
+
+def thnumber(text):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../thaivoices/thwords/59/" + text[i] + ".mp3"
     return stext
 
 
@@ -640,7 +647,7 @@ def relax_walk(t=5,vol='5000'):
             break
         else:
             os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
-        time.sleep(.4)
+        time.sleep(0.25)
         if i < n:
             i += 1
         else:
@@ -1268,6 +1275,48 @@ def walking_meditation_count(c='yy'):
     return None
 
 
+def counting_walk(t=15,fast=False,l='th',vol='2000'):
+
+    if l == 'en':
+        if int(vol) > 50:
+            vol = '50'
+        tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
+        cmd = "espeak -a " + vol + " "
+    else:
+        tx = thnumber(['01','02','03','04','05','06','07','08','09','10'])
+        tx_list = tx.split(' ')
+        cmd = 'mpg123 -q -f ' + vol + ' '
+
+    i  = 1
+    t1 = 0.25
+    n = 5
+    bell('1')
+    timeout = time.time() + 60*t
+    while True:
+        print(n)        
+        if time.time() > timeout and i < 11:
+            break
+        else:
+            if fast:
+                os.system(cmd + tx_list[i])
+                time.sleep(t1)
+                i += 1
+            else:
+                os.system(cmd + tx_list[i])
+                time.sleep(t1)
+                os.system(cmd + tx_list[i])
+                time.sleep(t1)
+                i += 1
+
+        if i>n and n < 10:
+            n += 1
+            i = 1  
+        elif i>10:
+            n = 5
+            i = 1  
+    return None 
+
+
 def heart_sutra(t=0,c='d',vol="6000"):
     ledc(c)
     if t == 0:
@@ -1383,8 +1432,7 @@ def testing_mode2():
     killPlayer()
     bell('3') 
     cheerful  = [['../sound/BloomingFlowers.mp4','154'],['../sound/flowers-blooming.mp4','192']]
-    cheerful += [['../mars/universe.mp4','283'],['../mars/universe2.mp4','344']]
-    i = random.randint(0,3)              
+    i = random.randint(0,1)              
     try:
         command = "export DISPLAY=:0.0; vlc -f --loop --stop-time " + cheerful[i][1] + " --video-on-top " + cheerful[i][0]
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
@@ -1407,14 +1455,16 @@ def testing_mode2():
 # walking 1 hr
 def testing_mode1():
     bell('3')
+    relax_walk(5,'1000')
     sun = ['sun1.gif','sun2.gif','sun3.gif','sun4.gif']
     i = random.randint(0,3) 
     
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[i]
     proc1 = subprocess.Popen(command, shell=True)
-    slow_buddho('off',15)
+    counting_walk(10)
+    counting_walk(10,True)
+    slow_buddho('off',10)
     slow_buddho2('off',15)
-    slow_buddho("off",15)
     fast_buddho('oo',15)
     proc1.kill()
     pkill_proc_name("testgif")
@@ -1444,6 +1494,7 @@ def testing_mode3():
 # walk 2 hrs sit 1 hr
 def testing_mode4():
     bell('3')
+    relax_walk(5,'1000')
     fruit = ['watermelon.gif','oranges.gif','redApple.gif','greenApple.gif','cantalupe.gif']
 
     i = random.randint(0,3) 
@@ -1500,14 +1551,28 @@ def the_water():
 def the_universe():
     speak("play the space video clip")
     killPlayer()                
-    cheerful = ['../mars/universe2.mp4','../mars/moon.mp4','../mars/mars10000.mp4']
-    i = random.randint(0,2)              
+    cheerful  = ['../mars/universe2.mp4','../mars/moon.mp4','../mars/mars10000.mp4','--start-time 18 --stop-time 450 ../sound/timelapse/sun.mp4']
+    cheerful += ['../sound/timelapse/from-iss.mp4','--stop-time 305 ../sound/timelapse/nox.mp4','--start-time 30 --stop-time 630 ../sound/timelapse/universe.mp4']
+    i = random.randint(0,6)              
     try:
-        command = "cvlc -f --loop --video-on-top " + cheerful[i]
-        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-        press_for_stop('d',proc)
-        proc.kill()
+        command = "cvlc -f --video-on-top --play-and-exit " + cheerful[i]
+        subprocess.run(command, stdout=subprocess.PIPE, shell=True)
         killPlayer() 
+    except:
+        speak("sorry can not play video clip")
+    return None
+
+
+def cheer_up():
+    speak("play cheerful video clip")
+    stop_player()               
+    cheerful  = ['--stop-time 120 ../sound/timelapse/flowers.mp4','--start-time 8 --stop-time 208 ../sound/timelapse/cacti.mp4']
+    cheerful += ['--start-time 10 --stop-time 205 ../sound/timelapse/Bug-Eating-Plants.mp4','../sound/timelapse/nerve.mp4']
+    i = random.randint(0,3)              
+    try:
+        command = "cvlc -f --video-on-top --play-and-exit " + cheerful[i]
+        subprocess.run(command, stdout=subprocess.PIPE, shell=True)
+        stop_player()
     except:
         speak("sorry can not play video clip")
     return None
@@ -1725,7 +1790,7 @@ try:
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             vrun += 'ohm the sun blooming flower clip quit my display testing water morse code good bye chapter pali '
-            vrun += 'sixteen seventeen eighteen nineteen plants seed carbon food cell universe your name '
+            vrun += 'sixteen seventeen eighteen nineteen plants seed carbon food cell universe your name cheerful '
             vrun += new_vocab
             # vrun += ' how are you today what can i do for you ' #test
             vrun += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -2007,8 +2072,16 @@ try:
                                 elif "practice" in words:
 
                                     if "walking" in words:
-                                        walking_reward()
-                                        walking_meditation_count()
+                                        if "one" in words:
+                                            walking_reward()
+                                            walking_meditation_count()
+                                        elif "two" in words:
+                                            counting_walk(15,False,'en','10')
+                                            counting_walk(15,True,'en','10')
+                                            clear_q()
+                                        else:
+                                            speak("please speak walking practice one for counting or two for Kanaanub")
+                                            clear_q()
 
                                     elif "sitting" in words:
 
@@ -2359,6 +2432,9 @@ try:
 
                                     elif "universe" in words:
                                         the_universe()
+
+                                elif "cheerful" in words and "clip" in words:
+                                    cheer_up()
 
                                 elif "blooming" in words and "flower" in words:
                                     speak("the blooming flowers time lapse for cheerful meditation")

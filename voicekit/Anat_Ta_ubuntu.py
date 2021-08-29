@@ -386,6 +386,12 @@ def thwords(text):
         stext += " ../thaivoices/thwords/" + text[i] + ".mp3"
     return stext
 
+def thnumber(text):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../thaivoices/thwords/59/" + text[i] + ".mp3"
+    return stext
+
 def relax_walk(t=5,vol='5000'):
     text  = ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","หาย","ใจ","รู้","กาย","เคลื่อน","ไหว","รู้","ใจ","นึก","คิด","มี","จิต","เบิก","บาน"]
     text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","ถอน","ความ","พอ","ใจ","และ","ความ","ไม่","พอ","ใจ","ใน","ใจ","ออก","เสีย","ได้"]
@@ -411,6 +417,62 @@ def relax_walk(t=5,vol='5000'):
     clear_q()
     return None
 
+
+def counting_walk(t=15,fast=False,l='th',vol='5000'):
+
+    if l == 'en':
+        if int(vol) > 50:
+            vol = '50'
+        tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
+        cmd = "espeak -a " + vol + " "
+    else:
+        tx = thnumber(['01','02','03','04','05','06','07','08','09','10'])
+        tx_list = tx.split(' ')
+        cmd = 'mpg123 -q -f ' + vol + ' '
+
+    i  = 1
+    t1 = .5
+    n = 5
+    bell('1')
+    timeout = time.time() + 60*t
+    while True:
+        print(n)        
+        if time.time() > timeout and i < 11:
+            break
+        else:
+            if fast:
+                os.system(cmd + tx_list[i])
+                time.sleep(t1)
+                i += 1
+            else:
+                os.system(cmd + tx_list[i])
+                time.sleep(t1)
+                os.system(cmd + tx_list[i])
+                time.sleep(t1)
+                i += 1
+
+        if i>n and n < 10:
+            n += 1
+            i = 1  
+        elif i>10:
+            n = 5
+            i = 1  
+
+def cheer_up():
+    speak("play cheerful video clip")
+    stop_player()               
+    cheerful  = ['--stop-time 120 ../sound/timelapse/flowers.mp4','--start-time 8 --stop-time 208 ../sound/timelapse/cacti.mp4']
+    cheerful += ['--start-time 10 --stop-time 205 ../sound/timelapse/Bug-Eating-Plants.mp4','--start-time 30 --stop-time 630 ../sound/timelapse/universe.mp4']
+    cheerful += ['../sound/timelapse/from-iss.mp4','--start-time 37 --stop-time 228 ../sound/timelapse/universe.mp4']
+    cheerful += ['../sound/timelapse/nerve.mp4','--stop-time 305 ../sound/timelapse/nox.mp4']
+    i = random.randint(0,7)              
+    try:
+        command = "cvlc -f --video-on-top --play-and-exit " + cheerful[i]
+        subprocess.run(command, stdout=subprocess.PIPE, shell=True)
+        stop_player()
+    except:
+        speak("sorry can not play video clip")
+    return None
 
 # International Code of Signals
 ics  = 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
@@ -455,7 +517,7 @@ try:
         args.samplerate = int(device_info['default_samplerate'])
 
     #TEST
-    relax_walk(1)
+    cheer_up()
 
     model = vosk.Model(args.model)
    
@@ -473,7 +535,7 @@ try:
             runv += 'mouse left right scroll click exit center sky star page browse technique wise new playing speak kill all pali '
             runv += 'morning evening practice om tibetan ohm blooming flower the sun heart clip thai my water morse code real chapter '
             runv += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty repeat mode '
-            runv += 'letter a b c d e f g h i j k l m n o p q r s t u v w x y z relax walk '
+            runv += 'letter a b c d e f g h i j k l m n o p q r s t u v w x y z relax walk cheerful clip '
             runv += new_vocab
             # runv += 'is am are be was were do does did done had have has can could shall should might may maybe '
             runv += 'show sleep start stop story sutra tell time to turn up volume wake walking what when who yes zen fire fox"]'
@@ -570,6 +632,9 @@ try:
                         elif "relax" in words and "walk" in words:
                             relax_walk(5)
 
+                        elif "cheerful" in words and "clip" in words:
+                            cheer_up()
+
                         elif "kill" in words and "all" in words:
                             if "fire" in words and "fox" in words:
                                 os.system("killall firefox")
@@ -610,7 +675,7 @@ try:
                             motion_detect(proc)
                             clear_q()
 
-                        elif "new" in words and "dhamma" in words:
+                        elif "my" in words and "dhamma" in words:
                             
                             files= get_new_dhamma_files()
                             cmd = "mpg123 -d 1.5 "+files
