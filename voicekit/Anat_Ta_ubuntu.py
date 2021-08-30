@@ -418,20 +418,24 @@ def relax_walk(t=5,vol='5000'):
     return None
 
 
-def counting_walk(t=15,fast=False,l='th',vol='5000'):
+def counting_walk(t=15,fast=False,l='th',vol='2000'):
 
     if l == 'en':
+        tt = "percipient of what lies in front & behind, set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards."
+        espeak(tt,vol)
+        t1 = 0
         if int(vol) > 50:
             vol = '50'
         tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
         cmd = "espeak -a " + vol + " "
     else:
+        os.system('mpg123 -q -f ' + vol + ' ../thaivoices/before_walking.mp3')
+        t1 = 0.5
         tx = thnumber(['01','02','03','04','05','06','07','08','09','10'])
         tx_list = tx.split(' ')
         cmd = 'mpg123 -q -f ' + vol + ' '
 
     i  = 1
-    t1 = 1
     n = 5
     bell('1')
     timeout = time.time() + 60*t
@@ -457,6 +461,7 @@ def counting_walk(t=15,fast=False,l='th',vol='5000'):
         elif i>10:
             n = 5
             i = 1  
+    return None 
 
 def cheer_up():
     speak("play cheerful video clip")
@@ -528,8 +533,8 @@ try:
 
     #TEST
     # cheer_up()
-    # counting_walk(5)
-    funny_animals()
+    counting_walk(5)
+    # funny_animals()
 
     model = vosk.Model(args.model)
    

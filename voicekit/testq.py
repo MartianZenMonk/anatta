@@ -1278,13 +1278,16 @@ def walking_meditation_count(c='yy'):
 def counting_walk(t=15,fast=False,l='th',vol='2000'):
 
     if l == 'en':
+        tt = "percipient of what lies in front & behind, set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards."
+        espeak(tt,vol)
         t1 = 0
         if int(vol) > 50:
             vol = '50'
         tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
         cmd = "espeak -a " + vol + " "
     else:
-        t1 = 1
+        os.system('mpg123 -q -f ' + vol + ' ../thaivoices/before_walking.mp3')
+        t1 = 0.5
         tx = thnumber(['01','02','03','04','05','06','07','08','09','10'])
         tx_list = tx.split(' ')
         cmd = 'mpg123 -q -f ' + vol + ' '
@@ -1553,8 +1556,8 @@ def the_water():
     return None
 
 
-def the_universe(i=7):
-    speak("play the space video clip")
+def the_universe(i=7,title='the space video clip'):
+    speak("play " + title)
     killPlayer()                
     cheerful  = ['../mars/universe2.mp4','../mars/moon.mp4','../mars/mars10000.mp4','--start-time 18 --stop-time 450 ../sound/timelapse/sun.mp4']
     cheerful += ['--gain 0 ../sound/timelapse/from-iss.mp4','--gain 0 --stop-time 305 ../sound/timelapse/nox.mp4','--gain 0 --start-time 30 --stop-time 630 ../sound/timelapse/universe.mp4','--gain 0 ../mars/universe.mp4']
