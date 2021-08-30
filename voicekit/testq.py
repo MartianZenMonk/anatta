@@ -1278,17 +1278,18 @@ def walking_meditation_count(c='yy'):
 def counting_walk(t=15,fast=False,l='th',vol='2000'):
 
     if l == 'en':
+        t1 = 0
         if int(vol) > 50:
             vol = '50'
         tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
         cmd = "espeak -a " + vol + " "
     else:
+        t1 = 1
         tx = thnumber(['01','02','03','04','05','06','07','08','09','10'])
         tx_list = tx.split(' ')
         cmd = 'mpg123 -q -f ' + vol + ' '
 
     i  = 1
-    t1 = 0.25
     n = 5
     bell('1')
     timeout = time.time() + 60*t
@@ -1481,8 +1482,10 @@ def testing_mode3():
     
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[i]
     proc1 = subprocess.Popen(command, shell=True)
+    counting_walk(5)
+    counting_walk(5,True)
     slow_buddho('off',10)
-    slow_buddho2('off',10)
+    slow_buddho2('off',5)
 
     proc1.kill()
     pkill_proc_name("testgif")
@@ -1501,7 +1504,9 @@ def testing_mode4():
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + fruit[i]
     proc1 = subprocess.Popen(command, shell=True)
 
-    slow_buddho('off',30)
+    counting_walk(10)
+    counting_walk(10,True)
+    slow_buddho('off',10)
     bell('1')
     slow_buddho2('off',30)
     bell('1')
@@ -1548,31 +1553,51 @@ def the_water():
     return None
 
 
-def the_universe():
+def the_universe(i=7):
     speak("play the space video clip")
     killPlayer()                
     cheerful  = ['../mars/universe2.mp4','../mars/moon.mp4','../mars/mars10000.mp4','--start-time 18 --stop-time 450 ../sound/timelapse/sun.mp4']
-    cheerful += ['../sound/timelapse/from-iss.mp4','--stop-time 305 ../sound/timelapse/nox.mp4','--start-time 30 --stop-time 630 ../sound/timelapse/universe.mp4']
-    i = random.randint(0,6)              
+    cheerful += ['--gain 0 ../sound/timelapse/from-iss.mp4','--gain 0 --stop-time 305 ../sound/timelapse/nox.mp4','--gain 0 --start-time 30 --stop-time 630 ../sound/timelapse/universe.mp4','--gain 0 ../mars/universe.mp4']
+    if i > 6:
+        i = random.randint(0,6)
+    else:
+        pass         
     try:
         command = "cvlc -f --video-on-top --play-and-exit " + cheerful[i]
-        subprocess.run(command, stdout=subprocess.PIPE, shell=True)
+        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+        press_for_stop('d',proc)
         killPlayer() 
     except:
         speak("sorry can not play video clip")
     return None
 
 
-def cheer_up():
+def cheer_up(i=4):
     speak("play cheerful video clip")
-    stop_player()               
+    killPlayer()               
     cheerful  = ['--stop-time 120 ../sound/timelapse/flowers.mp4','--start-time 8 --stop-time 208 ../sound/timelapse/cacti.mp4']
     cheerful += ['--start-time 10 --stop-time 205 ../sound/timelapse/Bug-Eating-Plants.mp4','../sound/timelapse/nerve.mp4']
-    i = random.randint(0,3)              
+    if i > 3:
+        i = random.randint(0,3)
+    else:
+        pass              
     try:
         command = "cvlc -f --video-on-top --play-and-exit " + cheerful[i]
-        subprocess.run(command, stdout=subprocess.PIPE, shell=True)
-        stop_player()
+        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+        press_for_stop('d',proc)
+        killPlayer() 
+    except:
+        speak("sorry can not play video clip")
+    return None
+
+
+def cheerful_animals():
+    animals = ['--gain 0 ../sound/animals/panda1.mp4']
+    try:
+        command = "cvlc -f --video-on-top --play-and-exit " + animals[0]
+        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+        press_for_stop('d',proc)
+        killPlayer() 
     except:
         speak("sorry can not play video clip")
     return None
@@ -1615,8 +1640,9 @@ def morning_practice(c='off',vol="200"):
 
     bell('1',vol)
     # cool down
-    ledc('o')
-    tibetan_meditation() 
+    fast_buddho(c,45,vol)
+    ledc('d')
+    play_sutra('500')
     return None
 
 
@@ -1648,7 +1674,7 @@ def morning_practice_chanting_mode(c='d',m=1,vol="200"):
     bell('1',vol)
     # cool down
     ledc(c)
-    fast_buddho(c,30,vol)
+    fast_buddho(c,45,vol)
     bell('3',vol)
     play_sutra('500')
     
@@ -1778,11 +1804,11 @@ try:
             # print(args.device)
 
             os.system('espeak -s 130 -a 4 -v "english-us" "Nothing is worth insisting on"')
-            os.system('mpg123 -q -f 400 ../thaivoices/samesame.mp3 ../thaivoices/hello.mp3')
+            os.system('mpg123 -q -f 400 ../thaivoices/hello.mp3')
             
             # new runtime vocabulary
             new_vocab = runtime_vocabulary()
-            vrun  =  '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
+            vrun  = '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
             vrun += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             vrun += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             vrun += 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
@@ -1790,7 +1816,7 @@ try:
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             vrun += 'ohm the sun blooming flower clip quit my display testing water morse code good bye chapter pali '
-            vrun += 'sixteen seventeen eighteen nineteen plants seed carbon food cell universe your name cheerful '
+            vrun += 'sixteen seventeen eighteen nineteen plants seed carbon food cell universe your name cheerful silent quiet '
             vrun += new_vocab
             # vrun += ' how are you today what can i do for you ' #test
             vrun += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -1815,6 +1841,7 @@ try:
             # mp morning practice , ep evening practice
             mp = False
             ep = False
+            un = False
             mn = 0
             right_words = []
             add_letter  = ''
@@ -1840,7 +1867,8 @@ try:
                 meditation_goal4('500')
             else:
                 yoniso('555')
-            # time.sleep(1)
+            time.sleep(1)
+            os.system('mpg123 -q -f 400 ../thaivoices/samesame.mp3')
             # espeak('hi,there! my name is anat ta, please call my name if you want to start','5')
             time.sleep(1)
             with q.mutex:
@@ -1893,6 +1921,7 @@ try:
                                     clear_q()
                                 elif "yes" in words:
                                     words = right_words
+                                    speak(words)
                                     yesno = False
                                 else:
                                     words = []
@@ -1980,6 +2009,11 @@ try:
                                 elif "anat" in words and "ta" in words:
                                     if len(words) == 2:
                                         speak("yes!")
+                                    elif "play" in words:
+                                        if "dhamma" in words:
+                                            play_dhamma()
+                                        else:
+                                            pass
                                     elif "stop" in words:
                                         killPlayer()
                                         bot = False
@@ -1991,6 +2025,21 @@ try:
                                     elif "shutdown" in words:
                                         shutdown()
                                         break
+                                    elif "help" in words:
+                                        get_help()
+
+                                    elif "silent" in words or "quiet" in words:
+                                        killPlayer()
+                                        if len(proc_name) > 0:
+                                            os.system("pkill -f " + proc_name)
+                                            speak("kill " + proc_name)
+                                            proc_name = ''
+                                        if proc_bool:
+                                            proc.kill()
+                                            proc_bool = False
+                                            speak("kill the process")
+                                        speak("done")
+                                        clear_q()
 
                                 elif "sound" in words:
                                     i = int(words.index('sound')) + 1
@@ -2079,8 +2128,12 @@ try:
                                             counting_walk(15,False,'en','10')
                                             counting_walk(15,True,'en','10')
                                             clear_q()
+                                        elif "three" in words:
+                                            counting_walk(15,False,'th','2000')
+                                            counting_walk(15,True,'th','2000')
+                                            clear_q()
                                         else:
-                                            speak("please speak walking practice one for counting or two for Kanaanub")
+                                            speak("please speak walking practice one for counting or two or three for Kanaanub")
                                             clear_q()
 
                                     elif "sitting" in words:
@@ -2430,11 +2483,43 @@ try:
                                     elif "water" in words:
                                         the_water()
 
-                                    elif "universe" in words:
+                                elif "universe" in words:
+                                    mn = 0
+                                    uni = ['you are here','why the moon','Mars 10000 days','the sun','earth view from ISS','night sky','the universe']
+                                    if"one" in words:
+                                        verify_words = 'Do you want to play ' + uni[0] + '?'
+                                        mn = 1
+                                    elif "two" in words:
+                                        verify_words = 'Do you want to play ' + uni[1] + '?'
+                                        mn = 2
+                                    elif "three" in words:
+                                        verify_words = 'Do you want to play ' + uni[2] + '?'
+                                        mn = 3
+                                    elif "four" in words:
+                                        verify_words = 'Do you want to play ' + uni[3] + '?'
+                                        mn = 4
+                                    elif "five" in words:
+                                        verify_words = 'Do you want to play ' + uni[4] + '?'
+                                        mn = 5
+                                    elif "six" in words:
+                                        verify_words = 'Do you want to play ' + uni[5] + '?'
+                                        mn = 6
+                                    elif "seven" in words:
+                                        verify_words = 'Do you want to play ' + uni[6] + '?'
+                                        mn = 7
+                                    else:
                                         the_universe()
+
+                                    if mn in range(1,8):
+                                        mn = mn - 1
+                                        un = True    
+                                        verify = True
+                                        focus  = True
+                                    clear_q()
 
                                 elif "cheerful" in words and "clip" in words:
                                     cheer_up()
+                                    cheerful_animals()
 
                                 elif "blooming" in words and "flower" in words:
                                     speak("the blooming flowers time lapse for cheerful meditation")
@@ -2481,32 +2566,7 @@ try:
                                 elif "good" in words and "bye" in words:
                                     shutdown()
                                     break
-
-                                elif "please" in words:
-                                    if "help" in words:
-                                        get_help()
-
-                                    elif "stop" in words:
-                                        killPlayer()
-                                        if len(proc_name) > 0:
-                                            os.system("pkill -f " + proc_name)
-                                            speak("kill " + proc_name)
-                                            proc_name = ''
-                                        if proc_bool:
-                                            proc.kill()
-                                            proc_bool = False
-                                            speak("kill the process")
-                                        speak("done")
-                                        clear_q()
-                                    elif "restart" in words:
-                                        speak("restart the service, please wait")
-                                        os.system("sudo systemctl restart myscript.service")
-                                        break
-
-                                    elif "shutdown" in words:
-                                        shutdown()
-                                        break
-                                
+                               
                                 elif "volume" in words:
                                     if "up" in words:
                                         call(["amixer","-D","pulse","sset","Master","95%"])
@@ -2539,6 +2599,7 @@ try:
                                             speak('ok')
                                             verify = False
                                             focus = False
+                                            clear_q()
                                         elif "yes" in words:
                                             if mp:
                                                 if mn == 0:
@@ -2552,6 +2613,11 @@ try:
                                                 evening_practice(d)
                                                 verify = False
                                                 ep = False
+                                                focus = False
+                                            elif un:
+                                                the_universe(mn)
+                                                un = False
+                                                verify = False
                                                 focus = False
 
                                         else:

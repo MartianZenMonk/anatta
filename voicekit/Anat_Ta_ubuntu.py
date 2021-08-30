@@ -406,7 +406,7 @@ def relax_walk(t=5,vol='5000'):
             break
         else:
             os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
-        time.sleep(.4)
+        time.sleep(1)
         if i < n:
             i += 1
         else:
@@ -431,7 +431,7 @@ def counting_walk(t=15,fast=False,l='th',vol='5000'):
         cmd = 'mpg123 -q -f ' + vol + ' '
 
     i  = 1
-    t1 = .5
+    t1 = 1
     n = 5
     bell('1')
     timeout = time.time() + 60*t
@@ -468,6 +468,16 @@ def cheer_up():
     i = random.randint(0,7)              
     try:
         command = "cvlc -f --video-on-top --play-and-exit " + cheerful[i]
+        subprocess.run(command, stdout=subprocess.PIPE, shell=True)
+        stop_player()
+    except:
+        speak("sorry can not play video clip")
+    return None
+
+def funny_animals():
+    animals = ['--gain 0 ../sound/animals/panda1.mp4']
+    try:
+        command = "cvlc -f --video-on-top --play-and-exit " + animals[0]
         subprocess.run(command, stdout=subprocess.PIPE, shell=True)
         stop_player()
     except:
@@ -517,7 +527,9 @@ try:
         args.samplerate = int(device_info['default_samplerate'])
 
     #TEST
-    cheer_up()
+    # cheer_up()
+    # counting_walk(5)
+    funny_animals()
 
     model = vosk.Model(args.model)
    
