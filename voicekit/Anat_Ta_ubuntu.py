@@ -422,7 +422,7 @@ def counting_walk(t=15,fast=False,l='th',vol='2000'):
 
     if l == 'en':
         tt = "percipient of what lies in front & behind, set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards."
-        espeak(tt,vol)
+        speak(tt)
         t1 = 0
         if int(vol) > 50:
             vol = '50'
@@ -533,7 +533,7 @@ try:
 
     #TEST
     # cheer_up()
-    counting_walk(5)
+    counting_walk(5,False,'en','10')
     # funny_animals()
 
     model = vosk.Model(args.model)

@@ -1858,6 +1858,7 @@ try:
             ch_name  = ['fast buddho mantra','breathing in and out mantra in Thai','alpha sound with alpha light']
             ch_name += [' only alpha sound','only alpha light','relax and mindful mantra in Thai','Ohm sound','Meditation Music']
             ch_name += ['Tibetan music','Raining sound','Quit']
+            uni = ['you are here','why the moon','Mars 10000 days','the sun','earth view from ISS','night sky','the universe']
             time.sleep(1)
             i = random.randint(1,5)
             if i == 1:
@@ -2488,7 +2489,6 @@ try:
 
                                 elif "universe" in words:
                                     mn = 0
-                                    uni = ['you are here','why the moon','Mars 10000 days','the sun','earth view from ISS','night sky','the universe']
                                     if"one" in words:
                                         verify_words = 'Do you want to play ' + uni[0] + '?'
                                         mn = 1
@@ -2618,7 +2618,7 @@ try:
                                                 ep = False
                                                 focus = False
                                             elif un:
-                                                the_universe(mn)
+                                                the_universe(mn,uni[mn])
                                                 un = False
                                                 verify = False
                                                 focus = False
