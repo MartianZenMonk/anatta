@@ -427,7 +427,7 @@ def counting_walk(t=15,fast=False,l='th',vol='2000'):
         if int(vol) > 50:
             vol = '50'
         tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
-        cmd = "espeak -a " + vol + " "
+        cmd = "espeak -s 150 -a " + vol + " "
     else:
         os.system('mpg123 -q -f ' + vol + ' ../thaivoices/before_walking.mp3')
         t1 = 0.5
@@ -462,6 +462,51 @@ def counting_walk(t=15,fast=False,l='th',vol='2000'):
             n = 5
             i = 1  
     return None 
+
+
+def kanaanub(t=15,fast=False,l='th',vol='10'):
+
+    if l == 'en':
+        tt = "percipient of what lies in front & behind, set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards."
+        speak(tt)
+        t1 = 0
+        tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
+        
+    else:
+        os.system('mpg123 -q -f 4000 ../thaivoices/before_walking.mp3')
+        t1 = 0
+        tx_list = ['soon','noong','song','sam','see','ha','hok','jed','pad','kao','sib']
+
+    cmd = "espeak -s 150 -a " + vol + " "
+
+    i  = 1
+    n = 5
+    bell('1')
+    timeout = time.time() + 60*t
+    while True:
+        print(n)        
+        if time.time() > timeout and i < 11:
+            break
+        else:
+            if fast:
+                os.system(cmd + tx_list[i])
+                time.sleep(t1)
+                i += 1
+            else:
+                os.system(cmd + tx_list[i])
+                time.sleep(t1)
+                os.system(cmd + tx_list[i])
+                time.sleep(t1)
+                i += 1
+
+        if i>n and n < 10:
+            n += 1
+            i = 1  
+        elif i>10:
+            n = 5
+            i = 1  
+    return None 
+
 
 def cheer_up():
     speak("play cheerful video clip")
@@ -533,7 +578,7 @@ try:
 
     #TEST
     # cheer_up()
-    counting_walk(5,False,'en','10')
+    kanaanub(1,False,'th')
     # funny_animals()
 
     model = vosk.Model(args.model)

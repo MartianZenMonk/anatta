@@ -352,7 +352,7 @@ def press_for_stop(c='',proc=0,t=0):
     if t == 0 :
         board.button.wait_for_press()
     else:
-        board.button.wait_for_press(60*t)
+        board.button.wait_for_press(t)
     proc.kill()
     pkill_proc_name()
     killPlayer()
@@ -953,25 +953,37 @@ def read_sutta(d):
     clear_q()
     return None
 
-def meditation_goal(vol='2000'):
-    text = " ../thaivoices/dukkha.mp3 ../thaivoices/goal.mp3"
+def meditation_goal(g=1,vol='2000'):
+    if g == 1:
+        text = " ../thaivoices/dukkha.mp3 ../thaivoices/goal.mp3"
+    elif g == 2:
+        text = " ../thaivoices/howtopractice.mp3"
+    elif g == 3:
+        text = " ../thaivoices/natureTruth3.mp3"
+    elif g == 4:
+        text = " ../thaivoices/circle_of_dukkha_thai.mp3"
+    elif g == 5:
+        text = " ../thaivoices/yoniso_thai.mp3"
+
     os.system("mpg123 -q -f " + vol + text)
 
-def meditation_goal2(vol='2000'):
-    text = " ../thaivoices/howtopractice.mp3"
-    os.system("mpg123 -q -f " + vol + text)
 
-def meditation_goal3(vol='2000'):
-    text = " ../thaivoices/natureTruth3.mp3"
-    os.system("mpg123 -q -f " + vol + text)
+def before_walk(l="th",vol="2000"):
+    if l == "en":
+        st = "percipient of what lies in front & behind, set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards"
+        espeak(t,vol)
+    else:
+        st = " ../thaivoices/before_walking.mp3"
+        os.system("mpg123 -q -f "+ vol + st)       
 
-def meditation_goal4(vol='2000'):
-    text = " ../thaivoices/circle_of_dukkha_thai.mp3"
-    os.system("mpg123 -q -f " + vol + text)
 
-def yoniso(vol='2000'):
-    text = " ../thaivoices/yoniso_thai.mp3"
-    os.system("mpg123 -q -f " + vol + text)
+def before_sit(l="th1",vol="2000"):
+    if l == 'th1':
+        st = " ../thaivoices/at_the_present.mp3"
+    else:
+        st = " --loop 3 ../thaivoices/cheerful_breathing.mp3"
+
+    os.system("mpg123 -q -f "+ vol + st)
 
 
 def walking_reward():
@@ -1222,7 +1234,7 @@ def play_sutra(vol="1000"):
     press_for_stop('d',proc2)
 
 
-def walking_meditation_count(c='yy'):
+def walking_meditation_count(c='oo'):
     
     speak("one stage walking practice, please count your step then you can verify it in the end")
 
@@ -1291,6 +1303,50 @@ def counting_walk(t=15,fast=False,l='th',vol='2000'):
         tx = thnumber(['01','02','03','04','05','06','07','08','09','10'])
         tx_list = tx.split(' ')
         cmd = 'mpg123 -q -f ' + vol + ' '
+
+    i  = 1
+    n = 5
+    bell('1')
+    timeout = time.time() + 60*t
+    while True:
+        print(n)        
+        if time.time() > timeout and i < 11:
+            break
+        else:
+            if fast:
+                os.system(cmd + tx_list[i])
+                time.sleep(t1)
+                i += 1
+            else:
+                os.system(cmd + tx_list[i])
+                time.sleep(t1)
+                os.system(cmd + tx_list[i])
+                time.sleep(t1)
+                i += 1
+
+        if i>n and n < 10:
+            n += 1
+            i = 1  
+        elif i>10:
+            n = 5
+            i = 1  
+    return None 
+
+
+def kanaanub(t=15,fast=False,l='th',vol='10'):
+
+    if l == 'en':
+        tt = "percipient of what lies in front & behind, set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards."
+        speak(tt)
+        t1 = 0
+        tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
+        
+    else:
+        os.system('mpg123 -q -f 1000 ../thaivoices/before_walking.mp3')
+        t1 = 0
+        tx_list = ['soon','noong','song','sam','see','ha','hok','jed','pad','kao','sib']
+
+    cmd = "espeak -s 150 -a " + vol + " "
 
     i  = 1
     n = 5
@@ -1449,6 +1505,7 @@ def testing_mode2():
     my_sun()
     bell('1')
     om_meditation(5) 
+    before_sit()
     bell('1')   
     alpha_wave(50)
     bell('1')
@@ -1465,7 +1522,9 @@ def testing_mode1():
     
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[i]
     proc1 = subprocess.Popen(command, shell=True)
+    bell('1')
     counting_walk(10)
+    bell('1')
     counting_walk(10,True)
     slow_buddho('off',10)
     slow_buddho2('off',15)
@@ -1485,8 +1544,11 @@ def testing_mode3():
     
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[i]
     proc1 = subprocess.Popen(command, shell=True)
+    bell('1')
     counting_walk(5)
+    bell('1')
     counting_walk(5,True)
+    bell('1')
     slow_buddho('off',10)
     slow_buddho2('off',5)
 
@@ -1506,8 +1568,9 @@ def testing_mode4():
     i = random.randint(0,3) 
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + fruit[i]
     proc1 = subprocess.Popen(command, shell=True)
-
+    bell('1')
     counting_walk(10)
+    bell('1')
     counting_walk(10,True)
     slow_buddho('off',10)
     bell('1')
@@ -1516,6 +1579,8 @@ def testing_mode4():
     slow_buddho('off',30)
     bell('1')
     fast_buddho('off',30)
+    bell('1')
+    before_sit()
     bell('1')
     alpha_wave(60)
     bell('2')
@@ -1562,7 +1627,7 @@ def the_universe(i=7,title='the space video clip'):
     cheerful  = ['../mars/universe2.mp4','../mars/moon.mp4','../mars/mars10000.mp4','--start-time 18 --stop-time 450 ../sound/timelapse/sun.mp4']
     cheerful += ['--gain 0 ../sound/timelapse/from-iss.mp4','--gain 0 --stop-time 305 ../sound/timelapse/nox.mp4','--gain 0 --start-time 30 --stop-time 630 ../sound/timelapse/universe.mp4','--gain 0 ../mars/universe.mp4']
     if i > 6:
-        i = random.randint(0,6)
+        i = random.randint(0,7)
     else:
         pass         
     try:
@@ -1630,7 +1695,9 @@ def morning_practice(c='off',vol="200"):
     ledc(c)
     # warm up
     slow_buddho(c,10,vol)
-    alpha_wave(30)
+    alpha_wave(10)
+    slow_buddho(c,10,vol)
+    alpha_wave(10)
     fast_buddho(c,10,vol)
     time.sleep(300)
     
@@ -1639,11 +1706,16 @@ def morning_practice(c='off',vol="200"):
     bell('3',vol)
     # start
     ledc('off')
-    alpha_wave(60)
-
+    alpha_wave(30)
+    before_sit('th',vol)
+    alpha_wave(30)
     bell('1',vol)
     # cool down
-    fast_buddho(c,45,vol)
+    fast_buddho(c,10,vol)
+    before_sit('th',vol)
+    fast_buddho(c,10,vol)
+    before_sit('th',vol)
+    fast_buddho(c,10,vol)
     ledc('d')
     play_sutra('500')
     return None
@@ -1662,7 +1734,11 @@ def morning_practice_chanting_mode(c='d',m=1,vol="200"):
 
     ledc(c)
     # warm up
-    fast_buddho(c,50,vol)
+    slow_buddho(c,10,vol)
+    alpha_wave(10)
+    slow_buddho(c,10,vol)
+    alpha_wave(10)
+    fast_buddho(c,10,vol)
     time.sleep(300)
 
     relax_thai(vol)
@@ -1677,7 +1753,7 @@ def morning_practice_chanting_mode(c='d',m=1,vol="200"):
     bell('1',vol)
     # cool down
     ledc(c)
-    fast_buddho(c,45,vol)
+    fast_buddho(c,30,vol)
     bell('3',vol)
     play_sutra('500')
     
@@ -1861,16 +1937,7 @@ try:
             uni = ['you are here','why the moon','Mars 10000 days','the sun','earth view from ISS','night sky','the universe']
             time.sleep(1)
             i = random.randint(1,5)
-            if i == 1:
-                meditation_goal('500')
-            elif i == 2:
-                meditation_goal2('500')
-            elif i == 3:
-                meditation_goal3('500')
-            elif i == 4:
-                meditation_goal4('500')
-            else:
-                yoniso('555')
+            meditation_goal(i,'500')
             time.sleep(1)
             os.system('mpg123 -q -f 400 ../thaivoices/samesame.mp3')
             # espeak('hi,there! my name is anat ta, please call my name if you want to start','5')
@@ -2132,9 +2199,13 @@ try:
                                             counting_walk(15,False,'en','10')
                                             counting_walk(15,True,'en','10')
                                             clear_q()
-                                        elif "three" in words:
+                                        elif "six" in words:
                                             counting_walk(15,False,'th','2000')
                                             counting_walk(15,True,'th','2000')
+                                            clear_q()
+                                        elif "three" in words:
+                                            kanaanub(10,False,'th')
+                                            kanaanub(10,True,'th')
                                             clear_q()
                                         else:
                                             speak("please speak walking practice one for counting or two or three for Kanaanub")
