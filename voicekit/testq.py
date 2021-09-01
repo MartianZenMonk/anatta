@@ -636,6 +636,8 @@ def relax_thai(vol="500"):
 def relax_walk(t=5,vol='5000'):
     text  = ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","หาย","ใจ","รู้","กาย","เคลื่อน","ไหว","รู้","ใจ","นึก","คิด","มี","จิต","เบิก","บาน"]
     text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","ถอน","ความ","พอ","ใจ","และ","ความ","ไม่","พอ","ใจ","ใน","ใจ","ออก","เสีย","ได้"]
+    text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","จิต","เบิก","บาน","หาย","ใจ","เข้า","จิต","โล่ง","เบา","หาย","ใจ","ออก"]
+    text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","ยาว","รู้","ลม","สั้น","รู้","กาย","ทั้ง","ปวง","ทำ","กาย","ลม","ให้","ประ","ณีต"]
     tx   = thwords(text)
     tx_list = tx.split(' ')
     # print(tx_list)
@@ -794,10 +796,10 @@ def slow_buddho(c='',t=30,vol='1000'):
     gc.collect()
 
     if t==0:
-        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../thaivoices/buddho0.mp3"])
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/buddho0.mp3"])
         press_for_stop(c,proc)
     else:
-        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../thaivoices/buddho0.mp3"])
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/buddho0.mp3"])
         delay(t)
         proc.kill()
     
@@ -1505,9 +1507,13 @@ def testing_mode2():
     my_sun()
     bell('1')
     om_meditation(5) 
-    before_sit()
+    before_sit('th')
     bell('1')   
-    alpha_wave(50)
+    alpha_wave(30)
+    bell('1')
+    alpha_wave(15)
+    bell('1')
+    alpha_wave(15)
     bell('1')
     pkill_proc_name()
     clear_q()
