@@ -258,8 +258,10 @@ from gtts import gTTS
 # t = 'บุคคลไม่ควรตามคิดถึงสิ่งที่ล่วงไปแล้วด้วยอาลัย และไม่พึงพะวงถึงสิ่งที่ยังไม่มาถึง สิ่งเป็นอดีตก็ละไปแล้ว, สิ่งเป็นอนาคตก็ยังไม่มา'
 
 # t = 'จิตเบิกบานหายใจเข้า จิตโล่งเบาหายใจออก'
-# speech = gTTS(text = t,lang='th',slow = False)
-# speech.save(str("cheerful_breathing.mp3"))
+
+# t = "设置一段距离，来回走动，让感官沉浸在内心深处，不向外走神。"
+# speech = gTTS(text = t,lang='zh',slow = False)
+# speech.save(str("chinese_walk.mp3"))
 
 
 
@@ -286,6 +288,7 @@ from gtts import gTTS
 
 # '''
 
-# for i in range(len(text)):
-#   speech = gTTS(text = text[i],lang='th',slow = False)
-#   speech.save(str("36/"+text[i]) + ".mp3")
+text = ['cheerful breathing in','relieved breathing out']
+for i in range(len(text)):
+  speech = gTTS(text = text[i],lang='en',slow = False)
+  speech.save(str("chinese/"+text[i].replace(' ','_')) + ".mp3")

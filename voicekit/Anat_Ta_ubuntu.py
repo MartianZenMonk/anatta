@@ -392,6 +392,18 @@ def thnumber(text):
         stext += " ../thaivoices/thwords/59/" + text[i] + ".mp3"
     return stext
 
+def zhwords(text):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../thaivoices/chinese/" + text[i] + ".mp3"
+    return stext
+
+def engwords(text):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../thaivoices/english/" + text[i] + ".mp3"
+    return stext
+
 def relax_walk(t=5,vol='5000'):
     text  = ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","หาย","ใจ","รู้","กาย","เคลื่อน","ไหว","รู้","ใจ","นึก","คิด","มี","จิต","เบิก","บาน"]
     text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","ถอน","ความ","พอ","ใจ","และ","ความ","ไม่","พอ","ใจ","ใน","ใจ","ออก","เสีย","ได้"]
@@ -422,15 +434,21 @@ def counting_walk(t=15,fast=False,l='th',vol='2000'):
 
     if l == 'en':
         tt = "percipient of what lies in front & behind, set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards."
-        speak(tt)
+        espeak(tt,vol)
         t1 = 0
         if int(vol) > 50:
             vol = '50'
         tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
-        cmd = "espeak -s 150 -a " + vol + " "
+        cmd = "espeak -a " + vol + " "
+    elif l == 'zh':
+        os.system('mpg123 -q -f ' + vol + ' ../thaivoices/chinese_walk.mp3')
+        t1 = 1
+        tx = zhwords(['1','2','3','4','5','6','7','8','9','10'])
+        tx_list = tx.split(' ')
+        cmd = 'mpg123 -q -f ' + vol + ' '
     else:
         os.system('mpg123 -q -f ' + vol + ' ../thaivoices/before_walking.mp3')
-        t1 = 0.5
+        t1 = 1
         tx = thnumber(['01','02','03','04','05','06','07','08','09','10'])
         tx_list = tx.split(' ')
         cmd = 'mpg123 -q -f ' + vol + ' '
@@ -471,9 +489,13 @@ def kanaanub(t=15,fast=False,l='th',vol='10'):
         speak(tt)
         t1 = 0
         tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
-        
+    elif l == 'zh':
+        tt = "Shezhi yiduan juli, laihui zoudong, rang ganguan chanjan zai neixin shen chu, bu xiang wai zoushen."
+        speak(tt)
+        t1 = 0
+        tx_list = ['Ling','Yi','Er','San','Si','Wu','Liu','Qi','Ba','Jiu','Shi']       
     else:
-        os.system('mpg123 -q -f 4000 ../thaivoices/before_walking.mp3')
+        os.system('mpg123 -q -f 1000 ../thaivoices/before_walking.mp3')
         t1 = 0
         tx_list = ['soon','noong','song','sam','see','ha','hok','jed','pad','kao','sib']
 
@@ -506,6 +528,30 @@ def kanaanub(t=15,fast=False,l='th',vol='10'):
             n = 5
             i = 1  
     return None 
+
+
+def remind_breathing(t=30,vol='500',l='th',t1=0):
+    bell('3',vol)
+    if l == 'zh':
+        text = ['欢快地吸气','呼气并感到放松']
+        tx   = zhwords(text)
+    elif l == 'en':
+        text = ['cheerful_breathing_in','relieved_breathing_out']
+        tx   = engwords(text)
+    else:
+        text = ["จิต","เบิก","บาน","หาย","ใจ","เข้า","จิต","โล่ง","เบา","หาย","ใจ","ออก"]
+        tx   = thwords(text)
+
+    timeout = time.time() + 60*t   
+    while True:
+        if time.time() > timeout:
+            break
+        else:
+            os.system("mpg123 -f "+ vol + " " + tx)
+            time.sleep(t1)
+    bell('1',vol)
+    clear_q()
+    return None
 
 
 def cheer_up():
@@ -578,8 +624,10 @@ try:
 
     #TEST
     # cheer_up()
-    kanaanub(1,False,'th')
+    # kanaanub(1,False,'zh','60')
+    # counting_walk(1,False,'zh')
     # funny_animals()
+    remind_breathing(1,'2000','th',1)
 
     model = vosk.Model(args.model)
    

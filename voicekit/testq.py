@@ -517,6 +517,19 @@ def thnumber(text):
     return stext
 
 
+def zhwords(text):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../thaivoices/chinese/" + text[i] + ".mp3"
+    return stext
+
+def engwords(text):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../thaivoices/english/" + text[i] + ".mp3"
+    return stext
+
+
 def runtime_vocabulary():
     with open('vocabulary.csv', newline='') as f:
         reader = csv.reader(f)
@@ -682,16 +695,25 @@ def alpha_wave(t):
 
 
 #BHAVANA
-def remind_breathing(t=30,vol='500'):
+def remind_breathing(t=30,vol='500',l='th',t1=0):
     bell('3',vol)
-    text = ["หาย","ใจ","เข้า","พุท","หาย","ใจ","ออก","โธ"]
-    tx   = thwords(text)
+    if l == 'zh':
+        text = ['欢快地吸气','呼气并感到放松']
+        tx   = zhwords(text)
+    elif l == 'en':
+        text = ['cheerful_breathing_in','relieved_breathing_out']
+        tx   = engwords(text)
+    else:
+        text = ["จิต","เบิก","บาน","หาย","ใจ","เข้า","จิต","โล่ง","เบา","หาย","ใจ","ออก"]
+        tx   = thwords(text)
+
     timeout = time.time() + 60*t   
     while True:
         if time.time() > timeout:
             break
         else:
             os.system("mpg123 -f "+ vol + " " + tx)
+            time.sleep(t1)
     bell('1',vol)
     clear_q()
     return None
@@ -1299,6 +1321,12 @@ def counting_walk(t=15,fast=False,l='th',vol='2000'):
             vol = '50'
         tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
         cmd = "espeak -a " + vol + " "
+    elif l == 'zh':
+        os.system('mpg123 -q -f ' + vol + ' ../thaivoices/chinese_walk.mp3')
+        t1 = 0.5
+        tx = zhwords(['1','2','3','4','5','6','7','8','9','10'])
+        tx_list = tx.split(' ')
+        cmd = 'mpg123 -q -f ' + vol + ' '
     else:
         os.system('mpg123 -q -f ' + vol + ' ../thaivoices/before_walking.mp3')
         t1 = 0.5
@@ -1342,7 +1370,10 @@ def kanaanub(t=15,fast=False,l='th',vol='10'):
         speak(tt)
         t1 = 0
         tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
-        
+    elif l == 'zh':
+        os.system('mpg123 -q -f 1000 ../thaivoices/chinese_walk.mp3')
+        t1 = 0
+        tx_list = ['Ling','Yi','Er','San','Si','Wu','Liu','Qi','Ba','Jiu','Shi']       
     else:
         os.system('mpg123 -q -f 1000 ../thaivoices/before_walking.mp3')
         t1 = 0
@@ -1570,7 +1601,6 @@ def testing_mode4():
     bell('3')
     relax_walk(5,'1000')
     fruit = ['watermelon.gif','oranges.gif','redApple.gif','greenApple.gif','cantalupe.gif']
-
     i = random.randint(0,3) 
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + fruit[i]
     proc1 = subprocess.Popen(command, shell=True)
@@ -1578,9 +1608,12 @@ def testing_mode4():
     counting_walk(10)
     bell('1')
     counting_walk(10,True)
-    slow_buddho('off',10)
     bell('1')
-    slow_buddho2('off',30)
+    counting_walk(10,False,'zh')
+    bell('1')
+    counting_walk(10,True,'zh')
+    bell('1')
+    slow_buddho2('off',20)
     bell('1')
     slow_buddho('off',30)
     bell('1')
