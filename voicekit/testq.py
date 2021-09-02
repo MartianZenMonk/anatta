@@ -1575,16 +1575,24 @@ def testing_mode1():
 
 def testing_mode3():
     bell('3')
-    relax_walk(5,'1000')
+    relax_walk(3,'1000')
     sun = ['sun1.gif','sun2.gif','sun3.gif','sun4.gif']
     i = random.randint(0,3) 
     
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[i]
     proc1 = subprocess.Popen(command, shell=True)
     bell('1')
-    counting_walk(5)
+    counting_walk(2)
     bell('1')
-    counting_walk(5,True)
+    counting_walk(2,True)
+    bell('1')
+    counting_walk(2,False,'en')
+    bell('1')
+    counting_walk(2,True,'en')
+    bell('1')
+    counting_walk(2,False,'zh')
+    bell('1')
+    counting_walk(2,True,'zh')
     bell('1')
     slow_buddho('off',10)
     slow_buddho2('off',5)
