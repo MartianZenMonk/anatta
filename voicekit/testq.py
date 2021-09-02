@@ -1314,11 +1314,11 @@ def walking_meditation_count(c='oo'):
 def counting_walk(t=15,fast=False,l='th',vol='2000'):
 
     if l == 'en':
+        if int(vol) > 30:
+            vol = '10'
         tt = "percipient of what lies in front & behind, set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards."
         espeak(tt,vol)
         t1 = 0
-        if int(vol) > 50:
-            vol = '50'
         tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
         cmd = "espeak -a " + vol + " "
     elif l == 'zh':
@@ -1586,13 +1586,13 @@ def testing_mode3():
     bell('1')
     counting_walk(2,True)
     bell('1')
-    counting_walk(2,False,'en')
+    counting_walk(2,False,'en','10')
     bell('1')
-    counting_walk(2,True,'en')
+    counting_walk(2,True,'en','10')
     bell('1')
-    counting_walk(2,False,'zh')
+    counting_walk(2,False,'zh','10')
     bell('1')
-    counting_walk(2,True,'zh')
+    counting_walk(2,True,'zh','10')
     bell('1')
     slow_buddho('off',10)
     slow_buddho2('off',5)
