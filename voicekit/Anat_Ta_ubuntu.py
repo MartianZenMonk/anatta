@@ -553,6 +553,16 @@ def remind_breathing(t=30,vol='500',l='th',t1=0):
     clear_q()
     return None
 
+def with_opencv(filename):
+
+    video = cv2.VideoCapture(filename)
+
+    fps = video.get(cv2.CAP_PROP_FPS)
+    frame_count = video.get(cv2.CAP_PROP_FRAME_COUNT)
+    sec = frame_count / fps
+
+    return sec
+
 
 def cheer_up():
     speak("play cheerful video clip")
@@ -627,8 +637,9 @@ try:
     # kanaanub(1,False,'zh','60')
     # counting_walk(1,False,'zh')
     # funny_animals()
-    remind_breathing(1,'2000','th',1)
-
+    # remind_breathing(1,'2000','th',1)
+    a = with_opencv('../sound/timelapse/flowers.mp4')
+    print(a)
     model = vosk.Model(args.model)
    
     with sd.RawInputStream(samplerate=args.samplerate, blocksize = 8000, device=args.device, dtype='int16',

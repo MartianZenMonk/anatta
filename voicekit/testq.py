@@ -318,6 +318,16 @@ def ledc(c='', f='alpha'):
 
     return None
 
+def with_opencv(filename):
+
+    video = cv2.VideoCapture(filename)
+
+    fps = video.get(cv2.CAP_PROP_FPS)
+    frame_count = video.get(cv2.CAP_PROP_FRAME_COUNT)
+    sec = frame_count / fps
+
+    return sec
+
 
 def killPlayer():
     if find_name('mpg123'):
@@ -523,6 +533,14 @@ def zhwords(text):
         stext += " ../thaivoices/chinese/" + text[i] + ".mp3"
     return stext
 
+
+def jpwords(text):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../thaivoices/japanese/" + text[i] + ".mp3"
+    return stext
+
+
 def engwords(text):
     stext = ""
     for i in range(len(text)):
@@ -695,11 +713,14 @@ def alpha_wave(t):
 
 
 #BHAVANA
-def remind_breathing(t=30,vol='500',l='th',t1=0):
+def remind_breathing(t=30,vol='500',l='th',ts=0):
     bell('3',vol)
     if l == 'zh':
         text = ['欢快地吸气','呼气并感到放松']
         tx   = zhwords(text)
+    elif l == 'ja':
+        text = ['陽気な心_吸い込む','安心した_息を吐き']
+        tx   = jpwords(text)
     elif l == 'en':
         text = ['cheerful_breathing_in','relieved_breathing_out']
         tx   = engwords(text)
@@ -713,7 +734,7 @@ def remind_breathing(t=30,vol='500',l='th',t1=0):
             break
         else:
             os.system("mpg123 -f "+ vol + " " + tx)
-            time.sleep(t1)
+            time.sleep(ts)
     bell('1',vol)
     clear_q()
     return None
@@ -807,7 +828,7 @@ def alpha_meditation(m=60,t=15,c='off',vol="500"):
     return None
 
 
-def slow_buddho(c='',t=30,vol='1000'):
+def slow_buddho(c='',t=30,vol='1000',alpha=True):
     ledc(c)
     th_stand = thwords(["ยืน","หนอ"])
     for i in range(3):
@@ -817,11 +838,17 @@ def slow_buddho(c='',t=30,vol='1000'):
     del th_stand
     gc.collect()
 
+    if alpha:
+        mp3 = "../sound/buddho0.mp3"
+    else:
+        mp3 = "../sound/buddho1.mp3"
+
+
     if t==0:
-        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/buddho0.mp3"])
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1",mp3])
         press_for_stop(c,proc)
     else:
-        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/buddho0.mp3"])
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1",mp3])
         delay(t)
         proc.kill()
     
@@ -1314,9 +1341,9 @@ def walking_meditation_count(c='oo'):
 def counting_walk(t=15,fast=False,l='th',vol='2000'):
 
     if l == 'en':
-        if int(vol) > 30:
+        if int(vol) > 50:
             vol = '10'
-        tt = "percipient of what lies in front & behind, set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards."
+        tt = "Percipient of what lies in front & behind, set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards."
         espeak(tt,vol)
         t1 = 0
         tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
@@ -1325,6 +1352,12 @@ def counting_walk(t=15,fast=False,l='th',vol='2000'):
         os.system('mpg123 -q -f ' + vol + ' ../thaivoices/chinese_walk.mp3')
         t1 = 0.5
         tx = zhwords(['1','2','3','4','5','6','7','8','9','10'])
+        tx_list = tx.split(' ')
+        cmd = 'mpg123 -q -f ' + vol + ' '
+    elif l == 'ja':
+        os.system('mpg123 -q -f ' + vol + ' ../thaivoices/japanese/japanese_walk.mp3')
+        t1 = 0.5
+        tx = jpwords(['1','2','3','4','5','6','7','8','9','10'])
         tx_list = tx.split(' ')
         cmd = 'mpg123 -q -f ' + vol + ' '
     else:
@@ -1539,6 +1572,10 @@ def testing_mode2():
     bell('1')
     om_meditation(5) 
     before_sit('th')
+    remind_breathing(1)
+    remind_breathing(1,'en')
+    remind_breathing(1,'zh')
+    remind_breathing(1,'ja')
     bell('1')   
     alpha_wave(30)
     bell('1')
@@ -1586,13 +1623,17 @@ def testing_mode3():
     bell('1')
     counting_walk(2,True)
     bell('1')
-    counting_walk(2,False,'en','10')
+    counting_walk(2,False,'en')
     bell('1')
-    counting_walk(2,True,'en','10')
+    counting_walk(2,True,'en')
     bell('1')
-    counting_walk(2,False,'zh','10')
+    counting_walk(2,False,'zh')
     bell('1')
-    counting_walk(2,True,'zh','10')
+    counting_walk(2,True,'zh')
+    bell('1')
+    counting_walk(2,False,'ja')
+    bell('1')
+    counting_walk(2,True,'ja')
     bell('1')
     slow_buddho('off',10)
     slow_buddho2('off',5)
@@ -1741,7 +1782,7 @@ def monk_rules(c='g'):
 def morning_practice(c='off',vol="200"):
     ledc(c)
     # warm up
-    slow_buddho(c,10,vol)
+    slow_buddho(c,10,vol,False)
     alpha_wave(10)
     slow_buddho(c,10,vol)
     alpha_wave(10)
@@ -1941,7 +1982,7 @@ try:
             vrun += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
-            vrun += 'ohm the sun blooming flower clip quit my display testing water morse code good bye chapter pali '
+            vrun += 'ohm the sun blooming flower clip quit my display testing water morse code good bye chapter pali japanese chinese '
             vrun += 'sixteen seventeen eighteen nineteen plants seed carbon food cell universe your name cheerful silent quiet '
             vrun += new_vocab
             # vrun += ' how are you today what can i do for you ' #test
@@ -2235,6 +2276,14 @@ try:
                                         music_meditation() 
                                     elif "time" in words:
                                         meditation_time()
+
+                                elif "walking" in words and "japanese" in words:
+                                    counting_walk(15,False,'ja','2000')
+                                    counting_walk(15,True,'ja','2000')
+
+                                elif "walking" in words and "chinese" in words:
+                                    counting_walk(15,False,'zh','2000')
+                                    counting_walk(15,True,'zh','2000')
 
                                 elif "practice" in words:
 
