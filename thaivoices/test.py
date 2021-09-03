@@ -260,8 +260,11 @@ from gtts import gTTS
 # t = 'จิตเบิกบานหายใจเข้า จิตโล่งเบาหายใจออก'
 
 # t = "前後に歩くことを瞑想するために距離を設定し、あなたの感覚を内側に浸し、あなたの動きにあなたの心を保ちます"
-# speech = gTTS(text = t,lang='ja',slow = False)
-# speech.save(str("japanese_walk.mp3"))
+
+# t = 'ไม่คิดปรุงแต่งให้เป็นทุกข์ ก็สุขจริงหนอ ทุกข์กาย ไม่ทุกข์ใจ'
+
+# speech = gTTS(text = t,lang='th',slow = False)
+# speech.save("happy.mp3")
 
 
 
@@ -288,11 +291,11 @@ from gtts import gTTS
 
 # '''
 
-# ไม่คิดปรุงแต่งให้เป็นทุกข์ ก็สุขจริงหนอ
 
-text = ['陽気な心 吸い込む','安心した 息を吐き']
 
-# text = ['0','1','2','3','4','5','6','7','8','9','10']
-for i in range(len(text)):
-  speech = gTTS(text = text[i],lang='ja',slow = False)
-  speech.save(str("japanese/"+text[i].replace(' ','_')) + ".mp3")
+# text = ['陽気な心 吸い込む','安心した 息を吐き']
+
+# # text = ['0','1','2','3','4','5','6','7','8','9','10']
+# for i in range(len(text)):
+#   speech = gTTS(text = text[i],lang='ja',slow = False)
+#   speech.save(str("japanese/"+text[i].replace(' ','_')) + ".mp3")
