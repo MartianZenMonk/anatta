@@ -61,7 +61,11 @@ def callback(indata, frames, time, status):
     """This is called (from a separate thread) for each audio block."""
     if status:
         print(status, file=sys.stderr)
-    q.put(bytes(indata))
+    if q.qsize() > 10:
+        with q.mutex:
+            q.queue.clear()
+    else:
+        q.put(bytes(indata))
 
 parser = argparse.ArgumentParser(add_help=False)
 parser.add_argument(
@@ -156,7 +160,7 @@ try:
              
             score = 0
 
-            runv  = '["anat ta mouse left right up down click exit"]' 
+            runv  = '["hi hello anat ta mouse left right up down click exit"]' 
 
             rec = vosk.KaldiRecognizer(model, args.samplerate, runv)
 
@@ -176,7 +180,7 @@ try:
                 if rec.AcceptWaveform(data):
                     w = rec.Result()
                     z = json.loads(w)
-                    # print(z["text"])
+                    print(z["text"])
                     words = z["text"].split()
                 else:
                     pass
@@ -200,6 +204,8 @@ try:
                         pyautogui.click(button='left')
                     elif "anat" in words and "ta" in words and "exit" in words:
                         done = True
+                    elif "hi" in words and "hello" in words:
+                        os.system('espeak -a 10 "Hello!"')
      
                 # Clear the screen
                 screen.fill(WHITE)
@@ -225,7 +231,7 @@ try:
                     score += 1
                     print(score)
                     i = random.randint(0,15)
-                    os.system("espeak " + Kleshas16[i])
+                    os.system("espeak -a 10 " + Kleshas16[i])
                     print(Kleshas16[i])
              
                 # Draw all the spites

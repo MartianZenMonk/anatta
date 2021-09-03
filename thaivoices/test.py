@@ -296,6 +296,9 @@ from gtts import gTTS
 # text = ['陽気な心 吸い込む','安心した 息を吐き']
 
 # # text = ['0','1','2','3','4','5','6','7','8','9','10']
-# for i in range(len(text)):
-#   speech = gTTS(text = text[i],lang='ja',slow = False)
-#   speech.save(str("japanese/"+text[i].replace(' ','_')) + ".mp3")
+
+text = ["greed","hatred","anger","grudge","detraction","domineering","envy","stinginess","deceit","hypocrisy","rigidity","vying","conceit","contempt","vanity","negligence"]
+
+for i in range(len(text)):
+  speech = gTTS(text = text[i],lang='th',slow = False)
+  speech.save(str("thai/"+text[i]) + ".mp3")
