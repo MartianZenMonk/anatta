@@ -180,14 +180,15 @@ try:
                 if rec.AcceptWaveform(data):
                     w = rec.Result()
                     z = json.loads(w)
-                    print(z["text"])
                     words = z["text"].split()
                 else:
                     pass
 
 
                 #MOUSE CONTROL https://pypi.org/project/PyAutoGUI/
-                if len(words) > 0:
+                if len(words) > 1:
+                    
+                    print(z["text"])
 
                     if "mouse" in words and "center" in words:
                         screenWidth, screenHeight = pyautogui.size()
@@ -222,8 +223,8 @@ try:
                 # Set the player object to the mouse location
                 player.rect.x = pos[0]
                 player.rect.y = pos[1]
-                text_surface = font.render('sati', False, (0, 0, 0))
-                screen.blit(text_surface, (pos[0]+5, pos[1]+40))
+                # text_surface = font.render('sati', False, (0, 0, 0))
+                # screen.blit(text_surface, (pos[0]+5, pos[1]+40))
              
                 # See if the player block has collided with anything.
                 blocks_hit_list = pygame.sprite.spritecollide(player, block_list, True)
@@ -238,10 +239,12 @@ try:
              
                 # Draw all the spites
                 all_sprites_list.draw(screen)
+                text_surface = font.render('sati', False, (0, 0, 0))
+                screen.blit(text_surface, (pos[0]+6, pos[1]+10))
              
                 # Go ahead and update the screen with what we've drawn.
                 pygame.display.flip()
-             
+          
                 # Limit to 60 frames per second
                 clock.tick(60)
                  
