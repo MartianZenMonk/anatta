@@ -1466,7 +1466,7 @@ def heart_sutra(t=0,c='d',vol="6000"):
         clear_q()
     return None
 
-def wooden_gong_sound(t=0,vol='1000',c='off'):
+def wooden_gong_sound(t=0,vol='2000',c='off'):
     ledc(c)
     if t == 0:
         proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/pakhue.mp3"])
