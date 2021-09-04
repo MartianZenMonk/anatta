@@ -234,8 +234,11 @@ try:
                     score += 1
                     print(score)
                     # i = random.randint(0,15)
-                    os.system("espeak -a 10 " + Kleshas16[score-1])
-                    print(Kleshas16[score-1])
+                    # kiles = Kleshas16[score-1]
+                    kiles = random.choice(Kleshas16)
+                    os.system("espeak -a 10 " + kiles)
+                    os.system("mpg123 -q -f 2000 ../thaivoices/english/" + kiles + ".mp3")
+                    print(kiles)
              
                 # Draw all the spites
                 all_sprites_list.draw(screen)

@@ -297,8 +297,10 @@ from gtts import gTTS
 
 # # text = ['0','1','2','3','4','5','6','7','8','9','10']
 
-text = ["greed","hatred","anger","grudge","detraction","domineering","envy","stinginess","deceit","hypocrisy","rigidity","vying","conceit","contempt","vanity","negligence"]
-
+texteng  = ["greed","hatred","anger","grudge","detraction","domineering","envy","stinginess","deceit","hypocrisy","rigidity","vying","conceit","contempt","vanity","negligence"]
+text  = ["อภิชฌาวิสะมะโลภะ คิดเพ่งเล็งอยากได้","พยาบาท คิดร้ายเขา","โกธะ ความโกรธ","อุปนาหะ ความผูกโกรธ","มักขะ ความลบหลู่คุณท่าน"]
+text += ["ปลาสะ ความตีเสมอ","อิสสา ความริษยา","มัจฉริยะ ความตระหนี่","มายา มารยา","สาเถยยะ ความโอ้อวดหลอกเขา","ถัมภะ ความหัวดื้อ"]
+text += ["สารัมภะ ความแข่งดี","มานะ ความถือตัว","อติมานะ ดูหมิ่นเขา","มทะ ความมัวเมา","ปมาทะ ความประมาท"]
 for i in range(len(text)):
   speech = gTTS(text = text[i],lang='th',slow = False)
-  speech.save(str("thai/"+text[i]) + ".mp3")
+  speech.save(str("english/"+texteng[i]) + ".mp3")
