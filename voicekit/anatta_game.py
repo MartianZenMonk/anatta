@@ -127,6 +127,8 @@ try:
             screen = pygame.display.set_mode([screen_width, screen_height])
             font = pygame.font.SysFont("ubuntu", 16)
 
+            text_xy = []
+
 
             # This is a list of 'sprites.' Each block in the program is
             # added to this list. The list is managed by a class called 'Group.'
@@ -138,18 +140,19 @@ try:
              
             for i in range(16):
                 # This represents a block
-                block = Block(BLACK, 40, 40)
+                block = Block(BLACK, 50, 20)
              
                 # Set a random location for the block
-                block.rect.x = random.randrange(screen_width)
-                block.rect.y = random.randrange(screen_height)
-             
+                block.rect.x = random.randrange(screen_width-50)
+                block.rect.y = random.randrange(20,screen_height-20)
+                # text_xy.append([block.rect.x,block.rect.y])
+                             
                 # Add the block to the list of objects
                 block_list.add(block)
                 all_sprites_list.add(block)
              
             # Create a RED player block
-            player = Block(RED, 40, 40)
+            player = Block(RED, 50, 20)
             all_sprites_list.add(player)
              
             # Loop until the user clicks the close button.
@@ -159,6 +162,8 @@ try:
             clock = pygame.time.Clock()
              
             score = 0
+
+            random.shuffle(Kleshas16)
 
             runv  = '["hi hello anat ta mouse left right up down click exit"]' 
 
@@ -235,16 +240,23 @@ try:
                     score += 1
                     print(score)
                     # i = random.randint(0,15)
-                    # kiles = Kleshas16[score-1]
-                    kiles = random.choice(Kleshas16)
+                    kiles = Kleshas16[score-1]
+                    # kiles = random.choice(Kleshas16)
                     os.system("espeak -a 10 " + kiles)
                     os.system("mpg123 -q -f 2000 ../thaivoices/english/" + kiles + ".mp3")
                     print(kiles)
+                    text_xy.append([block.rect.x,block.rect.y])
+                    
+                    
              
                 # Draw all the spites
                 all_sprites_list.draw(screen)
                 text_surface = font.render('sati', False, (0, 0, 0))
-                screen.blit(text_surface, (pos[0]+6, pos[1]+10))
+                screen.blit(text_surface, (pos[0]+10, pos[1]))
+
+                for i in range(len(text_xy)):
+                    text_surface = font.render(Kleshas16[i], False, (0, 255, 0))
+                    screen.blit(text_surface, (text_xy[i][0],text_xy[i][1]))
              
                 # Go ahead and update the screen with what we've drawn.
                 pygame.display.flip()
