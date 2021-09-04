@@ -1583,10 +1583,9 @@ def testing_mode2():
     bell('1')
     om_meditation(5) 
     before_sit('th')
-    remind_breathing(1)
-    remind_breathing(1,'en')
-    remind_breathing(1,'zh')
-    remind_breathing(1,'ja')
+    remind_breathing(1,'500','en')
+    remind_breathing(1,'500','zh')
+    remind_breathing(1,'500','ja')
     bell('1')   
     alpha_wave(30)
     bell('1')
@@ -1622,6 +1621,7 @@ def testing_mode1():
     return None
 
 def testing_mode3():
+    speak("testing 3")
     bell('3')
     relax_walk(3,'1000')
     sun = ['sun1.gif','sun2.gif','sun3.gif','sun4.gif']
@@ -1658,6 +1658,7 @@ def testing_mode3():
 
 # walk 2 hrs sit 1 hr
 def testing_mode4():
+    speak("testing 4")
     bell('3')
     relax_walk(5,'1000')
     fruit = ['watermelon.gif','oranges.gif','redApple.gif','greenApple.gif','cantalupe.gif']
@@ -1691,6 +1692,7 @@ def testing_mode4():
 
 
 def testing_mode6():
+    speak("testing 6")
     testing_mode1()
     fast_buddho('off',180,'500')
     slow_buddho('off',180,'500')

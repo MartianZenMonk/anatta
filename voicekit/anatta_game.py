@@ -61,7 +61,7 @@ def callback(indata, frames, time, status):
     """This is called (from a separate thread) for each audio block."""
     if status:
         print(status, file=sys.stderr)
-    if q.qsize() > 10:
+    if q.qsize() > 15:
         with q.mutex:
             q.queue.clear()
     else:
@@ -177,10 +177,11 @@ try:
 
                 words = []
                 data = q.get()
+                # print(q.qsize())
                 if rec.AcceptWaveform(data):
                     w = rec.Result()
                     z = json.loads(w)
-                    words = z["text"].split()
+                    words += z["text"].split()
                 else:
                     pass
 
@@ -188,7 +189,7 @@ try:
                 #MOUSE CONTROL https://pypi.org/project/PyAutoGUI/
                 if len(words) > 1:
                     
-                    print(z["text"])
+                    print(words)
 
                     if "mouse" in words and "center" in words:
                         screenWidth, screenHeight = pyautogui.size()
