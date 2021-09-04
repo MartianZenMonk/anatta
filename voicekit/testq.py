@@ -547,6 +547,12 @@ def engwords(text):
         stext += " ../thaivoices/english/" + text[i] + ".mp3"
     return stext
 
+def mp3_words(text,lg='th'):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../mp3voices/" + lg + "/" + text[i] + ".mp3"
+    return stext
+
 
 def runtime_vocabulary():
     with open('vocabulary.csv', newline='') as f:
@@ -843,7 +849,6 @@ def slow_buddho(c='',t=30,vol='1000',alpha=True):
     else:
         mp3 = "../sound/buddho1.mp3"
 
-
     if t==0:
         proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1",mp3])
         press_for_stop(c,proc)
@@ -1035,6 +1040,12 @@ def before_sit(l="th1",vol="2000"):
         st = " --loop 3 ../thaivoices/cheerful_breathing.mp3"
 
     os.system("mpg123 -q -f "+ vol + st)
+
+
+def be_happy(vol='1000'):
+    st = " --loop 3 ../thaivoices/happy.mp3"
+    os.system("mpg123 -q -f "+ vol + st)
+
 
 
 def walking_reward():
@@ -1679,10 +1690,30 @@ def testing_mode4():
     return None
 
 
+def testing_mode6():
+    testing_mode1()
+    fast_buddho('off',180,'500')
+    slow_buddho('off',180,'500')
+    os.system("sudo shutdown now")
+    return None
+
+
 def testing_mode9():
     testing_mode1()
     fast_buddho('off',180,'500')
     os.system("sudo shutdown now")
+    return None
+
+
+def meditation_one():
+    bell('3')
+    before_walk()
+    slow_buddho('off',10,'1000',False)
+    slow_buddho2('off',10)
+    fast_buddho('off',10)
+    before_sit()
+    alpha_wave(30)
+    bell('1')
     return None
 
 
@@ -1713,7 +1744,7 @@ def the_universe(i=7,title='the space video clip'):
     speak("play " + title)
     killPlayer()                
     cheerful  = ['../mars/universe2.mp4','../mars/moon.mp4','../mars/mars10000.mp4','--start-time 18 --stop-time 450 ../sound/timelapse/sun.mp4']
-    cheerful += ['--gain 0 ../sound/timelapse/from-iss.mp4','--gain 0 --stop-time 305 ../sound/timelapse/nox.mp4','--gain 0 --start-time 30 --stop-time 630 ../sound/timelapse/universe.mp4','--gain 0 ../mars/universe.mp4']
+    cheerful += ['--gain 0 ../sound/timelapse/from-iss.mp4','--gain 0 --start-time 30 --stop-time 630 ../sound/timelapse/universe.mp4','--gain 0 ../mars/universe.mp4']
     if i > 6:
         i = random.randint(0,7)
     else:
@@ -1731,8 +1762,8 @@ def the_universe(i=7,title='the space video clip'):
 def cheer_up(i=4):
     speak("play cheerful video clip")
     killPlayer()               
-    cheerful  = ['--stop-time 120 ../sound/timelapse/flowers.mp4','--start-time 8 --stop-time 208 ../sound/timelapse/cacti.mp4']
-    cheerful += ['--start-time 10 --stop-time 205 ../sound/timelapse/Bug-Eating-Plants.mp4','../sound/timelapse/nerve.mp4']
+    cheerful  = ['--stop-time 120 ../sound/timelapse/flowers.mp4','--start-time 8 --stop-time 208 ../sound/timelapse/cacti.mp4','../sound/timelapse/nerve.mp4']
+    # cheerful += ['--start-time 10 --stop-time 205 ../sound/timelapse/Bug-Eating-Plants.mp4','../sound/timelapse/nerve.mp4']
     if i > 3:
         i = random.randint(0,3)
     else:
@@ -1799,6 +1830,7 @@ def morning_practice(c='off',vol="200"):
     alpha_wave(30)
     bell('1',vol)
     # cool down
+    be_happy(vol)
     fast_buddho(c,10,vol)
     before_sit('th',vol)
     fast_buddho(c,10,vol)
@@ -2152,8 +2184,7 @@ try:
                                     elif "four" in words:
                                         testing_mode4()
                                     elif "six" in words:
-                                        testing_mode1()
-                                        testing_mode2()
+                                        testing_mode6()
                                     elif "nine" in words:
                                         testing_mode9()
 
@@ -2276,6 +2307,8 @@ try:
                                         music_meditation() 
                                     elif "time" in words:
                                         meditation_time()
+                                    elif "one" in words:
+                                        meditation_one()
 
                                 elif "walking" in words and "japanese" in words:
                                     counting_walk(15,False,'ja','2000')
