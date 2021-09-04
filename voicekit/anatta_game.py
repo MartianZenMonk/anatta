@@ -136,9 +136,9 @@ try:
             # All blocks and the player block as well.
             all_sprites_list = pygame.sprite.Group()
              
-            for i in range(50):
+            for i in range(16):
                 # This represents a block
-                block = Block(BLACK, 20, 15)
+                block = Block(BLACK, 40, 40)
              
                 # Set a random location for the block
                 block.rect.x = random.randrange(screen_width)
@@ -149,7 +149,7 @@ try:
                 all_sprites_list.add(block)
              
             # Create a RED player block
-            player = Block(RED, 20, 15)
+            player = Block(RED, 40, 40)
             all_sprites_list.add(player)
              
             # Loop until the user clicks the close button.
@@ -222,6 +222,8 @@ try:
                 # Set the player object to the mouse location
                 player.rect.x = pos[0]
                 player.rect.y = pos[1]
+                text_surface = font.render('sati', False, (0, 0, 0))
+                screen.blit(text_surface, (pos[0]+5, pos[1]+40))
              
                 # See if the player block has collided with anything.
                 blocks_hit_list = pygame.sprite.spritecollide(player, block_list, True)
@@ -230,9 +232,9 @@ try:
                 for block in blocks_hit_list:
                     score += 1
                     print(score)
-                    i = random.randint(0,15)
-                    os.system("espeak -a 10 " + Kleshas16[i])
-                    print(Kleshas16[i])
+                    # i = random.randint(0,15)
+                    os.system("espeak -a 10 " + Kleshas16[score-1])
+                    print(Kleshas16[score-1])
              
                 # Draw all the spites
                 all_sprites_list.draw(screen)
