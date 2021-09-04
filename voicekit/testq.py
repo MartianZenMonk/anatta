@@ -1466,6 +1466,19 @@ def heart_sutra(t=0,c='d',vol="6000"):
         clear_q()
     return None
 
+def wooden_gong_sound(t=0,vol='1000',c='off'):
+    ledc(c)
+    if t == 0:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/pakhue.mp3"])
+        press_for_stop(c,proc)
+    else:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/pakhue.mp3"])
+        delay(t)
+        proc.kill()
+        clear_q()
+    return None
+
+
 
 def raining_meditation(t=0,c='d',vol="6000"):
     ledc(c)
@@ -2017,7 +2030,7 @@ try:
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             vrun += 'ohm the sun blooming flower clip quit my display testing water morse code good bye chapter pali japanese chinese '
-            vrun += 'sixteen seventeen eighteen nineteen plants seed carbon food cell universe your name cheerful silent quiet '
+            vrun += 'sixteen seventeen eighteen nineteen plants seed carbon food cell universe your name cheerful silent quiet wooden '
             vrun += new_vocab
             # vrun += ' how are you today what can i do for you ' #test
             vrun += 'yes no ok coca cola stage fold path nature truth dependent origination webcam loop daily life wise thinking technique"]'
@@ -2275,6 +2288,8 @@ try:
                                         speak("Ohm at 417 Herzt sound meditation")
                                         bell('3')
                                         om_meditation(t)
+                                    elif "wooden" in words:
+                                        wooden_gong_sound(t)
 
                                 elif "alpha" in words:
                                     if "sixty" in words:
