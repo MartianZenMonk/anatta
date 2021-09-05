@@ -245,9 +245,7 @@ try:
                     os.system("espeak -a 10 " + kiles)
                     os.system("mpg123 -q -f 2000 ../thaivoices/english/" + kiles + ".mp3")
                     print(kiles)
-                    text_xy.append([block.rect.x,block.rect.y])
-                    
-                    
+                    text_xy.append([block.rect.x,block.rect.y])                  
              
                 # Draw all the spites
                 all_sprites_list.draw(screen)

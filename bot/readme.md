@@ -3,19 +3,17 @@
 This project is a part of my experiment with Buddhahood , i will follow the Buddha training ( https://www.accesstoinsight.org/tipitaka/mn/mn.107.horn.html ) , to reach the void - free mind, and using it to learn and develop the good stuffs for humankind. 
 
 
-Blog : https://martianmonk.blogspot.com/
+Blog : https://medium.com/@martianmonk/ ,  https://martianmonk.blogspot.com/
 
 FB Group : https://m.facebook.com/groups/890791731653111/
 
-For English version , we will start making the simple database / datasets for developing Google Voice  / Mycroft-AI's basic commands about Buddhism,
-and also we plan to train wake word "Anatta".
-https://github.com/MycroftAI/mycroft-precise/wiki/Training-your-own-wake-word
 
-$ ffmpeg -i input.mp3 -acodec pcm_s16le -ar 16000 -ac 1 output.wav
+Updated:
 
-so anyone who want to help us please send you recoding file of word "Anatta" to us via email dropoutunit @ gmail . com
+may use this set for Anatta Bot
 
-Thank you in advance
+https://learn.adafruit.com/edge-speech-recognition-with-voice2json
+
 
 Links
 

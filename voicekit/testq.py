@@ -523,7 +523,7 @@ def thwords(text):
 def thnumber(text):
     stext = ""
     for i in range(len(text)):
-        stext += " ../thaivoices/thwords/59/" + text[i] + ".mp3"
+        stext += " ../thaivoices/thai/" + text[i] + ".mp3"
     return stext
 
 
@@ -1047,6 +1047,12 @@ def be_happy(vol='1000'):
     os.system("mpg123 -q -f "+ vol + st)
 
 
+def cheerful_payutto(t=5,vol='1000'):
+    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/cheerful_payutto.mp3"])
+    delay(t)
+    proc.kill()
+    return None
+
 
 def walking_reward():
     read_sutta(sutta["sutta"][0]) 
@@ -1296,6 +1302,18 @@ def play_sutra(vol="1000"):
     press_for_stop('d',proc2)
 
 
+def play_buddha_story():
+    speak("play buddha story")
+    killPlayer()                
+    try:
+        command = "export DISPLAY=:0.0; vlc -f --stop-time 453 --play-and-exit buddha-story.mp4"
+        proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+        press_for_stop('d',proc)
+        killPlayer() 
+    except:
+        speak("sorry can not play video clip")
+
+
 def walking_meditation_count(c='oo'):
     
     speak("one stage walking practice, please count your step then you can verify it in the end")
@@ -1357,27 +1375,28 @@ def counting_walk(t=15,fast=False,l='th',vol='2000'):
         tt = "Percipient of what lies in front & behind, set a distance to meditate walking back & forth, your senses inwardly immersed, your mind not straying outwards."
         espeak(tt,vol)
         t1 = 0
-        tx_list = ['0','1','2','3','4','5','6','7','8','9','10']
-        cmd = "espeak -a " + vol + " "
+        tx = engwords(['1','2','3','4','5','6','7','8','9','10'])
+        tx_list = tx.split(' ')
+
     elif l == 'zh':
         os.system('mpg123 -q -f ' + vol + ' ../thaivoices/chinese_walk.mp3')
         t1 = 0.5
         tx = zhwords(['1','2','3','4','5','6','7','8','9','10'])
         tx_list = tx.split(' ')
-        cmd = 'mpg123 -q -f ' + vol + ' '
+
     elif l == 'ja':
         os.system('mpg123 -q -f ' + vol + ' ../thaivoices/japanese/japanese_walk.mp3')
         t1 = 0.5
         tx = jpwords(['1','2','3','4','5','6','7','8','9','10'])
         tx_list = tx.split(' ')
-        cmd = 'mpg123 -q -f ' + vol + ' '
+
     else:
         os.system('mpg123 -q -f ' + vol + ' ../thaivoices/before_walking.mp3')
         t1 = 0.5
-        tx = thnumber(['01','02','03','04','05','06','07','08','09','10'])
+        tx = thnumber(['1','2','3','4','5','6','7','8','9','10'])
         tx_list = tx.split(' ')
-        cmd = 'mpg123 -q -f ' + vol + ' '
-
+        
+    cmd = 'mpg123 -q -f ' + vol + ' '
     i  = 1
     n = 5
     bell('1')
@@ -1612,6 +1631,8 @@ def testing_mode2():
 
 # walking 1 hr
 def testing_mode1():
+    lg = ['th','en','zh','ja']
+    lgx = random.choice(lg)
     bell('3')
     relax_walk(5,'1000')
     sun = ['sun1.gif','sun2.gif','sun3.gif','sun4.gif']
@@ -1620,11 +1641,11 @@ def testing_mode1():
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[i]
     proc1 = subprocess.Popen(command, shell=True)
     bell('1')
-    counting_walk(10)
+    counting_walk(10,False,lgx)
     bell('1')
-    counting_walk(10,True)
-    slow_buddho('off',10)
-    slow_buddho2('off',15)
+    counting_walk(10,True,lgx)
+    slow_buddho2('off',10)
+    slow_buddho('off',15)
     fast_buddho('oo',15)
     proc1.kill()
     pkill_proc_name("testgif")
@@ -1634,7 +1655,7 @@ def testing_mode1():
     return None
 
 def testing_mode3():
-    speak("testing 3")
+
     bell('3')
     relax_walk(3,'1000')
     sun = ['sun1.gif','sun2.gif','sun3.gif','sun4.gif']
@@ -1671,7 +1692,7 @@ def testing_mode3():
 
 # walk 2 hrs sit 1 hr
 def testing_mode4():
-    speak("testing 4")
+
     bell('3')
     relax_walk(5,'1000')
     fruit = ['watermelon.gif','oranges.gif','redApple.gif','greenApple.gif','cantalupe.gif']
@@ -1705,7 +1726,7 @@ def testing_mode4():
 
 
 def testing_mode6():
-    speak("testing 6")
+
     testing_mode1()
     fast_buddho('off',180,'500')
     slow_buddho('off',180,'500')
@@ -1741,6 +1762,15 @@ def my_sun():
     proc_name = "testgif"
     return proc_name
 
+def my_stars():
+    global proc_name
+    sun = ['mars.gif','moon.gif','jupiter.gif','titan.gif']
+    i = random.randint(0,3)
+    command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/"+sun[i]
+    proc = subprocess.Popen(command, shell=True)
+    proc_name = "testgif"
+    return proc_name
+
 
 def the_water():
     speak("water droplet at 2500 fps for visual meditation")
@@ -1759,7 +1789,7 @@ def the_universe(i=7,title='the space video clip'):
     speak("play " + title)
     killPlayer()                
     cheerful  = ['../mars/universe2.mp4','../mars/moon.mp4','../mars/mars10000.mp4','--start-time 18 --stop-time 450 ../sound/timelapse/sun.mp4']
-    cheerful += ['--gain 0 ../sound/timelapse/from-iss.mp4','--gain 0 --start-time 30 --stop-time 630 ../sound/timelapse/universe.mp4','--gain 0 ../mars/universe.mp4']
+    cheerful += ['--gain 0 ../sound/timelapse/from-iss.mp4','--gain 0 --start-time 30 --stop-time 630 ../sound/timelapse/universe.mp4','--gain 0 ../mars/universe.mp4','../sound/moon.mp4']
     if i > 6:
         i = random.randint(0,7)
     else:
@@ -1780,7 +1810,7 @@ def cheer_up(i=4):
     cheerful  = ['--stop-time 120 ../sound/timelapse/flowers.mp4','--start-time 8 --stop-time 208 ../sound/timelapse/cacti.mp4','../sound/timelapse/nerve.mp4']
     # cheerful += ['--start-time 10 --stop-time 205 ../sound/timelapse/Bug-Eating-Plants.mp4','../sound/timelapse/nerve.mp4']
     if i > 3:
-        i = random.randint(0,3)
+        i = random.randint(0,2)
     else:
         pass              
     try:
@@ -2022,7 +2052,7 @@ try:
             
             # new runtime vocabulary
             new_vocab = runtime_vocabulary()
-            vrun  = '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light '
+            vrun  = '["please zen story lord buddha buddhist buddhism what time day play help dhamma meditation english radio start light star '
             vrun += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             vrun += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             vrun += 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
@@ -2195,10 +2225,15 @@ try:
                                     elif "two" in words:
                                         testing_mode2()
                                     elif "three" in words:
+                                        speak("testing 3")
                                         testing_mode3()
                                     elif "four" in words:
+                                        speak("testing 4")
                                         testing_mode4()
+                                    elif "five" in words:
+                                        cheerful_payutto()
                                     elif "six" in words:
+                                        speak("testing 6")
                                         testing_mode6()
                                     elif "nine" in words:
                                         testing_mode9()
@@ -2667,17 +2702,8 @@ try:
                                         
 
                                 #TEST
-                                elif "buddha" in words:
-                                    if "story" in words or "what" in words:
-                                        speak("play buddha story")
-                                        killPlayer()                
-                                        try:
-                                            command = "export DISPLAY=:0.0; vlc -f --stop-time 453 --play-and-exit buddha-story.mp4"
-                                            proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-                                            press_for_stop('d',proc)
-                                            killPlayer() 
-                                        except:
-                                            speak("sorry can not play video clip")
+                                elif "buddha" in words and "story" in words:
+                                    play_buddha_story()
 
                                 elif "my" in words and "sun" in words:
                                     espeak("open sun gif animation",'4')
@@ -2703,6 +2729,10 @@ try:
 
                                     elif "water" in words:
                                         the_water()
+                                    elif "buddha" in words:
+                                        play_buddha_story()
+                                    elif "star" in words:
+                                        my_stars()
 
                                 elif "universe" in words:
                                     mn = 0
