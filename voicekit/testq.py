@@ -1053,6 +1053,18 @@ def cheerful_payutto(t=5,vol='1000'):
     proc.kill()
     return None
 
+def cheerful_payutto2(t=5,vol='1000'):
+    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/cheerful_citta.mp3"])
+    delay(t)
+    proc.kill()
+    return None
+
+def cheerful_payutto3(t=5,vol='1000'):
+    proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/cheerful_citta2.mp3"])
+    delay(t)
+    proc.kill()
+    return None
+
 
 def walking_reward():
     read_sutta(sutta["sutta"][0]) 
@@ -1644,6 +1656,7 @@ def testing_mode1():
     counting_walk(10,False,lgx)
     bell('1')
     counting_walk(10,True,lgx)
+    bell('1')
     slow_buddho2('off',10)
     slow_buddho('off',15)
     fast_buddho('oo',15)
@@ -1655,30 +1668,20 @@ def testing_mode1():
     return None
 
 def testing_mode3():
+    lg = ['th','en','zh','ja']
+    lgx = random.choice(lg)
 
     bell('3')
-    relax_walk(3,'1000')
+    relax_walk(5,'1000')
     sun = ['sun1.gif','sun2.gif','sun3.gif','sun4.gif']
     i = random.randint(0,3) 
     
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + sun[i]
     proc1 = subprocess.Popen(command, shell=True)
     bell('1')
-    counting_walk(2)
+    counting_walk(5,False,lgx)
     bell('1')
-    counting_walk(2,True)
-    bell('1')
-    counting_walk(2,False,'en')
-    bell('1')
-    counting_walk(2,True,'en')
-    bell('1')
-    counting_walk(2,False,'zh')
-    bell('1')
-    counting_walk(2,True,'zh')
-    bell('1')
-    counting_walk(2,False,'ja')
-    bell('1')
-    counting_walk(2,True,'ja')
+    counting_walk(5,True,lgx)
     bell('1')
     slow_buddho('off',10)
     slow_buddho2('off',5)
@@ -1871,7 +1874,7 @@ def morning_practice(c='off',vol="200"):
     # start
     ledc('off')
     alpha_wave(30)
-    before_sit('th',vol)
+    cheerful_payutto2(5,vol)
     alpha_wave(30)
     bell('1',vol)
     # cool down
@@ -2232,6 +2235,8 @@ try:
                                         testing_mode4()
                                     elif "five" in words:
                                         cheerful_payutto()
+                                        cheerful_payutto2()
+                                        cheerful_payutto3()
                                     elif "six" in words:
                                         speak("testing 6")
                                         testing_mode6()
@@ -2268,7 +2273,7 @@ try:
                                     elif "help" in words:
                                         get_help()
 
-                                    elif "silent" in words or "quiet" in words:
+                                    elif "silent" in words or "quiet" in words or "quit" in words:
                                         killPlayer()
                                         if len(proc_name) > 0:
                                             os.system("pkill -f " + proc_name)
