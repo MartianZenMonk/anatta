@@ -520,10 +520,16 @@ def thwords(text):
     return stext
 
 
-def thnumber(text):
+def thaiwords(text):
     stext = ""
     for i in range(len(text)):
         stext += " ../thaivoices/thai/" + text[i] + ".mp3"
+    return stext
+
+def thaiwordswav(text):
+    stext = ""
+    for i in range(len(text)):
+        stext += " ../thaivoices/thai/" + text[i] + ".wav"
     return stext
 
 
@@ -670,7 +676,7 @@ def relax_thai(vol="500"):
     return None
 
 
-def relax_walk(t=5,vol='5000'):
+def relax_walk(t=5,vol='1000'):
     text  = ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","หาย","ใจ","รู้","กาย","เคลื่อน","ไหว","รู้","ใจ","นึก","คิด","มี","จิต","เบิก","บาน"]
     text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","ถอน","ความ","พอ","ใจ","และ","ความ","ไม่","พอ","ใจ","ใน","ใจ","ออก","เสีย","ได้"]
     text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","จิต","เบิก","บาน","หาย","ใจ","เข้า","จิต","โล่ง","เบา","หาย","ใจ","ออก"]
@@ -685,6 +691,40 @@ def relax_walk(t=5,vol='5000'):
         if time.time() > timeout and i == n:
             break
         else:
+            os.system("cvlc --play-and-exit --gain 1 " + tx_list[i])
+            # os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+        # time.sleep(0.25)
+        if i < n:
+            i += 1
+        else:
+            i = 1
+    os.system("cvlc --play-and-exit --gain 1 " + tx_list[i])
+    time.sleep(1)
+    del text
+    del tx
+    del tx_list
+    gc.collect()
+    clear_q()
+    return None
+
+
+def anapanasati_walk(ts=5,vol='1000'):
+
+    t  = 'พุท โธ พุท โธ เหยียบ เหยียบ รู้ ลม ยาว รู้ ลม สั้น รู้ กาย ทั้ง ปวง ทํา กาย ลม ให้ ประ ณีต '
+    t += 'พุท โธ พุท โธ เหยียบ เหยียบ รู้ ปี ติ รู้ สุข รู้ เว ทะ นา ทํา เว ทะ นา ให้ ระ งับ '
+    t += 'พุท โธ พุท โธ เหยียบ เหยียบ รู้ พร้อม ซึ่ง จิต ทํา ให้ จิต บัน เทิง ทํา จิต ให้ ตั้ง มั่น ทํา จิต ให้ ปล่อย ' 
+    t += 'พุท โธ พุท โธ เหยียบ เหยียบ ตาม เห็น ความ ไม่ เที่ยง ตาม เห็น ความ คลาย กํา หนัด ตาม เห็น ความ ดับ ไม่ เหลือ ตาม เห็น ความ สลัด คืน'
+    text = t.split(' ')
+    tx   = thaiwords(text)
+    tx_list = tx.split(' ')
+    # print(tx_list)
+    i = 1
+    n = len(tx_list) - 1
+    timeout = time.time() + 60*ts  
+    while True:
+        if time.time() > timeout and i == n:
+            break
+        else:
             os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
         time.sleep(0.25)
         if i < n:
@@ -693,11 +733,68 @@ def relax_walk(t=5,vol='5000'):
             i = 1
     os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
     time.sleep(1)
+    del t
     del text
     del tx
     del tx_list
     gc.collect()
     clear_q()
+    return None
+
+
+def musk_walk(ts=5,vol='1000'):
+
+    t  = 'พุท โธ พุท โธ เหยียบ เหยียบ ความ เห็น ชอบ สัม มา ทิฏ ฏิ ความ รู้ ใน ทุกข์ ความ รู้ ใน เหตุ ให้ เกิด ทุกข์ ความ รู้ ใน ความ ดับ แห่ง ทุกข์ ความ รู้ ใน ทาง ดำ เนิน ให้ ถึง ความ ดับ แห่ง ทุกข์ '
+    t += 'พุท โธ พุท โธ เหยียบ เหยียบ ความ ดำริ ชอบ สัม มา สัง กัป โป ดำริ ใน การ ออก จาก กาม ดำริ ใน การ ไม่ มุ่ง ร้าย ดำริ ใน การ ไม่ เบียด เบียน '
+    t += 'พุท โธ พุท โธ เหยียบ เหยียบ การ พูด จา ชอบ สัม มา วา จา เว้น จาก การ พูด ไม่ จริง เว้น จาก การ พูด ส่อ เสียด เว้น จาก การ พูด หยาบ เว้น จาก การ พูด เพ้อ เจ้อ '
+    t += 'พุท โธ พุท โธ เหยียบ เหยียบ การ ทำ การ งาน ชอบ สัม มา กัม มัน โต เว้น จาก การ ฆ่า เว้น จาก การ ถือ เอา สิ่ง ของ ที่ เจ้า ของ ไม่ ได้ ให้ เว้น จาก การ ประพฤติ ผิด ใน กาม '
+    t += 'พุท โธ พุท โธ เหยียบ เหยียบ การ เลี้ยง ชี วิต ชอบ สัม มา อา ชี โว ไม่ ทำ อา ชีพ ทุ จริต ทำ อา ชีพ สุ จริต '
+    t += 'พุท โธ พุท โธ เหยียบ เหยียบ ความ เพียร ชอบ สัม มา วา ยา โม ไม่ ทำ ชั่ว ใหม่ เลิก ทำ ชั่ว ที่ ยัง ทำ อยู่ ทำ ความ ดี เพิ่ม รัก ษา ความ ดี ที่ ทำ ไว้ '
+    t += 'พุท โธ พุท โธ เหยียบ เหยียบ ความ ระ ลึก ชอบ สัม มา สติ มี สติ ใน กาย มี สติ ใน เว ทะ นา มี สติ ใน จิต มี สติ ใน ธรรม มี ความ เพียร เผา กิเลส มี ความ รู้ สึก ตัว มี สติ ถอน ความ พอ ใจ และ ความ ไม่ พอ ใจ ใน ใจ ออก เสีย ได้ '
+    t += 'พุท โธ พุท โธ เหยียบ เหยียบ ความ ตั้ง ใจ มั่น ชอบ สัม มา สมา ธิ เข้า ถึง ปฐม ฌาน มี วิตก วิจาร ปีติ สุข เข้า ถึง ทุติย ฌาน ไม่ มี วิตก วิจาร มี แต่ ปีติ สุข '
+    t += 'เข้า ถึง ตติย ฌาน ไม่ มี ปีติ มี ความสุข ด้วย นามกาย เป็น ผู้ อยู่ อุ เบก ขา มี สติ อยู่ เป็น ปกติ สุข เข้า ถึง จตุตถ ฌาน ไม่ มี ทุกข์ ไม่ มี สุข มี แต่ ความ ที่ สติ เป็น ธรรมชาติ บริสุทธ์ เพราะ อุ เบก ขา แล้ว แล อยู่'
+
+
+    text = t.split(' ')
+    tx   = thaiwords(text)
+    tx_list = tx.split(' ')
+    # print(tx_list)
+    i = 1
+    n = len(tx_list) - 1
+    timeout = time.time() + 60*ts  
+    while True:
+        if time.time() > timeout and i == n:
+            break
+        else:
+            os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+        time.sleep(0.25)
+        if i < n:
+            i += 1
+        else:
+            i = 1
+    os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+    time.sleep(1)
+    del t
+    del text
+    del tx
+    del tx_list
+    gc.collect()
+    clear_q()
+    return None
+
+def cheerful_mantra_th1(c='off', t=30, vol='2000'):
+
+    ledc(c)
+
+    if t==0:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/c_citta_alpha.mp3"])
+        press_for_stop(c,proc)
+    else:
+        proc = subprocess.Popen(["mpg123","-f",vol,"-q","--loop","-1","../sound/c_citta_alpha.mp3"])
+        delay(t)
+        proc.kill()
+        clear_q()
+   
     return None
 
 
@@ -1392,23 +1489,36 @@ def counting_walk(t=15,fast=False,l='th',vol='2000'):
 
     elif l == 'zh':
         os.system('mpg123 -q -f ' + vol + ' ../thaivoices/chinese_walk.mp3')
-        t1 = 0.5
+        t1 = 0
         tx = zhwords(['1','2','3','4','5','6','7','8','9','10'])
         tx_list = tx.split(' ')
 
     elif l == 'ja':
         os.system('mpg123 -q -f ' + vol + ' ../thaivoices/japanese/japanese_walk.mp3')
-        t1 = 0.5
+        t1 = 0
         tx = jpwords(['1','2','3','4','5','6','7','8','9','10'])
+        tx_list = tx.split(' ')
+
+    elif l == 'wav':
+        os.system('mpg123 -q ../thaivoices/before_walking.mp3')
+        t1 = 0.5
+        tx = thaiwordswav(['1','2','3','4','5','6','7','8','9','10'])
         tx_list = tx.split(' ')
 
     else:
         os.system('mpg123 -q -f ' + vol + ' ../thaivoices/before_walking.mp3')
-        t1 = 0.5
-        tx = thnumber(['1','2','3','4','5','6','7','8','9','10'])
+        t1 = 0
+        tx = thaiwords(['1','2','3','4','5','6','7','8','9','10'])
         tx_list = tx.split(' ')
         
-    cmd = 'mpg123 -q -f ' + vol + ' '
+    if l == 'wav':
+        # cmd = 'mplayer -volume 1 '
+        cmd = 'aplay '
+        # cmd = 'cvlc --play-and-exit --gain 1 '
+    else:
+        cmd = 'mpg123 -q -f ' + vol + ' '
+
+    # cmd = 'cvlc --play-and-exit --gain 1 '
     i  = 1
     n = 5
     bell('1')
@@ -1731,15 +1841,17 @@ def testing_mode4():
 def testing_mode6():
 
     testing_mode1()
-    fast_buddho('off',180,'500')
-    slow_buddho('off',180,'500')
+    fast_buddho('off',60,'500')
+    cheerful_mantra_th1('off',120,'500')
+    alpha_wave(120)
     os.system("sudo shutdown now")
     return None
 
 
 def testing_mode9():
     testing_mode1()
-    fast_buddho('off',180,'500')
+    fast_buddho('off',60,'500')
+    cheerful_mantra_th1('off',120,'500')
     os.system("sudo shutdown now")
     return None
 
@@ -2059,7 +2171,7 @@ try:
             vrun += 'browse chanting mantra say speak stop volume turn on off exit shutdown now thai lyric ip address sutra up down breathing '
             vrun += 'one two three four five six seven eight nine ten zero fifteen twenty thirty forty fifty sixty seventy eighty ninety '
             vrun += 'a alfa b bravo c charlie d delta e echo f foxtrot g golf h hotel i india j juliet k kilo l lima m mike n november o oscar p papa '
-            vrun += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling '
+            vrun += 'q quebec r romeo s sierra t tango u uniform v victor w whiskey x ray y yankee z zulu letter repeat space spelling speaker '
             vrun += 'walking mode search translate service cancel restart save anat ta sitting music raining thunder jungle tibetan heart '
             vrun += 'red green blue yellow alpha breathing pure monk rule speech morning evening practice web server sound my math next new '
             vrun += 'ohm the sun blooming flower clip quit my display testing water morse code good bye chapter pali japanese chinese '
@@ -2240,8 +2352,16 @@ try:
                                     elif "six" in words:
                                         speak("testing 6")
                                         testing_mode6()
+                                    elif "seven" in words:
+                                        anapanasati_walk()
+                                        musk_walk()
                                     elif "nine" in words:
                                         testing_mode9()
+                                    elif "ten":
+                                        call(["amixer","-D","sysdefault","sset","Speaker","40%"])
+                                        counting_walk(5,False,'wav')
+                                        counting_walk(5,True,'wav')
+                                        call(["amixer","-D","sysdefault","sset","Speaker","100%"])
 
                                 elif "repeat" in words:
                                     if "on" in words:
@@ -2822,13 +2942,13 @@ try:
                                     shutdown()
                                     break
                                
-                                elif "volume" in words:
+                                elif "speaker" in words:
                                     if "up" in words:
-                                        call(["amixer","-D","pulse","sset","Master","95%"])
-                                        speak("set volume to 95%")
+                                        call(["amixer","-D","sysdefault","sset","Speaker","100%"])
+                                        espeak("set volume to 95%",'10')
                                     elif "down" in words:
-                                        call(["amixer","-D","pulse","sset","Master","50%"])
-                                        speak("set volume to 50%")
+                                        call(["amixer","-D","sysdefault","sset","Speaker","50%"])
+                                        espeak("set volume to 50%",'100')
 
                                 elif "ip" in words and "address" in words:
                                     ip = get_ip()
