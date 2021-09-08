@@ -691,14 +691,15 @@ def relax_walk(t=5,vol='1000'):
         if time.time() > timeout and i == n:
             break
         else:
-            os.system("cvlc --play-and-exit --gain 1 " + tx_list[i])
-            # os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
-        # time.sleep(0.25)
+            # os.system("cvlc --play-and-exit --gain 1 " + tx_list[i])
+            os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+        time.sleep(0.25)
         if i < n:
             i += 1
         else:
             i = 1
-    os.system("cvlc --play-and-exit --gain 1 " + tx_list[i])
+    # os.system("cvlc --play-and-exit --gain 1 " + tx_list[i])
+    os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
     time.sleep(1)
     del text
     del tx
@@ -751,9 +752,8 @@ def musk_walk(ts=5,vol='1000'):
     t += 'พุท โธ พุท โธ เหยียบ เหยียบ การ เลี้ยง ชี วิต ชอบ สัม มา อา ชี โว ไม่ ทำ อา ชีพ ทุ จริต ทำ อา ชีพ สุ จริต '
     t += 'พุท โธ พุท โธ เหยียบ เหยียบ ความ เพียร ชอบ สัม มา วา ยา โม ไม่ ทำ ชั่ว ใหม่ เลิก ทำ ชั่ว ที่ ยัง ทำ อยู่ ทำ ความ ดี เพิ่ม รัก ษา ความ ดี ที่ ทำ ไว้ '
     t += 'พุท โธ พุท โธ เหยียบ เหยียบ ความ ระ ลึก ชอบ สัม มา สติ มี สติ ใน กาย มี สติ ใน เว ทะ นา มี สติ ใน จิต มี สติ ใน ธรรม มี ความ เพียร เผา กิเลส มี ความ รู้ สึก ตัว มี สติ ถอน ความ พอ ใจ และ ความ ไม่ พอ ใจ ใน ใจ ออก เสีย ได้ '
-    t += 'พุท โธ พุท โธ เหยียบ เหยียบ ความ ตั้ง ใจ มั่น ชอบ สัม มา สมา ธิ เข้า ถึง ปฐม ฌาน มี วิตก วิจาร ปีติ สุข เข้า ถึง ทุติย ฌาน ไม่ มี วิตก วิจาร มี แต่ ปีติ สุข '
+    t += 'พุท โธ พุท โธ เหยียบ เหยียบ ความ ตั้ง ใจ มั่น ชอบ สัม มา สมา ธิ เข้า ถึง ปฐม ฌาน มี วิตก วิจาร ปีติ สุข เอกัคคตา เข้า ถึง ทุติย ฌาน ไม่ มี วิตก วิจาร มี แต่ ปีติ สุข เอกัคคตา '
     t += 'เข้า ถึง ตติย ฌาน ไม่ มี ปีติ มี ความสุข ด้วย นามกาย เป็น ผู้ อยู่ อุ เบก ขา มี สติ อยู่ เป็น ปกติ สุข เข้า ถึง จตุตถ ฌาน ไม่ มี ทุกข์ ไม่ มี สุข มี แต่ ความ ที่ สติ เป็น ธรรมชาติ บริสุทธ์ เพราะ อุ เบก ขา แล้ว แล อยู่'
-
 
     text = t.split(' ')
     tx   = thaiwords(text)
@@ -1507,7 +1507,7 @@ def counting_walk(t=15,fast=False,l='th',vol='2000'):
 
     else:
         os.system('mpg123 -q -f ' + vol + ' ../thaivoices/before_walking.mp3')
-        t1 = 0
+        t1 = 0.25
         tx = thaiwords(['1','2','3','4','5','6','7','8','9','10'])
         tx_list = tx.split(' ')
         
@@ -2945,10 +2945,16 @@ try:
                                 elif "speaker" in words:
                                     if "up" in words:
                                         call(["amixer","-D","sysdefault","sset","Speaker","100%"])
-                                        espeak("set volume to 95%",'10')
+                                        espeak("set volume to 100%",'10')
                                     elif "down" in words:
-                                        call(["amixer","-D","sysdefault","sset","Speaker","50%"])
-                                        espeak("set volume to 50%",'100')
+                                        call(["amixer","-D","sysdefault","sset","Speaker","40%"])
+                                        espeak("set volume to 40%",'100')
+                                    elif "sixty" in words:
+                                        call(["amixer","-D","sysdefault","sset","Speaker","60%"])
+                                        espeak("set volume to 60%",'30')
+                                    elif "eighty" in words:
+                                        call(["amixer","-D","sysdefault","sset","Speaker","80%"])
+                                        espeak("set volume to 80%",'20')
 
                                 elif "ip" in words and "address" in words:
                                     ip = get_ip()
