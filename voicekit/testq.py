@@ -395,7 +395,7 @@ def get_help():
             sitting practice,
             moring practice,
             wise one or alpha,
-            please shutdown or anat ta stop,
+            goodbye or anat ta stop,
             '''
     speak(text)
     time.sleep(3)
@@ -677,11 +677,12 @@ def relax_thai(vol="500"):
 
 
 def relax_walk(t=5,vol='1000'):
+    call(["amixer","-D","sysdefault","sset","Speaker","40%"])
     text  = ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","หาย","ใจ","รู้","กาย","เคลื่อน","ไหว","รู้","ใจ","นึก","คิด","มี","จิต","เบิก","บาน"]
     text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","ถอน","ความ","พอ","ใจ","และ","ความ","ไม่","พอ","ใจ","ใน","ใจ","ออก","เสีย","ได้"]
     text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","จิต","เบิก","บาน","หาย","ใจ","เข้า","จิต","โล่ง","เบา","หาย","ใจ","ออก"]
     text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","ยาว","รู้","ลม","สั้น","รู้","กาย","ทั้ง","ปวง","ทำ","กาย","ลม","ให้","ประ","ณีต"]
-    tx   = thwords(text)
+    tx   = thaiwords(text)
     tx_list = tx.split(' ')
     # print(tx_list)
     i = 1
@@ -692,20 +693,22 @@ def relax_walk(t=5,vol='1000'):
             break
         else:
             # os.system("cvlc --play-and-exit --gain 1 " + tx_list[i])
-            os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+            os.system("aplay " + tx_list[i] + ".wav")
         time.sleep(0.25)
         if i < n:
             i += 1
         else:
             i = 1
     # os.system("cvlc --play-and-exit --gain 1 " + tx_list[i])
-    os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+    # os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+    os.system("aplay " + tx_list[i] + ".wav")
     time.sleep(1)
     del text
     del tx
     del tx_list
     gc.collect()
     clear_q()
+    call(["amixer","-D","sysdefault","sset","Speaker","100%"])
     return None
 
 
@@ -1419,7 +1422,7 @@ def play_buddha_story():
     try:
         command = "export DISPLAY=:0.0; vlc -f --stop-time 453 --play-and-exit buddha-story.mp4"
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-        press_for_stop('d',proc)
+        press_for_stop('d',proc,455)
         killPlayer() 
     except:
         speak("sorry can not play video clip")
@@ -1755,6 +1758,7 @@ def testing_mode2():
 
 # walking 1 hr
 def testing_mode1():
+    meditation_goal(1)
     lg = ['th','en','zh','ja']
     lgx = random.choice(lg)
     bell('3')
@@ -1780,6 +1784,7 @@ def testing_mode1():
     return None
 
 def testing_mode3():
+    meditation_goal(1)
     lg = ['th','en','zh','ja']
     lgx = random.choice(lg)
 
@@ -1807,7 +1812,9 @@ def testing_mode3():
 
 # walk 2 hrs sit 1 hr
 def testing_mode4():
-
+    meditation_goal(1)
+    lg = ['th','en','zh','ja']
+    lgx = random.choice(lg)
     bell('3')
     relax_walk(5,'1000')
     fruit = ['watermelon.gif','oranges.gif','redApple.gif','greenApple.gif','cantalupe.gif']
@@ -1815,15 +1822,11 @@ def testing_mode4():
     command = "export DISPLAY=:0.0; python3 testgif.py -f full -p ../sound/" + fruit[i]
     proc1 = subprocess.Popen(command, shell=True)
     bell('1')
-    counting_walk(10)
+    counting_walk(5,False,lgx)
     bell('1')
-    counting_walk(10,True)
+    counting_walk(5,True,lgx)
     bell('1')
-    counting_walk(10,False,'zh')
-    bell('1')
-    counting_walk(10,True,'zh')
-    bell('1')
-    slow_buddho2('off',20)
+    slow_buddho2('off',15)
     bell('1')
     slow_buddho('off',30)
     bell('1')
@@ -1841,7 +1844,6 @@ def testing_mode4():
 
 
 def testing_mode6():
-
     testing_mode1()
     fast_buddho('off',60,'500')
     cheerful_mantra_th1('off',120,'500')
@@ -1859,6 +1861,7 @@ def testing_mode9():
 
 
 def meditation_one():
+    meditation_goal(1)
     bell('3')
     before_walk()
     slow_buddho('off',10,'1000',False)

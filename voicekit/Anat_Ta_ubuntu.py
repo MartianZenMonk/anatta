@@ -411,6 +411,39 @@ def engwords(text):
     return stext
 
 
+def relax_walk(t=5,vol='1000'):
+    text  = ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","หาย","ใจ","รู้","กาย","เคลื่อน","ไหว","รู้","ใจ","นึก","คิด","มี","จิต","เบิก","บาน"]
+    text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","ถอน","ความ","พอ","ใจ","และ","ความ","ไม่","พอ","ใจ","ใน","ใจ","ออก","เสีย","ได้"]
+    text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","จิต","เบิก","บาน","หาย","ใจ","เข้า","จิต","โล่ง","เบา","หาย","ใจ","ออก"]
+    text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","ยาว","รู้","ลม","สั้น","รู้","กาย","ทั้ง","ปวง","ทำ","กาย","ลม","ให้","ประ","ณีต"]
+    tx   = thaiwords(text)
+    tx_list = tx.split(' ')
+    # print(tx_list)
+    i = 1
+    n = len(tx_list) - 1
+    timeout = time.time() + 60*t   
+    while True:
+        if time.time() > timeout and i == n:
+            break
+        else:
+            # os.system("cvlc --play-and-exit --gain 1 " + tx_list[i])
+            os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+        time.sleep(0.25)
+        if i < n:
+            i += 1
+        else:
+            i = 1
+    # os.system("cvlc --play-and-exit --gain 1 " + tx_list[i])
+    os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+    time.sleep(1)
+    del text
+    del tx
+    del tx_list
+    gc.collect()
+    clear_q()
+    return None
+
+
 def anapanasati(ts=5,vol='5000'):
 
     t  = 'พุท โธ พุท โธ เหยียบ เหยียบ รู้ ลม ยาว รู้ ลม สั้น รู้ กาย ทั้ง ปวง ทํา กาย ลม ให้ ประ ณีต '
@@ -482,32 +515,6 @@ def musk_walk(ts=5,vol='5000'):
     del tx
     del tx_list
     gc.collect()
-    clear_q()
-    return None
-
-
-def relax_walk(t=5,vol='5000'):
-    text  = ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","รู้","ลม","หาย","ใจ","รู้","กาย","เคลื่อน","ไหว","รู้","ใจ","นึก","คิด","มี","จิต","เบิก","บาน"]
-    text += ["พุท","โธ","พุท","โธ","เหยียบ","เหยียบ","ถอน","ความ","พอ","ใจ","และ","ความ","ไม่","พอ","ใจ","ใน","ใจ","ออก","เสีย","ได้"]
-    tx   = thwords(text)
-    tx_list = tx.split(' ')
-    # print(tx_list)
-    i = 1
-    n = len(tx_list) - 1
-    timeout = time.time() + 60*t   
-    while True:
-        if time.time() > timeout and i == n:
-            break
-        else:
-            os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
-        time.sleep(1)
-        if i < n:
-            i += 1
-        else:
-            i = 1
-    os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
-    time.sleep(1)
-    bell('1',vol)
     clear_q()
     return None
 
@@ -723,12 +730,13 @@ try:
     #TEST
     # cheer_up()
     # kanaanub(1,False,'zh','60')
-    counting_walk(1,False,'wav')
+    # counting_walk(1,False,'wav')
     # funny_animals()
     # remind_breathing(1,'2000','th',1)
     # a = with_opencv('../sound/timelapse/flowers.mp4')
     # print(a)
     # musk_walk()
+    relax_walk(1,'5000')
 
     model = vosk.Model(args.model)
    
