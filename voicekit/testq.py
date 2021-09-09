@@ -709,8 +709,8 @@ def relax_walk(t=5,vol='1000'):
     return None
 
 
-def anapanasati_walk(ts=5,vol='1000'):
-
+def anapanasati_walk(ts=5):
+    call(["amixer","-D","sysdefault","sset","Speaker","40%"])
     t  = 'พุท โธ พุท โธ เหยียบ เหยียบ รู้ ลม ยาว รู้ ลม สั้น รู้ กาย ทั้ง ปวง ทํา กาย ลม ให้ ประ ณีต '
     t += 'พุท โธ พุท โธ เหยียบ เหยียบ รู้ ปี ติ รู้ สุข รู้ เว ทะ นา ทํา เว ทะ นา ให้ ระ งับ '
     t += 'พุท โธ พุท โธ เหยียบ เหยียบ รู้ พร้อม ซึ่ง จิต ทํา ให้ จิต บัน เทิง ทํา จิต ให้ ตั้ง มั่น ทํา จิต ให้ ปล่อย ' 
@@ -726,13 +726,13 @@ def anapanasati_walk(ts=5,vol='1000'):
         if time.time() > timeout and i == n:
             break
         else:
-            os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+            os.system("aplay " + tx_list[i] + ".wav")
         time.sleep(0.25)
         if i < n:
             i += 1
         else:
             i = 1
-    os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+    os.system("aplay " + tx_list[i] + ".wav")
     time.sleep(1)
     del t
     del text
@@ -740,11 +740,12 @@ def anapanasati_walk(ts=5,vol='1000'):
     del tx_list
     gc.collect()
     clear_q()
+    call(["amixer","-D","sysdefault","sset","Speaker","100%"])
     return None
 
 
-def musk_walk(ts=5,vol='1000'):
-
+def musk_walk(ts=5):
+    call(["amixer","-D","sysdefault","sset","Speaker","40%"])
     t  = 'พุท โธ พุท โธ เหยียบ เหยียบ ความ เห็น ชอบ สัม มา ทิฏ ฏิ ความ รู้ ใน ทุกข์ ความ รู้ ใน เหตุ ให้ เกิด ทุกข์ ความ รู้ ใน ความ ดับ แห่ง ทุกข์ ความ รู้ ใน ทาง ดำ เนิน ให้ ถึง ความ ดับ แห่ง ทุกข์ '
     t += 'พุท โธ พุท โธ เหยียบ เหยียบ ความ ดำริ ชอบ สัม มา สัง กัป โป ดำริ ใน การ ออก จาก กาม ดำริ ใน การ ไม่ มุ่ง ร้าย ดำริ ใน การ ไม่ เบียด เบียน '
     t += 'พุท โธ พุท โธ เหยียบ เหยียบ การ พูด จา ชอบ สัม มา วา จา เว้น จาก การ พูด ไม่ จริง เว้น จาก การ พูด ส่อ เสียด เว้น จาก การ พูด หยาบ เว้น จาก การ พูด เพ้อ เจ้อ '
@@ -753,7 +754,7 @@ def musk_walk(ts=5,vol='1000'):
     t += 'พุท โธ พุท โธ เหยียบ เหยียบ ความ เพียร ชอบ สัม มา วา ยา โม ไม่ ทำ ชั่ว ใหม่ เลิก ทำ ชั่ว ที่ ยัง ทำ อยู่ ทำ ความ ดี เพิ่ม รัก ษา ความ ดี ที่ ทำ ไว้ '
     t += 'พุท โธ พุท โธ เหยียบ เหยียบ ความ ระ ลึก ชอบ สัม มา สติ มี สติ ใน กาย มี สติ ใน เว ทะ นา มี สติ ใน จิต มี สติ ใน ธรรม มี ความ เพียร เผา กิเลส มี ความ รู้ สึก ตัว มี สติ ถอน ความ พอ ใจ และ ความ ไม่ พอ ใจ ใน ใจ ออก เสีย ได้ '
     t += 'พุท โธ พุท โธ เหยียบ เหยียบ ความ ตั้ง ใจ มั่น ชอบ สัม มา สมา ธิ เข้า ถึง ปฐม ฌาน มี วิตก วิจาร ปีติ สุข เอกัคคตา เข้า ถึง ทุติย ฌาน ไม่ มี วิตก วิจาร มี แต่ ปีติ สุข เอกัคคตา '
-    t += 'เข้า ถึง ตติย ฌาน ไม่ มี ปีติ มี ความสุข ด้วย นามกาย เป็น ผู้ อยู่ อุ เบก ขา มี สติ อยู่ เป็น ปกติ สุข เข้า ถึง จตุตถ ฌาน ไม่ มี ทุกข์ ไม่ มี สุข มี แต่ ความ ที่ สติ เป็น ธรรมชาติ บริสุทธ์ เพราะ อุ เบก ขา แล้ว แล อยู่'
+    t += 'เข้า ถึง ตติย ฌาน ไม่ มี ปีติ มี ความ สุข ด้วย นามกาย เป็น ผู้ อยู่ อุ เบก ขา มี สติ อยู่ เป็น ปกติ สุข เข้า ถึง จตุตถ ฌาน ไม่ มี ทุกข์ ไม่ มี สุข มี แต่ ความ ที่ สติ เป็น ธรรมชาติ บริสุทธ์ เพราะ อุ เบก ขา แล้ว แล อยู่'
 
     text = t.split(' ')
     tx   = thaiwords(text)
@@ -766,13 +767,13 @@ def musk_walk(ts=5,vol='1000'):
         if time.time() > timeout and i == n:
             break
         else:
-            os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+            os.system("aplay " + tx_list[i] + ".wav")
         time.sleep(0.25)
         if i < n:
             i += 1
         else:
             i = 1
-    os.system("mpg123 -q -f "+ vol + " " + tx_list[i])
+    os.system("aplay " + tx_list[i] + ".wav")
     time.sleep(1)
     del t
     del text
@@ -780,6 +781,7 @@ def musk_walk(ts=5,vol='1000'):
     del tx_list
     gc.collect()
     clear_q()
+    call(["amixer","-D","sysdefault","sset","Speaker","100%"])
     return None
 
 def cheerful_mantra_th1(c='off', t=30, vol='2000'):
@@ -2941,7 +2943,7 @@ try:
                                 elif "good" in words and "bye" in words:
                                     shutdown()
                                     break
-                               
+                                # aplay -L
                                 elif "speaker" in words:
                                     if "up" in words:
                                         call(["amixer","-D","sysdefault","sset","Speaker","100%"])
