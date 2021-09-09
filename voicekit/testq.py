@@ -822,7 +822,7 @@ def alpha_wave(t):
 
 #BHAVANA
 def remind_breathing(t=30,vol='500',l='th',ts=0):
-    bell('3',vol)
+    bell('1',vol)
     if l == 'zh':
         text = ['欢快地吸气','呼气并感到放松']
         tx   = zhwords(text)
@@ -832,6 +832,9 @@ def remind_breathing(t=30,vol='500',l='th',ts=0):
     elif l == 'en':
         text = ['cheerful_breathing_in','relieved_breathing_out']
         tx   = engwords(text)
+    elif l == 'th1':
+        text = ["พุท","โธ","พุท","โธ","หาย","ใจ","เข้า","พุท","หาย","ใจ","ออก","โธ"]
+        tx   = thwords(text)
     else:
         text = ["จิต","เบิก","บาน","หาย","ใจ","เข้า","จิต","โล่ง","เบา","หาย","ใจ","ออก"]
         tx   = thwords(text)
@@ -841,7 +844,7 @@ def remind_breathing(t=30,vol='500',l='th',ts=0):
         if time.time() > timeout:
             break
         else:
-            os.system("mpg123 -f "+ vol + " " + tx)
+            os.system("mpg123 -q -f "+ vol + " " + tx)
             time.sleep(ts)
     bell('1',vol)
     clear_q()
@@ -1846,16 +1849,17 @@ def testing_mode4():
 def testing_mode6():
     testing_mode1()
     fast_buddho('off',60,'500')
-    cheerful_mantra_th1('off',120,'500')
-    alpha_wave(120)
+    remind_breathing(30,'500','th1')
+    cheerful_mantra_th1('off',30,'500')
+    remind_breathing(30,'500','th1')
+    cheerful_mantra_th1('off',30,'500')
     os.system("sudo shutdown now")
     return None
 
 
 def testing_mode9():
-    testing_mode1()
-    fast_buddho('off',60,'500')
-    cheerful_mantra_th1('off',120,'500')
+    testing_mode6()
+    alpha_wave(120)
     os.system("sudo shutdown now")
     return None
 
@@ -2361,6 +2365,7 @@ try:
                                         anapanasati_walk()
                                         musk_walk()
                                     elif "nine" in words:
+                                        speak("testing 9")
                                         testing_mode9()
                                     elif "ten":
                                         call(["amixer","-D","sysdefault","sset","Speaker","40%"])

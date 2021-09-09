@@ -626,13 +626,16 @@ def kanaanub(t=15,fast=False,l='th',vol='10'):
 
 
 def remind_breathing(t=30,vol='500',l='th',t1=0):
-    bell('3',vol)
+    bell('1',vol)
     if l == 'zh':
         text = ['欢快地吸气','呼气并感到放松']
         tx   = zhwords(text)
     elif l == 'en':
         text = ['cheerful_breathing_in','relieved_breathing_out']
         tx   = engwords(text)
+    elif l == 'th1':
+        text = ["พุท","โธ","พุท","โธ","หาย","ใจ","เข้า","พุท","หาย","ใจ","ออก","โธ"]
+        tx   = thwords(text)
     else:
         text = ["จิต","เบิก","บาน","หาย","ใจ","เข้า","จิต","โล่ง","เบา","หาย","ใจ","ออก"]
         tx   = thwords(text)
@@ -642,7 +645,7 @@ def remind_breathing(t=30,vol='500',l='th',t1=0):
         if time.time() > timeout:
             break
         else:
-            os.system("mpg123 -f "+ vol + " " + tx)
+            os.system("mpg123 -q -f "+ vol + " " + tx)
             time.sleep(t1)
     bell('1',vol)
     clear_q()
@@ -732,11 +735,11 @@ try:
     # kanaanub(1,False,'zh','60')
     # counting_walk(1,False,'wav')
     # funny_animals()
-    # remind_breathing(1,'2000','th',1)
+    remind_breathing(1,'2000','th1')
     # a = with_opencv('../sound/timelapse/flowers.mp4')
     # print(a)
     # musk_walk()
-    relax_walk(1,'5000')
+    # relax_walk(1,'5000')
 
     model = vosk.Model(args.model)
    
