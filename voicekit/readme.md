@@ -1,6 +1,10 @@
 
 THANK YOU VERY MUCH TO MR. Peter Malkin FOR GIVING ME THE VOICEKIT AND CORAL DEV BOARD
 
+THANK YOU VERY MUCH TO MR SUTHEE @ https://www.techtalkthai.com/  FOR GIVING THE ASUS ZENBOOK DUO LAPTOP ( FOR MONKS PROPERTY )
+
+
+
 
 https://aiyprojects.withgoogle.com/voice/
 
