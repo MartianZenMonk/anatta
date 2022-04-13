@@ -152,314 +152,303 @@ TBC
                 <p>การใช้ปัญญาในทางพระพุทธศาสนา - riean<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/597.mp3' type='audio/mp3'></audio></p>
                 <p>ผู้มีปัญญาย่อมแสวงบุญ - riean<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/754.mp3' type='audio/mp3'></audio></p>
                 <p>ชาวพุทธควรมีปัญญา - riean<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/755.mp3' type='audio/mp3'></audio></p>
-
-                <h4> ธรรมเทศนาว่าด้วย - อริยสัจจ์ </h4>
-                <p>อาสาฬหบูชาเทศนา พ.ศ. ๒๕๒๙ กัณฑ์ ๒ -: อริยสัจจ์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6027.mp3' type='audio/mp3'></audio></p>
-                <p>อาสาฬหบูชาเทศนา พ.ศ. ๒๕๓๑ กัณฑ์ที่ ๑ -: อตัมมยตากับอริยสัจจส...<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6030.mp3' type='audio/mp3'></audio></p>
-                <p>สรุปปฎิจจสมุปบาทและอริยสัจจ์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/12003.mp3' type='audio/mp3'></audio></p>
-                <p>แม้จะพูดถึงอริยสัจสี่กันสักเท่าไร ก็ไม่มีทางเข้าใจ ถ้าไม่รู้หลักหน้าที่ต่ออริยสัจ<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_42.mp3' type='audio/mp3'></audio></p>
-                <p>ก่อนจะเข้าเนื้อ มาดูหนังอริยสัจกันก่อน<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_43.mp3' type='audio/mp3'></audio></p>
-                <p>ดูขันธ์ ๕ ให้เห็นการทำงานของชีวิต พอได้พื้นความเข้าใจที่จะไปเรียนอริยสัจ<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_44.mp3' type='audio/mp3'></audio></p>
-                <p>ชอบอ้างกันนักว่าอริยสัจสี่ แต่แค่หน้าที่ปริญญา ก็ยังไม่รู้จัก  [23.00]<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/13_20.mp3' type='audio/mp3'></audio></p>
-                <p>ชอบอ้างกันนักว่าอริยสัจสี่  แต่แค่หน้าที่ปริญญา ก็ยังไม่รู้จัก (ส่วน ถาม-ตอบ) [40.08]<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/13_21.mp3' type='audio/mp3'></audio></p>
-                <p>ปัญญาเป็นอริยสัจธรรม<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/155.mp3' type='audio/mp3'></audio></p>
-
+ 
  <h4> ธรรมเทศนาว่าด้วย - อริยสัจจ์ </h4>
-                <p>อาสาฬหบูชาเทศนา พ.ศ. ๒๕๒๙ กัณฑ์ ๒ -: อริยสัจจ์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6027.mp3' type='audio/mp3'></audio></p>
-                <p>อาสาฬหบูชาเทศนา พ.ศ. ๒๕๓๑ กัณฑ์ที่ ๑ -: อตัมมยตากับอริยสัจจส...<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6030.mp3' type='audio/mp3'></audio></p>
-                <p>สรุปปฎิจจสมุปบาทและอริยสัจจ์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/12003.mp3' type='audio/mp3'></audio></p>
-                <p>แม้จะพูดถึงอริยสัจสี่กันสักเท่าไร ก็ไม่มีทางเข้าใจ ถ้าไม่รู้หลักหน้าที่ต่ออริยสัจ<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_42.mp3' type='audio/mp3'></audio></p>
-                <p>ก่อนจะเข้าเนื้อ มาดูหนังอริยสัจกันก่อน<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_43.mp3' type='audio/mp3'></audio></p>
-                <p>ดูขันธ์ ๕ ให้เห็นการทำงานของชีวิต พอได้พื้นความเข้าใจที่จะไปเรียนอริยสัจ<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_44.mp3' type='audio/mp3'></audio></p>
-                <p>ชอบอ้างกันนักว่าอริยสัจสี่ แต่แค่หน้าที่ปริญญา ก็ยังไม่รู้จัก  [23.00]<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/13_20.mp3' type='audio/mp3'></audio></p>
-                <p>ชอบอ้างกันนักว่าอริยสัจสี่  แต่แค่หน้าที่ปริญญา ก็ยังไม่รู้จัก (ส่วน ถาม-ตอบ) [40.08]<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/13_21.mp3' type='audio/mp3'></audio></p>
-                <p>ปัญญาเป็นอริยสัจธรรม<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/155.mp3' type='audio/mp3'></audio></p>
+                <p>อาสาฬหบูชาเทศนา พ.ศ. ๒๕๒๙ กัณฑ์ ๒ -: อริยสัจจ์ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6027.mp3' type='audio/mp3'></audio></p>
+                <p>อาสาฬหบูชาเทศนา พ.ศ. ๒๕๓๑ กัณฑ์ที่ ๑ -: อตัมมยตากับอริยสัจจส... - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6030.mp3' type='audio/mp3'></audio></p>
+                <p>สรุปปฎิจจสมุปบาทและอริยสัจจ์ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/12003.mp3' type='audio/mp3'></audio></p>
+                <p>แม้จะพูดถึงอริยสัจสี่กันสักเท่าไร ก็ไม่มีทางเข้าใจ ถ้าไม่รู้หลักหน้าที่ต่ออริยสัจ - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_42.mp3' type='audio/mp3'></audio></p>
+                <p>ก่อนจะเข้าเนื้อ มาดูหนังอริยสัจกันก่อน - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_43.mp3' type='audio/mp3'></audio></p>
+                <p>ดูขันธ์ ๕ ให้เห็นการทำงานของชีวิต พอได้พื้นความเข้าใจที่จะไปเรียนอริยสัจ - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_44.mp3' type='audio/mp3'></audio></p>
+                <p>ชอบอ้างกันนักว่าอริยสัจสี่ แต่แค่หน้าที่ปริญญา ก็ยังไม่รู้จัก  [23.00] - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/13_20.mp3' type='audio/mp3'></audio></p>
+                <p>ชอบอ้างกันนักว่าอริยสัจสี่  แต่แค่หน้าที่ปริญญา ก็ยังไม่รู้จัก (ส่วน ถาม-ตอบ) [40.08] - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/13_21.mp3' type='audio/mp3'></audio></p>
+                <p>ปัญญาเป็นอริยสัจธรรม - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/155.mp3' type='audio/mp3'></audio></p>
 
                 <h4> ธรรมเทศนาว่าด้วย - ทุกข์ </h4>
-                <p>การดับทุกข์เป็นหน้าที่ของทุกคน<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/1011.mp3' type='audio/mp3'></audio></p>
-                <p>ทำอย่างไรจึงจะไม่เป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2015.mp3' type='audio/mp3'></audio></p>
-                <p>ทุกข์และความดับไม่เหลือแห่งทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2016.mp3' type='audio/mp3'></audio></p>
-                <p>พรรษากาลเทศนา กัณฑ์ 0๔ -:การหาความสุขจากสิ่งที่เป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/4019.mp3' type='audio/mp3'></audio></p>
-                <p>เทศน์วันออกพรรษา -:การออกจากสิ่งที่ทำให้เป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/5004.mp3' type='audio/mp3'></audio></p>
-                <p>มาฆบูชาเทศนา กัณฑ์ ๓ -:การวางของหนักคือการดับทุกข์ <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/5014.mp3' type='audio/mp3'></audio></p>
-                <p>วิสาขบูชาเทศนา กัณฑ์ ๒ -:ทำลายเหตุแห่งความทุกข์กันเถิด<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6009.mp3' type='audio/mp3'></audio></p>
-                <p>อาสาฬหบูชาเทศนา พ.ศ. ๒๕๒๙ กัณฑ์ ๓ -: ความทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6028.mp3' type='audio/mp3'></audio></p>
-                <p>สิ่งแรกที่ต้องรู้จักนั้นคือความทุกข์.<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/12020.mp3' type='audio/mp3'></audio></p>
-                <p>หนีทุกข์อยากมีสุขกันนัก แต่ไม่รู้จักว่าเจอมันเข้าจะเอาอย่างไร<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_55.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตและสังคมทุกข์ระทมถึงขั้นวิกฤต ก็เพราะคนจมติดอยู่แค่ความสุขที่พึ่งพาการเสพ<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_57.mp3' type='audio/mp3'></audio></p>
-                <p>ไฮเทค ไฮทุกข์ (๓๐.๒๙)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/15_08.mp3' type='audio/mp3'></audio></p>
-                <p>หนีทุกข์อยากมีความสุขกันนัก  แต่ไม่รู้จักว่าเจอมันเข้าจะเอาอย่างไร(๓๐.๐๐)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/21_09.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตและสังคมทุกข์ระทมถึงขั้นวิกฤต  ก็เพราะคนจะจมติดอยู่แค่ความสุขที่พึ่งพาการเสพ(๔๖.๓๖)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/21_11.mp3' type='audio/mp3'></audio></p>
-                <p>ถึงจะมีความสุข แต่จะให้เป็นสุขแท้ไม่มีทุกข์ ก็ต้องปฏิบัติต่อสุขนั้นให้ถูก (๕๒.๒๗)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/21_14.mp3' type='audio/mp3'></audio></p>
-                <p>สูตรแก้ทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/045.mp3' type='audio/mp3'></audio></p>
-                <p>เห็นผิดแล้วทุกข์ เห็นถูกแล้วสบาย<br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/050.mp3' type='audio/mp3'></audio></p>
-                <p>อุปทานขันธ์ห้า...เป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/052.mp3' type='audio/mp3'></audio></p>
-                <p>การปฏิบัติเพื่อพ้นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/087.mp3' type='audio/mp3'></audio></p>
-                <p>ยืน เดิน นั่ง นอน ปราศจากทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/056A.mp3' type='audio/mp3'></audio></p>
-                <p>ทางแก้ทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/042.mp3' type='audio/mp3'></audio></p>
-                <p>ทางเกิดของเพลิงทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/097.mp3' type='audio/mp3'></audio></p>
-                <p>สุขทุกข์อยู่ที่ใจ<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/113.mp3' type='audio/mp3'></audio></p>
-                <p>วางแผนชีวิตพิชิตความทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/117.mp3' type='audio/mp3'></audio></p>
-                <p>เป็นทุกข์ได้ทั้งยินร้ายยินดี<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/191.mp3' type='audio/mp3'></audio></p>
-                <p>ความยึดมั่นถือมั่นเป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/232.mp3' type='audio/mp3'></audio></p>
-                <p>เคล็ดลับของความดับทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/248.mp3' type='audio/mp3'></audio></p>
-                <p>วิถีทางดับทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/250.mp3' type='audio/mp3'></audio></p>
-                <p>การเกิดที่เป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/252.mp3' type='audio/mp3'></audio></p>
-                <p>ถอนตนให้พ้นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/256.mp3' type='audio/mp3'></audio></p>
-                <p>รู้จักสมมติ ปลดทุกข์ได้<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/277.mp3' type='audio/mp3'></audio></p>
-                <p>การยึดถือเป็นเหตุของความทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/344.mp3' type='audio/mp3'></audio></p>
-                <p>ปล่อยวางปลดทุกข์ จะสุขใจ<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/360.mp3' type='audio/mp3'></audio></p>
-                <p>ธรรมที่ช่วยให้พ้นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/388.mp3' type='audio/mp3'></audio></p>
-                <p>ใช้ปัญญาพาตนให้พ้นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/394.mp3' type='audio/mp3'></audio></p>
-                <p>ทุกข์มีเพราะการยึดถือ<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/399.mp3' type='audio/mp3'></audio></p>
-                <p>หลักการแก้ทุกข์ (หลักธรรมสำหรัแก้ปัญหาชีวิต)<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/404.mp3' type='audio/mp3'></audio></p>
-                <p>แนวทางแก้หขความทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/416.mp3' type='audio/mp3'></audio></p>
-                <p>ความทุกข์เกิดจากความยึดถือ<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/441.mp3' type='audio/mp3'></audio></p>
-                <p>กิเลสเผาเราเป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/462.mp3' type='audio/mp3'></audio></p>
-                <p>ดับเพลิงกิเลสเพลิงทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/463.mp3' type='audio/mp3'></audio></p>
-                <p>รู้ทันรู้เท่าไม่เศร้าไม่ทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/480.mp3' type='audio/mp3'></audio></p>
-                <p>เพราะเราโง่จึงเป็นทุกข์ (มองให้เห็นความเป็นจริง)<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/496.mp3' type='audio/mp3'></audio></p>
-                <p>รู้จักคิดชีวิตไม่ทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/500.mp3' type='audio/mp3'></audio></p>
-                <p>ฉลาดเป็นสุข ทุกข์เพราะโง่<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/521.mp3' type='audio/mp3'></audio></p>
-                <p>สอนให้รู้เท่าทันทุกข์ตามความเป็นจริง<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/025.mp3' type='audio/mp3'></audio></p>
-                <p>สุขทุกข์อยู่ที่ใจดีหรือใจร้าย<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/121.mp3' type='audio/mp3'></audio></p>
-                <p>ผู้ใดไม่สำรวมจิตย่อมก่อทุกข์ให้ตน<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/122.mp3' type='audio/mp3'></audio></p>
-                <p>บุคคลไม่ฝึกจิต ย่อมอยู่เป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/134.mp3' type='audio/mp3'></audio></p>
-                <p>ควรถอนตนออกจากทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/135.mp3' type='audio/mp3'></audio></p>
-                <p>จะพ้นทุกข์ได้ต้องอาศัยตนเอง<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/150.mp3' type='audio/mp3'></audio></p>
-                <p>กิเลสตัณหาพาท่องทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/169.mp3' type='audio/mp3'></audio></p>
-                <p>มีทุกข์อยู่ไม่รู้จักทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/172.mp3' type='audio/mp3'></audio></p>
-                <p>ข้อปฎิบัติให้ถึงความดับทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/187.mp3' type='audio/mp3'></audio></p>
-                <p>ไม่เห็นทุกข์จะพ้นทุกข์ได้อย่างไร<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/248.mp3' type='audio/mp3'></audio></p>
-                <p>จะพ้นทุกข์ได้ต้องอาศัยฝึกจิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/284.mp3' type='audio/mp3'></audio></p>
-                <p>การส่งจิตไปยึดสมบัติภายนอกเป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/286.mp3' type='audio/mp3'></audio></p>
-                <p>ตันหาพาท่องทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/291.mp3' type='audio/mp3'></audio></p>
-                <p>อนิจจัง ทุกข์ขัง อนัตตา<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/297.mp3' type='audio/mp3'></audio></p>
-                <p>ภาวนารู้เท่าทุกข์ในขันธ์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/312.mp3' type='audio/mp3'></audio></p>
-                <p>เพราะไม่รู้ธรรมของจริงจึงเที่ยวทุกข์ในสงสาร<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/321.mp3' type='audio/mp3'></audio></p>
-                <p>ความทุกข์ในชีวิตมีมากมาย<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/327.mp3' type='audio/mp3'></audio></p>
-                <p>ตันหาพาก่อทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/339.mp3' type='audio/mp3'></audio></p>
-                <p>ผู้เกียจคร้านย่อมอยู่เป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/364.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตมีความทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/371.mp3' type='audio/mp3'></audio></p>
-                <p>ทุกข์สิ่งเสื่อมและดับไป<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/382.mp3' type='audio/mp3'></audio></p>
-                <p>สุขทุกข์อยู่กับเหตุ<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/406.mp3' type='audio/mp3'></audio></p>
-                <p>ความยึดถือเป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/440.mp3' type='audio/mp3'></audio></p>
-                <p>ชาติความเกิดเป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/455.mp3' type='audio/mp3'></audio></p>
-                <p>ตัณหาพาท่องทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/465.mp3' type='audio/mp3'></audio></p>
-                <p>พิจารณาทุกข์ในธาตุขันธ์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/469.mp3' type='audio/mp3'></audio></p>
-                <p>เหตุแห่งสุข เหตุแห่งทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/478.mp3' type='audio/mp3'></audio></p>
-                <p>ขึ้นชื่อว่าบาปแม้แต่น้อยก็มีทุกข์เป็นผล<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/484.mp3' type='audio/mp3'></audio></p>
-                <p>ราคะตัณหาพาท่องทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/489.mp3' type='audio/mp3'></audio></p>
-                <p>เพียรเห็นทุกข์ภัยในกามทั้งหลาย<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/491.mp3' type='audio/mp3'></audio></p>
-                <p>เหตุแห่งทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/494.mp3' type='audio/mp3'></audio></p>
-                <p>ผู้มีปัญญาก็สามารถพาชีวิตให้พ้นทุกข์ได้<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/500.mp3' type='audio/mp3'></audio></p>
-                <p>ผู้เห็นทุกข์ต้องลุกขึ้นภาวนา<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/502.mp3' type='audio/mp3'></audio></p>
-                <p>หาเลี้ยงทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/503.mp3' type='audio/mp3'></audio></p>
-                <p>ตัณหาพาท่องทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/510.mp3' type='audio/mp3'></audio></p>
-                <p>ทุกข์สมุทัย<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/513.mp3' type='audio/mp3'></audio></p>
-                <p>ผู้อยู่ย่อมไม่มีที่พึ่งย่อมเป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/528.mp3' type='audio/mp3'></audio></p>
-                <p>สงบกิเลส หมดเหตุแห่งทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/534.mp3' type='audio/mp3'></audio></p>
-                <p>ตัณหาเหตุแห่งทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/567.mp3' type='audio/mp3'></audio></p>
-                <p>การเกิดบ่อยเป็นทุกข์บ่อยๆ<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/578.mp3' type='audio/mp3'></audio></p>
-                <p>ทุกข์เป็นภัยของสัตว์โลก<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/583.mp3' type='audio/mp3'></audio></p>
-                <p>เพราะหลงเหยื่อล่อจึงไม่เบื่อทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/596.mp3' type='audio/mp3'></audio></p>
-                <p>สุขทุกข์อยู่ที่จิตดวงเดียว<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/602.mp3' type='audio/mp3'></audio></p>
-                <p>ออกแสวงหาทางพ้นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/606.mp3' type='audio/mp3'></audio></p>
-                <p>ทุกข์หนอๆ<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/610.mp3' type='audio/mp3'></audio></p>
-                <p>แดนเกิดแห่งทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/614.mp3' type='audio/mp3'></audio></p>
-                <p>จะเป็นสุขก็ต้องเอาทุกข์เป็นทุนไปก่อน<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/616.mp3' type='audio/mp3'></audio></p>
-                <p>ให้ทุกข์แก่ท่านทุกข์นั้นถึงตัว<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/619.mp3' type='audio/mp3'></audio></p>
-                <p>ให้เห็นทุกข์ในชาติความเกิด<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/632.mp3' type='audio/mp3'></audio></p>
-                <p>ติดสุขชั่วคราวย่อมเข้าถึงทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/640.mp3' type='audio/mp3'></audio></p>
-                <p>ทุกข์คนต้องพัฒนาตัวเอง<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/656.mp3' type='audio/mp3'></audio></p>
-                <p>ชี้ทางบรรเทาทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/658.mp3' type='audio/mp3'></audio></p>
-                <p>เอาทุกข์เป็นทุนเอาบุญเป็นกำไร<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/666.mp3' type='audio/mp3'></audio></p>
-                <p>เอาความดีเป็นเครื่องบรรเทาทุกข์ทางใจ000000<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/667.mp3' type='audio/mp3'></audio></p>
-                <p>ยึดสิ่งใดย่อมทุกข์กับสิ่งนั้น<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/684.mp3' type='audio/mp3'></audio></p>
-                <p>จะพ้นทุกข์ทางใจได้อย่างไร<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/690.mp3' type='audio/mp3'></audio></p>
-                <p>คนเราพ้นทุกข์ไปไม่ได้เพราะความไม่รู้<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/691.mp3' type='audio/mp3'></audio></p>
-                <p>จิตไม่ยอมอยู่กับทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/696.mp3' type='audio/mp3'></audio></p>
-                <p>ก้าวสู่ทางพ้นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/716.mp3' type='audio/mp3'></audio></p>
-                <p>พิจารณาทุกข์ของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/718.mp3' type='audio/mp3'></audio></p>
-                <p>อุปาทานขันธ์ห้าเป็นตัวทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/721.mp3' type='audio/mp3'></audio></p>
-                <p>ธรรมเครื่องบรรเทาทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/722.mp3' type='audio/mp3'></audio></p>
+                <p>การดับทุกข์เป็นหน้าที่ของทุกคน - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/1011.mp3' type='audio/mp3'></audio></p>
+                <p>ทำอย่างไรจึงจะไม่เป็นทุกข์ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2015.mp3' type='audio/mp3'></audio></p>
+                <p>ทุกข์และความดับไม่เหลือแห่งทุกข์ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2016.mp3' type='audio/mp3'></audio></p>
+                <p>พรรษากาลเทศนา กัณฑ์ 0๔ -:การหาความสุขจากสิ่งที่เป็นทุกข์ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/4019.mp3' type='audio/mp3'></audio></p>
+                <p>เทศน์วันออกพรรษา -:การออกจากสิ่งที่ทำให้เป็นทุกข์ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/5004.mp3' type='audio/mp3'></audio></p>
+                <p>มาฆบูชาเทศนา กัณฑ์ ๓ -:การวางของหนักคือการดับทุกข์  - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/5014.mp3' type='audio/mp3'></audio></p>
+                <p>วิสาขบูชาเทศนา กัณฑ์ ๒ -:ทำลายเหตุแห่งความทุกข์กันเถิด - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6009.mp3' type='audio/mp3'></audio></p>
+                <p>อาสาฬหบูชาเทศนา พ.ศ. ๒๕๒๙ กัณฑ์ ๓ -: ความทุกข์ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6028.mp3' type='audio/mp3'></audio></p>
+                <p>สิ่งแรกที่ต้องรู้จักนั้นคือความทุกข์. - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/12020.mp3' type='audio/mp3'></audio></p>
+                <p>หนีทุกข์อยากมีสุขกันนัก แต่ไม่รู้จักว่าเจอมันเข้าจะเอาอย่างไร - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_55.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตและสังคมทุกข์ระทมถึงขั้นวิกฤต ก็เพราะคนจมติดอยู่แค่ความสุขที่พึ่งพาการเสพ - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_57.mp3' type='audio/mp3'></audio></p>
+                <p>ไฮเทค ไฮทุกข์ (๓๐.๒๙) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/15_08.mp3' type='audio/mp3'></audio></p>
+                <p>หนีทุกข์อยากมีความสุขกันนัก  แต่ไม่รู้จักว่าเจอมันเข้าจะเอาอย่างไร(๓๐.๐๐) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/21_09.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตและสังคมทุกข์ระทมถึงขั้นวิกฤต  ก็เพราะคนจะจมติดอยู่แค่ความสุขที่พึ่งพาการเสพ(๔๖.๓๖) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/21_11.mp3' type='audio/mp3'></audio></p>
+                <p>ถึงจะมีความสุข แต่จะให้เป็นสุขแท้ไม่มีทุกข์ ก็ต้องปฏิบัติต่อสุขนั้นให้ถูก (๕๒.๒๗) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/21_14.mp3' type='audio/mp3'></audio></p>
+                <p>สูตรแก้ทุกข์ - char <br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/th_045.mp3' type='audio/mp3'></audio></p>
+                <p>เห็นผิดแล้วทุกข์ เห็นถูกแล้วสบาย - char <br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/th_050.mp3' type='audio/mp3'></audio></p>
+                <p>อุปทานขันธ์ห้า...เป็นทุกข์ - char <br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/th_052.mp3' type='audio/mp3'></audio></p>
+                <p>การปฏิบัติเพื่อพ้นทุกข์ - char <br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/th_087.mp3' type='audio/mp3'></audio></p>
+                <p>ยืน เดิน นั่ง นอน ปราศจากทุกข์ - char <br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/th_056a.mp3' type='audio/mp3'></audio></p>
+                <p>ทางแก้ทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/042.mp3' type='audio/mp3'></audio></p>
+                <p>ทางเกิดของเพลิงทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/097.mp3' type='audio/mp3'></audio></p>
+                <p>สุขทุกข์อยู่ที่ใจ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/113.mp3' type='audio/mp3'></audio></p>
+                <p>วางแผนชีวิตพิชิตความทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/117.mp3' type='audio/mp3'></audio></p>
+                <p>เป็นทุกข์ได้ทั้งยินร้ายยินดี - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/191.mp3' type='audio/mp3'></audio></p>
+                <p>ความยึดมั่นถือมั่นเป็นทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/232.mp3' type='audio/mp3'></audio></p>
+                <p>เคล็ดลับของความดับทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/248.mp3' type='audio/mp3'></audio></p>
+                <p>วิถีทางดับทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/250.mp3' type='audio/mp3'></audio></p>
+                <p>การเกิดที่เป็นทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/252.mp3' type='audio/mp3'></audio></p>
+                <p>ถอนตนให้พ้นทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/256.mp3' type='audio/mp3'></audio></p>
+                <p>รู้จักสมมติ ปลดทุกข์ได้ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/277.mp3' type='audio/mp3'></audio></p>
+                <p>การยึดถือเป็นเหตุของความทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/344.mp3' type='audio/mp3'></audio></p>
+                <p>ปล่อยวางปลดทุกข์ จะสุขใจ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/360.mp3' type='audio/mp3'></audio></p>
+                <p>ธรรมที่ช่วยให้พ้นทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/388.mp3' type='audio/mp3'></audio></p>
+                <p>ใช้ปัญญาพาตนให้พ้นทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/394.mp3' type='audio/mp3'></audio></p>
+                <p>ทุกข์มีเพราะการยึดถือ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/399.mp3' type='audio/mp3'></audio></p>
+                <p>หลักการแก้ทุกข์ (หลักธรรมสำหรัแก้ปัญหาชีวิต) - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/404.mp3' type='audio/mp3'></audio></p>
+                <p>แนวทางแก้หขความทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/416.mp3' type='audio/mp3'></audio></p>
+                <p>ความทุกข์เกิดจากความยึดถือ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/441.mp3' type='audio/mp3'></audio></p>
+                <p>กิเลสเผาเราเป็นทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/462.mp3' type='audio/mp3'></audio></p>
+                <p>ดับเพลิงกิเลสเพลิงทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/463.mp3' type='audio/mp3'></audio></p>
+                <p>รู้ทันรู้เท่าไม่เศร้าไม่ทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/480.mp3' type='audio/mp3'></audio></p>
+                <p>เพราะเราโง่จึงเป็นทุกข์ (มองให้เห็นความเป็นจริง) - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/496.mp3' type='audio/mp3'></audio></p>
+                <p>รู้จักคิดชีวิตไม่ทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/500.mp3' type='audio/mp3'></audio></p>
+                <p>ฉลาดเป็นสุข ทุกข์เพราะโง่ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/521.mp3' type='audio/mp3'></audio></p>
+                <p>สอนให้รู้เท่าทันทุกข์ตามความเป็นจริง - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/025.mp3' type='audio/mp3'></audio></p>
+                <p>สุขทุกข์อยู่ที่ใจดีหรือใจร้าย - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/121.mp3' type='audio/mp3'></audio></p>
+                <p>ผู้ใดไม่สำรวมจิตย่อมก่อทุกข์ให้ตน - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/122.mp3' type='audio/mp3'></audio></p>
+                <p>บุคคลไม่ฝึกจิต ย่อมอยู่เป็นทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/134.mp3' type='audio/mp3'></audio></p>
+                <p>ควรถอนตนออกจากทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/135.mp3' type='audio/mp3'></audio></p>
+                <p>จะพ้นทุกข์ได้ต้องอาศัยตนเอง - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/150.mp3' type='audio/mp3'></audio></p>
+                <p>กิเลสตัณหาพาท่องทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/169.mp3' type='audio/mp3'></audio></p>
+                <p>มีทุกข์อยู่ไม่รู้จักทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/172.mp3' type='audio/mp3'></audio></p>
+                <p>ข้อปฎิบัติให้ถึงความดับทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/187.mp3' type='audio/mp3'></audio></p>
+                <p>ไม่เห็นทุกข์จะพ้นทุกข์ได้อย่างไร - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/248.mp3' type='audio/mp3'></audio></p>
+                <p>จะพ้นทุกข์ได้ต้องอาศัยฝึกจิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/284.mp3' type='audio/mp3'></audio></p>
+                <p>การส่งจิตไปยึดสมบัติภายนอกเป็นทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/286.mp3' type='audio/mp3'></audio></p>
+                <p>ตันหาพาท่องทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/291.mp3' type='audio/mp3'></audio></p>
+                <p>อนิจจัง ทุกข์ขัง อนัตตา - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/297.mp3' type='audio/mp3'></audio></p>
+                <p>ภาวนารู้เท่าทุกข์ในขันธ์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/312.mp3' type='audio/mp3'></audio></p>
+                <p>เพราะไม่รู้ธรรมของจริงจึงเที่ยวทุกข์ในสงสาร - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/321.mp3' type='audio/mp3'></audio></p>
+                <p>ความทุกข์ในชีวิตมีมากมาย - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/327.mp3' type='audio/mp3'></audio></p>
+                <p>ตันหาพาก่อทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/339.mp3' type='audio/mp3'></audio></p>
+                <p>ผู้เกียจคร้านย่อมอยู่เป็นทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/364.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตมีความทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/371.mp3' type='audio/mp3'></audio></p>
+                <p>ทุกข์สิ่งเสื่อมและดับไป - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/382.mp3' type='audio/mp3'></audio></p>
+                <p>สุขทุกข์อยู่กับเหตุ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/406.mp3' type='audio/mp3'></audio></p>
+                <p>ความยึดถือเป็นทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/440.mp3' type='audio/mp3'></audio></p>
+                <p>ชาติความเกิดเป็นทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/455.mp3' type='audio/mp3'></audio></p>
+                <p>ตัณหาพาท่องทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/465.mp3' type='audio/mp3'></audio></p>
+                <p>พิจารณาทุกข์ในธาตุขันธ์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/469.mp3' type='audio/mp3'></audio></p>
+                <p>เหตุแห่งสุข เหตุแห่งทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/478.mp3' type='audio/mp3'></audio></p>
+                <p>ขึ้นชื่อว่าบาปแม้แต่น้อยก็มีทุกข์เป็นผล - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/484.mp3' type='audio/mp3'></audio></p>
+                <p>ราคะตัณหาพาท่องทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/489.mp3' type='audio/mp3'></audio></p>
+                <p>เพียรเห็นทุกข์ภัยในกามทั้งหลาย - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/491.mp3' type='audio/mp3'></audio></p>
+                <p>เหตุแห่งทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/494.mp3' type='audio/mp3'></audio></p>
+                <p>ผู้มีปัญญาก็สามารถพาชีวิตให้พ้นทุกข์ได้ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/500.mp3' type='audio/mp3'></audio></p>
+                <p>ผู้เห็นทุกข์ต้องลุกขึ้นภาวนา - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/502.mp3' type='audio/mp3'></audio></p>
+                <p>หาเลี้ยงทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/503.mp3' type='audio/mp3'></audio></p>
+                <p>ตัณหาพาท่องทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/510.mp3' type='audio/mp3'></audio></p>
+                <p>ทุกข์สมุทัย - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/513.mp3' type='audio/mp3'></audio></p>
+                <p>ผู้อยู่ย่อมไม่มีที่พึ่งย่อมเป็นทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/528.mp3' type='audio/mp3'></audio></p>
+                <p>สงบกิเลส หมดเหตุแห่งทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/534.mp3' type='audio/mp3'></audio></p>
+                <p>ตัณหาเหตุแห่งทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/567.mp3' type='audio/mp3'></audio></p>
+                <p>การเกิดบ่อยเป็นทุกข์บ่อยๆ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/578.mp3' type='audio/mp3'></audio></p>
+                <p>ทุกข์เป็นภัยของสัตว์โลก - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/583.mp3' type='audio/mp3'></audio></p>
+                <p>เพราะหลงเหยื่อล่อจึงไม่เบื่อทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/596.mp3' type='audio/mp3'></audio></p>
+                <p>สุขทุกข์อยู่ที่จิตดวงเดียว - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/602.mp3' type='audio/mp3'></audio></p>
+                <p>ออกแสวงหาทางพ้นทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/606.mp3' type='audio/mp3'></audio></p>
+                <p>ทุกข์หนอๆ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/610.mp3' type='audio/mp3'></audio></p>
+                <p>แดนเกิดแห่งทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/614.mp3' type='audio/mp3'></audio></p>
+                <p>จะเป็นสุขก็ต้องเอาทุกข์เป็นทุนไปก่อน - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/616.mp3' type='audio/mp3'></audio></p>
+                <p>ให้ทุกข์แก่ท่านทุกข์นั้นถึงตัว - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/619.mp3' type='audio/mp3'></audio></p>
+                <p>ให้เห็นทุกข์ในชาติความเกิด - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/632.mp3' type='audio/mp3'></audio></p>
+                <p>ติดสุขชั่วคราวย่อมเข้าถึงทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/640.mp3' type='audio/mp3'></audio></p>
+                <p>ทุกข์คนต้องพัฒนาตัวเอง - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/656.mp3' type='audio/mp3'></audio></p>
+                <p>ชี้ทางบรรเทาทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/658.mp3' type='audio/mp3'></audio></p>
+                <p>เอาทุกข์เป็นทุนเอาบุญเป็นกำไร - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/666.mp3' type='audio/mp3'></audio></p>
+                <p>เอาความดีเป็นเครื่องบรรเทาทุกข์ทางใจ000000 - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/667.mp3' type='audio/mp3'></audio></p>
+                <p>ยึดสิ่งใดย่อมทุกข์กับสิ่งนั้น - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/684.mp3' type='audio/mp3'></audio></p>
+                <p>จะพ้นทุกข์ทางใจได้อย่างไร - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/690.mp3' type='audio/mp3'></audio></p>
+                <p>คนเราพ้นทุกข์ไปไม่ได้เพราะความไม่รู้ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/691.mp3' type='audio/mp3'></audio></p>
+                <p>จิตไม่ยอมอยู่กับทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/696.mp3' type='audio/mp3'></audio></p>
+                <p>ก้าวสู่ทางพ้นทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/716.mp3' type='audio/mp3'></audio></p>
+                <p>พิจารณาทุกข์ของชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/718.mp3' type='audio/mp3'></audio></p>
+                <p>อุปาทานขันธ์ห้าเป็นตัวทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/721.mp3' type='audio/mp3'></audio></p>
+                <p>ธรรมเครื่องบรรเทาทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/722.mp3' type='audio/mp3'></audio></p>
 
                 <h4> ธรรมเทศนาว่าด้วย - มรรค </h4>
-                <p>พรรษากาลเทศนา กัณฑ์ 0๓ -:ไตรโลกุตตรธรรม : มรรค-ผล-นิพพาน<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/3024.mp3' type='audio/mp3'></audio></p>
-                <p>อัฏฐังคิกมรรคยอกศิลปะแห่งการครองชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8025.mp3' type='audio/mp3'></audio></p>
-                <p>นับถือเทวดายังพอฟัง แต่ถ้ามัวหวังพึ่งขอผล ก็หล่นจากอริยมรรคไม่เหลือดี ตอนที่ ๑ (๔๘.๒๖)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/02_08.mp3' type='audio/mp3'></audio></p>
-                <p>นับถือเทวดายังพอฟัง แต่ถ้ามัวหวังพึ่งขอผล ก็หล่นจากอริยมรรคไม่เหลือดี ตอนที่ ๒ (๔๖.๒๗)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/02_09.mp3' type='audio/mp3'></audio></p>
-                <p>นับถือเทวดายังพอฟัง แต่ถ้ามัวหวังพึ่งขอผล ก็หล่นจากอริยมรรค ไม่เหลือดี(93.56).MP3<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/04_12.mp3' type='audio/mp3'></audio></p>
-                <p>นับถือเทวดายังพอฟัง แต่ถ้ามัวหวังพึ่งขอผล ก็หล่นจากอริยมรรคไม่เหลือดี<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_13.mp3' type='audio/mp3'></audio></p>
-                <p>ฝึกคน ๓ แดน คนก็เดินไปในวิถีชีวิตดีงามที่เรียกว่ามรรค<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_32.mp3' type='audio/mp3'></audio></p>
-                <p>มรรคมีองค์ ๘ ก็กระจายออกไปจากวิถีชีวิตดีงาม ๓ แดน นี่เอง<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_33.mp3' type='audio/mp3'></audio></p>
-                <p>ดูมรรคมีองค์ ๘ ให้เห็นวิถีชีวิตที่ดีงาม ว่าดำเนินไปอย่างไร<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_45.mp3' type='audio/mp3'></audio></p>
-                <p>สัมมามรรค - มิจฉามรรค<br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/043.mp3' type='audio/mp3'></audio></p>
+                <p>พรรษากาลเทศนา กัณฑ์ 0๓ -:ไตรโลกุตตรธรรม : มรรค-ผล-นิพพาน - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/3024.mp3' type='audio/mp3'></audio></p>
+                <p>อัฏฐังคิกมรรคยอกศิลปะแห่งการครองชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8025.mp3' type='audio/mp3'></audio></p>
+                <p>นับถือเทวดายังพอฟัง แต่ถ้ามัวหวังพึ่งขอผล ก็หล่นจากอริยมรรคไม่เหลือดี ตอนที่ ๑ (๔๘.๒๖) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/02_08.mp3' type='audio/mp3'></audio></p>
+                <p>นับถือเทวดายังพอฟัง แต่ถ้ามัวหวังพึ่งขอผล ก็หล่นจากอริยมรรคไม่เหลือดี ตอนที่ ๒ (๔๖.๒๗) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/02_09.mp3' type='audio/mp3'></audio></p>
+                <p>นับถือเทวดายังพอฟัง แต่ถ้ามัวหวังพึ่งขอผล ก็หล่นจากอริยมรรค ไม่เหลือดี(93.56).MP3 - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/04_12.mp3' type='audio/mp3'></audio></p>
+                <p>นับถือเทวดายังพอฟัง แต่ถ้ามัวหวังพึ่งขอผล ก็หล่นจากอริยมรรคไม่เหลือดี - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_13.mp3' type='audio/mp3'></audio></p>
+                <p>ฝึกคน ๓ แดน คนก็เดินไปในวิถีชีวิตดีงามที่เรียกว่ามรรค - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_32.mp3' type='audio/mp3'></audio></p>
+                <p>มรรคมีองค์ ๘ ก็กระจายออกไปจากวิถีชีวิตดีงาม ๓ แดน นี่เอง - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_33.mp3' type='audio/mp3'></audio></p>
+                <p>ดูมรรคมีองค์ ๘ ให้เห็นวิถีชีวิตที่ดีงาม ว่าดำเนินไปอย่างไร - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_45.mp3' type='audio/mp3'></audio></p>
+                <p>สัมมามรรค - มิจฉามรรค - char <br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/th_043.mp3' type='audio/mp3'></audio></p>
 
                 <h4> ธรรมเทศนาว่าด้วย - ชีวิต </h4>
-                <p>การทำงานคือการปฏิบัติธรรม การมีชีวิตด้วยจิตว่าง<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/1015.mp3' type='audio/mp3'></audio></p>
-                <p>การมีชีวิตด้วยจิตว่าง<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/1016.mp3' type='audio/mp3'></audio></p>
-                <p>การมีนิพพานในชีวิตประจำวัน<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/1023.mp3' type='audio/mp3'></audio></p>
-                <p>คุณค่าของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2008.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตคืออะไร<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2011.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตเป็นสิ่งที่ต้องพัฒนา<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2012.mp3' type='audio/mp3'></audio></p>
-                <p>ธรรมะในฐานะเป็นเครื่องดำเนินชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2024.mp3' type='audio/mp3'></audio></p>
-                <p>เป้าหมายของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2030.mp3' type='audio/mp3'></audio></p>
-                <p>ส่วนประกอบและโครงสร้างของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/3018.mp3' type='audio/mp3'></audio></p>
-                <p>มาฆบูชาเทศนา กัณฑ์ ๑ -:การมีชีวิตอยู่เหนือความชั่ว-ดี<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/5021.mp3' type='audio/mp3'></audio></p>
-                <p>มาฆบูชาเทศนา กัณฑ์ ๒ -:อตัมมยตา มนตราสำหรับชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/5024.mp3' type='audio/mp3'></audio></p>
-                <p>มาฆบูชาเทศนา กัณฑ์ ๓ -:การมีชีวิตอยู่ด้วยธรรมะ<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6001.mp3' type='audio/mp3'></audio></p>
-                <p>มาฆบูชาเทศนา กัณฑ์ ๔ -:ทางเดินของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6002.mp3' type='audio/mp3'></audio></p>
-                <p>การทำชีวิตให้มีธรรมะ<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/7022.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตเป็นสิ่งที่พัฒนาได้และต้องพัฒนา<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/7030.mp3' type='audio/mp3'></audio></p>
-                <p>การมีธรรมะในการครองชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8002.mp3' type='audio/mp3'></audio></p>
-                <p>ศาสนาของคู่กันกับชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8010.mp3' type='audio/mp3'></audio></p>
-                <p>ปรมัตถศิลป์แห่งการครองชีวิตตามทัศนของชาวพุทธ<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8021.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตในฐานะเป็นวัตถุแห่งศิลปะ<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8022.mp3' type='audio/mp3'></audio></p>
-                <p>ศิลปะแห่งการมีชีวิตอยู่เหนือปัญหา<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8023.mp3' type='audio/mp3'></audio></p>
-                <p>ศิลปะสำหรับการมีชีวิตอยู่ในโลก<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8024.mp3' type='audio/mp3'></audio></p>
-                <p>อัฏฐังคิกมรรคยอกศิลปะแห่งการครองชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8025.mp3' type='audio/mp3'></audio></p>
-                <p>ศิลปะแห่งการอยู่กับนิพพานในชีวิตประจำวัน<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8029.mp3' type='audio/mp3'></audio></p>
-                <p>ศิลปะแห่งการมีชีวิตอยู่ด้วยจิตว่าง<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9001.mp3' type='audio/mp3'></audio></p>
-                <p>ธรรมะนั่นแหละคือคู่ชีวิตที่แท้จริง<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9003.mp3' type='audio/mp3'></audio></p>
-                <p>การมีชีวิตชนิดที่ไม่กัดเจ้าของ<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9004.mp3' type='audio/mp3'></audio></p>
-                <p>ความลึกซึ้งของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9007.mp3' type='audio/mp3'></audio></p>
-                <p>การมีชีวิตชนิดที่น่าพอใจ<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9008.mp3' type='audio/mp3'></audio></p>
-                <p>พลังผลักดันของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9010.mp3' type='audio/mp3'></audio></p>
-                <p>การมีธรรมะประกอบอยู่กับชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9012.mp3' type='audio/mp3'></audio></p>
-                <p>วิถีแห่งชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9018.mp3' type='audio/mp3'></audio></p>
-                <p>หลักการดำเนินชีวิตที่น่าพอใจ<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9020.mp3' type='audio/mp3'></audio></p>
-                <p>ธรรมะโดยแท้จริง เพื่อชีวิตที่สมบูรณ์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9028.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตนี้มีค่า<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9030.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตบริหาร : การบริหารชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/10002.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตอันประเสริฐ<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/10029.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตว่าง<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/10030.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตกีฬา: ชีวิตที่สนุกเหมือนเล่นกีฬา<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/11001.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตคือขันธ์ทั้งห้ามิใช่ตัวตน.<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/12022.mp3' type='audio/mp3'></audio></p>
-                <p>ทางสายกลาง เพื่อชีวิตสังคมที่สุขสมบูรณ์ (พระคันธกุฎี)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/07_09.mp3' type='audio/mp3'></audio></p>
-                <p>ฟื้นวินัยชาวพุทธขึ้นมา ให้เป็นวิถีชีวิตของสังคมไทย 41.44<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/08_16.mp3' type='audio/mp3'></audio></p>
-                <p>พอบวชพ้นอกพ่อแม่ ต้องรู้ให้แน่ ว่าจะมีชีวิตเป็นอยู่อย่างไร<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_02.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตพระใหม่ เริ่มต้นอย่างไร จึงจะพอให้ชื่นใจว่าเราได้บวชเรียน<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_05.mp3' type='audio/mp3'></audio></p>
-                <p>ถ้าเข้าถึงความจริงของธรรมชาติ แล้วเอามาจัดการชีวิตและสังคมให้ดีได้  ก็จบความหมายของพระพุทธศาสนา<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_27.mp3' type='audio/mp3'></audio></p>
-                <p>การพัฒนาชีวิต พัฒนาสังคม จะไม่ล่มสลาย ถ้าวินัยยังอยู่เป็นฐาน<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_30.mp3' type='audio/mp3'></audio></p>
-                <p>ฝึกคน ๓ แดน คนก็เดินไปในวิถีชีวิตดีงามที่เรียกว่ามรรค<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_32.mp3' type='audio/mp3'></audio></p>
-                <p>มรรคมีองค์ ๘ ก็กระจายออกไปจากวิถีชีวิตดีงาม ๓ แดน นี่เอง<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_33.mp3' type='audio/mp3'></audio></p>
-                <p>ดูขันธ์ ๕ ให้เห็นการทำงานของชีวิต พอได้พื้นความเข้าใจที่จะไปเรียนอริยสัจ<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_44.mp3' type='audio/mp3'></audio></p>
-                <p>ดูมรรคมีองค์ ๘ ให้เห็นวิถีชีวิตที่ดีงาม ว่าดำเนินไปอย่างไร<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_45.mp3' type='audio/mp3'></audio></p>
-                <p>ทางชีวิตดีงามมีอยู่ก็ดีแล้ว แต่คนที่ยังอยู่นอกทางเล่า ทำอย่างไรจะให้เขาเข้ามาเดิน<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_46.mp3' type='audio/mp3'></audio></p>
-                <p>แสงอรุณยืนยันการขึ้นมาของดวงอาทิตย์ แล้วอะไรเป็นบุพนิมิตของการเข้าสู่วิถีชีวิตที่ดีงาม ตอนที่ ๑<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_48.mp3' type='audio/mp3'></audio></p>
-                <p>แสงอรุณยืนยันการขึ้นมาของดวงอาทิตย์ แล้วอะไรเป็นบุพนิมิตของการเข้าสู่วิถีชีวิตที่ดีงาม ตอนที่ ๒<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_49.mp3' type='audio/mp3'></audio></p>
-                <p>ทางชีวิตของอารยชน เริ่มต้นด้วยปัจจัย ๒ มีหน่วยหนุนประคองอีก ๕ รวมเป็นแสงอรุณ ๗ รัศมี<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_50.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตและสังคมทุกข์ระทมถึงขั้นวิกฤต ก็เพราะคนจมติดอยู่แค่ความสุขที่พึ่งพาการเสพ<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_57.mp3' type='audio/mp3'></audio></p>
-                <p>มองอนาคตผ่านรากฐานความคิด ผ่านชีวิตท่านพุทธทาส  [57.34]<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/13_18.mp3' type='audio/mp3'></audio></p>
-                <p>2 ทางแยกแห่งชีวิต ที่เริ่มจากอายตนะ (1. สายความรู้สึก 2. สายความรู้)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/14_02.mp3' type='audio/mp3'></audio></p>
-                <p>สู่ชีวิตแห่งการศึกษาและสร้างสรรค์ บนฐานของอายตนะ 6 1:07:46<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/14_03.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตพระที่แท้ อุทิศให้แก่โลก (๗๔.๓๐)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/12_15.mp3' type='audio/mp3'></audio></p>
-                <p>มองอนาคตผ่านรากฐานความคิด และชีวิตท่านพุทธทาส<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/20_16.mp3' type='audio/mp3'></audio></p>
-                <p>จะเป็นใครก็มีความสุขได้ ขอเพียงให้ใช้ชีวิตให้เป็น (ใหม่) (๔๖.๓๒)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/21_02.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตและสังคมทุกข์ระทมถึงขั้นวิกฤต  ก็เพราะคนจะจมติดอยู่แค่ความสุขที่พึ่งพาการเสพ(๔๖.๓๖)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/21_11.mp3' type='audio/mp3'></audio></p>
-                <p>พัฒนาชีวิตกันไปเถิด  ความสุขจะเกิดมีแน่ ไม่หนีไปไหน (๘๘.๒๓)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/21_15.mp3' type='audio/mp3'></audio></p>
-                <p>ปีใหม่ ต้อนรับหรือท้าทาย และจุดหมายชีวิต (1.02.22)<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/22_15.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตแต่งงาน ครอบครัว<br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/011.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตไม่มีบทบอก<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/024.mp3' type='audio/mp3'></audio></p>
-                <p>ชี้ทางชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/032.mp3' type='audio/mp3'></audio></p>
-                <p>วิธีแก้ปัญหาชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/039.mp3' type='audio/mp3'></audio></p>
-                <p>ฐานของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/041.mp3' type='audio/mp3'></audio></p>
-                <p>จุดยืนของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/085.mp3' type='audio/mp3'></audio></p>
-                <p>รากฐานที่มั่นคงของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/088.mp3' type='audio/mp3'></audio></p>
-                <p>ฐานรองของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/089.mp3' type='audio/mp3'></audio></p>
-                <p>ปัญหาชีวิตต้องพิชิตด้วยธรรมะ<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/094.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตกับสภาพแวดล้อม<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/115.mp3' type='audio/mp3'></audio></p>
-                <p>ศีลธรรมเป็นกรอบชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/116.mp3' type='audio/mp3'></audio></p>
-                <p>วางแผนชีวิตพิชิตความทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/117.mp3' type='audio/mp3'></audio></p>
-                <p>ธรรมะในชีวิตประจำวัน<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/119.mp3' type='audio/mp3'></audio></p>
-                <p>ธรรมชาติของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/126.mp3' type='audio/mp3'></audio></p>
-                <p>แว่นธรรมส่องมองชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/127.mp3' type='audio/mp3'></audio></p>
-                <p>สร้างชีวิตต้องคิดก้าวหน้า<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/130.mp3' type='audio/mp3'></audio></p>
-                <p>ทำชีวิตให้เป็นสุขตามหลักธรรม<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/140.mp3' type='audio/mp3'></audio></p>
-                <p>ทางเดินชีวิตที่ถูกต้อง<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/169.mp3' type='audio/mp3'></audio></p>
-                <p>จงใช้ชีวิตให้เป็นประโยชน์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/171.mp3' type='audio/mp3'></audio></p>
-                <p>เลิกสิ่งเสพติดชีวิตผ่องใส<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/182.mp3' type='audio/mp3'></audio></p>
-                <p>ที่พึ่งและชีวิตใหม่<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/188.mp3' type='audio/mp3'></audio></p>
-                <p>ศิลปะของการดำรงชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/192.mp3' type='audio/mp3'></audio></p>
-                <p>ธรรมะที่ใช้แก้ปัญหาชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/220.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตและผลงานท่านพุทธทาส<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/224.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตในวัยเด็กของข้าพเจ้า<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/234.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตนี้ต้องการอะไร<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/249.mp3' type='audio/mp3'></audio></p>
-                <p>ทางชีวิตที่ประเสริฐ<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/251.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตคืออะไร<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/257.mp3' type='audio/mp3'></audio></p>
-                <p>ความคิดที่นำชีวิตถูกต้อง<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/274.mp3' type='audio/mp3'></audio></p>
-                <p>แสงสว่างของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/278.mp3' type='audio/mp3'></audio></p>
-                <p>เชื่อมั่นในธรรม นำชีวิตมั่นคง<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/286.mp3' type='audio/mp3'></audio></p>
-                <p>สร้างความคิดริเริ่ม เสริมคุณค่าชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/293.mp3' type='audio/mp3'></audio></p>
-                <p>เมตตา พาให้สุขทุกชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/297.mp3' type='audio/mp3'></audio></p>
-                <p>ศีลธรรมเป็นระบบของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/313.mp3' type='audio/mp3'></audio></p>
-                <p>ธรรมที่ทำให้ชีวิตเจริญก้าวหน้า<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/338.mp3' type='audio/mp3'></audio></p>
-                <p>คุณธรรมนำชีวิตปลอดภัย<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/341.mp3' type='audio/mp3'></audio></p>
-                <p>ศาสนาเป็นหลักพัฒนาชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/342.mp3' type='audio/mp3'></audio></p>
-                <p>ตัวอย่างชีวิตที่น่าศึกษา<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/374.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตและงานของหลวงพ่อพุทธทาส<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/376.mp3' type='audio/mp3'></audio></p>
-                <p>ธรรมนูญชีวิต (ศีลเป็นระบบของชีวิต)<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/379.mp3' type='audio/mp3'></audio></p>
-                <p>สิ่งที่ชีวิตต้องการ<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/381.mp3' type='audio/mp3'></audio></p>
-                <p>แก้ปัญหาชีวิตด้วยธรรมะ (แก้ไขปัญหาชีวิตด้วยปัญญา)<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/389.mp3' type='audio/mp3'></audio></p>
-                <p>หน้าที่เป็นสิ่งสำคัญของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/392.mp3' type='audio/mp3'></audio></p>
-                <p>พระพุทธองค์ยังทรงมีชีวิตอยู่<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/396.mp3' type='audio/mp3'></audio></p>
-                <p>ความถูกต้องเป็นฐานของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/397.mp3' type='audio/mp3'></audio></p>
-                <p>หลักการแก้ทุกข์ (หลักธรรมสำหรัแก้ปัญหาชีวิต)<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/404.mp3' type='audio/mp3'></audio></p>
-                <p>วางแผนชีวิตให้ถูกต้อง<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/418.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตที่รู้ผิดทางสร้างปัญหา<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/433.mp3' type='audio/mp3'></audio></p>
-                <p>รู้ผิด ชีวิตเดือนร้อน<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/444.mp3' type='audio/mp3'></audio></p>
-                <p>ใช้เวลาให้มีค่ากับชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/473.mp3' type='audio/mp3'></audio></p>
-                <p>ใช้ชีวิตให้มีค่ากับเวลาที่ผ่านไป<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/493.mp3' type='audio/mp3'></audio></p>
-                <p>รู้จักคิดชีวิตไม่ทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/500.mp3' type='audio/mp3'></audio></p>
-                <p>กิเลสท่วมใจเป็นภัยแก่ชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/516.mp3' type='audio/mp3'></audio></p>
-                <p>ศรัทธาและปัจจัยแห่งชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/036.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตคือการต่อสู้ ศัตรูคือยากำลัง<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/038.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตย่อมหมุนไปตามกรรม<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/094.mp3' type='audio/mp3'></audio></p>
-                <p>แก่นแห่งชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/126.mp3' type='audio/mp3'></audio></p>
-                <p>แนะนำข้อปฏิบัติในการดำเนินชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/127.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตจะตกต่ำถ้าเอากิเลสเป็นผู้นำ<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/137.mp3' type='audio/mp3'></audio></p>
-                <p>ควรพัฒนาชีวิตให้สูงขึ้น<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/227.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตกับที่พึง<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/234.mp3' type='audio/mp3'></audio></p>
-                <p>ผู้ไม่ภาวนาย่อมพาชีวิตให้ตกต่ำ<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/243.mp3' type='audio/mp3'></audio></p>
-                <p>ศัตรูของชีวิตคือจิตที่ไม่ได้ฝึก<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/258.mp3' type='audio/mp3'></audio></p>
-                <p>ภาวนารู้เท่าชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/279.mp3' type='audio/mp3'></audio></p>
-                <p>อย่าปล่อยชีวิตให้เสียเปล่า<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/288.mp3' type='audio/mp3'></audio></p>
-                <p>ธรรมกับชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/289.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตย่อมหมุนไปตามกรรม<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/308.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตในวัฏฏวน<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/316.mp3' type='audio/mp3'></audio></p>
-                <p>ในพุทธศาสนานี้มุ่งสันติสุขให้แก่ชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/319.mp3' type='audio/mp3'></audio></p>
-                <p>ความทุกข์ในชีวิตมีมากมาย<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/327.mp3' type='audio/mp3'></audio></p>
-                <p>อุบายแก้ปัญหาชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/334.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตมีความทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/371.mp3' type='audio/mp3'></audio></p>
-                <p>สิ่งจำเป็นต่อชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/376.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตคือการต่อสู้<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/400.mp3' type='audio/mp3'></audio></p>
-                <p>อย่าหลงผิดชีวิตจะเป็นหมัน<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/403.mp3' type='audio/mp3'></audio></p>
-                <p>เหตุปัจจัยของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/404.mp3' type='audio/mp3'></audio></p>
-                <p>เมื่อจิตไม่ดี ชีวิตก็เสียเปล่า<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/414.mp3' type='audio/mp3'></audio></p>
-                <p>สละชีวิตเพื่อรักษาศิล<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/432.mp3' type='audio/mp3'></audio></p>
-                <p>การฝึกจิตเพื่อชีวิตที่สูงขึ้น<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/433.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตขึ้นอยู่กับการกระทำ<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/448.mp3' type='audio/mp3'></audio></p>
-                <p>จิตที่ฝึกดีชีวิตนี้ย่อมไม่มีปัญหา<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/458.mp3' type='audio/mp3'></audio></p>
-                <p>ความเป็นมาและภัยของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/459.mp3' type='audio/mp3'></audio></p>
-                <p>ผู้มีปัญญาพาชีวิตรอด<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/472.mp3' type='audio/mp3'></audio></p>
-                <p>หน้าที่สำคัญของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/499.mp3' type='audio/mp3'></audio></p>
-                <p>ผู้มีปัญญาก็สามารถพาชีวิตให้พ้นทุกข์ได้<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/500.mp3' type='audio/mp3'></audio></p>
-                <p>กิเลสเป็นศัตรูของชีวิตอันดี<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/516.mp3' type='audio/mp3'></audio></p>
-                <p>ปฏิบัติธรรมเพื่อพัฒนาชีวิตให้สูงขึ้น<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/523.mp3' type='audio/mp3'></audio></p>
-                <p>เหตุปัจจุบันของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/527.mp3' type='audio/mp3'></audio></p>
-                <p>พัฒนาจิตชีวิตจะดีขึ้น<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/544.mp3' type='audio/mp3'></audio></p>
-                <p>สร้างฐานของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/613.mp3' type='audio/mp3'></audio></p>
-                <p>ปัญหาต่างๆของชีวิตเกิดจากกิเลส<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/617.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตมีน้อยอย่าปล่อยให้สูญเปล่า<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/621.mp3' type='audio/mp3'></audio></p>
-                <p>เตื่อนตนสอนจิตชีวิตใกล้ตาย<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/623.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตมีน้อยอย่าปล่อยใจให้ไร้ที่พึ่ง<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/626.mp3' type='audio/mp3'></audio></p>
-                <p>ให้เวลาแก้ชีวิตบาง<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/631.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตนี้ไม่นานหนอ<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/649.mp3' type='audio/mp3'></audio></p>
-                <p>การปฏิบัติธรรมเป็นสิ่งจำเป็นต่อชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/668.mp3' type='audio/mp3'></audio></p>
-                <p>ปัจจัยของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/693.mp3' type='audio/mp3'></audio></p>
-                <p>เอาธรรมนำชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/717.mp3' type='audio/mp3'></audio></p>
-                <p>พิจารณาทุกข์ของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/718.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตจะตกตํ่าถ้าเอากิเลสนำทาง<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/720.mp3' type='audio/mp3'></audio></p>
-                <p>ชีวิตจะพ้นภัยถ้าอาศัยธรรมนำทาง<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/749.mp3' type='audio/mp3'></audio></p>
+                <p>การทำงานคือการปฏิบัติธรรม การมีชีวิตด้วยจิตว่าง - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/1015.mp3' type='audio/mp3'></audio></p>
+                <p>การมีชีวิตด้วยจิตว่าง - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/1016.mp3' type='audio/mp3'></audio></p>
+                <p>การมีนิพพานในชีวิตประจำวัน - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/1023.mp3' type='audio/mp3'></audio></p>
+                <p>คุณค่าของชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2008.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตคืออะไร - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2011.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตเป็นสิ่งที่ต้องพัฒนา - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2012.mp3' type='audio/mp3'></audio></p>
+                <p>ธรรมะในฐานะเป็นเครื่องดำเนินชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2024.mp3' type='audio/mp3'></audio></p>
+                <p>เป้าหมายของชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2030.mp3' type='audio/mp3'></audio></p>
+                <p>ส่วนประกอบและโครงสร้างของชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/3018.mp3' type='audio/mp3'></audio></p>
+                <p>มาฆบูชาเทศนา กัณฑ์ ๑ -:การมีชีวิตอยู่เหนือความชั่ว-ดี - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/5021.mp3' type='audio/mp3'></audio></p>
+                <p>มาฆบูชาเทศนา กัณฑ์ ๒ -:อตัมมยตา มนตราสำหรับชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/5024.mp3' type='audio/mp3'></audio></p>
+                <p>มาฆบูชาเทศนา กัณฑ์ ๓ -:การมีชีวิตอยู่ด้วยธรรมะ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6001.mp3' type='audio/mp3'></audio></p>
+                <p>มาฆบูชาเทศนา กัณฑ์ ๔ -:ทางเดินของชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6002.mp3' type='audio/mp3'></audio></p>
+                <p>การทำชีวิตให้มีธรรมะ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/7022.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตเป็นสิ่งที่พัฒนาได้และต้องพัฒนา - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/7030.mp3' type='audio/mp3'></audio></p>
+                <p>การมีธรรมะในการครองชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8002.mp3' type='audio/mp3'></audio></p>
+                <p>ศาสนาของคู่กันกับชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8010.mp3' type='audio/mp3'></audio></p>
+                <p>ปรมัตถศิลป์แห่งการครองชีวิตตามทัศนของชาวพุทธ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8021.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตในฐานะเป็นวัตถุแห่งศิลปะ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8022.mp3' type='audio/mp3'></audio></p>
+                <p>ศิลปะแห่งการมีชีวิตอยู่เหนือปัญหา - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8023.mp3' type='audio/mp3'></audio></p>
+                <p>ศิลปะสำหรับการมีชีวิตอยู่ในโลก - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8024.mp3' type='audio/mp3'></audio></p>
+                <p>อัฏฐังคิกมรรคยอกศิลปะแห่งการครองชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8025.mp3' type='audio/mp3'></audio></p>
+                <p>ศิลปะแห่งการอยู่กับนิพพานในชีวิตประจำวัน - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/8029.mp3' type='audio/mp3'></audio></p>
+                <p>ศิลปะแห่งการมีชีวิตอยู่ด้วยจิตว่าง - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9001.mp3' type='audio/mp3'></audio></p>
+                <p>ธรรมะนั่นแหละคือคู่ชีวิตที่แท้จริง - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9003.mp3' type='audio/mp3'></audio></p>
+                <p>การมีชีวิตชนิดที่ไม่กัดเจ้าของ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9004.mp3' type='audio/mp3'></audio></p>
+                <p>ความลึกซึ้งของชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9007.mp3' type='audio/mp3'></audio></p>
+                <p>การมีชีวิตชนิดที่น่าพอใจ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9008.mp3' type='audio/mp3'></audio></p>
+                <p>พลังผลักดันของชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9010.mp3' type='audio/mp3'></audio></p>
+                <p>การมีธรรมะประกอบอยู่กับชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9012.mp3' type='audio/mp3'></audio></p>
+                <p>วิถีแห่งชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9018.mp3' type='audio/mp3'></audio></p>
+                <p>หลักการดำเนินชีวิตที่น่าพอใจ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9020.mp3' type='audio/mp3'></audio></p>
+                <p>ธรรมะโดยแท้จริง เพื่อชีวิตที่สมบูรณ์ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9028.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตนี้มีค่า - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/9030.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตบริหาร : การบริหารชีวิต - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/10002.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตอันประเสริฐ - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/10029.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตว่าง - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/10030.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตกีฬา: ชีวิตที่สนุกเหมือนเล่นกีฬา - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/11001.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตคือขันธ์ทั้งห้ามิใช่ตัวตน. - bdds <br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/12022.mp3' type='audio/mp3'></audio></p>
+                <p>ทางสายกลาง เพื่อชีวิตสังคมที่สุขสมบูรณ์ (พระคันธกุฎี) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/07_09.mp3' type='audio/mp3'></audio></p>
+                <p>ฟื้นวินัยชาวพุทธขึ้นมา ให้เป็นวิถีชีวิตของสังคมไทย 41.44 - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/08_16.mp3' type='audio/mp3'></audio></p>
+                <p>พอบวชพ้นอกพ่อแม่ ต้องรู้ให้แน่ ว่าจะมีชีวิตเป็นอยู่อย่างไร - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_02.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตพระใหม่ เริ่มต้นอย่างไร จึงจะพอให้ชื่นใจว่าเราได้บวชเรียน - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_05.mp3' type='audio/mp3'></audio></p>
+                <p>ถ้าเข้าถึงความจริงของธรรมชาติ แล้วเอามาจัดการชีวิตและสังคมให้ดีได้  ก็จบความหมายของพระพุทธศาสนา - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_27.mp3' type='audio/mp3'></audio></p>
+                <p>การพัฒนาชีวิต พัฒนาสังคม จะไม่ล่มสลาย ถ้าวินัยยังอยู่เป็นฐาน - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_30.mp3' type='audio/mp3'></audio></p>
+                <p>ฝึกคน ๓ แดน คนก็เดินไปในวิถีชีวิตดีงามที่เรียกว่ามรรค - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_32.mp3' type='audio/mp3'></audio></p>
+                <p>มรรคมีองค์ ๘ ก็กระจายออกไปจากวิถีชีวิตดีงาม ๓ แดน นี่เอง - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_33.mp3' type='audio/mp3'></audio></p>
+                <p>ดูขันธ์ ๕ ให้เห็นการทำงานของชีวิต พอได้พื้นความเข้าใจที่จะไปเรียนอริยสัจ - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_44.mp3' type='audio/mp3'></audio></p>
+                <p>ดูมรรคมีองค์ ๘ ให้เห็นวิถีชีวิตที่ดีงาม ว่าดำเนินไปอย่างไร - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_45.mp3' type='audio/mp3'></audio></p>
+                <p>ทางชีวิตดีงามมีอยู่ก็ดีแล้ว แต่คนที่ยังอยู่นอกทางเล่า ทำอย่างไรจะให้เขาเข้ามาเดิน - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_46.mp3' type='audio/mp3'></audio></p>
+                <p>แสงอรุณยืนยันการขึ้นมาของดวงอาทิตย์ แล้วอะไรเป็นบุพนิมิตของการเข้าสู่วิถีชีวิตที่ดีงาม ตอนที่ ๑ - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_48.mp3' type='audio/mp3'></audio></p>
+                <p>แสงอรุณยืนยันการขึ้นมาของดวงอาทิตย์ แล้วอะไรเป็นบุพนิมิตของการเข้าสู่วิถีชีวิตที่ดีงาม ตอนที่ ๒ - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_49.mp3' type='audio/mp3'></audio></p>
+                <p>ทางชีวิตของอารยชน เริ่มต้นด้วยปัจจัย ๒ มีหน่วยหนุนประคองอีก ๕ รวมเป็นแสงอรุณ ๗ รัศมี - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_50.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตและสังคมทุกข์ระทมถึงขั้นวิกฤต ก็เพราะคนจมติดอยู่แค่ความสุขที่พึ่งพาการเสพ - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_57.mp3' type='audio/mp3'></audio></p>
+                <p>มองอนาคตผ่านรากฐานความคิด ผ่านชีวิตท่านพุทธทาส  [57.34] - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/13_18.mp3' type='audio/mp3'></audio></p>
+                <p>2 ทางแยกแห่งชีวิต ที่เริ่มจากอายตนะ (1. สายความรู้สึก 2. สายความรู้) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/14_02.mp3' type='audio/mp3'></audio></p>
+                <p>สู่ชีวิตแห่งการศึกษาและสร้างสรรค์ บนฐานของอายตนะ 6 1:07:46 - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/14_03.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตพระที่แท้ อุทิศให้แก่โลก (๗๔.๓๐) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/12_15.mp3' type='audio/mp3'></audio></p>
+                <p>มองอนาคตผ่านรากฐานความคิด และชีวิตท่านพุทธทาส - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/20_16.mp3' type='audio/mp3'></audio></p>
+                <p>จะเป็นใครก็มีความสุขได้ ขอเพียงให้ใช้ชีวิตให้เป็น (ใหม่) (๔๖.๓๒) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/21_02.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตและสังคมทุกข์ระทมถึงขั้นวิกฤต  ก็เพราะคนจะจมติดอยู่แค่ความสุขที่พึ่งพาการเสพ(๔๖.๓๖) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/21_11.mp3' type='audio/mp3'></audio></p>
+                <p>พัฒนาชีวิตกันไปเถิด  ความสุขจะเกิดมีแน่ ไม่หนีไปไหน (๘๘.๒๓) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/21_15.mp3' type='audio/mp3'></audio></p>
+                <p>ปีใหม่ ต้อนรับหรือท้าทาย และจุดหมายชีวิต (1.02.22) - payutto <br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/22_15.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตแต่งงาน ครอบครัว - char <br/><audio controls=''><source src='http://thammapedia.com/listen/char/mp3/th_011.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตไม่มีบทบอก - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/024.mp3' type='audio/mp3'></audio></p>
+                <p>ชี้ทางชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/032.mp3' type='audio/mp3'></audio></p>
+                <p>วิธีแก้ปัญหาชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/039.mp3' type='audio/mp3'></audio></p>
+                <p>ฐานของชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/041.mp3' type='audio/mp3'></audio></p>
+                <p>จุดยืนของชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/085.mp3' type='audio/mp3'></audio></p>
+                <p>รากฐานที่มั่นคงของชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/088.mp3' type='audio/mp3'></audio></p>
+                <p>ฐานรองของชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/089.mp3' type='audio/mp3'></audio></p>
+                <p>ปัญหาชีวิตต้องพิชิตด้วยธรรมะ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/094.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตกับสภาพแวดล้อม - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/115.mp3' type='audio/mp3'></audio></p>
+                <p>ศีลธรรมเป็นกรอบชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/116.mp3' type='audio/mp3'></audio></p>
+                <p>วางแผนชีวิตพิชิตความทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/117.mp3' type='audio/mp3'></audio></p>
+                <p>ธรรมะในชีวิตประจำวัน - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/119.mp3' type='audio/mp3'></audio></p>
+                <p>ธรรมชาติของชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/126.mp3' type='audio/mp3'></audio></p>
+                <p>แว่นธรรมส่องมองชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/127.mp3' type='audio/mp3'></audio></p>
+                <p>สร้างชีวิตต้องคิดก้าวหน้า - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/130.mp3' type='audio/mp3'></audio></p>
+                <p>ทำชีวิตให้เป็นสุขตามหลักธรรม - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/140.mp3' type='audio/mp3'></audio></p>
+                <p>ทางเดินชีวิตที่ถูกต้อง - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/169.mp3' type='audio/mp3'></audio></p>
+                <p>จงใช้ชีวิตให้เป็นประโยชน์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/171.mp3' type='audio/mp3'></audio></p>
+                <p>เลิกสิ่งเสพติดชีวิตผ่องใส - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/182.mp3' type='audio/mp3'></audio></p>
+                <p>ที่พึ่งและชีวิตใหม่ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/188.mp3' type='audio/mp3'></audio></p>
+                <p>ศิลปะของการดำรงชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/192.mp3' type='audio/mp3'></audio></p>
+                <p>ธรรมะที่ใช้แก้ปัญหาชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/220.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตและผลงานท่านพุทธทาส - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/224.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตในวัยเด็กของข้าพเจ้า - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/234.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตนี้ต้องการอะไร - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/249.mp3' type='audio/mp3'></audio></p>
+                <p>ทางชีวิตที่ประเสริฐ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/251.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตคืออะไร - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/257.mp3' type='audio/mp3'></audio></p>
+                <p>ความคิดที่นำชีวิตถูกต้อง - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/274.mp3' type='audio/mp3'></audio></p>
+                <p>แสงสว่างของชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/278.mp3' type='audio/mp3'></audio></p>
+                <p>เชื่อมั่นในธรรม นำชีวิตมั่นคง - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/286.mp3' type='audio/mp3'></audio></p>
+                <p>สร้างความคิดริเริ่ม เสริมคุณค่าชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/293.mp3' type='audio/mp3'></audio></p>
+                <p>เมตตา พาให้สุขทุกชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/297.mp3' type='audio/mp3'></audio></p>
+                <p>ศีลธรรมเป็นระบบของชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/313.mp3' type='audio/mp3'></audio></p>
+                <p>ธรรมที่ทำให้ชีวิตเจริญก้าวหน้า - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/338.mp3' type='audio/mp3'></audio></p>
+                <p>คุณธรรมนำชีวิตปลอดภัย - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/341.mp3' type='audio/mp3'></audio></p>
+                <p>ศาสนาเป็นหลักพัฒนาชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/342.mp3' type='audio/mp3'></audio></p>
+                <p>ตัวอย่างชีวิตที่น่าศึกษา - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/374.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตและงานของหลวงพ่อพุทธทาส - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/376.mp3' type='audio/mp3'></audio></p>
+                <p>ธรรมนูญชีวิต (ศีลเป็นระบบของชีวิต) - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/379.mp3' type='audio/mp3'></audio></p>
+                <p>สิ่งที่ชีวิตต้องการ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/381.mp3' type='audio/mp3'></audio></p>
+                <p>แก้ปัญหาชีวิตด้วยธรรมะ (แก้ไขปัญหาชีวิตด้วยปัญญา) - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/389.mp3' type='audio/mp3'></audio></p>
+                <p>หน้าที่เป็นสิ่งสำคัญของชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/392.mp3' type='audio/mp3'></audio></p>
+                <p>พระพุทธองค์ยังทรงมีชีวิตอยู่ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/396.mp3' type='audio/mp3'></audio></p>
+                <p>ความถูกต้องเป็นฐานของชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/397.mp3' type='audio/mp3'></audio></p>
+                <p>หลักการแก้ทุกข์ (หลักธรรมสำหรัแก้ปัญหาชีวิต) - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/404.mp3' type='audio/mp3'></audio></p>
+                <p>วางแผนชีวิตให้ถูกต้อง - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/418.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตที่รู้ผิดทางสร้างปัญหา - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/433.mp3' type='audio/mp3'></audio></p>
+                <p>รู้ผิด ชีวิตเดือนร้อน - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/444.mp3' type='audio/mp3'></audio></p>
+                <p>ใช้เวลาให้มีค่ากับชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/473.mp3' type='audio/mp3'></audio></p>
+                <p>ใช้ชีวิตให้มีค่ากับเวลาที่ผ่านไป - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/493.mp3' type='audio/mp3'></audio></p>
+                <p>รู้จักคิดชีวิตไม่ทุกข์ - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/500.mp3' type='audio/mp3'></audio></p>
+                <p>กิเลสท่วมใจเป็นภัยแก่ชีวิต - panya <br/><audio controls=''><source src='http://thammapedia.com/listen/panya/mp3/516.mp3' type='audio/mp3'></audio></p>
+                <p>ศรัทธาและปัจจัยแห่งชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/036.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตคือการต่อสู้ ศัตรูคือยากำลัง - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/038.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตย่อมหมุนไปตามกรรม - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/094.mp3' type='audio/mp3'></audio></p>
+                <p>แก่นแห่งชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/126.mp3' type='audio/mp3'></audio></p>
+                <p>แนะนำข้อปฏิบัติในการดำเนินชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/127.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตจะตกต่ำถ้าเอากิเลสเป็นผู้นำ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/137.mp3' type='audio/mp3'></audio></p>
+                <p>ควรพัฒนาชีวิตให้สูงขึ้น - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/227.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตกับที่พึง - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/234.mp3' type='audio/mp3'></audio></p>
+                <p>ผู้ไม่ภาวนาย่อมพาชีวิตให้ตกต่ำ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/243.mp3' type='audio/mp3'></audio></p>
+                <p>ศัตรูของชีวิตคือจิตที่ไม่ได้ฝึก - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/258.mp3' type='audio/mp3'></audio></p>
+                <p>ภาวนารู้เท่าชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/279.mp3' type='audio/mp3'></audio></p>
+                <p>อย่าปล่อยชีวิตให้เสียเปล่า - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/288.mp3' type='audio/mp3'></audio></p>
+                <p>ธรรมกับชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/289.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตย่อมหมุนไปตามกรรม - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/308.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตในวัฏฏวน - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/316.mp3' type='audio/mp3'></audio></p>
+                <p>ในพุทธศาสนานี้มุ่งสันติสุขให้แก่ชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/319.mp3' type='audio/mp3'></audio></p>
+                <p>ความทุกข์ในชีวิตมีมากมาย - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/327.mp3' type='audio/mp3'></audio></p>
+                <p>อุบายแก้ปัญหาชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/334.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตมีความทุกข์ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/371.mp3' type='audio/mp3'></audio></p>
+                <p>สิ่งจำเป็นต่อชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/376.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตคือการต่อสู้ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/400.mp3' type='audio/mp3'></audio></p>
+                <p>อย่าหลงผิดชีวิตจะเป็นหมัน - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/403.mp3' type='audio/mp3'></audio></p>
+                <p>เหตุปัจจัยของชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/404.mp3' type='audio/mp3'></audio></p>
+                <p>เมื่อจิตไม่ดี ชีวิตก็เสียเปล่า - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/414.mp3' type='audio/mp3'></audio></p>
+                <p>สละชีวิตเพื่อรักษาศิล - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/432.mp3' type='audio/mp3'></audio></p>
+                <p>การฝึกจิตเพื่อชีวิตที่สูงขึ้น - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/433.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตขึ้นอยู่กับการกระทำ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/448.mp3' type='audio/mp3'></audio></p>
+                <p>จิตที่ฝึกดีชีวิตนี้ย่อมไม่มีปัญหา - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/458.mp3' type='audio/mp3'></audio></p>
+                <p>ความเป็นมาและภัยของชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/459.mp3' type='audio/mp3'></audio></p>
+                <p>ผู้มีปัญญาพาชีวิตรอด - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/472.mp3' type='audio/mp3'></audio></p>
+                <p>หน้าที่สำคัญของชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/499.mp3' type='audio/mp3'></audio></p>
+                <p>ผู้มีปัญญาก็สามารถพาชีวิตให้พ้นทุกข์ได้ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/500.mp3' type='audio/mp3'></audio></p>
+                <p>กิเลสเป็นศัตรูของชีวิตอันดี - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/516.mp3' type='audio/mp3'></audio></p>
+                <p>ปฏิบัติธรรมเพื่อพัฒนาชีวิตให้สูงขึ้น - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/523.mp3' type='audio/mp3'></audio></p>
+                <p>เหตุปัจจุบันของชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/527.mp3' type='audio/mp3'></audio></p>
+                <p>พัฒนาจิตชีวิตจะดีขึ้น - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/544.mp3' type='audio/mp3'></audio></p>
+                <p>สร้างฐานของชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/613.mp3' type='audio/mp3'></audio></p>
+                <p>ปัญหาต่างๆของชีวิตเกิดจากกิเลส - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/617.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตมีน้อยอย่าปล่อยให้สูญเปล่า - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/621.mp3' type='audio/mp3'></audio></p>
+                <p>เตื่อนตนสอนจิตชีวิตใกล้ตาย - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/623.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตมีน้อยอย่าปล่อยใจให้ไร้ที่พึ่ง - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/626.mp3' type='audio/mp3'></audio></p>
+                <p>ให้เวลาแก้ชีวิตบาง - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/631.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตนี้ไม่นานหนอ - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/649.mp3' type='audio/mp3'></audio></p>
+                <p>การปฏิบัติธรรมเป็นสิ่งจำเป็นต่อชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/668.mp3' type='audio/mp3'></audio></p>
+                <p>ปัจจัยของชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/693.mp3' type='audio/mp3'></audio></p>
+                <p>เอาธรรมนำชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/717.mp3' type='audio/mp3'></audio></p>
+                <p>พิจารณาทุกข์ของชีวิต - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/718.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตจะตกตํ่าถ้าเอากิเลสนำทาง - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/720.mp3' type='audio/mp3'></audio></p>
+                <p>ชีวิตจะพ้นภัยถ้าอาศัยธรรมนำทาง - riean <br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/749.mp3' type='audio/mp3'></audio></p>
  </div>
