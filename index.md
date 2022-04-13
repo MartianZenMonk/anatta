@@ -70,7 +70,7 @@ https://www.facebook.com/หลวงพ่อสุญญตา-182790273237003
 <div>
  <h4> ธรรมเทศนาว่าด้วย - ปัญญา </h4>
                 <!-- Display the countdown timer in an element -->
-                <p>พรรษากาลเทศนา กัณฑ์ 0๒ -:ไตรสิกขา : ศีลสิกขา-สมาธิสิกขา-ปัญญา... - bdds<br/><audio controls=''><source src='thammapedia.com/listen/bdds/mp3/3023.mp3' type='audio/mp3'></audio></p>
+                <p>พรรษากาลเทศนา กัณฑ์ 0๒ -:ไตรสิกขา : ศีลสิกขา-สมาธิสิกขา-ปัญญา... - bdds<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/3023.mp3' type='audio/mp3'></audio></p>
                 <p>พรรษากาลเทศนา กัณฑ์ ๑๑ -:ไตรมาส : ศีลมาส-สมาธิมาส-ปัญญามาส - bdds<br/><audio controls=''><source src='thammapedia.com/listen/bdds/mp3/4002.mp3' type='audio/mp3'></audio></p>
                 <p>ศิลปะแห่งการดูด้วย ยถาภูตสัมมัปปัญญา - bdds<br/><audio controls=''><source src='thammapedia.com/listen/bdds/mp3/8027.mp3' type='audio/mp3'></audio></p>
                 <p>การมีธรรมมะสี่เกลอ : สติ ปัญญา สัมปชัญญะ สมาธิ - bdds<br/><audio controls=''><source src='thammapedia.com/listen/bdds/mp3/10009.mp3' type='audio/mp3'></audio></p>
