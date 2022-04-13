@@ -164,6 +164,17 @@ TBC
                 <p>ชอบอ้างกันนักว่าอริยสัจสี่  แต่แค่หน้าที่ปริญญา ก็ยังไม่รู้จัก (ส่วน ถาม-ตอบ) [40.08]<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/13_21.mp3' type='audio/mp3'></audio></p>
                 <p>ปัญญาเป็นอริยสัจธรรม<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/155.mp3' type='audio/mp3'></audio></p>
 
+ <h4> ธรรมเทศนาว่าด้วย - อริยสัจจ์ </h4>
+                <p>อาสาฬหบูชาเทศนา พ.ศ. ๒๕๒๙ กัณฑ์ ๒ -: อริยสัจจ์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6027.mp3' type='audio/mp3'></audio></p>
+                <p>อาสาฬหบูชาเทศนา พ.ศ. ๒๕๓๑ กัณฑ์ที่ ๑ -: อตัมมยตากับอริยสัจจส...<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/6030.mp3' type='audio/mp3'></audio></p>
+                <p>สรุปปฎิจจสมุปบาทและอริยสัจจ์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/12003.mp3' type='audio/mp3'></audio></p>
+                <p>แม้จะพูดถึงอริยสัจสี่กันสักเท่าไร ก็ไม่มีทางเข้าใจ ถ้าไม่รู้หลักหน้าที่ต่ออริยสัจ<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_42.mp3' type='audio/mp3'></audio></p>
+                <p>ก่อนจะเข้าเนื้อ มาดูหนังอริยสัจกันก่อน<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_43.mp3' type='audio/mp3'></audio></p>
+                <p>ดูขันธ์ ๕ ให้เห็นการทำงานของชีวิต พอได้พื้นความเข้าใจที่จะไปเรียนอริยสัจ<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/09_44.mp3' type='audio/mp3'></audio></p>
+                <p>ชอบอ้างกันนักว่าอริยสัจสี่ แต่แค่หน้าที่ปริญญา ก็ยังไม่รู้จัก  [23.00]<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/13_20.mp3' type='audio/mp3'></audio></p>
+                <p>ชอบอ้างกันนักว่าอริยสัจสี่  แต่แค่หน้าที่ปริญญา ก็ยังไม่รู้จัก (ส่วน ถาม-ตอบ) [40.08]<br/><audio controls=''><source src='http://thammapedia.com/listen/payutto/mp3/13_21.mp3' type='audio/mp3'></audio></p>
+                <p>ปัญญาเป็นอริยสัจธรรม<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/155.mp3' type='audio/mp3'></audio></p>
+
                 <h4> ธรรมเทศนาว่าด้วย - ทุกข์ </h4>
                 <p>การดับทุกข์เป็นหน้าที่ของทุกคน<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/1011.mp3' type='audio/mp3'></audio></p>
                 <p>ทำอย่างไรจึงจะไม่เป็นทุกข์<br/><audio controls=''><source src='http://thammapedia.com/listen/bdds/mp3/2015.mp3' type='audio/mp3'></audio></p>
@@ -451,4 +462,4 @@ TBC
                 <p>พิจารณาทุกข์ของชีวิต<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/718.mp3' type='audio/mp3'></audio></p>
                 <p>ชีวิตจะตกตํ่าถ้าเอากิเลสนำทาง<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/720.mp3' type='audio/mp3'></audio></p>
                 <p>ชีวิตจะพ้นภัยถ้าอาศัยธรรมนำทาง<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/749.mp3' type='audio/mp3'></audio></p>
-</div>
+ </div>
