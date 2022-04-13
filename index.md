@@ -65,7 +65,7 @@ TBC
     คมฺภีรญฺจ กถํ กตฺตา แถลงเรื่องล้ำลึกได้ สามารถอธิบายเรื่องยุ่งยากซับซ้อน ให้เข้าใจ และให้เรียนรู้เรื่องราวที่ลึกซึ้งยิ่งขึ้นไป
     โน จฏฐาเน นิโยชเย ไม่ชักนำในอฐาน คือ ไม่แนะนำในเรื่องเหลวไหล หรือชักจูงไปในทางเสื่อมเสีย
 </pre>
-https://www.facebook.com/หลวงพ่อสุญญตา-182790273237003/
+<h4><a href="https://www.facebook.com/หลวงพ่อสุญญตา-182790273237003/">หลวงพ่อสุญญตา</a></h4>
 
 <div>
  <h4> ธรรมเทศนาว่าด้วย - ปัญญา </h4>
@@ -149,7 +149,3 @@ https://www.facebook.com/หลวงพ่อสุญญตา-182790273237003
                 <p>ชาวพุทธควรมีปัญญา - riean<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/755.mp3' type='audio/mp3'></audio></p>
                
 </div>
-
-<script>
-        document.querySelector('audio').playbackRate = 1.75;
-</script>
