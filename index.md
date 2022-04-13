@@ -149,3 +149,7 @@ https://www.facebook.com/หลวงพ่อสุญญตา-182790273237003
                 <p>ชาวพุทธควรมีปัญญา - riean<br/><audio controls=''><source src='http://thammapedia.com/listen/riean/mp3/755.mp3' type='audio/mp3'></audio></p>
                
 </div>
+
+<script>
+        document.querySelector('audio').playbackRate = 1.75;
+</script>
