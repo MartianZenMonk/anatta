@@ -1,3 +1,5 @@
+![BuddhaBot](https://user-images.githubusercontent.com/79086623/186826687-72073fb8-b017-4d2f-9c0e-5dbe1fb48d68.png)
+
 ![anattabot](https://user-images.githubusercontent.com/79086623/123729988-fffc2580-d8bf-11eb-94ab-2aa220319fb9.png)
 
 This project is a part of my experiment with Buddhahood , i will follow the Buddha training ( https://www.accesstoinsight.org/tipitaka/mn/mn.107.horn.html ) , to reach the void - free mind, and using it to learn and develop the good stuffs for humankind. 
